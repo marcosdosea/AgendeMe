@@ -3115,11 +3115,11 @@
 												"$ref": "AAAAAAGA3d+BveaOXQU="
 											},
 											"font": "Arial;13;1",
-											"left": 369,
+											"left": 369.5,
 											"top": 435.5,
 											"width": 163,
 											"height": 13,
-											"text": "Manter Agenda"
+											"text": "Manter Agenda do Serviço"
 										},
 										{
 											"_type": "LabelView",
@@ -3148,9 +3148,9 @@
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 364,
+									"left": 364.5,
 									"top": 428.5,
-									"width": 173,
+									"width": 173.97900390625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGA3d+BveaPjHI="
@@ -3245,7 +3245,7 @@
 							"containerChangeable": true,
 							"left": 328,
 							"top": 424,
-							"width": 245,
+							"width": 246,
 							"height": 35,
 							"nameCompartment": {
 								"$ref": "AAAAAAGA3d+BveaOXQU="
@@ -7980,7 +7980,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFElm6BOFNpegQ="
 					},
-					"name": "Manter Agenda",
+					"name": "Manter Agenda do Serviço",
 					"ownedElements": [
 						{
 							"_type": "UMLInclude",
@@ -25829,7 +25829,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFFxnG7qRNvP5M="
 					},
-					"name": "Agenda",
+					"name": "Agenda do Servico",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -58397,7 +58397,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFFxnG7qRNvP5M="
 					},
-					"name": "ManterAgendaDeServicos",
+					"name": "ManterAgendadoServico",
 					"ownedElements": [
 						{
 							"_type": "UMLInteraction",
@@ -82252,7 +82252,7 @@
 											"top": 452,
 											"width": 133.68798828125,
 											"height": 13,
-											"text": "Agenda"
+											"text": "Agenda do Servico"
 										},
 										{
 											"_type": "LabelView",
@@ -94674,9 +94674,9 @@
 										"$ref": "AAAAAAGCbcLlZPuslYw="
 									},
 									"font": "Arial;13;0",
-									"left": 753,
+									"left": 752,
 									"top": 209,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -94945,9 +94945,9 @@
 										"$ref": "AAAAAAGC1wFA4yizLo4="
 									},
 									"font": "Arial;13;0",
-									"left": 662,
+									"left": 661,
 									"top": 163,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -104640,7 +104640,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFFxnG7qRNvP5M="
 					},
-					"name": "UC-Manter Agenda de Servicos",
+					"name": "UC-Manter Agenda do Servico",
 					"ownedViews": [
 						{
 							"_type": "UMLClassView",
