@@ -1,1 +1,0 @@
-txt temporário que será removido no início da implementação do código
