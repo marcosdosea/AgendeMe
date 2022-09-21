@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Shared\_Scripts.cshtml" />
-    <Content Remove="wwwroot\js\agendeme.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="wwwroot\assets\" />
   </ItemGroup>
 
