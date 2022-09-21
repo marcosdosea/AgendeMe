@@ -1,34 +1,75 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AgendeMeWeb</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AgendeMeWeb.styles.css" asp-append-version="true" />
+    
+    <!-- Design System GOV.BR -->
+    <link rel="stylesheet"
+          href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900&amp;display=swap" />
+    <link rel="stylesheet"
+          href="~/css/core.min.css" />
+    <!-- Font Awesome utilizado pelo GOV.BR -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+    
+    <link rel="stylesheet" href="~/css/agendeme.css" />
+
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AgendeMeWeb</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+    <header class="br-header large">
+        <div class="container-lg">
+            <div class="header-top">
+                <div class="header-logo">
+                    <a class="back-none" asp-controller="Home"><img src="~/assets/logo.svg" alt="logoAgendeMe" /></a>
+                    <span class="br-divider vertical mx-half mx-sm-1"></span>
+                    <div class="ms-2 header-sign">Agendamentos Municipais</div>
+                </div>
+                <div class="header-actions">
+                    <div class="header-links dropdown">
+                        <button class="br-button circle small" type="button" data-toggle="dropdown" aria-label="Abrir Acesso Rápido">
+                            <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+                        </button>
+                        <div class="br-list">
+                            <div class="header">
+                                <div class="title">Acesso Rápido</div>
+                            </div>
+                                <a class="br-item" href="javascript:void(0)">Prefeituras</a>
+                                <a class="br-item" href="javascript:void(0)">Ajuda</a>
+                                <a class="br-item" href="javascript:void(0)">Acessibilidade</a>
+                                <a class="br-item" href="javascript:void(0)">Cadastre-se</a>
+                        </div>
+                    </div><span class="br-divider vertical mx-half mx-sm-1"></span>
+                    <div class="header-functions dropdown">
+                        <button class="br-button circle small" type="button" data-toggle="dropdown" aria-label="Abrir Funcionalidades do Sistema">
+                            <i class="fas fa-th" aria-hidden="true"></i>
+                        </button>
+                        <div class="br-list">
+                            <div class="header">
+                                <div class="title">Funcionalidades do Sistema</div>
+                            </div>
+                            <div class="align-items-center br-item">
+                                <button class="br-button circle small" type="button" aria-label="Contraste">
+                                    <i class="fas fa-adjust" aria-hidden="true"></i><span class="text">Contraste</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="header-sign-in">
+                            <button class="br-sign-in small" type="button" data-trigger="login">
+                                <i class="fas fa-user" aria-hidden="true"></i><span class="d-sm-inline">Entrar</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
+        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -36,14 +77,94 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - AgendeMeWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="br-footer">
+        <div class="container-lg">
+            <div class="logo"><img src="~/assets/logoBranca.svg" alt="logoAgendeMe" width="180px"/></div>
+            <div class="br-list horizontal" data-toggle="data-toggle" data-sub="data-sub">
+                <div class="col-2">
+                    <a class="br-item header" href="javascript:void(0)">
+                        <div class="content text-down-01 text-bold text-uppercase">Fale Conosco</div>
+                        <div class="support">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                    <div class="br-list">
+                        <span class="br-divider d-md-none"></span>
+                        <a class="br-item" href="javascript:void(0)">
+                            <div class="content">Enviar um e-mail</div>
+                        </a>
+                        <a class="br-item" href="javascript:void(0)">
+                            <div class="content">Números para contato</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <a class="br-item header" href="javascript:void(0)">
+                        <div class="content text-down-01 text-bold text-uppercase">Por dentro do Agende-Me</div>
+                        <div class="support">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                    <div class="br-list">
+                        <span class="br-divider d-md-none"></span>
+                        <a class="br-item" href="javascript:void(0)">
+                            <div class="content">Dúvidas Frequentes</div>
+                        </a>
+                        <a class="br-item" href="javascript:void(0)">
+                            <div class="content">Guias para utilizar o Agende-Me</div>
+                        </a><span class="br-divider d-md-none"></span>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <a class="br-item header" href="javascript:void(0)">
+                        <div class="content text-down-01 text-bold text-uppercase">Acompanhe o Desenvolvimento</div>
+                        <div class="support">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                    <div class="br-list">
+                        <span class="br-divider d-md-none"></span>
+                        <a class="br-item" href="javascript:void(0)">
+                            <div class="content">O que há de novo?</div>
+                        </a>
+                        <a class="br-item" href="https://github.com/marcosdosea/AgendeMe" target="_blank">
+                            <div class="content">Quer contribuir com o Agende-Me?</div>
+                        </a><span class="br-divider d-md-none"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="d-sm-block">
+                <div class="row align-items-end justify-content-between py-5">
+                    <div class="col social-network">
+                        <p class="text-bold text-uppercase">Redes Sociais</p>
+                        <a class="back-none" href="#">
+                            <i class="text-light fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a class="ms-3 back-none" href="#">
+                            <i class="text-light fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+                        <a class="ms-3 back-none" href="#">
+                            <i class="text-light fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a class="ms-3 back-none" href="#">
+                            <i class="text-light fab fa-youtube" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div><span class="br-divider my-3"></span>
+        <div class="container-lg">
+            <div class="info">
+                <div class="text-down-01 text-medium pb-3">&copy; 
+                    @DateTime.Now.Year.ToString() - Agende-Me - <a class="back-none" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Scripts de componentes GOV.BR -->
+    <script src="~/js/core-init.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
