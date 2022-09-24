@@ -1,3 +1,7 @@
+using Core.Service;
+using Core;
+using Microsoft.EntityFrameworkCore;
+
 namespace AgendeMeWeb
 {
     public class Program
@@ -8,6 +12,20 @@ namespace AgendeMeWeb
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<AgendeMeContext>(
+                options => options.UseMySQL(builder.Configuration.GetConnectionString("AgendeMeDatabase")));
+
+            //builder.Services.AddTransient<IAgendaDoServicoService, AgendaDoServicoService>();
+            //builder.Services.AddTransient<IAgendamentoService, AgendamentoService>();
+            //builder.Services.AddTransient<IAreaDeServicoService, AreaDeServicoService>();
+            //builder.Services.AddTransient<ICargoService, CargoService>();
+            //builder.Services.AddTransient<ICidadaoService, CidadaoService>();
+            //builder.Services.AddTransient<IOrgaoPublicoService, OrgaoPublicoService>();
+            //builder.Services.AddTransient<IPrefeituraService, PrefeituraService>();
+            //builder.Services.AddTransient<IServicoPublicoService, ServicoPublicoService>();
+
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             var app = builder.Build();
 
