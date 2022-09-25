@@ -48,8 +48,7 @@ namespace Core
 
                 entity.Property(e => e.Id)
                     .HasColumnType("int unsigned")
-                    .HasColumnName("id")
-                    .HasDefaultValueSql("'1'");
+                    .HasColumnName("id");
 
                 entity.Property(e => e.DiaSemana)
                     .IsRequired()
@@ -119,8 +118,7 @@ namespace Core
 
                 entity.Property(e => e.Id)
                     .HasColumnType("int unsigned")
-                    .HasColumnName("id")
-                    .HasDefaultValueSql("'1'");
+                    .HasColumnName("id");
 
                 entity.Property(e => e.Data).HasColumnName("data");
 
@@ -205,9 +203,7 @@ namespace Core
 
                 entity.HasIndex(e => e.Nome, "nome");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
-                    .HasDefaultValueSql("'1'");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Icone)
                     .IsRequired()
@@ -268,8 +264,7 @@ namespace Core
 
                 entity.Property(e => e.Id)
                     .HasColumnType("int unsigned")
-                    .HasColumnName("id")
-                    .HasDefaultValueSql("'1'");
+                    .HasColumnName("id");
 
                 entity.Property(e => e.Descricao)
                     .HasMaxLength(150)
@@ -302,8 +297,7 @@ namespace Core
 
                 entity.Property(e => e.Id)
                     .HasColumnType("int unsigned")
-                    .HasColumnName("id")
-                    .HasDefaultValueSql("'1'");
+                    .HasColumnName("id");
 
                 entity.Property(e => e.Bairro)
                     .IsRequired()
@@ -378,7 +372,8 @@ namespace Core
                     .HasColumnName("sus");
 
                 entity.Property(e => e.Telefone)
-                    .HasColumnType("int unsigned")
+                    .IsRequired()
+                    .HasMaxLength(20)
                     .HasColumnName("telefone");
 
                 entity.Property(e => e.TipoCidadao)
@@ -409,8 +404,7 @@ namespace Core
 
                 entity.Property(e => e.Id)
                     .HasColumnType("int unsigned")
-                    .HasColumnName("id")
-                    .HasDefaultValueSql("'1'");
+                    .HasColumnName("id");
 
                 entity.Property(e => e.Bairro)
                     .IsRequired()
@@ -476,8 +470,7 @@ namespace Core
 
                 entity.Property(e => e.Id)
                     .HasColumnType("int unsigned")
-                    .HasColumnName("id")
-                    .HasDefaultValueSql("'1'");
+                    .HasColumnName("id");
 
                 entity.Property(e => e.Bairro)
                     .HasMaxLength(70)
@@ -598,8 +591,7 @@ namespace Core
 
                 entity.Property(e => e.Id)
                     .HasColumnType("int unsigned")
-                    .HasColumnName("id")
-                    .HasDefaultValueSql("'1'");
+                    .HasColumnName("id");
 
                 entity.Property(e => e.Icone)
                     .IsRequired()

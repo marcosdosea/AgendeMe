@@ -23,7 +23,7 @@ namespace Core
         public string Cpf { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Sus { get; set; }
-        public int Telefone { get; set; }
+        public string Telefone { get; set; }
         public string Email { get; set; }
         public string Cep { get; set; }
         public string Estado { get; set; }
