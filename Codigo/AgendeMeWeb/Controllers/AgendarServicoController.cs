@@ -1,19 +1,36 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AgendeMeWeb.Models;
+using AutoMapper;
+using Core;
+using Core.Service;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AgendeMeWeb.Controllers
 {
     public class AgendarServicoController : Controller
     {
+        private readonly IAgendamentoService _agendamentoService;
+        private readonly IMapper _mapper;
+
+        public AgendarServicoController(IAgendamentoService agendamentoService, IMapper mapper)
+        {
+            _agendamentoService = agendamentoService;
+            _mapper = mapper;
+        }
+
         // GET: AgendarServicoController
         public ActionResult Index()
         {
-            return View();
+            var listaAgendamentos = _agendamentoService.GetAll();
+            var listaAgendamentosModel = _mapper.Map<List<AgendarServicoViewModel>>(listaAgendamentos);
+            return View(listaAgendamentosModel);
         }
 
         // GET: AgendarServicoController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Agendamento agendamento = _agendamentoService.Get(id);
+            AgendarServicoViewModel agendamentoModel = _mapper.Map<AgendarServicoViewModel>(agendamento);
+            return View(agendamentoModel);
         }
 
         // GET: AgendarServicoController/Create
@@ -25,10 +42,12 @@ namespace AgendeMeWeb.Controllers
         // POST: AgendarServicoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(AgendarServicoViewModel agendamentoModel)
         {
             try
             {
+                var agendamento = _mapper.Map<Agendamento>(agendamentoModel);
+                _agendamentoService.Create(agendamento);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -40,16 +59,20 @@ namespace AgendeMeWeb.Controllers
         // GET: AgendarServicoController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Agendamento agendamento = _agendamentoService.Get(id);
+            AgendarServicoViewModel agendamentoModel = _mapper.Map<AgendarServicoViewModel>(agendamento);
+            return View(agendamentoModel);
         }
 
         // POST: AgendarServicoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, AgendarServicoViewModel agendamentoModel)
         {
             try
             {
+                var agendamento = _mapper.Map<Agendamento>(agendamentoModel);
+                _agendamentoService.Edit(agendamento);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -61,16 +84,19 @@ namespace AgendeMeWeb.Controllers
         // GET: AgendarServicoController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Agendamento agendamento = _agendamentoService.Get(id);
+            AgendarServicoViewModel agendamentoModel = _mapper.Map<AgendarServicoViewModel>(agendamento);
+            return View(agendamentoModel);
         }
 
         // POST: AgendarServicoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, AgendarServicoViewModel agendamentoModel)
         {
             try
             {
+                _agendamentoService.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
