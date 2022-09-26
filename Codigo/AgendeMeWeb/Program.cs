@@ -1,6 +1,7 @@
-using Core.Service;
 using Core;
+using Core.Service;
 using Microsoft.EntityFrameworkCore;
+using Service;
 
 namespace AgendeMeWeb
 {
@@ -17,7 +18,7 @@ namespace AgendeMeWeb
                 options => options.UseMySQL(builder.Configuration.GetConnectionString("AgendeMeDatabase")));
 
             //builder.Services.AddTransient<IAgendaDoServicoService, AgendaDoServicoService>();
-            //builder.Services.AddTransient<IAgendamentoService, AgendamentoService>();
+            builder.Services.AddTransient<IAgendamentoService, AgendamentoService>();
             //builder.Services.AddTransient<IAreaDeServicoService, AreaDeServicoService>();
             //builder.Services.AddTransient<ICargoService, CargoService>();
             //builder.Services.AddTransient<ICidadaoService, CidadaoService>();

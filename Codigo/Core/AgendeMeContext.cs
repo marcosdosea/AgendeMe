@@ -372,7 +372,8 @@ namespace Core
                     .HasColumnName("sus");
 
                 entity.Property(e => e.Telefone)
-                    .HasColumnType("int unsigned")
+                    .IsRequired()
+                    .HasMaxLength(20)
                     .HasColumnName("telefone");
 
                 entity.Property(e => e.TipoCidadao)
