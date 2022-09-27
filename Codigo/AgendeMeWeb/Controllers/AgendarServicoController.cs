@@ -64,6 +64,13 @@ namespace AgendeMeWeb.Controllers
             return View(agendamentoModel);
         }
 
+        public ActionResult AtenderCidadao(int id)
+        {
+            Agendamento agendamento = _agendamentoService.Get(id);
+            AgendarServicoViewModel agendamentoModel = _mapper.Map<AgendarServicoViewModel>(agendamento);
+            return View(agendamentoModel);
+        }
+
         // POST: AgendarServicoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
