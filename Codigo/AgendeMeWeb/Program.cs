@@ -19,7 +19,7 @@ namespace AgendeMeWeb
 
             //builder.Services.AddTransient<IAgendaDoServicoService, AgendaDoServicoService>();
             builder.Services.AddTransient<IAgendamentoService, AgendamentoService>();
-            //builder.Services.AddTransient<IAreaDeServicoService, AreaDeServicoService>();
+            builder.Services.AddTransient<IAreaDeServicoService, AreaDeServicoService>();
             //builder.Services.AddTransient<ICargoService, CargoService>();
             //builder.Services.AddTransient<ICidadaoService, CidadaoService>();
             //builder.Services.AddTransient<IOrgaoPublicoService, OrgaoPublicoService>();
