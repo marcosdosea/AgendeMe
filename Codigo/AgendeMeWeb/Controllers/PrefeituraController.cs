@@ -1,4 +1,7 @@
 ﻿using AgendeMeWeb.Models;
+using AutoMapper;
+using Core;
+using Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,16 +9,29 @@ namespace AgendeMeWeb.Controllers
 {
     public class PrefeituraController : Controller
     {
+        private readonly IPrefeituraService _prefeituraService;
+        private readonly IMapper _mapper;
+
+        public PrefeituraController(IPrefeituraService prefeituraService, IMapper mapper)
+        {
+            _prefeituraService = prefeituraService;
+            _mapper = mapper;
+        }
+
         // GET: PrefeituraController
         public ActionResult Index()
         {
-            return View();
+            var listaPrefeituras = _prefeituraService.GetAll();
+            var listaPrefeituraModel = _mapper.Map<List<PrefeituraViewModel>>(listaPrefeituras);
+            return View(listaPrefeituraModel);
         }
 
         // GET: PrefeituraController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Prefeitura prefeitura = _prefeituraService.Get(id);
+            PrefeituraViewModel prefeituraModel = _mapper.Map<PrefeituraViewModel>(prefeitura);
+            return View(prefeituraModel);
         }
 
         // GET: PrefeituraController/Create
@@ -27,58 +43,55 @@ namespace AgendeMeWeb.Controllers
         // POST: PrefeituraController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(PrefeituraViewModel prefeituraModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                var prefeitura = _mapper.Map<Prefeitura>(prefeituraModel);
+                _prefeituraService.Create(prefeitura);
             }
-            catch
-            {
-                return View();
-            }
+
+            return RedirectToAction(nameof(Index));
+
         }
 
         // GET: PrefeituraController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Prefeitura prefeitura = _prefeituraService.Get(id);
+            PrefeituraViewModel prefeituraModel = _mapper.Map<PrefeituraViewModel>(prefeitura);
+            return View(prefeituraModel);
         }
 
         // POST: PrefeituraController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, PrefeituraViewModel prefeituraModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                var prefeitura = _mapper.Map<Prefeitura>(prefeituraModel);
+                _prefeituraService.Edit(prefeitura);
             }
-            catch
-            {
-                return View();
-            }
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: PrefeituraController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Prefeitura prefeitura = _prefeituraService.Get(id);
+            PrefeituraViewModel prefeituraModel = _mapper.Map<PrefeituraViewModel>(prefeitura);
+            return View(prefeituraModel);
         }
 
         // POST: PrefeituraController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, PrefeituraViewModel prefeituraModel)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _prefeituraService.Delete(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
