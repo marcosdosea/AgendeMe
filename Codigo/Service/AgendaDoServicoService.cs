@@ -1,11 +1,6 @@
 ﻿using Core;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service
 {
@@ -17,32 +12,49 @@ namespace Service
         {
             _context = context;
         }
-
+        /// <summary>
+        /// Cria uma agenda do servico no banco de dados
+        /// </summary>
+        /// <param name="agendaDoServico">Dados da agenda do servico</param>
+        /// <returns>Id da agenda do servico cadastrada</returns>
         public int Create(Agendadoservico agendaDoServico)
         {
             _context.Add(agendaDoServico);
             _context.SaveChanges();
             return agendaDoServico.Id;
         }
-
+        /// <summary>
+        /// Deleta uma agenda do servico no banco de dados
+        /// </summary>
+        /// <param name="id">Id da agenda do servico</param>
         public void Delete(int id)
         {
             var _agendaDoServico = _context.Agendamentos.Find(id);
             _context.Remove(_agendaDoServico);
             _context.SaveChanges();
         }
-
+        /// <summary>
+        /// Edita uma agenda do servico no banco de dados
+        /// </summary>
+        /// <param name="agendaDoServico">Dados da agenda do servico</param>
         public void Edit(Agendadoservico agendaDoServico)
         {
             _context.Update(agendaDoServico);
             _context.SaveChanges();
         }
-
+        /// <summary>
+        /// Consulta uma agenda do servico no banco de dados
+        /// </summary>
+        /// <param name="id">Id da agenda do servico</param>
+        /// <returns>Dados da agenda do servico</returns>
         public Agendadoservico Get(int id)
         {
             return _context.Agendadoservicos.Find(id);
         }
-
+        /// <summary>
+        /// Consulta todas as agendas de servico
+        /// </summary>
+        /// <returns>Dados de todas as agendas de servico</returns>
         public IEnumerable<Agendadoservico> GetAll()
         {
             return _context.Agendadoservicos.AsNoTracking();
