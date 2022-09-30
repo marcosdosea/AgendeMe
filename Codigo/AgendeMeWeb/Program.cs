@@ -17,7 +17,7 @@ namespace AgendeMeWeb
             builder.Services.AddDbContext<AgendeMeContext>(
                 options => options.UseMySQL(builder.Configuration.GetConnectionString("AgendeMeDatabase")));
 
-            //builder.Services.AddTransient<IAgendaDoServicoService, AgendaDoServicoService>();
+            builder.Services.AddTransient<IAgendaDoServicoService, AgendaDoServicoService>();
             builder.Services.AddTransient<IAgendamentoService, AgendamentoService>();
             builder.Services.AddTransient<IAreaDeServicoService, AreaDeServicoService>();
             builder.Services.AddTransient<ICargoService, CargoService>();
