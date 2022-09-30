@@ -24,7 +24,7 @@ namespace AgendeMeWeb
             builder.Services.AddTransient<ICidadaoService, CidadaoService>();
             //builder.Services.AddTransient<IOrgaoPublicoService, OrgaoPublicoService>();
             builder.Services.AddTransient<IPrefeituraService, PrefeituraService>();
-            //builder.Services.AddTransient<IServicoPublicoService, ServicoPublicoService>();
+            builder.Services.AddTransient<IServicoPublicoService, ServicoPublicoService>();
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
