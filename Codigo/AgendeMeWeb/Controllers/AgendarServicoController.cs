@@ -111,5 +111,13 @@ namespace AgendeMeWeb.Controllers
                 return View();
             }
         }
+
+        public ActionResult AgendarRetorno(int id)
+        {
+            Agendamento agendamento = _agendamentoService.Get(id);
+            AgendarServicoViewModel agendamentoModel = _mapper.Map<AgendarServicoViewModel>(agendamento);
+            agendamentoModel.IdRetorno = agendamentoModel.Id;
+            return View(agendamentoModel);
+        }
     }
 }
