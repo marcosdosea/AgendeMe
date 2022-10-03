@@ -12,12 +12,12 @@ namespace AgendeMeWeb.Models
         [Required(ErrorMessage = "Campo requerido")]
         public string? Situacao { get; set; }
 
-        [Display(Name = "Data Nascimento")]
+        [Display(Name = "Data do Cadastro")]
         [DataType(DataType.Date, ErrorMessage = "Data válida requerida")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataCadastro { get; set; }
 
-        [Display(Name = "Data Nascimento")]
+        [Display(Name = "Data do Agendamento")]
         [DataType(DataType.Date, ErrorMessage = "Data válida requerida")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Data { get; set; }
