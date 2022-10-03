@@ -20,7 +20,10 @@ namespace Service
         /// <returns>Id do agendamento</returns>
         public int Create(Agendamento agendamento)
         {
-            agendamento.Tipo = "Agendamento";
+            if (agendamento.IdRetorno != null)
+                agendamento.Tipo = "Retorno";
+            else
+                agendamento.Tipo = "Agendamento";
             agendamento.Situacao = "Agendado";
             agendamento.DataCadastro = DateTime.Now;
             _context.Add(agendamento);
