@@ -8,10 +8,10 @@ namespace Core.Service
 {
     public interface IProfissional
     {
-        int Create(Cidadao profissional);
+        //int Create(Cidadao profissional); //TO DO
         void Edit(Cidadao profissional);
         void Delete(int idProfissional);
         Cidadao Get(int idProfissional);
-        IEnumerable<Cidadao> GetAll();
+        //IEnumerable<Cidadao> GetAll();    //TO DO
     }
 }
