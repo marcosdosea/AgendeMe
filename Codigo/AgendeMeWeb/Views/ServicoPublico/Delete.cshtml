@@ -1,12 +1,12 @@
 ﻿@model AgendeMeWeb.Models.ServicoPublicoViewModel
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Remover serviço público";
 }
 
-<h1>Delete</h1>
+<h1>Remover serviço público @Html.DisplayFor(model => model.Nome)</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Tem certeza que deseja remover?</h3>
 <div>
     <h4>ServicoPublicoViewModel</h4>
     <hr />
@@ -44,7 +44,7 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Remover" class="btn btn-danger" /> |
+        <a asp-action="Index">Voltar para lista</a>
     </form>
 </div>

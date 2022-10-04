@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<AgendeMeWeb.Models.CargoViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Cargos";
 }
 
-<h1>Index</h1>
+<h1>Cargos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Cadastrar novo cargo</a>
 </p>
 <table class="table">
     <thead>
@@ -37,9 +37,9 @@
                 @Html.DisplayFor(modelItem => item.Descricao)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
+                    @Html.ActionLink("Remover", "Delete", new { id=item.Id })
             </td>
         </tr>
 }
