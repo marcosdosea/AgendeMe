@@ -30,7 +30,7 @@ namespace Service
             return orgaoPublico.Id;
         }
         /// <summary>
-        /// 
+        /// Deleta um órgão público presente na base de dados
         /// </summary>
         /// <param name="id"></param>
         public void Delete(int id)
@@ -41,7 +41,7 @@ namespace Service
         }
 
         /// <summary>
-        /// 
+        /// Edita um órgão público presente na base de dados
         /// </summary>
         /// <param name="orgaoPublico"></param>
         public void Edit(Orgaopublico orgaoPublico)
@@ -51,7 +51,7 @@ namespace Service
         }
 
         /// <summary>
-        /// 
+        /// Busca um órgão público na base de dados 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -61,7 +61,7 @@ namespace Service
         }
 
         /// <summary>
-        /// 
+        /// Busca todos os órgãos públicos presentes na base de dados
         /// </summary>
         /// <returns></returns>
         public IEnumerable<Orgaopublico> GetAll()
