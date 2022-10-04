@@ -1,10 +1,10 @@
 ﻿@model AgendeMeWeb.Models.ServicoPublicoViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Informações de serviço público";
 }
 
-<h1>Details</h1>
+<h1>Informações de @Html.DisplayFor(model => model.Nome)</h1>
 
 <div>
     <h4>ServicoPublicoViewModel</h4>
@@ -43,6 +43,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    <a asp-action="Index">Voltar para lista</a>
 </div>

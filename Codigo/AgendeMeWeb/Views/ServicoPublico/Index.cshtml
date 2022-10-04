@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<AgendeMeWeb.Models.ServicoPublicoViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Serviços Públicos";
 }
 
-<h1>Index</h1>
+<h1>Serviços Públicos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Cadastrar novo serviço público</a>
 </p>
 <table class="table">
     <thead>
@@ -50,9 +50,9 @@
                         @Html.DisplayFor(modelItem => item.Icone)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                        @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+                        @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
+                        @Html.ActionLink("Remover", "Delete", new { id=item.Id })
                     </td>
                 </tr>
     }
