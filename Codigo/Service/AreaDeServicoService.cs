@@ -59,10 +59,12 @@ namespace Service
         {
             return _context.Areadeservicos.AsNoTracking();
         }
-        public IEnumerable<Areadeservico> GetAllByPrefeitura(int IdPrefeitura)
+        public IEnumerable<Areadeservico> GetAllByPrefeitura(String NomePrefeitura)
         {
             var query = from Areadeservico in _context.Areadeservicos
-                        where Areadeservico.IdPrefeitura == IdPrefeitura
+                        join Prefeitura in _context.Prefeituras
+                        on Areadeservico.IdPrefeitura equals Prefeitura.Id
+                        where Prefeitura.Nome == "Prefeitura de " + NomePrefeitura
                         select Areadeservico;
 
             return query;

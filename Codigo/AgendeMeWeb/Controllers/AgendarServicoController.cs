@@ -24,7 +24,7 @@ namespace AgendeMeWeb.Controllers
         // GET: AgendarServicoController
         public ActionResult Index()
         {
-            var listaAreasDeServico = _areaDeServicoService.GetAllByPrefeitura(1);
+            var listaAreasDeServico = _areaDeServicoService.GetAllByPrefeitura("Ribeirópolis");
             var listaAreasDeServicoModel = _mapper.Map<List<AreaDeServicoViewModel>>(listaAreasDeServico);
             return View(listaAreasDeServicoModel);
         }
