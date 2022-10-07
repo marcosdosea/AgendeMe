@@ -59,7 +59,12 @@ namespace Service
         {
             return _context.Areadeservicos.AsNoTracking();
         }
-        public IEnumerable<Areadeservico> GetAllByPrefeitura(String NomePrefeitura)
+        /// <summary>
+        /// Consulta todas as areas de servico a partir de um nome de prefeitura
+        /// </summary>
+        /// <param name="NomePrefeitura">Nome da prefeitura</param>
+        /// <returns>Todas as areas de servico da prefeitura</returns>
+        public IEnumerable<Areadeservico> GetAllByNomePrefeitura(String NomePrefeitura)
         {
             var query = from Areadeservico in _context.Areadeservicos
                         join Prefeitura in _context.Prefeituras
