@@ -59,5 +59,13 @@ namespace Service
         {
             return _context.Areadeservicos.AsNoTracking();
         }
+        public IEnumerable<Areadeservico> GetAllByPrefeitura(int IdPrefeitura)
+        {
+            var query = from Areadeservico in _context.Areadeservicos
+                        where Areadeservico.IdPrefeitura == IdPrefeitura
+                        select Areadeservico;
+
+            return query;
+        }
     }
 }

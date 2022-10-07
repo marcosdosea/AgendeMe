@@ -9,20 +9,24 @@ namespace AgendeMeWeb.Controllers
     public class AgendarServicoController : Controller
     {
         private readonly IAgendamentoService _agendamentoService;
+        private readonly IAreaDeServicoService _areaDeServicoService;
         private readonly IMapper _mapper;
 
-        public AgendarServicoController(IAgendamentoService agendamentoService, IMapper mapper)
+        public AgendarServicoController(IAgendamentoService agendamentoService,
+                                        IAreaDeServicoService areaDeServicoService,
+                                        IMapper mapper)
         {
             _agendamentoService = agendamentoService;
+            _areaDeServicoService = areaDeServicoService;
             _mapper = mapper;
         }
 
         // GET: AgendarServicoController
         public ActionResult Index()
         {
-            var listaAgendamentos = _agendamentoService.GetAll();
-            var listaAgendamentosModel = _mapper.Map<List<AgendarServicoViewModel>>(listaAgendamentos);
-            return View(listaAgendamentosModel);
+            var listaAreasDeServico = _areaDeServicoService.GetAllByPrefeitura(1);
+            var listaAreasDeServicoModel = _mapper.Map<List<AreaDeServicoViewModel>>(listaAreasDeServico);
+            return View(listaAreasDeServicoModel);
         }
 
         public ActionResult List()
