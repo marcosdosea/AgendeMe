@@ -25,6 +25,13 @@ namespace AgendeMeWeb.Controllers
             return View(listaAgendamentosModel);
         }
 
+        public ActionResult List()
+        {
+            var listaAgendamentos = _agendamentoService.GetAll();
+            var listaAgendamentosModel = _mapper.Map<List<AgendarServicoViewModel>>(listaAgendamentos);
+            return View(listaAgendamentosModel);
+        }
+
         // GET: AgendarServicoController/Details/5
         public ActionResult Details(int id)
         {
