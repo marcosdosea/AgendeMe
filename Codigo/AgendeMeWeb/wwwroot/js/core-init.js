@@ -7805,10 +7805,11 @@ class BRHeader {
 
       // Faz o drop fechar ao clicar fora
       // eslint-disable-next-line no-loop-func
-    }
-    this.menuTrigger.addEventListener('focus', (event) => {
-      this._cleanDropDownHeader()
-    })
+      }
+      if (this.menuTrigger != null)
+        this.menuTrigger.addEventListener('focus', (event) => {
+          this._cleanDropDownHeader()
+        })
   }
 
   _headerTooltip() {
