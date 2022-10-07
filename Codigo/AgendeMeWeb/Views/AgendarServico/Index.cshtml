@@ -7,32 +7,15 @@
 <h1 class="text-center fw-normal">Áreas Disponíveis</h1>
 <h4 class="text-center fw-light">Encontre o serviço desejado através das áreas</h4>
 
-<div class="container">
-    <div class="row">
-        <div class="col-5">
-            Column
-        </div>
-        <div class="col-5">
-            Column
-        </div>
-        <div class="col-5">
-            Column
-        </div>
-    </div>
-</div>
-
-
-<div class="d-flex justify-content-evenly col-lg">
+<div class="d-flex flex-wrap justify-content-evenly">
     @foreach (var item in Model) {
-        <div class="row">
-            <div class="col-md">
+        <div class="row col-md ml-2 mr-2 icone-area-box">
                 <div class="br-card hover">
                     <div class="card-content">
-                        <i class="d-block mx-auto @Html.DisplayFor(modelItem => item.Icone) text-center"></i>
-                        <p class="text-center">@Html.DisplayFor(modelItem => item.Nome)</p>
+                    <i class="azul-agende-me icone-area mt-4 w-100 d-block mx-auto @Html.DisplayFor(modelItem => item.Icone) text-center"></i>
+                    <p class="azul-agende-me user-select-none fs-4 mt-4 mb-4 fw-bold text-center text-uppercase">@Html.DisplayFor(modelItem => item.Nome)</p>
                     </div>
                 </div>
-            </div>
         </div>
     }
 </div>

@@ -1,3 +1,13 @@
 ﻿.back-none:hover {
     background: none !important;
 }
+/* css para AgendarServico/index TODO:Aplicar ele somente para a tela especifica */
+.icone-area{
+    font-size: 80px;
+}
+.azul-agende-me {
+    color: #1351B4;
+}
+.icone-area-box{
+    cursor: pointer;
+}
