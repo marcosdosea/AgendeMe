@@ -67,9 +67,7 @@ namespace Service
         public IEnumerable<Areadeservico> GetAllByNomePrefeitura(String NomePrefeitura)
         {
             var query = from Areadeservico in _context.Areadeservicos
-                        join Prefeitura in _context.Prefeituras
-                        on Areadeservico.IdPrefeitura equals Prefeitura.Id
-                        where Prefeitura.Nome == "Prefeitura de " + NomePrefeitura
+                        where Areadeservico.IdPrefeituraNavigation.Nome.Equals("Prefeitura de " + NomePrefeitura)
                         select Areadeservico;
 
             return query;
