@@ -70,7 +70,7 @@ namespace Service
                         where Areadeservico.IdPrefeituraNavigation.Nome.Equals("Prefeitura de " + NomePrefeitura)
                         select Areadeservico;
 
-            return query;
+            return query.AsNoTracking();
         }
     }
 }
