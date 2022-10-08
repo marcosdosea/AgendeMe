@@ -1,83 +1,30 @@
-﻿@model IEnumerable<AgendeMeWeb.Models.AreaDeServicoViewModel>
-
-@{
-    ViewData["Title"] = "Áreas Disponíveis";
+﻿@{
+    ViewData["Title"] = "Agendar Serviço";
 }
 
 <h1 class="mt-5 text-center fw-bold fs-2">Áreas Disponíveis</h1>
 <h4 class="mb-5 text-center fw-light fs-4">Encontre o serviço desejado através das áreas</h4>
 
-<div class="d-flex flex-wrap justify-content-evenly">
-    @if(Model.Any())
-    @foreach (var item in Model) {
-        <div class="row col-md ml-4 mr-4 botao-box">
-            <a class="back-none" asp-controller="AgendarServico" asp-action="Edit" asp-route-id="@item.Id" target="_blank">
-                <div class="br-card hover mb-0">
-                    <div class="card-content">
-                    <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto @Html.DisplayFor(modelItem => item.Icone) text-center"></i>
-                    <p class="azul-text user-select-none fs-4 mt-4 mb-4 fw-bold text-center text-uppercase">@Html.DisplayFor(modelItem => item.Nome)</p>
-                    </div>
-                </div>
-                </a>
-        </div>
-    }else{
-        <div class="br-message warning" role="alert">
-            <div class="icon">
-                <i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
-            </div>
-            <div class="content"><span class="message-title">Atenção.</span><span class="message-body"> Não há áreas de serviço disponíveis para essa prefeitura. <br />
-                    Por favor entre em contato com o gestor da prefeitura para mais informações.
-                </span>
-            </div>
-            <div class="close">
-                <button class="br-button circle small" type="button" aria-label="Fechar">
-                    <i class="fas fa-times" aria-hidden="true"></i>
-                </button>
-            </div>
-        </div>
-    }
+<div id="ajaxBox">
 </div>
 
+@section Scripts {
+    <script>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdPrefeitura)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Icone)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdPrefeitura)
-            </td>
-            <td>
-                <i class="@Html.DisplayFor(modelItem => item.Icone)"></i>
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+        $(document).ready(function(){
+             $.ajax({
+            type: "POST",
+                url: "@Url.Action("AjaxAreasDeServico")",
+            dataType: "HTML",
+            data: { prefeitura : "Ribeirópolis"},
+
+            success: function(result){
+                $("#ajaxBox").html(result);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                //TODO::
+            },
+        });
+        })
+    </script>
 }
-    </tbody>
-</table>

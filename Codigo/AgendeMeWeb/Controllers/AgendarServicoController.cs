@@ -130,5 +130,13 @@ namespace AgendeMeWeb.Controllers
             agendamentoModel.IdRetorno = agendamentoModel.Id;
             return View(agendamentoModel);
         }
+
+        [HttpPost]
+        public ActionResult AjaxAreasDeServico(string prefeitura)
+        {
+            var listaAreasDeServico = _areaDeServicoService.GetAllByNomePrefeitura(prefeitura);
+            var listaAreasDeServicoModel = _mapper.Map<List<AreaDeServicoViewModel>>(listaAreasDeServico);
+            return PartialView("_AjaxAreasDeServico", listaAreasDeServicoModel);
+        }
     }
 }
