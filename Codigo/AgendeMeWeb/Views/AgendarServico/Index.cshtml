@@ -4,10 +4,10 @@
     ViewData["Title"] = "Agendar Serviço";
 }
 
-<div id="ajaxBox" class="mt-5 mb-5 pt-5 pb-5">
-    <h1 class="mt-5 text-center fw-bold fs-2">Prefeituras Disponíveis</h1>
+<div id="ajaxBox">
+    <h1 class="mt-5 pt-5 text-center fw-bold fs-2">Prefeituras Disponíveis</h1>
     <h4 class="mb-5 text-center fw-light fs-4">Escolha o seu município</h4>
-    <div class="mx-auto">
+    <div class="mx-auto pb-5">
         <select name="prefeitura" id="prefeitura" class="form-select" aria-label="Escolha prefeitura" onclick="removeErro(this)">
             <option value="" disabled selected>Selecione um município</option>
             @foreach (var item in Model)
@@ -21,9 +21,9 @@
                 É necessário escolher um município!
             </span>
         </div>
-        <button class="br-button primary mx-auto d-block mt-5" type="button" onclick="getAreas('@Url.Action("AjaxAreasDeServico")')">
-        Pesquisar Serviços
-    </button>
+        <button class="br-button primary mx-auto d-block mt-5 mb-5" type="button" onclick="getAreas('@Url.Action("AjaxAreasDeServico")',this)">
+            Pesquisar Serviços
+        </button>
     </div>
 </div>
 

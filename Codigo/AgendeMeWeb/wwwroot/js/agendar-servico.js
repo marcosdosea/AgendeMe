@@ -1,6 +1,7 @@
-﻿function getAreas(url) {
+﻿function getAreas(url, button) {
     var prefeitura = document.getElementById("prefeitura");
     if (prefeitura.value) {
+        button.className = "br-button primary loading mx-auto d-block mt-5 mb-5";
         $.ajax({
             type: "GET",
             url: url,
