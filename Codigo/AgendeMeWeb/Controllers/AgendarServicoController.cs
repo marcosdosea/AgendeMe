@@ -10,23 +10,26 @@ namespace AgendeMeWeb.Controllers
     {
         private readonly IAgendamentoService _agendamentoService;
         private readonly IAreaDeServicoService _areaDeServicoService;
+        private readonly IPrefeituraService _prefeituraService;
         private readonly IMapper _mapper;
 
         public AgendarServicoController(IAgendamentoService agendamentoService,
                                         IAreaDeServicoService areaDeServicoService,
+                                        IPrefeituraService prefeituraService,
                                         IMapper mapper)
         {
             _agendamentoService = agendamentoService;
             _areaDeServicoService = areaDeServicoService;
+            _prefeituraService = prefeituraService;
             _mapper = mapper;
         }
 
         // GET: AgendarServicoController
         public ActionResult Index()
         {
-            var listaAreasDeServico = _areaDeServicoService.GetAllByNomePrefeitura("Ribeirópoli");
-            var listaAreasDeServicoModel = _mapper.Map<List<AreaDeServicoViewModel>>(listaAreasDeServico);
-            return View(listaAreasDeServicoModel);
+            var listaPrefeitura = _prefeituraService.GetAll();
+            var listaPrefeituraModel = _mapper.Map<List<PrefeituraViewModel>>(listaPrefeitura);
+            return View(listaPrefeituraModel);
         }
 
         public ActionResult List()
