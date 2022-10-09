@@ -7,8 +7,8 @@
 <div id="ajaxBox" class="mt-5 mb-5 pt-5 pb-5">
     <h1 class="mt-5 text-center fw-bold fs-2">Prefeituras Disponíveis</h1>
     <h4 class="mb-5 text-center fw-light fs-4">Escolha o seu município</h4>
-    <div class="w-50 mx-auto">
-        <select name="prefeitura" id="prefeitura" class="form-select" aria-label="Escolha prefeitura">
+    <div class="mx-auto">
+        <select name="prefeitura" id="prefeitura" class="form-select" aria-label="Escolha prefeitura" onclick="removeErro(this)">
             <option value="" disabled selected>Selecione um município</option>
             @foreach (var item in Model)
             {
@@ -29,44 +29,28 @@
 
 @section Scripts {
     <script>
-        function getAreas(){
-            var prefeitura = document.getElementById("prefeitura");
-            if(prefeitura.value){
-                $.ajax({
-                    type: "POST",
-                    url: "@Url.Action("AjaxAreasDeServico")",
-                    dataType: "HTML",
-                    data: { prefeitura: "Ribeirópolis" },
-
-                    success: function (result) {
-                        $("#ajaxBox").html(result);
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        //TODO::
-                    },
-                });
-            }
-            else{
-                var mensagemErro = document.getElementById("erroSelectPrefeitura");
-                    mensagemErro.className = "";
-            }
-        }
-        /*
-        $(document).ready(function(){
-             $.ajax({
-            type: "POST",
+        function getAreas() {
+        var prefeitura = document.getElementById("prefeitura");
+        if (prefeitura.value) {
+            $.ajax({
+                type: "POST",
                 url: "@Url.Action("AjaxAreasDeServico")",
-            dataType: "HTML",
-            data: { prefeitura : "Ribeirópolis"},
+                dataType: "HTML",
+                data: { prefeitura: prefeitura.value },
 
-            success: function(result){
-                $("#ajaxBox").html(result);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                //TODO::
-            },
-        });
-        })
-        */
+                success: function (result) {
+                    $("#ajaxBox").html(result);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    //TODO::
+                },
+            });
+        }
+        else {
+            var mensagemErro = document.getElementById("erroSelectPrefeitura");
+            mensagemErro.className = "";
+        }
+    }
     </script>
+    <script src="~/js/agendar-servico.js"></script>
 }
