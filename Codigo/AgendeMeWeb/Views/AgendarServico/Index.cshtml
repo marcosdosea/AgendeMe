@@ -21,36 +21,12 @@
                 É necessário escolher um município!
             </span>
         </div>
-    <button class="br-button primary mx-auto d-block mt-5" type="button" onclick="getAreas()">
+        <button class="br-button primary mx-auto d-block mt-5" type="button" onclick="getAreas('@Url.Action("AjaxAreasDeServico")')">
         Pesquisar Serviços
     </button>
     </div>
 </div>
 
 @section Scripts {
-    <script>
-        function getAreas() {
-        var prefeitura = document.getElementById("prefeitura");
-        if (prefeitura.value) {
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("AjaxAreasDeServico")",
-                dataType: "HTML",
-                data: { prefeitura: prefeitura.value },
-
-                success: function (result) {
-                    $("#ajaxBox").html(result);
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    //TODO::
-                },
-            });
-        }
-        else {
-            var mensagemErro = document.getElementById("erroSelectPrefeitura");
-            mensagemErro.className = "";
-        }
-    }
-    </script>
     <script src="~/js/agendar-servico.js"></script>
 }

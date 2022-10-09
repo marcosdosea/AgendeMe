@@ -134,7 +134,7 @@ namespace AgendeMeWeb.Controllers
             return View(agendamentoModel);
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult AjaxAreasDeServico(string prefeitura)
         {
             var listaAreasDeServico = _areaDeServicoService.GetAllByNomePrefeitura(prefeitura);
