@@ -6,7 +6,11 @@
     background: none !important;
 }
 
-.icone-botao-box{
+.breadcrumb-home {
+    display: flex !important;
+}
+
+.icone-botao-box {
     font-size: 80px;
 }
 
