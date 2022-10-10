@@ -9,18 +9,21 @@ namespace AgendeMeWeb.Controllers
     public class AgendarServicoController : Controller
     {
         private readonly IAgendamentoService _agendamentoService;
-        private readonly IAreaDeServicoService _areaDeServicoService;
         private readonly IPrefeituraService _prefeituraService;
+        private readonly IAreaDeServicoService _areaDeServicoService;
+        private readonly IServicoPublicoService _servicoPublicoService;
         private readonly IMapper _mapper;
 
         public AgendarServicoController(IAgendamentoService agendamentoService,
-                                        IAreaDeServicoService areaDeServicoService,
                                         IPrefeituraService prefeituraService,
+                                        IAreaDeServicoService areaDeServicoService,
+                                        IServicoPublicoService servicoPublicoService,
                                         IMapper mapper)
         {
             _agendamentoService = agendamentoService;
-            _areaDeServicoService = areaDeServicoService;
             _prefeituraService = prefeituraService;
+            _areaDeServicoService = areaDeServicoService;
+            _servicoPublicoService = servicoPublicoService;
             _mapper = mapper;
         }
 
@@ -140,6 +143,14 @@ namespace AgendeMeWeb.Controllers
             var listaAreasDeServico = _areaDeServicoService.GetAllByNomePrefeitura(prefeitura);
             var listaAreasDeServicoModel = _mapper.Map<List<AreaDeServicoViewModel>>(listaAreasDeServico);
             return PartialView("_AjaxAreasDeServico", listaAreasDeServicoModel);
+        }
+
+        [HttpGet]
+        public ActionResult AjaxServicoPublico(int idAreaDeServico)
+        {
+            var listaServicoPublico = _servicoPublicoService.GetServicosByIdArea(idAreaDeServico);
+            var listaServicoPublicoModel = _mapper.Map<List<ServicoPublicoViewModel>>(listaServicoPublico);
+            return PartialView("_AjaxServicoPublico", listaServicoPublicoModel);
         }
     }
 }

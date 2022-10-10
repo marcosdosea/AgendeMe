@@ -59,5 +59,17 @@ namespace Service
         {
             return _context.Servicopublicos.AsNoTracking();
         }
+        /// <summary>
+        /// Consulta todos os servicos publicos a partir do id de uma area de servico
+        /// </summary>
+        /// <param name="idArea">Id da area de servico</param>
+        /// <returns>Servicos publicos para uma area de servico</returns>
+        public IEnumerable<Servicopublico> GetServicosByIdArea(int idArea)
+        {
+            var query = from Servicopublico in _context.Servicopublicos
+                        where Servicopublico.IdArea == idArea
+                        select Servicopublico;
+            return query.AsNoTracking();
+        }
     }
 }
