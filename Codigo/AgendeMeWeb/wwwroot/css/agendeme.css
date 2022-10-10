@@ -24,5 +24,12 @@
 
 .botao-box {
     cursor: pointer;
+    margin-bottom: 0px !important;
+    width: 200px;
+}
+
+.flex-c-gap{
+    column-gap: 50px;
+    row-gap: 50px;
 }
 
