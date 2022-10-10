@@ -9,16 +9,30 @@ namespace AgendeMeWeb.Controllers
     public class AgendarServicoController : Controller
     {
         private readonly IAgendamentoService _agendamentoService;
+        private readonly IAreaDeServicoService _areaDeServicoService;
+        private readonly IPrefeituraService _prefeituraService;
         private readonly IMapper _mapper;
 
-        public AgendarServicoController(IAgendamentoService agendamentoService, IMapper mapper)
+        public AgendarServicoController(IAgendamentoService agendamentoService,
+                                        IAreaDeServicoService areaDeServicoService,
+                                        IPrefeituraService prefeituraService,
+                                        IMapper mapper)
         {
             _agendamentoService = agendamentoService;
+            _areaDeServicoService = areaDeServicoService;
+            _prefeituraService = prefeituraService;
             _mapper = mapper;
         }
 
         // GET: AgendarServicoController
         public ActionResult Index()
+        {
+            var listaPrefeitura = _prefeituraService.GetAll();
+            var listaPrefeituraModel = _mapper.Map<List<PrefeituraViewModel>>(listaPrefeitura);
+            return View(listaPrefeituraModel);
+        }
+
+        public ActionResult List()
         {
             var listaAgendamentos = _agendamentoService.GetAll();
             var listaAgendamentosModel = _mapper.Map<List<AgendarServicoViewModel>>(listaAgendamentos);
@@ -118,6 +132,14 @@ namespace AgendeMeWeb.Controllers
             AgendarServicoViewModel agendamentoModel = _mapper.Map<AgendarServicoViewModel>(agendamento);
             agendamentoModel.IdRetorno = agendamentoModel.Id;
             return View(agendamentoModel);
+        }
+
+        [HttpGet]
+        public ActionResult AjaxAreasDeServico(string prefeitura)
+        {
+            var listaAreasDeServico = _areaDeServicoService.GetAllByNomePrefeitura(prefeitura);
+            var listaAreasDeServicoModel = _mapper.Map<List<AreaDeServicoViewModel>>(listaAreasDeServico);
+            return PartialView("_AjaxAreasDeServico", listaAreasDeServicoModel);
         }
     }
 }

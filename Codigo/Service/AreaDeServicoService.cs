@@ -59,5 +59,18 @@ namespace Service
         {
             return _context.Areadeservicos.AsNoTracking();
         }
+        /// <summary>
+        /// Consulta todas as areas de servico a partir de um nome de prefeitura
+        /// </summary>
+        /// <param name="NomePrefeitura">Nome da prefeitura</param>
+        /// <returns>Todas as areas de servico da prefeitura</returns>
+        public IEnumerable<Areadeservico> GetAllByNomePrefeitura(String NomePrefeitura)
+        {
+            var query = from Areadeservico in _context.Areadeservicos
+                        where Areadeservico.IdPrefeituraNavigation.Nome.Equals("Prefeitura de " + NomePrefeitura)
+                        select Areadeservico;
+
+            return query.AsNoTracking();
+        }
     }
 }

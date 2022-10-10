@@ -1,3 +1,28 @@
-﻿.back-none:hover {
+﻿body {
+    background: #f8f8f8;
+}
+
+.back-none:hover {
     background: none !important;
 }
+
+.breadcrumb-home {
+    display: flex !important;
+}
+
+.icone-botao-box {
+    font-size: 80px;
+}
+
+.azul-agende-me {
+    color: #1351B4;
+}
+
+.azul-text {
+    color: #0C326F;
+}
+
+.botao-box {
+    cursor: pointer;
+}
+

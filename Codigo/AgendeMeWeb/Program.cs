@@ -47,7 +47,7 @@ namespace AgendeMeWeb
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=AgendarServico}/{action=Index}/{id?}");
 
             app.Run();
         }

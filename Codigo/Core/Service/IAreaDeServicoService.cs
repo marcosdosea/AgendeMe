@@ -7,5 +7,6 @@
         void Delete(int idAreaDeServico);
         Areadeservico Get(int idAreaDeServico);
         IEnumerable<Areadeservico> GetAll();
+        IEnumerable<Areadeservico> GetAllByNomePrefeitura(String NomePrefeitura);
     }
 }

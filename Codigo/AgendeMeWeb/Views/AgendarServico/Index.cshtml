@@ -1,109 +1,44 @@
-﻿@model IEnumerable<AgendeMeWeb.Models.AgendarServicoViewModel>
+﻿@model IEnumerable<AgendeMeWeb.Models.PrefeituraViewModel>
 
 @{
-    ViewData["Title"] = "Agendamentos";
+    ViewData["Title"] = "Agendar Serviço";
 }
+<div class="br-breadcrumb">
+    <ul class="crumb-list">
+        <li class="crumb home">
+            <a class="br-button circle breadcrumb-home" asp-controller="AgendarServico" asp-action="Index">
+                <span class="sr-only">Página inicial</span><i class="fas fa-home"></i>
+            </a>
+        </li>
+        <li class="crumb" data-active="active">
+            <i class="icon fas fa-chevron-right"></i><span>Áreas de Serviço</span>
+        </li>
+    </ul>
+</div>
 
-<h1>Confira seus agendamentos</h1>
-
-<p>
-    <a asp-action="Create">Novo agendamento</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tipo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Situacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataCadastro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Data)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HorarioInicio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HorarioFim)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdCidadao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdAtendente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdRetorno)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdProfissional)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdServicoPublico)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            if (Model != null)
+<div id="ajaxBox">
+    <h1 class="mt-5 pt-5 text-center fw-bold fs-2">Prefeituras Disponíveis</h1>
+    <h4 class="mb-5 text-center fw-light fs-4">Escolha o seu município</h4>
+    <div class="mx-auto pb-5">
+        <select name="prefeitura" id="prefeitura" class="form-select" aria-label="Escolha prefeitura" onclick="removeErro(this)">
+            <option value="" disabled selected>Selecione um município</option>
+            @foreach (var item in Model)
             {
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Id)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Tipo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Situacao)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DataCadastro)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Data)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.HorarioInicio)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.HorarioFim)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdCidadao)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdAtendente)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdRetorno)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdProfissional)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdServicoPublico)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Editar", "Edit", new {  id=item.Id  }) |
-                            @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
-                            @Html.ActionLink("Remover", "Delete", new { id=item.Id }) |
-                            @Html.ActionLink("Atender Cidadão", "AtenderCidadao", new { id=item.Id }) |
-                            @Html.ActionLink("Agendar Retorno", "AgendarRetorno", new { id=item.Id })
-                        </td>
-                    </tr>
-                }
+                <option value="@item.Cidade">@item.Cidade</option>
             }
-    }
-    </tbody>
-</table>
+        </select>
+        <div class="d-none" id="erroSelectPrefeitura">
+            <span class="feedback danger" role="alert">
+                <i class="fas fa-times-circle" aria-hidden="true"></i>
+                É necessário escolher um município!
+            </span>
+        </div>
+        <button class="br-button primary mx-auto d-block mt-5 mb-5" type="button" onclick="getAreas('@Url.Action("AjaxAreasDeServico")',this)">
+            Pesquisar Serviços
+        </button>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/agendar-servico.js"></script>
+}
