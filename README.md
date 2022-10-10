@@ -24,3 +24,26 @@ Projeto visa permitir aos cidadãos realizar o agendamento de serviços público
 <h2 id="publico">3. Público Alvo</h2>
 
 <h2 id="equipe">4. Equipe</h2>
+
+<div style="display:flex;">
+  <div id="carlos">
+    <img src="https://avatars.githubusercontent.com/u/62726040?v=4" width="100px"/><br>
+    Carlos Daniel de Jesus
+  </div>
+  
+  <div id="gabriel">
+    <img src="https://avatars.githubusercontent.com/u/62863349?v=4" width="100px"/><br>
+    Gabriel dos Santos Mendonça
+  </div>
+  
+  <div id="vinicius">
+    <img src="https://avatars.githubusercontent.com/u/95314199?v=4" width="100px"/><br>
+    José Vinícius de Carvalho Oliveira
+  </div>
+  
+  <div id="lauro">
+    <img src="https://avatars.githubusercontent.com/u/69280619?v=4" width="100px"/><br>
+    Lauro Santana Silva
+  </div>
+  
+</div>
