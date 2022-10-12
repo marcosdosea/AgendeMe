@@ -146,11 +146,16 @@ namespace AgendeMeWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult AjaxServicoPublico(int idAreaDeServico)
+        public ActionResult AjaxServicoPublico(int id)
         {
-            var listaServicoPublico = _servicoPublicoService.GetServicosByIdArea(idAreaDeServico);
+            var areaDeServico = _areaDeServicoService.Get(id);
+            var areaDeServicoModel = _mapper.Map<AreaDeServicoViewModel>(areaDeServico);
+            ViewBag.nomeAreaDeServico = areaDeServicoModel.Nome;
+            ViewBag.iconeAreaDeServico = areaDeServicoModel.Icone;
+            var listaServicoPublico = _servicoPublicoService.GetAllByIdArea(id);
             var listaServicoPublicoModel = _mapper.Map<List<ServicoPublicoViewModel>>(listaServicoPublico);
-            return PartialView("_AjaxServicoPublico", listaServicoPublicoModel);
+            //return PartialView("_AjaxServicoPublico", listaServicoPublicoModel);
+            return View("_AjaxServicoPublico", listaServicoPublicoModel);
         }
     }
 }

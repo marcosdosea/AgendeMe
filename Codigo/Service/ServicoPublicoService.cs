@@ -64,11 +64,12 @@ namespace Service
         /// </summary>
         /// <param name="idArea">Id da area de servico</param>
         /// <returns>Servicos publicos para uma area de servico</returns>
-        public IEnumerable<Servicopublico> GetServicosByIdArea(int idArea)
+        public IEnumerable<Servicopublico> GetAllByIdArea(int idArea)
         {
             var query = from Servicopublico in _context.Servicopublicos
-                        where Servicopublico.IdArea == idArea
+                        where Servicopublico.IdArea.Equals(idArea)
                         select Servicopublico;
+
             return query.AsNoTracking();
         }
     }
