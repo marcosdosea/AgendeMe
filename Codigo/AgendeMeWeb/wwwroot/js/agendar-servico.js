@@ -30,6 +30,7 @@ function removeErro(select) {
 }
 
 function getServicos(url, id) { 
+    $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
         $.ajax({
             type: "GET",
             url: url,
