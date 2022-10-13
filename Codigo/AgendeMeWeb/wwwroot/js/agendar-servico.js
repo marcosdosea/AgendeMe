@@ -28,3 +28,19 @@ function removeErro(select) {
         mensagemErro.className = "d-none";
     }
 }
+
+function getServicos(url, id) { 
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "HTML",
+            data: { id: id },
+
+            success: function (result) {
+                $("#ajaxBox").html(result);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                //TODO::
+            },
+        });
+    }
