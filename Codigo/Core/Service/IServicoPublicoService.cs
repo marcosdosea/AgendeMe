@@ -7,5 +7,6 @@
         void Delete(int id);
         Servicopublico Get(int id);
         IEnumerable<Servicopublico> GetAll();
+        IEnumerable<Servicopublico> GetAllByIdArea(int idArea);
     }
 }
