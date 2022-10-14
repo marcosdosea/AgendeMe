@@ -17,7 +17,7 @@ namespace Service
         /// </summary>
         /// <param name="agendaDoServico">Dados da agenda do servico</param>
         /// <returns>Id da agenda do servico cadastrada</returns>
-        public int Create(Agendadoservico agendaDoServico)
+        public int Create(AgendaDoServico agendaDoServico)
         {
             _context.Add(agendaDoServico);
             _context.SaveChanges();
@@ -37,7 +37,7 @@ namespace Service
         /// Edita uma agenda do servico no banco de dados
         /// </summary>
         /// <param name="agendaDoServico">Dados da agenda do servico</param>
-        public void Edit(Agendadoservico agendaDoServico)
+        public void Edit(AgendaDoServico agendaDoServico)
         {
             _context.Update(agendaDoServico);
             _context.SaveChanges();
@@ -47,7 +47,7 @@ namespace Service
         /// </summary>
         /// <param name="id">Id da agenda do servico</param>
         /// <returns>Dados da agenda do servico</returns>
-        public Agendadoservico Get(int id)
+        public AgendaDoServico Get(int id)
         {
             return _context.Agendadoservicos.Find(id);
         }
@@ -55,7 +55,7 @@ namespace Service
         /// Consulta todas as agendas de servico
         /// </summary>
         /// <returns>Dados de todas as agendas de servico</returns>
-        public IEnumerable<Agendadoservico> GetAll()
+        public IEnumerable<AgendaDoServico> GetAll()
         {
             return _context.Agendadoservicos.AsNoTracking();
         }

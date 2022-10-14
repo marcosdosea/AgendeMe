@@ -1,6 +1,11 @@
-﻿using AgendeMeWeb.Models;
+﻿using AgendeMeWeb.Mappers;
+using AgendeMeWeb.Models;
+using AutoMapper;
+using Core;
+using Core.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace AgendeMeWeb.Controllers.Tests
 {
@@ -12,7 +17,19 @@ namespace AgendeMeWeb.Controllers.Tests
         [TestInitialize]
         public void Initialize()
         {
-            Assert.Fail();
+            // Arrange
+            var mockService = new Mock<IAgendaDoServicoService>();
+
+            IMapper mapper = new MapperConfiguration(cfg => cfg.AddProfile(new AgendaDoServicoProfile())).CreateMapper();
+
+            mockService.Setup(service => service.GetAll()).Returns(GetTestAgendasDosServicos);
+            mockService.Setup(service => service.Get(1))
+                .Returns(GetTargetAgendaDoServico());
+            mockService.Setup(service => service.Edit(It.IsAny<AgendaDoServico>()))
+                .Verifiable();
+            mockService.Setup(service => service.Create(It.IsAny<AgendaDoServico>()))
+                .Verifiable();
+            controller = new AgendaDoServicoController(mockService.Object, mapper);
         }
 
         [TestMethod()]
@@ -27,7 +44,7 @@ namespace AgendeMeWeb.Controllers.Tests
             Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(List<AgendaDoServicoViewModel>));
 
             List<AgendaDoServicoViewModel>? lista = (List<AgendaDoServicoViewModel>)viewResult.ViewData.Model;
-            Assert.AreEqual(1, lista.Count);
+            Assert.AreEqual(2, lista.Count);
         }
 
         [TestMethod()]
@@ -37,14 +54,17 @@ namespace AgendeMeWeb.Controllers.Tests
             var result = controller.Details(1);
 
             // Assert
-            Assert.IsInstanceOfType(result, typeof(AgendaDoServicoController));
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
-            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(AgendaDoServicoController));
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(AgendaDoServicoViewModel));
             AgendaDoServicoViewModel agendaDoServicoViewModel = (AgendaDoServicoViewModel)viewResult.ViewData.Model;
             Assert.AreEqual("Quarta", agendaDoServicoViewModel.DiaSemana);
-
+            Assert.AreEqual("09:30", agendaDoServicoViewModel.HorarioInicio);
+            Assert.AreEqual(1, agendaDoServicoViewModel.VagasAtendimento);
+            Assert.AreEqual(10, agendaDoServicoViewModel.VagasRetorno);
+            Assert.AreEqual(1, agendaDoServicoViewModel.IdServicoPublico);
+            Assert.AreEqual(1, agendaDoServicoViewModel.IdProfissional);
         }
-
 
         [TestMethod()]
         public void CreateTest()
@@ -83,22 +103,6 @@ namespace AgendeMeWeb.Controllers.Tests
             Assert.AreEqual("Index", redirectToActionResult.ActionName);
         }
 
-        private AgendaDoServicoViewModel GetNewAgendaDoServico()
-        {
-            return new AgendaDoServicoViewModel
-            {
-                Id = 1,
-                DiaSemana = "Quarta",
-                HorarioInicio = "09:30",
-                HorarioFim = "10:00",
-                VagasAtendimento = 1,
-                VagasRetorno = 10,
-                IdServicoPublico = 1,
-                IdProfissional = 1
-            };
-        }
-
-
         [TestMethod()]
         public void EditTest_Get()
         {
@@ -131,6 +135,53 @@ namespace AgendeMeWeb.Controllers.Tests
             Assert.AreEqual("Index", redirectToActionResult.ActionName);
         }
 
+        [TestMethod()]
+        public void DeleteTest_Get()
+        {
+            // Act
+            var result = controller.Delete(GetTargetAgendaDoServicoViewModel().Id, GetTargetAgendaDoServicoViewModel());
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
+            RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
+            Assert.IsNull(redirectToActionResult.ControllerName);
+            Assert.AreEqual("Index", redirectToActionResult.ActionName);
+        }
+
+        [TestMethod()]
+        public void DeleteTest_Post()
+        {
+            // Act
+            var result = controller.Delete(1);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            ViewResult viewResult = (ViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(AgendaDoServicoViewModel));
+            AgendaDoServicoViewModel agendaDoServicoViewModel = (AgendaDoServicoViewModel)viewResult.ViewData.Model;
+            Assert.AreEqual("Quarta", agendaDoServicoViewModel.DiaSemana);
+            Assert.AreEqual("09:30", agendaDoServicoViewModel.HorarioInicio);
+            Assert.AreEqual(1, agendaDoServicoViewModel.VagasAtendimento);
+            Assert.AreEqual(10, agendaDoServicoViewModel.VagasRetorno);
+            Assert.AreEqual(1, agendaDoServicoViewModel.IdServicoPublico);
+            Assert.AreEqual(1, agendaDoServicoViewModel.IdProfissional);
+        }
+
+        private AgendaDoServicoViewModel GetNewAgendaDoServico()
+        {
+            return new AgendaDoServicoViewModel
+            {
+                Id = 1,
+                DiaSemana = "Quarta",
+                HorarioInicio = "09:30",
+                HorarioFim = "10:00",
+                VagasAtendimento = 1,
+                VagasRetorno = 10,
+                IdServicoPublico = 1,
+                IdProfissional = 1
+            };
+        }
+
         private AgendaDoServicoViewModel GetTargetAgendaDoServicoViewModel()
         {
             return new AgendaDoServicoViewModel
@@ -146,18 +197,48 @@ namespace AgendeMeWeb.Controllers.Tests
             };
         }
 
-
-
-        [TestMethod()]
-        public void DeleteTest()
+        private AgendaDoServico GetTargetAgendaDoServico()
         {
-            Assert.Fail();
+            return new AgendaDoServico
+            {
+                Id = 1,
+                DiaSemana = "Quarta",
+                HorarioInicio = "09:30",
+                HorarioFim = "10:00",
+                VagasAtendimento = 1,
+                VagasRetorno = 10,
+                IdServicoPublico = 1,
+                IdProfissional = 1
+            };
         }
 
-        [TestMethod()]
-        public void DeleteTest1()
+        private IEnumerable<AgendaDoServico> GetTestAgendasDosServicos()
         {
-            Assert.Fail();
+            return new List<AgendaDoServico>
+            {
+                new AgendaDoServico
+                {
+                    Id = 1,
+                    DiaSemana = "Quarta",
+                    HorarioInicio = "09:30",
+                    HorarioFim = "10:00",
+                    VagasAtendimento = 1,
+                    VagasRetorno = 10,
+                    IdServicoPublico = 1,
+                    IdProfissional = 1
+                },
+                new AgendaDoServico
+                {
+                    Id = 2,
+                    DiaSemana = "Quinta",
+                    HorarioInicio = "09:30",
+                    HorarioFim = "10:00",
+                    VagasAtendimento = 2,
+                    VagasRetorno = 5,
+                    IdServicoPublico = 1,
+                    IdProfissional = 1
+                }
+            };
         }
     }
 }
