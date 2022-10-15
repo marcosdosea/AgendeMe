@@ -136,19 +136,7 @@ namespace AgendeMeWeb.Controllers.Tests
         [TestMethod()]
         public void DeleteTest_Get()
         {
-            // Act
-            var result = controller.Delete(GetTargetAreaDeServicoViewModel().Id, GetTargetAreaDeServicoViewModel());
 
-            // Assert
-            Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
-            RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
-            Assert.IsNull(redirectToActionResult.ControllerName);
-            Assert.AreEqual("Index", redirectToActionResult.ActionName);
-        }
-
-        [TestMethod()]
-        public void DeleteTest_Post()
-        {
             // Act
             var result = controller.Delete(1);
 
@@ -159,6 +147,20 @@ namespace AgendeMeWeb.Controllers.Tests
             AreaDeServicoViewModel areaDeServicoViewModel = (AreaDeServicoViewModel)viewResult.ViewData.Model;
             Assert.AreEqual("Saúde", areaDeServicoViewModel.Nome);
             Assert.AreEqual(1, areaDeServicoViewModel.IdPrefeitura);
+
+        }
+
+        [TestMethod()]
+        public void DeleteTest_Post()
+        {
+            // Act
+            var result = controller.Delete(GetTargetAreaDeServicoViewModel().Id, GetTargetAreaDeServicoViewModel());
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
+            RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
+            Assert.IsNull(redirectToActionResult.ControllerName);
+            Assert.AreEqual("Index", redirectToActionResult.ActionName);
         }
         private AreaDeServicoViewModel GetNewAreaDeServico()
         {
