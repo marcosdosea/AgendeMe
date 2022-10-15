@@ -72,14 +72,5 @@ namespace Service
 
             return query.AsNoTracking();
         }
-        /// <summary>
-        /// Consulta todos os orgaos publicos que ofertam um servico publico
-        /// </summary>
-        /// <param name="id">Id do servico publico</param>
-        /// <returns>Orgaos publicos que oferecem o servico publico</returns>
-        public IEnumerable<Orgaopublico> GetAllOrgaosByIdServico(int id)
-        {
-            return null;
-        }
     }
 }

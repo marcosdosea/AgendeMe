@@ -1,11 +1,6 @@
 ﻿using Core;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service
 {
@@ -67,6 +62,19 @@ namespace Service
         public IEnumerable<Orgaopublico> GetAll()
         {
             return _context.Orgaopublicos.AsNoTracking();
+        }
+        /// <summary>
+        /// Consulta todos os orgaos publicos que oferecem um determinado servico
+        /// </summary>
+        /// <param name="nome">nome do servico publico</param>
+        /// <returns>Todos os orgaos publicos</returns>
+        public IEnumerable<Orgaopublico> GetAllByNomeServicoPublico(string nome)
+        {
+            var query = from Servicopublico in _context.Servicopublicos
+                        where Servicopublico.Nome.Equals(nome)
+                        select Servicopublico.IdOrgaoPublicoNavigation;
+
+            return query.AsNoTracking();
         }
     }
 }
