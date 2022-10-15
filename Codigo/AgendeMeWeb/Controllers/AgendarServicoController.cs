@@ -155,7 +155,7 @@ namespace AgendeMeWeb.Controllers
             ViewBag.iconeAreaDeServico = iconeArea;
             var listaServicoPublico = _servicoPublicoService.GetAllByIdArea(id);
             var listaServicoPublicoModel = _mapper.Map<List<ServicoPublicoViewModel>>(listaServicoPublico);
-            return PartialView("_AjaxServicoPublico", listaServicoPublicoModel);
+            return PartialView("_AjaxServicosPublico", listaServicoPublicoModel);
         }
 
         [HttpGet]
@@ -169,7 +169,7 @@ namespace AgendeMeWeb.Controllers
             var listaServicoPublicoModel = _mapper.Map<List<ServicoPublicoViewModel>>(listaServicoPublico);
             return PartialView("_AjaxServicoPublico", listaServicoPublicoModel);
             */
-            return PartialView();
+            return View();
         }
     }
 }
