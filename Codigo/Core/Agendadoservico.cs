@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Core
 {
-    public partial class AgendaDoServico
+    public partial class Agendadoservico
     {
         public int Id { get; set; }
         public string DiaSemana { get; set; }

@@ -29,7 +29,7 @@ namespace AgendeMeWeb.Controllers
         // GET: AgendaDoServicoController/Details/5
         public ActionResult Details(int id)
         {
-            AgendaDoServico cargo = _agendaDoServicoService.Get(id);
+            Agendadoservico cargo = _agendaDoServicoService.Get(id);
             AgendaDoServicoViewModel AgendaDoServicoModel = _mapper.Map<AgendaDoServicoViewModel>(cargo);
             return View(AgendaDoServicoModel);
         }
@@ -47,7 +47,7 @@ namespace AgendeMeWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                var agendaDoServico = _mapper.Map<AgendaDoServico>(agendaDoServicoModel);
+                var agendaDoServico = _mapper.Map<Agendadoservico>(agendaDoServicoModel);
                 _agendaDoServicoService.Create(agendaDoServico);
             }
             return RedirectToAction(nameof(Index));
@@ -56,7 +56,7 @@ namespace AgendeMeWeb.Controllers
         // GET: AgendaDoServicoController/Edit/5
         public ActionResult Edit(int id)
         {
-            AgendaDoServico cargo = _agendaDoServicoService.Get(id);
+            Agendadoservico cargo = _agendaDoServicoService.Get(id);
             AgendaDoServicoViewModel AgendaDoServicoModel = _mapper.Map<AgendaDoServicoViewModel>(cargo);
             return View(AgendaDoServicoModel);
         }
@@ -68,7 +68,7 @@ namespace AgendeMeWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                var agendaDoServico = _mapper.Map<AgendaDoServico>(agendaDoServicoModel);
+                var agendaDoServico = _mapper.Map<Agendadoservico>(agendaDoServicoModel);
                 _agendaDoServicoService.Edit(agendaDoServico);
             }
             return RedirectToAction(nameof(Index));
@@ -77,7 +77,7 @@ namespace AgendeMeWeb.Controllers
         // GET: AgendaDoServicoController/Delete/5
         public ActionResult Delete(int id)
         {
-            AgendaDoServico cargo = _agendaDoServicoService.Get(id);
+            Agendadoservico cargo = _agendaDoServicoService.Get(id);
             AgendaDoServicoViewModel AgendaDoServicoModel = _mapper.Map<AgendaDoServicoViewModel>(cargo);
             return View(AgendaDoServicoModel);
         }

@@ -8,7 +8,7 @@ namespace AgendeMeWeb.Mappers
     {
         public AgendaDoServicoProfile()
         {
-            CreateMap<AgendaDoServicoViewModel, AgendaDoServico>().ReverseMap();
+            CreateMap<AgendaDoServicoViewModel, Agendadoservico>().ReverseMap();
         }
     }
 }

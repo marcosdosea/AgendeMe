@@ -9,7 +9,7 @@ namespace Core
     {
         public Servicopublico()
         {
-            Agendadoservicos = new HashSet<AgendaDoServico>();
+            Agendadoservicos = new HashSet<Agendadoservico>();
             Agendamentos = new HashSet<Agendamento>();
         }
 
@@ -21,7 +21,7 @@ namespace Core
 
         public virtual Areadeservico IdAreaNavigation { get; set; }
         public virtual Orgaopublico IdOrgaoPublicoNavigation { get; set; }
-        public virtual ICollection<AgendaDoServico> Agendadoservicos { get; set; }
+        public virtual ICollection<Agendadoservico> Agendadoservicos { get; set; }
         public virtual ICollection<Agendamento> Agendamentos { get; set; }
     }
 }

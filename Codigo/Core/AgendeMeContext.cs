@@ -15,7 +15,7 @@ namespace Core
         {
         }
 
-        public virtual DbSet<AgendaDoServico> Agendadoservicos { get; set; }
+        public virtual DbSet<Agendadoservico> Agendadoservicos { get; set; }
         public virtual DbSet<Agendamento> Agendamentos { get; set; }
         public virtual DbSet<Areadeservico> Areadeservicos { get; set; }
         public virtual DbSet<Atendenteorgaopublico> Atendenteorgaopublicos { get; set; }
@@ -38,7 +38,7 @@ namespace Core
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AgendaDoServico>(entity =>
+            modelBuilder.Entity<Agendadoservico>(entity =>
             {
                 entity.ToTable("agendadoservico");
 

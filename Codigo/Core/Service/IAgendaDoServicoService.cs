@@ -2,11 +2,11 @@
 {
     public interface IAgendaDoServicoService
     {
-        int Create(AgendaDoServico agendadoservico);
-        void Edit(AgendaDoServico agendadoservico);
+        int Create(Agendadoservico agendadoservico);
+        void Edit(Agendadoservico agendadoservico);
         void Delete(int id);
-        AgendaDoServico Get(int id);
-        IEnumerable<AgendaDoServico> GetAll();
+        Agendadoservico Get(int id);
+        IEnumerable<Agendadoservico> GetAll();
 
     }
 }

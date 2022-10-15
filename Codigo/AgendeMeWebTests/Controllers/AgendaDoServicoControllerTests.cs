@@ -25,9 +25,9 @@ namespace AgendeMeWeb.Controllers.Tests
             mockService.Setup(service => service.GetAll()).Returns(GetTestAgendasDosServicos);
             mockService.Setup(service => service.Get(1))
                 .Returns(GetTargetAgendaDoServico());
-            mockService.Setup(service => service.Edit(It.IsAny<AgendaDoServico>()))
+            mockService.Setup(service => service.Edit(It.IsAny<Agendadoservico>()))
                 .Verifiable();
-            mockService.Setup(service => service.Create(It.IsAny<AgendaDoServico>()))
+            mockService.Setup(service => service.Create(It.IsAny<Agendadoservico>()))
                 .Verifiable();
             controller = new AgendaDoServicoController(mockService.Object, mapper);
         }
@@ -197,9 +197,9 @@ namespace AgendeMeWeb.Controllers.Tests
             };
         }
 
-        private AgendaDoServico GetTargetAgendaDoServico()
+        private Agendadoservico GetTargetAgendaDoServico()
         {
-            return new AgendaDoServico
+            return new Agendadoservico
             {
                 Id = 1,
                 DiaSemana = "Quarta",
@@ -212,11 +212,11 @@ namespace AgendeMeWeb.Controllers.Tests
             };
         }
 
-        private IEnumerable<AgendaDoServico> GetTestAgendasDosServicos()
+        private IEnumerable<Agendadoservico> GetTestAgendasDosServicos()
         {
-            return new List<AgendaDoServico>
+            return new List<Agendadoservico>
             {
-                new AgendaDoServico
+                new Agendadoservico
                 {
                     Id = 1,
                     DiaSemana = "Quarta",
@@ -227,7 +227,7 @@ namespace AgendeMeWeb.Controllers.Tests
                     IdServicoPublico = 1,
                     IdProfissional = 1
                 },
-                new AgendaDoServico
+                new Agendadoservico
                 {
                     Id = 2,
                     DiaSemana = "Quinta",
