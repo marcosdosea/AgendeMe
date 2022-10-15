@@ -1,0 +1,39 @@
+﻿@model AgendeMeWeb.Models.ProfissionalViewModel
+
+<h4>ProfissionalViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddProfissional">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdCidadao" class="control-label"></label>
+                <input asp-for="IdCidadao" class="form-control" />
+                <span asp-validation-for="IdCidadao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCargo" class="control-label"></label>
+                <select asp-for="IdCargo" asp-items="@Model.ListaCargos" class="form-control"></select>
+                <span asp-validation-for="IdCargo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IdPrefeitura" class="control-label"></label>
+                <select asp-for="IdPrefeitura" asp-items="@Model.ListaPrefeituras" class="form-control"></select>
+                <span asp-validation-for="IdPrefeitura" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Cadastrar Profissional" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
