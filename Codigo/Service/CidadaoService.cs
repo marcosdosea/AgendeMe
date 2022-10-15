@@ -24,15 +24,15 @@ namespace Service
         /// <param name="prefeitura">prefeitura</param>
         /// <param name="cargo">cargo</param>
         /// <returns></returns>
-        public int AddProfissional(Cidadao cidadao, Prefeitura prefeitura, Cargo cargo)
+        public int AddProfissional(int idCidadao, int idPrefeitura, int idCargo)
         {
             Profissionalcargo profissionalcargo = new();
-            profissionalcargo.IdCargo = cargo.Id;
-            profissionalcargo.IdProfissional = cidadao.Id;
+            profissionalcargo.IdCargo = idCargo;
+            profissionalcargo.IdProfissional = idCidadao;
 
             Profissionalprefeitura profissionalprefeitura = new();
-            profissionalprefeitura.IdProfissional = cidadao.Id;
-            profissionalprefeitura.IdPrefeitura = prefeitura.Id;
+            profissionalprefeitura.IdProfissional = idCidadao;
+            profissionalprefeitura.IdPrefeitura = idPrefeitura;
 
             _context.Add(profissionalcargo);
             _context.SaveChanges();
@@ -40,7 +40,7 @@ namespace Service
             _context.Add(profissionalprefeitura);
             _context.SaveChanges();
 
-            return cidadao.Id;
+            return idCidadao;
 
         }
 

@@ -54,16 +54,13 @@ namespace AgendeMeWeb.Controllers
         // POST: ProfissionalController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddProfissional(IFormCollection collection)
+        public ActionResult AddProfissional(ProfissionalViewModel profissionalModel)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+
+            _cidadaoService.AddProfissional(profissionalModel.IdCidadao, profissionalModel.IdPrefeitura, profissionalModel.IdCargo);
+
+            return RedirectToAction(nameof(Index));
+
         }
 
         // GET: ProfissionalController/Edit/5
