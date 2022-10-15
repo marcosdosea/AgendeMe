@@ -17,6 +17,32 @@ namespace Service
         {
             _context = context;
         }
+        /// <summary>
+        /// Adicionar um cidadão existente como profissional (associa a um cargo e a uma prefeitura)
+        /// </summary>
+        /// <param name="cidadao">cidadao</param>
+        /// <param name="prefeitura">prefeitura</param>
+        /// <param name="cargo">cargo</param>
+        /// <returns></returns>
+        public int AddProfissional(Cidadao cidadao, Prefeitura prefeitura, Cargo cargo)
+        {
+            Profissionalcargo profissionalcargo = new();
+            profissionalcargo.IdCargo = cargo.Id;
+            profissionalcargo.IdProfissional = cidadao.Id;
+
+            Profissionalprefeitura profissionalprefeitura = new();
+            profissionalprefeitura.IdProfissional = cidadao.Id;
+            profissionalprefeitura.IdPrefeitura = prefeitura.Id;
+
+            _context.Add(profissionalcargo);
+            _context.SaveChanges();
+
+            _context.Add(profissionalprefeitura);
+            _context.SaveChanges();
+
+            return cidadao.Id;
+
+        }
 
         /// <summary>
         /// Inserir um novo cidadão na base de dados
