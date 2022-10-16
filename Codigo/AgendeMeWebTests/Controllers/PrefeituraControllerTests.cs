@@ -1,7 +1,9 @@
 ﻿using AgendeMeWeb.Mappers;
+using AgendeMeWeb.Models;
 using AutoMapper;
 using Core;
 using Core.Service;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -32,6 +34,95 @@ namespace AgendeMeWeb.Controllers.Tests
             controller = new PrefeituraController(mockService.Object, mapper);
         }
 
+
+        [TestMethod()]
+        public void IndexTest()
+        {
+            // Act
+            var result = controller.Index();
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            ViewResult viewResult = (ViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(List<PrefeituraViewModel>));
+
+            List<PrefeituraViewModel>? lista = (List<PrefeituraViewModel>)viewResult.ViewData.Model;
+            Assert.AreEqual(3, lista.Count);
+        }
+
+        [TestMethod()]
+        public void DetailsTest()
+        {
+            // Act
+            var result = controller.Details(2);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            ViewResult viewResult = (ViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(PrefeituraViewModel));
+            PrefeituraViewModel prefeituraViewModel = (PrefeituraViewModel)viewResult.ViewData.Model;
+            Assert.AreEqual("Campo do Brito", prefeituraViewModel.Nome);
+            Assert.AreEqual("84.833.489/0001-72", prefeituraViewModel.Cnpj);
+            Assert.AreEqual("SE", prefeituraViewModel.Estado);
+            Assert.AreEqual("Campo do Brito", prefeituraViewModel.Cidade);
+            Assert.AreEqual("Centro", prefeituraViewModel.Bairro);
+            Assert.AreEqual("49520-000", prefeituraViewModel.Cep);
+            Assert.AreEqual("R. Padre Freire", prefeituraViewModel.Rua);
+            Assert.AreEqual("20", prefeituraViewModel.Numero);
+            Assert.AreEqual("Sem", prefeituraViewModel.Icone);
+        }
+
+        [TestMethod()]
+        public void CreateTest()
+        {
+            // Act
+            var result = controller.Create();
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
+        }
+
+        [TestMethod()]
+        public void CreateTest_Valid()
+        {
+            // Act
+            var result = controller.Create(GetNewPrefeitura());
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
+            RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
+            Assert.IsNull(redirectToActionResult.ControllerName);
+            Assert.AreEqual("Index", redirectToActionResult.ActionName);
+        }
+
+        private PrefeituraViewModel GetNewPrefeitura()
+        {
+            
+        }
+
+        [TestMethod()]
+        public void EditTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void EditTest1()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void DeleteTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void DeleteTest1()
+        {
+            Assert.Fail();
+        }
+
         private Prefeitura GetTargetPrefeitura()
         {
             return new Prefeitura
@@ -40,7 +131,7 @@ namespace AgendeMeWeb.Controllers.Tests
                 Nome = "Prefeitura de Campo do Brito",
                 Cnpj = "84.833.489/0001-72",
                 Estado = "SE",
-                Cidade = "Salvador",
+                Cidade = "Campo do Brito",
                 Bairro = "Centro",
                 Cep = "49520-000",
                 Rua = "R. Padre Freire",
@@ -88,7 +179,7 @@ namespace AgendeMeWeb.Controllers.Tests
                     Nome = "Prefeitura de Campo do Brito",
                     Cnpj = "84.833.489/0001-72",
                     Estado = "SE",
-                    Cidade = "Salvador",
+                    Cidade = "Campo do Brito",
                     Bairro = "Centro",
                     Cep = "49520-000",
                     Rua = "R. Padre Freire",
@@ -98,54 +189,6 @@ namespace AgendeMeWeb.Controllers.Tests
                 }
 
             };
-        }
-
-        [TestMethod()]
-        public void IndexTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void DetailsTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void CreateTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void CreateTest1()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void EditTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void EditTest1()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void DeleteTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void DeleteTest1()
-        {
-            Assert.Fail();
         }
     }
 }
