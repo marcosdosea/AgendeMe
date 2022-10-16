@@ -10,10 +10,12 @@ namespace AgendeMeWeb.Models
         [StringLength(70, ErrorMessage = "O nome do órgão público deve ter no máximo 70 caracteres")]
         public string? Nome { get; set; }
 
+        [Display(Name = "Bairro")]
         [Required(ErrorMessage = "O campo Bairro é obrigatótio.")]
         [StringLength(70, ErrorMessage = "O bairro deve ter no máximo 70 caracteres")]
         public string? Bairro { get; set; }
 
+        [Display(Name = "Rua")]
         [Required(ErrorMessage = "O campo Rua é obrigatótio.")]
         [StringLength(70, ErrorMessage = "A rua deve ter no máximo 70 caracteres")]
         public string? Rua { get; set; }

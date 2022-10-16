@@ -17,7 +17,15 @@
                     <div class="card-content d-flex flex-wrap align-items-center dinamic-flex">
                         <i class="azul-agende-me icone-botao-box fas fa-building text-center dinamic-margin"></i>
                         <div>
-                            <p class="text-break text-wrap user-select-none fs-4 mt-4 mb-4 fw-bold text-center">@Html.DisplayFor(modelItem => item.Nome)</p>
+                            <p class="text-break text-wrap user-select-none fs-4 mt-4 mb-4 fw-bold">@Html.DisplayFor(modelItem => item.Nome)</p>
+                            <p class="text-break text-wrap user-select-none fs-5 mt-4">
+                                <span class="fw-bold">Atendimento:</span> @Html.DisplayFor(modelItem => item.HoraAbre)
+                                ás @Html.DisplayFor(modelItem => item.HoraFecha)
+                            </p>
+                            <p class="text-break text-wrap user-select-none fs-5 mt-2"><span class="fw-bold">@Html.DisplayNameFor(modelItem => item.Bairro):</span> 
+                                @Html.DisplayFor(modelItem => item.Bairro)</p>
+                            <p class="text-break text-wrap user-select-none fs-5 mt-2"><span class="fw-bold">@Html.DisplayNameFor(modelItem => item.Rua):</span> @Html.DisplayFor(modelItem => item.Rua)</p>
+                            <p class="text-break text-wrap user-select-none fs-5 mt-2"><span class="fw-bold">@Html.DisplayNameFor(modelItem => item.Numero):</span> @Html.DisplayFor(modelItem => item.Numero)</p>
                         </div>
                     </div>
                 </a>
