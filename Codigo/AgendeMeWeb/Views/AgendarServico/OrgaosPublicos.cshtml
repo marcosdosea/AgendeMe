@@ -8,17 +8,18 @@
 <h1 class="mt-5 fw-bold fs-2">Escolha o local desejado</h1>
 <h4 class="mb-5 fw-light fs-4">O serviço <span class="fw-bold">@ViewBag.nomeServicoPublico</span> está disponível nestes locais</h4>
 
-<div class="d-flex flex-wrap mb-5 pb-5 justify-content-center align-items-stretch flex-c-gap">
+<div class="d-flex flex-column mb-5 pb-5 align-items-stretch flex-c-gap">
     @if (Model.Any())
         @foreach (var item in Model)
         {
-            <div class="br-card hover botao-box">
+            <div class="br-card hover">
                 <a class="br-card hover mb-0 back-none" asp-controller="AgendarServico" asp-action="Edit" asp-route-id="@item.Id" target="_blank">
-                    <div class="card-content">
-                        <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto fas fa-building text-center"></i>
-                        <p class="text-break text-wrap azul-text user-select-none fs-4 mt-4 mb-4 fw-bold text-center text-uppercase">@Html.DisplayFor(modelItem => item.Nome)</p>
+                    <div class="card-content d-flex flex-wrap align-items-center dinamic-flex">
+                        <i class="azul-agende-me icone-botao-box fas fa-building text-center dinamic-margin"></i>
+                        <div>
+                            <p class="text-break text-wrap user-select-none fs-4 mt-4 mb-4 fw-bold text-center">@Html.DisplayFor(modelItem => item.Nome)</p>
+                        </div>
                     </div>
-
                 </a>
             </div>
 
