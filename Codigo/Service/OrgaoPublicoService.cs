@@ -66,12 +66,12 @@ namespace Service
         /// <summary>
         /// Consulta todos os orgaos publicos que oferecem um determinado servico
         /// </summary>
-        /// <param name="nome">nome do servico publico</param>
+        /// <param name="nomeServico">Nome do servico publico</param>
         /// <returns>Todos os orgaos publicos</returns>
-        public IEnumerable<Orgaopublico> GetAllByNomeServicoPublico(string nome)
+        public IEnumerable<Orgaopublico> GetAllByNomeServicoPublico(string nomeServico)
         {
             var query = from Servicopublico in _context.Servicopublicos
-                        where Servicopublico.Nome.Equals(nome)
+                        where Servicopublico.Nome.Equals(nomeServico)
                         select Servicopublico.IdOrgaoPublicoNavigation;
 
             return query.AsNoTracking();
