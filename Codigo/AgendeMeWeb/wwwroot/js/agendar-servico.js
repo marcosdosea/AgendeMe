@@ -44,4 +44,21 @@ function getServicos(url, id, nomeArea, iconeArea) {
                 //TODO::
             },
         });
-    }
+}
+
+function getOrgaos(url, nomeServico, iconeServico) {
+    $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "HTML",
+        data: { nomeServico: nomeServico, iconeServico: iconeServico },
+
+        success: function (result) {
+            $("#ajaxBox").html(result);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //TODO::
+        },
+    });
+}

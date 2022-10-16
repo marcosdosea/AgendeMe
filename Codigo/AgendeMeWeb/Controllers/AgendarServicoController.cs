@@ -165,8 +165,7 @@ namespace AgendeMeWeb.Controllers
             ViewBag.nomeServicoPublico = nomeServico;
             var listaOrgaosPublico = _orgaoPublicoService.GetAllByNomeServicoPublico(nomeServico);
             var listaOrgaosPublicoModel = _mapper.Map<List<OrgaoPublicoViewModel>>(listaOrgaosPublico);
-            //return PartialView(listaServicoPublicoModel);
-            return View(listaOrgaosPublicoModel);
+            return PartialView(listaOrgaosPublicoModel);
         }
     }
 }

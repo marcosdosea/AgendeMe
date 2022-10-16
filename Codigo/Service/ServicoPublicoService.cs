@@ -66,9 +66,10 @@ namespace Service
         /// <returns>Servicos publicos para uma area de servico</returns>
         public IEnumerable<Servicopublico> GetAllByIdArea(int idArea)
         {
-            var query = from Servicopublico in _context.Servicopublicos
-                        where Servicopublico.IdArea.Equals(idArea)
-                        select Servicopublico;
+            var query = from servicoPublico in _context.Servicopublicos
+                        where servicoPublico.IdArea.Equals(idArea)
+                        orderby servicoPublico.Nome
+                        select servicoPublico;
 
             return query.AsNoTracking();
         }
