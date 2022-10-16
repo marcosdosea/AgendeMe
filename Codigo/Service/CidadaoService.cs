@@ -67,6 +67,11 @@ namespace Service
             _context.SaveChanges();
         }
 
+        public void DeletProfissional()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Editar dados de um cidadão cadastrado na base de dados
         /// </summary>
@@ -75,6 +80,11 @@ namespace Service
         {
             _context.Update(cidadao);
             _context.SaveChanges();
+        }
+
+        public void EditProfissional()
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -94,6 +104,22 @@ namespace Service
         public IEnumerable<Cidadao> GetAll()
         {
             return _context.Cidadaos.AsNoTracking();
+        }
+
+        public IEnumerable<Cidadao> GetAllProfissional(int idPrefeitura)
+        {
+            var profissionais = (from profissional in _context.Profissionalprefeituras
+                                where profissional.IdPrefeitura == idPrefeitura
+                                select profissional.IdProfissional).ToList();
+
+            var query = from cidadao in _context.Cidadaos
+                        join profissionalPrefeitura in _context.Profissionalprefeituras
+                        on cidadao.Id equals profissionalPrefeitura.IdProfissional
+                        join profissionalCargo in _context.Profissionalcargos
+                        on cidadao.Id equals profissionalCargo.IdProfissional
+                        select cidadao;
+
+            return query;
         }
     }
 }

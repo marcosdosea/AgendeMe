@@ -28,13 +28,18 @@ namespace AgendeMeWeb.Controllers
         // GET: ProfissionalController
         public ActionResult Index()
         {
-            return View();
+            var listaProfissionais = _cidadaoService.GetAllProfissional(1);
+            var listaProfissionaisModel = _mapper.Map<List<ProfissionalViewModel>>(listaProfissionais);
+
+            return View(listaProfissionaisModel);
         }
 
         // GET: ProfissionalController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Cidadao profissional = _cidadaoService.Get(id);
+            ProfissionalViewModel profissionalViewModel = _mapper.Map<ProfissionalViewModel>(profissional);
+            return View(profissionalViewModel);
         }
 
         // GET: ProfissionalController/Create
@@ -56,8 +61,7 @@ namespace AgendeMeWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddProfissional(ProfissionalViewModel profissionalModel)
         {
-
-            _cidadaoService.AddProfissional(profissionalModel.IdCidadao, profissionalModel.IdPrefeitura, profissionalModel.IdCargo);
+            _cidadaoService.AddProfissional(profissionalModel.IdCidadao, profissionalModel.IdProfissionalPrefeitura, profissionalModel.IdCargo);
 
             return RedirectToAction(nameof(Index));
 

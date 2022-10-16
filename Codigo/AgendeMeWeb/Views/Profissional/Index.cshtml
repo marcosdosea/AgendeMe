@@ -1,0 +1,41 @@
+﻿@model IEnumerable<AgendeMeWeb.Models.ProfissionalViewModel>
+
+<p>
+    <a asp-action="AddProfissional">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCidadao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCargo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPrefeitura)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCidadao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCargo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPrefeitura)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
