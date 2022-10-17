@@ -28,7 +28,7 @@ namespace AgendeMeWeb.Controllers
         // GET: ProfissionalController
         public ActionResult Index()
         {
-            var listaProfissionais = _cidadaoService.GetAllProfissional(1,1);
+            var listaProfissionais = _cidadaoService.GetAllProfissional(1);
             var listaProfissionaisModel = _mapper.Map<List<ProfissionalViewModel>>(listaProfissionais);
 
             return View(listaProfissionaisModel);

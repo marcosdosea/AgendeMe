@@ -1,4 +1,6 @@
-﻿namespace Core.Service
+﻿using Core.DTO;
+
+namespace Core.Service
 {
     public interface ICidadaoService
     {
@@ -10,6 +12,6 @@
         void DeletProfissional(); //TODO
         Cidadao Get(int id);
         IEnumerable<Cidadao> GetAll();
-        IEnumerable<Cidadao> GetAllProfissional(int idProfissional, int idPrefeitura);
+        IEnumerable<ProfissionalDTO> GetAllProfissional(int idPrefeitura);
     }
 }

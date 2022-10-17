@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -106,7 +107,7 @@ namespace Service
             return _context.Cidadaos.AsNoTracking();
         }
 
-        public IEnumerable<Cidadao> GetAllProfissional(int idProfissional, int idPrefeitura)
+        public IEnumerable<ProfissionalDTO> GetAllProfissional(int idPrefeitura)
         {
 
             var query = from cidadao in _context.Cidadaos
@@ -114,10 +115,10 @@ namespace Service
                         from profissionalCargo in _context.Profissionalcargos
                         where cidadao.Profissionalprefeituras.Contains(profissionalPrefeitura)
                         where profissionalPrefeitura.IdPrefeitura == idPrefeitura
-                        select new
+                        select new ProfissionalDTO
                         {
-                            idCidadao = cidadao.Id,
-                            nome = cidadao.Nome,
+                            IdCidadao = cidadao.Id,
+                            Nome = cidadao.Nome,
                             IdCargo = profissionalCargo.IdCargo,
                             IdProfissionalPrefeitura = profissionalPrefeitura.IdPrefeitura
                         };
