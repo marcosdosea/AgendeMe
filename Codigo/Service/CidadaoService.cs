@@ -54,7 +54,7 @@ namespace Service
         {
             _context.Add(cidadao);
             _context.SaveChanges();
-            return cidadao.Id; 
+            return cidadao.Id;
         }
 
         /// <summary>
@@ -111,19 +111,23 @@ namespace Service
         {
 
             var query = from cidadao in _context.Cidadaos
-                        from profissionalPrefeitura in _context.Profissionalprefeituras
-                        from profissionalCargo in _context.Profissionalcargos
-                        where cidadao.Profissionalprefeituras.Contains(profissionalPrefeitura)
-                        where profissionalPrefeitura.IdPrefeitura == idPrefeitura
+                        from prefeiturasCidadao in cidadao.Profissionalprefeituras
+                        from cargosCidadao in cidadao.Profissionalcargos
+                        where prefeiturasCidadao.IdPrefeitura != null
+                        from cargos in _context.Cargos
+                        where cargos.Id == cargosCidadao.IdCargo
+                        from prefeitura in _context.Prefeituras
+                        where prefeitura.Id == prefeiturasCidadao.IdPrefeitura
+                        orderby cidadao.Nome
                         select new ProfissionalDTO
                         {
-                            IdCidadao = cidadao.Id,
-                            Nome = cidadao.Nome,
-                            IdCargo = profissionalCargo.IdCargo,
-                            IdProfissionalPrefeitura = profissionalPrefeitura.IdPrefeitura
+                            NomeCidadao = cidadao.Nome,
+                            NomeCargo = cargos.Nome,
+                            NomePrefeitura = prefeitura.Nome,
+                            IdCidadao = cidadao.Id
                         };
-            
-            return query.AsNoTracking();
+
+            return query;
         }
     }
 }

@@ -9,10 +9,10 @@ namespace AgendeMeWeb.Models
         [Required(ErrorMessage = "O campo Id é obrigatório.")]
         public int IdCidadao { get; set; }
 
-        [Required(ErrorMessage = "O campo Nome é obrigatótio.")]
-        [StringLength(70, MinimumLength = 5, ErrorMessage = "O nome do cidadão deve ter entre 5 e 70 caracteres")]
-        public string? Nome { get; set; }
+        [Required(ErrorMessage = "O campo Id é obrigatório.")]
         public int IdCargo { get; set; }
+
+        [Required(ErrorMessage = "O campo Id é obrigatório.")]
         public int IdProfissionalPrefeitura { get; set; }
 
         public SelectList? ListaCargos { get; set; }
