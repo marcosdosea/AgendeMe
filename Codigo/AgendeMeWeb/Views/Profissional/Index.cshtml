@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<AgendeMeWeb.Models.ProfissionalViewModel>
 
 <p>
-    <a asp-action="AddProfissional">Create New</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -10,10 +10,13 @@
                 @Html.DisplayNameFor(model => model.IdCidadao)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.IdCargo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdPrefeitura)
+                @Html.DisplayNameFor(model => model.IdProfissionalPrefeitura)
             </th>
             <th></th>
         </tr>
@@ -25,10 +28,13 @@
                 @Html.DisplayFor(modelItem => item.IdCidadao)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.IdCargo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdPrefeitura)
+                @Html.DisplayFor(modelItem => item.IdProfissionalPrefeitura)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

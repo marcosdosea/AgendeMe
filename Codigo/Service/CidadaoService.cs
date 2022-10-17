@@ -106,20 +106,23 @@ namespace Service
             return _context.Cidadaos.AsNoTracking();
         }
 
-        public IEnumerable<Cidadao> GetAllProfissional(int idPrefeitura)
+        public IEnumerable<Cidadao> GetAllProfissional(int idProfissional, int idPrefeitura)
         {
-            var profissionais = (from profissional in _context.Profissionalprefeituras
-                                where profissional.IdPrefeitura == idPrefeitura
-                                select profissional.IdProfissional).ToList();
 
             var query = from cidadao in _context.Cidadaos
-                        join profissionalPrefeitura in _context.Profissionalprefeituras
-                        on cidadao.Id equals profissionalPrefeitura.IdProfissional
-                        join profissionalCargo in _context.Profissionalcargos
-                        on cidadao.Id equals profissionalCargo.IdProfissional
-                        select cidadao;
-
-            return query;
+                        from profissionalPrefeitura in _context.Profissionalprefeituras
+                        from profissionalCargo in _context.Profissionalcargos
+                        where cidadao.Profissionalprefeituras.Contains(profissionalPrefeitura)
+                        where profissionalPrefeitura.IdPrefeitura == idPrefeitura
+                        select new
+                        {
+                            idCidadao = cidadao.Id,
+                            nome = cidadao.Nome,
+                            IdCargo = profissionalCargo.IdCargo,
+                            IdProfissionalPrefeitura = profissionalPrefeitura.IdPrefeitura
+                        };
+            
+            return query.AsNoTracking();
         }
     }
 }

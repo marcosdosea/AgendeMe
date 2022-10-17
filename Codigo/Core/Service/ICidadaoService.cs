@@ -10,6 +10,6 @@
         void DeletProfissional(); //TODO
         Cidadao Get(int id);
         IEnumerable<Cidadao> GetAll();
-        IEnumerable<Cidadao> GetAllProfissional(int idPrefeitura);
+        IEnumerable<Cidadao> GetAllProfissional(int idProfissional, int idPrefeitura);
     }
 }
