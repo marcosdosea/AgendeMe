@@ -31,6 +31,7 @@ namespace AgendeMeWeb.Controllers.Tests
                 .Verifiable();
             mockService.Setup(service => service.Create(It.IsAny<Prefeitura>()))
                 .Verifiable();
+            mockService.Setup(service => service.Delete(1)).Verifiable();
             controller = new PrefeituraController(mockService.Object, mapper);
         }
 
@@ -94,33 +95,74 @@ namespace AgendeMeWeb.Controllers.Tests
             Assert.AreEqual("Index", redirectToActionResult.ActionName);
         }
 
-        private PrefeituraViewModel GetNewPrefeitura()
+        [TestMethod()]
+        public void EditTest_Get()
         {
-            
+            // Act
+            var result = controller.Edit(1);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            ViewResult viewResult = (ViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(PrefeituraViewModel));
+            PrefeituraViewModel prefeituraViewModel = (PrefeituraViewModel)viewResult.ViewData.Model;
+            Assert.AreEqual("Campo do Brito", prefeituraViewModel.Nome);
+            Assert.AreEqual("84.833.489/0001-72", prefeituraViewModel.Cnpj);
+            Assert.AreEqual("SE", prefeituraViewModel.Estado);
+            Assert.AreEqual("Prefeitura de Campo do Brito", prefeituraViewModel.Cidade);
+            Assert.AreEqual("Centro", prefeituraViewModel.Bairro);
+            Assert.AreEqual("49520-000", prefeituraViewModel.Cep);
+            Assert.AreEqual("R. Padre Freire", prefeituraViewModel.Rua);
+            Assert.AreEqual("20", prefeituraViewModel.Numero);
+            Assert.AreEqual("Sem", prefeituraViewModel.Icone);
         }
 
         [TestMethod()]
-        public void EditTest()
+        public void EditTest_Post()
         {
-            Assert.Fail();
+            // Act
+            var result = controller.Edit(GetTargetPrefeituraViewModel().Id, GetTargetPrefeituraViewModel());
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
+            RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
+            Assert.IsNull(redirectToActionResult.ControllerName);
+            Assert.AreEqual("Index", redirectToActionResult.ActionName);
         }
 
         [TestMethod()]
-        public void EditTest1()
+        public void DeleteTest_Post()
         {
-            Assert.Fail();
+            // Act
+            var result = controller.Delete(1);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            ViewResult viewResult = (ViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(PrefeituraViewModel));
+            PrefeituraViewModel prefeituraViewModel = (PrefeituraViewModel)viewResult.ViewData.Model;
+            Assert.AreEqual("Campo do Brito", prefeituraViewModel.Nome);
+            Assert.AreEqual("84.833.489/0001-72", prefeituraViewModel.Cnpj);
+            Assert.AreEqual("SE", prefeituraViewModel.Estado);
+            Assert.AreEqual("Campo do Brito", prefeituraViewModel.Cidade);
+            Assert.AreEqual("Centro", prefeituraViewModel.Bairro);
+            Assert.AreEqual("49520-000", prefeituraViewModel.Cep);
+            Assert.AreEqual("R. Padre Freire", prefeituraViewModel.Rua);
+            Assert.AreEqual("20", prefeituraViewModel.Numero);
+            Assert.AreEqual("Sem", prefeituraViewModel.Icone);
         }
 
         [TestMethod()]
-        public void DeleteTest()
+        public void DeleteTest_Get()
         {
-            Assert.Fail();
-        }
+            // Act
+            var result = controller.Delete(GetTargetPrefeituraViewModel().Id, GetTargetPrefeituraViewModel());
 
-        [TestMethod()]
-        public void DeleteTest1()
-        {
-            Assert.Fail();
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
+            RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
+            Assert.IsNull(redirectToActionResult.ControllerName);
+            Assert.AreEqual("Index", redirectToActionResult.ActionName);
         }
 
         private Prefeitura GetTargetPrefeitura()
@@ -190,5 +232,44 @@ namespace AgendeMeWeb.Controllers.Tests
 
             };
         }
+
+        private PrefeituraViewModel GetNewPrefeitura()
+        {
+            return new PrefeituraViewModel
+            {
+                Id = 4,
+                Nome = "Prefeitura de Lagarto",
+                Cnpj = "84.833.489/0001-72",
+                Estado = "SE",
+                Cidade = "Lagarto",
+                Bairro = "Centro",
+                Cep = "49400-000",
+                Rua = "Pr. da Piedade",
+                Numero = "13",
+                Icone = "Sem"
+
+            };
+
+        }
+
+        private PrefeituraViewModel GetTargetPrefeituraViewModel()
+        {
+            return new PrefeituraViewModel
+            {
+                Id = 1,
+                Nome = "Prefeitura de Aracaju",
+                Cnpj = "84.833.489/0001-72",
+                Estado = "SE",
+                Cidade = "Aracaju",
+                Bairro = "Ponto Novo",
+                Cep = "49097-270",
+                Rua = "R. Frei Luiz Canolo de Noronha",
+                Numero = "42",
+                Icone = "Sem"
+
+            };
+        }
+
+
     }
 }
