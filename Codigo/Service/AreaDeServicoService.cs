@@ -60,14 +60,14 @@ namespace Service
             return _context.Areadeservicos.AsNoTracking();
         }
         /// <summary>
-        /// Consulta todas as areas de servico a partir de um nome de prefeitura
+        /// Consulta todas as areas de servico a partir de um id de prefeitura
         /// </summary>
         /// <param name="NomePrefeitura">Nome da prefeitura</param>
         /// <returns>Todas as areas de servico da prefeitura</returns>
-        public IEnumerable<Areadeservico> GetAllByNomePrefeitura(String NomePrefeitura)
+        public IEnumerable<Areadeservico> GetAllByIdPrefeitura(int id)
         {
             var query = from Areadeservico in _context.Areadeservicos
-                        where Areadeservico.IdPrefeituraNavigation.Nome.Equals("Prefeitura de " + NomePrefeitura)
+                        where Areadeservico.IdPrefeituraNavigation.Id.Equals(id)
                         select Areadeservico;
 
             return query.AsNoTracking();

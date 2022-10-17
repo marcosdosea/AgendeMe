@@ -7,5 +7,6 @@
         void Delete(int id);
         Orgaopublico Get(int id);
         IEnumerable<Orgaopublico> GetAll();
+        IEnumerable<Orgaopublico> GetAllByNomeServicoPublico(string nomeServico);
     }
 }

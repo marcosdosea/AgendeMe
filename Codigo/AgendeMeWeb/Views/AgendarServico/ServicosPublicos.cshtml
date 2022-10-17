@@ -10,19 +10,27 @@
 
 <div class="d-flex flex-wrap mb-5 pb-5 justify-content-center align-items-stretch flex-c-gap">
     @if (Model.Any())
+    {
+        string? nomeAnterior = "";
         @foreach (var item in Model)
         {
-            <div class="br-card hover botao-box">
-                <a class="br-card hover mb-0 back-none" asp-controller="AgendarServico" asp-action="Edit" asp-route-id="@item.Id" target="_blank">
+            if (nomeAnterior != item.Nome)
+            {
+                <div class="br-card hover botao-box">
+                    <a class="br-card hover mb-0 back-none" onclick="getOrgaos('@Url.Action("OrgaosPublicos")','@item.Nome', '@item.Icone')">
                     <div class="card-content">
                         <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto @Html.DisplayFor(modelItem => item.Icone) text-center"></i>
                         <p class="text-break text-wrap azul-text user-select-none fs-4 mt-4 mb-4 fw-bold text-center text-uppercase">@Html.DisplayFor(modelItem => item.Nome)</p>
                     </div>
 
                 </a>
-            </div>
+                </div>
+            }
+            nomeAnterior = item.Nome;
+        }
 
-        }       else
+    }
+    else
     {
         <div class="br-message warning" role="alert">
             <div class="icon">

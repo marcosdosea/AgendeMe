@@ -25,7 +25,7 @@
             <option value="" disabled selected>Selecione um município</option>
             @foreach (var item in Model)
             {
-                <option value="@item.Cidade">@item.Cidade</option>
+                <option value="@item.Id">@item.Cidade</option>
             }
         </select>
         <div class="d-none" id="erroSelectPrefeitura">
@@ -34,7 +34,7 @@
                 É necessário escolher um município!
             </span>
         </div>
-        <button class="br-button primary mx-auto d-block mt-5 mb-5" type="button" onclick="getAreas('@Url.Action("AjaxAreasDeServico")',this)">
+        <button class="br-button primary mx-auto d-block mt-5 mb-5" type="button" onclick="getAreas('@Url.Action("AreasDeServico")',this)">
             Pesquisar Serviços
         </button>
     </div>

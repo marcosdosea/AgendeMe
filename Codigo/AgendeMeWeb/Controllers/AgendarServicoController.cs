@@ -12,18 +12,21 @@ namespace AgendeMeWeb.Controllers
         private readonly IPrefeituraService _prefeituraService;
         private readonly IAreaDeServicoService _areaDeServicoService;
         private readonly IServicoPublicoService _servicoPublicoService;
+        private readonly IOrgaoPublicoService _orgaoPublicoService;
         private readonly IMapper _mapper;
 
         public AgendarServicoController(IAgendamentoService agendamentoService,
                                         IPrefeituraService prefeituraService,
                                         IAreaDeServicoService areaDeServicoService,
                                         IServicoPublicoService servicoPublicoService,
+                                        IOrgaoPublicoService orgaoPublicoService,
                                         IMapper mapper)
         {
             _agendamentoService = agendamentoService;
             _prefeituraService = prefeituraService;
             _areaDeServicoService = areaDeServicoService;
             _servicoPublicoService = servicoPublicoService;
+            _orgaoPublicoService = orgaoPublicoService;
             _mapper = mapper;
         }
 
@@ -138,23 +141,31 @@ namespace AgendeMeWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult AjaxAreasDeServico(string prefeitura)
+        public ActionResult AreasDeServico(int id)
         {
-            var listaAreasDeServico = _areaDeServicoService.GetAllByNomePrefeitura(prefeitura);
+            var listaAreasDeServico = _areaDeServicoService.GetAllByIdPrefeitura(id);
             var listaAreasDeServicoModel = _mapper.Map<List<AreaDeServicoViewModel>>(listaAreasDeServico);
-            return PartialView("_AjaxAreasDeServico", listaAreasDeServicoModel);
+            return PartialView(listaAreasDeServicoModel);
         }
 
         [HttpGet]
-        public ActionResult AjaxServicoPublico(int id)
+        public ActionResult ServicosPublicos(int id, string nomeArea, string iconeArea)
         {
-            var areaDeServico = _areaDeServicoService.Get(id);
-            var areaDeServicoModel = _mapper.Map<AreaDeServicoViewModel>(areaDeServico);
-            ViewBag.nomeAreaDeServico = areaDeServicoModel.Nome;
-            ViewBag.iconeAreaDeServico = areaDeServicoModel.Icone;
+            ViewBag.nomeAreaDeServico = nomeArea;
+            ViewBag.iconeAreaDeServico = iconeArea;
             var listaServicoPublico = _servicoPublicoService.GetAllByIdArea(id);
             var listaServicoPublicoModel = _mapper.Map<List<ServicoPublicoViewModel>>(listaServicoPublico);
-            return PartialView("_AjaxServicoPublico", listaServicoPublicoModel);
+            return PartialView(listaServicoPublicoModel);
+        }
+
+        [HttpGet]
+        public ActionResult OrgaosPublicos(string nomeServico, string iconeServico)
+        {
+            ViewBag.iconeServicoPublico = iconeServico;
+            ViewBag.nomeServicoPublico = nomeServico;
+            var listaOrgaosPublico = _orgaoPublicoService.GetAllByNomeServicoPublico(nomeServico);
+            var listaOrgaosPublicoModel = _mapper.Map<List<OrgaoPublicoViewModel>>(listaOrgaosPublico);
+            return PartialView(listaOrgaosPublicoModel);
         }
     }
 }

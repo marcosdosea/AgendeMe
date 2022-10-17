@@ -1,12 +1,12 @@
 ﻿function getAreas(url, button) {
-    var prefeitura = document.getElementById("prefeitura");
-    if (prefeitura.value) {
+    var idPrefeitura = document.getElementById("prefeitura");
+    if (idPrefeitura.value) {
         button.className = "br-button primary loading mx-auto d-block mt-5 mb-5";
         $.ajax({
             type: "GET",
             url: url,
             dataType: "HTML",
-            data: { prefeitura: prefeitura.value },
+            data: { id: idPrefeitura.value },
 
             success: function (result) {
                 $("#ajaxBox").html(result);
@@ -29,13 +29,13 @@ function removeErro(select) {
     }
 }
 
-function getServicos(url, id) { 
+function getServicos(url, id, nomeArea, iconeArea) { 
     $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
         $.ajax({
             type: "GET",
             url: url,
             dataType: "HTML",
-            data: { id: id },
+            data: { id: id, nomeArea: nomeArea, iconeArea: iconeArea },
 
             success: function (result) {
                 $("#ajaxBox").html(result);
@@ -44,4 +44,21 @@ function getServicos(url, id) {
                 //TODO::
             },
         });
-    }
+}
+
+function getOrgaos(url, nomeServico, iconeServico) {
+    $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "HTML",
+        data: { nomeServico: nomeServico, iconeServico: iconeServico },
+
+        success: function (result) {
+            $("#ajaxBox").html(result);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //TODO::
+        },
+    });
+}

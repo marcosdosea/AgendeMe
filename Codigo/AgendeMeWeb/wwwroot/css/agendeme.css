@@ -38,3 +38,16 @@
     margin-bottom: 120px;
 }
 
+.dinamic-flex{
+    column-gap: 20px;
+}
+.dinamic-margin{
+    width: auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .dinamic-margin{
+        width: 100%;
+        margin:auto;
+    }
+}
