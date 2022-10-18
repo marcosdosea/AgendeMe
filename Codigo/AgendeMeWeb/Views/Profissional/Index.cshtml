@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Core.DTO.ProfissionalDTO>
+
+<p>
+    <a asp-action="AddProfissional">Cadastrar um novo profissional</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeCidadao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeCargo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomePrefeitura)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeCidadao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeCargo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomePrefeitura)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id=item.IdCidadao}) |
+                @Html.ActionLink("Detalhes", "Details", new { id=item.IdCidadao }) |
+                @Html.ActionLink("Remover", "Delete", new { id=item.IdCidadao })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

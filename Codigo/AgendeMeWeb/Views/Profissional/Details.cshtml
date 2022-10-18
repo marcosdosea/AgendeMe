@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Core.DTO.ProfissionalDTO>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ProfissionalViewModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NomeCidadao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => Model.FirstOrDefault().NomeCidadao)
+        </dd>
+        @foreach (var item in Model)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NomePrefeitura)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.NomePrefeitura)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NomeCargo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.NomeCargo)
+            </dd>
+        }
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
