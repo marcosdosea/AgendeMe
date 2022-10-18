@@ -70,5 +70,15 @@ namespace Service
         {
             return _context.Cargos.AsNoTracking();
         }
+
+        public IEnumerable<Cargo> GetByProfissional(int idCidadao)
+        {
+            var query = (from cargos in _context.Cargos
+                        from profissionalCargos in cargos.Profissionalcargos
+                        where profissionalCargos.IdProfissional == idCidadao
+                        select cargos);
+
+            return query;
+        }
     }
 }
