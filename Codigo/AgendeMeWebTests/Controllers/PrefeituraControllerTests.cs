@@ -55,14 +55,14 @@ namespace AgendeMeWeb.Controllers.Tests
         public void DetailsTest()
         {
             // Act
-            var result = controller.Details(2);
+            var result = controller.Details(1);
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
             Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(PrefeituraViewModel));
             PrefeituraViewModel prefeituraViewModel = (PrefeituraViewModel)viewResult.ViewData.Model;
-            Assert.AreEqual("Campo do Brito", prefeituraViewModel.Nome);
+            Assert.AreEqual("Prefeitura de Campo do Brito", prefeituraViewModel.Nome);
             Assert.AreEqual("84.833.489/0001-72", prefeituraViewModel.Cnpj);
             Assert.AreEqual("SE", prefeituraViewModel.Estado);
             Assert.AreEqual("Campo do Brito", prefeituraViewModel.Cidade);
@@ -106,10 +106,10 @@ namespace AgendeMeWeb.Controllers.Tests
             ViewResult viewResult = (ViewResult)result;
             Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(PrefeituraViewModel));
             PrefeituraViewModel prefeituraViewModel = (PrefeituraViewModel)viewResult.ViewData.Model;
-            Assert.AreEqual("Campo do Brito", prefeituraViewModel.Nome);
+            Assert.AreEqual("Prefeitura de Campo do Brito", prefeituraViewModel.Nome);
             Assert.AreEqual("84.833.489/0001-72", prefeituraViewModel.Cnpj);
             Assert.AreEqual("SE", prefeituraViewModel.Estado);
-            Assert.AreEqual("Prefeitura de Campo do Brito", prefeituraViewModel.Cidade);
+            Assert.AreEqual("Campo do Brito", prefeituraViewModel.Cidade);
             Assert.AreEqual("Centro", prefeituraViewModel.Bairro);
             Assert.AreEqual("49520-000", prefeituraViewModel.Cep);
             Assert.AreEqual("R. Padre Freire", prefeituraViewModel.Rua);
@@ -141,7 +141,7 @@ namespace AgendeMeWeb.Controllers.Tests
             ViewResult viewResult = (ViewResult)result;
             Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(PrefeituraViewModel));
             PrefeituraViewModel prefeituraViewModel = (PrefeituraViewModel)viewResult.ViewData.Model;
-            Assert.AreEqual("Campo do Brito", prefeituraViewModel.Nome);
+            Assert.AreEqual("Prefeitura de Campo do Brito", prefeituraViewModel.Nome);
             Assert.AreEqual("84.833.489/0001-72", prefeituraViewModel.Cnpj);
             Assert.AreEqual("SE", prefeituraViewModel.Estado);
             Assert.AreEqual("Campo do Brito", prefeituraViewModel.Cidade);
