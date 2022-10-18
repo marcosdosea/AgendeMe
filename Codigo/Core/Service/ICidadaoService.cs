@@ -11,6 +11,7 @@ namespace Core.Service
         void EditProfissional(); //TODO
         void DeletProfissional(); //TODO
         Cidadao Get(int id);
+        IEnumerable<ProfissionalDTO> GetProfissional(int id);
         IEnumerable<Cidadao> GetAll();
         IEnumerable<ProfissionalDTO> GetAllProfissional(int idPrefeitura);
     }

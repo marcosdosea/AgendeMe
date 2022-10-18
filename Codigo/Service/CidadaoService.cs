@@ -98,6 +98,29 @@ namespace Service
             return _context.Cidadaos.Find(id);
         }
 
+        public IEnumerable<ProfissionalDTO> GetProfissional(int id)
+        {
+            var profissional = (from cidadao in _context.Cidadaos
+                                from cargosCidadao in cidadao.Profissionalcargos
+                                from prefeiturasCidadao in cidadao.Profissionalprefeituras
+                                where cidadao.Id == id
+
+                                from cargos in _context.Cargos 
+                                join prefeituras in _context.Prefeituras
+                                where cargos.Id == cargosCidadao.IdCargo
+                                      && prefeituras.Id == prefeiturasCidadao.IdPrefeitura
+
+                                select new ProfissionalDTO
+                                {
+                                    NomeCidadao = cidadao.Nome,
+                                    IdCidadao = cidadao.Id,
+                                    NomeCargo = cargos.Nome,
+                                    NomePrefeitura = prefeituras.Nome
+                                });
+
+            return profissional;
+        }
+
         /// <summary>
         /// Buscar todos os cidadãos cadastrados
         /// </summary>
@@ -113,11 +136,14 @@ namespace Service
             var query = from cidadao in _context.Cidadaos
                         from prefeiturasCidadao in cidadao.Profissionalprefeituras
                         from cargosCidadao in cidadao.Profissionalcargos
-                        where prefeiturasCidadao.IdPrefeitura != null
+                        where prefeiturasCidadao.IdPrefeitura > 0
+
                         from cargos in _context.Cargos
                         where cargos.Id == cargosCidadao.IdCargo
+                        
                         from prefeitura in _context.Prefeituras
                         where prefeitura.Id == prefeiturasCidadao.IdPrefeitura
+
                         orderby cidadao.Nome
                         select new ProfissionalDTO
                         {

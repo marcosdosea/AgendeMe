@@ -1,6 +1,7 @@
 ﻿using AgendeMeWeb.Models;
 using AutoMapper;
 using Core;
+using Core.DTO;
 using Core.Service;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http;
@@ -36,9 +37,9 @@ namespace AgendeMeWeb.Controllers
         // GET: ProfissionalController/Details/5
         public ActionResult Details(int id)
         {
-            Cidadao profissional = _cidadaoService.Get(id);
-            ProfissionalViewModel profissionalViewModel = _mapper.Map<ProfissionalViewModel>(profissional);
-            return View(profissionalViewModel);
+            var profissional = _cidadaoService.GetProfissional(id);
+            //ProfissionalViewModel profissionalViewModel = _mapper.Map<ProfissionalViewModel>(profissional);
+            return View(profissional);
         }
 
         // GET: ProfissionalController/Create
