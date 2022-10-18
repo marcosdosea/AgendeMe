@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AgendeMeWeb.Models.OrgaoPublicoViewModel>
+﻿@model IEnumerable<Core.DTO.OrgaoPublicoDTO>
 
 <div class="mb-4 pb-4">
     <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto @ViewBag.iconeServicoPublico text-center"></i>
@@ -13,14 +13,13 @@
         @foreach (var item in Model)
         {
             <div class="br-card hover">
-                <a class="br-card hover mb-0 back-none" asp-controller="AgendarServico" asp-action="Edit" asp-route-id="@item.Id" target="_blank">
+                <a class="br-card hover mb-0 back-none" asp-controller="AgendarServico" asp-action="Edit" asp-route-id="@item.IdServico" target="_blank">
                     <div class="card-content d-flex flex-wrap align-items-center dinamic-flex">
                         <i class="azul-agende-me icone-botao-box fas fa-building text-center dinamic-margin"></i>
                         <div>
                             <p class="text-break text-wrap user-select-none fs-4 mt-4 mb-4 fw-bold">@Html.DisplayFor(modelItem => item.Nome)</p>
                             <p class="text-break text-wrap user-select-none fs-5 mt-4">
-                                <span class="fw-bold">Atendimento:</span> @Html.DisplayFor(modelItem => item.HoraAbre)
-                                ás @Html.DisplayFor(modelItem => item.HoraFecha)
+                                <span class="fw-bold">@Html.DisplayNameFor(modelItem => item.Atendimento):</span> @Html.DisplayFor(modelItem => item.Atendimento)
                             </p>
                             <p class="text-break text-wrap user-select-none fs-5 mt-2"><span class="fw-bold">@Html.DisplayNameFor(modelItem => item.Bairro):</span> 
                                 @Html.DisplayFor(modelItem => item.Bairro)</p>

@@ -163,6 +163,15 @@ namespace AgendeMeWeb.Controllers
         {
             ViewBag.iconeServicoPublico = iconeServico;
             ViewBag.nomeServicoPublico = nomeServico;
+            var listaOrgaosPublicoDTO = _orgaoPublicoService.GetAllByNomeServicoPublico(nomeServico);
+            return PartialView(listaOrgaosPublicoDTO);
+        }
+
+        [HttpGet]
+        public ActionResult AgendasDeServico(int idServico, string nomeServico, string iconeServico)
+        {
+            ViewBag.iconeServicoPublico = iconeServico;
+            ViewBag.nomeServicoPublico = nomeServico;
             var listaOrgaosPublico = _orgaoPublicoService.GetAllByNomeServicoPublico(nomeServico);
             var listaOrgaosPublicoModel = _mapper.Map<List<OrgaoPublicoViewModel>>(listaOrgaosPublico);
             return PartialView(listaOrgaosPublicoModel);
