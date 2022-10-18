@@ -39,7 +39,8 @@
 }
 
 .dinamic-flex{
-    column-gap: 20px;
+    column-gap: 16px;
+    row-gap: 10px;
 }
 .dinamic-margin{
     width: auto;
