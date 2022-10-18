@@ -9,7 +9,7 @@ namespace Core.Service
         void Delete(int id);
         int AddProfissional(int idCidadao, int idPrefeitura, int idCargo);
         void EditProfissional(); //TODO
-        void DeletProfissional(); //TODO
+        void DeletProfissional(int idCidadao, int idCargo, int idPrefeitura);
         Cidadao Get(int id);
         IEnumerable<ProfissionalDTO> GetProfissional(int id);
         IEnumerable<Cidadao> GetAll();

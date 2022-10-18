@@ -38,7 +38,6 @@ namespace AgendeMeWeb.Controllers
         public ActionResult Details(int id)
         {
             var profissional = _cidadaoService.GetProfissional(id);
-            //ProfissionalViewModel profissionalViewModel = _mapper.Map<ProfissionalViewModel>(profissional);
             return View(profissional);
         }
 
@@ -91,7 +90,8 @@ namespace AgendeMeWeb.Controllers
         // GET: ProfissionalController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var profissional = _cidadaoService.GetProfissional(id);
+            return View(profissional);
         }
 
         // POST: ProfissionalController/Delete/5
