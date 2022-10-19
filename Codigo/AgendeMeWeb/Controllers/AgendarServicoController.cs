@@ -13,6 +13,7 @@ namespace AgendeMeWeb.Controllers
         private readonly IAreaDeServicoService _areaDeServicoService;
         private readonly IServicoPublicoService _servicoPublicoService;
         private readonly IOrgaoPublicoService _orgaoPublicoService;
+        private readonly IAgendaDoServicoService _agendaDoServicoService;
         private readonly IMapper _mapper;
 
         public AgendarServicoController(IAgendamentoService agendamentoService,
@@ -20,6 +21,7 @@ namespace AgendeMeWeb.Controllers
                                         IAreaDeServicoService areaDeServicoService,
                                         IServicoPublicoService servicoPublicoService,
                                         IOrgaoPublicoService orgaoPublicoService,
+                                        IAgendaDoServicoService agendaDoServicoService,
                                         IMapper mapper)
         {
             _agendamentoService = agendamentoService;
@@ -27,6 +29,7 @@ namespace AgendeMeWeb.Controllers
             _areaDeServicoService = areaDeServicoService;
             _servicoPublicoService = servicoPublicoService;
             _orgaoPublicoService = orgaoPublicoService;
+            _agendaDoServicoService = agendaDoServicoService;
             _mapper = mapper;
         }
 
@@ -168,7 +171,17 @@ namespace AgendeMeWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult AgendasDeServico(int idServico, string nomeServico, string iconeServico)
+        public ActionResult AgendasDoServicoDias(int idServico, string nomeOrgao)
+        {
+            ViewBag.nomeOrgaoPublico = nomeOrgao;
+            var listaAgendasDoServico = _agendaDoServicoService.GetAllByIdServico(idServico);
+            //var listaAgendasDoServicoModel = _mapper.Map<List<AgendaDoServicoViewModel>>(listaAgendasDoServico);
+            //return PartialView(listaAgendasDoServicoModel);
+            return View(listaAgendasDoServico);
+        }
+
+        [HttpGet]
+        public ActionResult AgendasDoServicoHoras(int idServico, string nomeServico, string iconeServico)
         {
             ViewBag.iconeServicoPublico = iconeServico;
             ViewBag.nomeServicoPublico = nomeServico;
