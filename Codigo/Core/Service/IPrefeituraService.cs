@@ -7,5 +7,6 @@
         void Delete(int idPrefeitura);
         Prefeitura Get(int idPrefeitura);
         IEnumerable<Prefeitura> GetAll();
+        IEnumerable<Prefeitura> GetByProfissional(int idCidadao);
     }
 }
