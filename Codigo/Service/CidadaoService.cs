@@ -68,7 +68,7 @@ namespace Service
             _context.SaveChanges();
         }
 
-        public void DeletProfissional(int idCidadao, int idCargo, int idPrefeitura)
+        public void DeleteProfissional(int idCidadao, int idCargo, int idPrefeitura)
         {
             var _profissionalCargo = _context.Profissionalcargos.Find(idCargo, idCidadao);
             var _profissionalPrefeitura = _context.Profissionalprefeituras.Find(idCidadao, idPrefeitura);
@@ -105,19 +105,19 @@ namespace Service
             return _context.Cidadaos.Find(id);
         }
 
-        public IEnumerable<ProfissionalDTO> GetProfissional(int id)
+        public ProfissionalDTO GetProfissional(int idCidadao, string nomeCargo, string nomePrefeitura)
         {
             var profissional = (from cidadao in _context.Cidadaos
-                                where cidadao.Id == id
-                                from prefeituras in cidadao.Profissionalprefeituras
-                                from cargos in cidadao.Profissionalcargos
-                                select new ProfissionalDTO
-                                {
-                                    NomeCidadao = cidadao.Nome,
-                                    IdCidadao = cidadao.Id,
-                                    NomeCargo = cargos.IdCargoNavigation.Nome,
-                                    NomePrefeitura = prefeituras.IdPrefeituraNavigation.Nome
-                                }) ;
+                                            where cidadao.Id == idCidadao
+                                            from cargos in cidadao.Profissionalcargos.Where(p => p.IdCargoNavigation.Nome == nomeCargo)
+                                            from prefeituras in cidadao.Profissionalprefeituras.Where(p => p.IdPrefeituraNavigation.Nome == nomePrefeitura)
+                                            select new ProfissionalDTO
+                                            {
+                                                NomeCidadao = cidadao.Nome,
+                                                IdCidadao = cidadao.Id,
+                                                NomeCargo = cargos.IdCargoNavigation.Nome,
+                                                NomePrefeitura = prefeituras.IdPrefeituraNavigation.Nome
+                                            }).FirstOrDefault() ;
 
             return profissional;
         }

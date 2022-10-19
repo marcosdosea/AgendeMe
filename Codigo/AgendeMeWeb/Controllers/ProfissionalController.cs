@@ -35,9 +35,9 @@ namespace AgendeMeWeb.Controllers
         }
 
         // GET: ProfissionalController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int idCidadao, string nomeCargo, string nomePrefeitura)
         {
-            var profissional = _cidadaoService.GetProfissional(id);
+            var profissional = _cidadaoService.GetProfissional(idCidadao, nomeCargo, nomePrefeitura);
             return View(profissional);
         }
 
@@ -88,25 +88,20 @@ namespace AgendeMeWeb.Controllers
         }
 
         // GET: ProfissionalController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int idCidadao, string nomeCargo, string nomePrefeitura)
         {
-            var profissional = _cidadaoService.GetProfissional(id);
+            var profissional = _cidadaoService.GetProfissional(idCidadao, nomeCargo, nomePrefeitura);
             return View(profissional);
         }
 
         // POST: ProfissionalController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int idCidadao, int idCargo, int idPrefeitura, ProfissionalDTO profissional)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _cidadaoService.DeleteProfissional(idCidadao, idCargo, idPrefeitura);
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }

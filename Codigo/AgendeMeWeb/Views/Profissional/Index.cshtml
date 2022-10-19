@@ -32,7 +32,7 @@
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id=item.IdCidadao}) |
-                @Html.ActionLink("Detalhes", "Details", new { id=item.IdCidadao }) |
+                    @Html.ActionLink("Detalhes", "Details", new { idCidadao=item.IdCidadao, nomeCargo = item.NomeCargo, nomePrefeitura = item.NomePrefeitura }) |
                 @Html.ActionLink("Remover", "Delete", new { id=item.IdCidadao })
             </td>
         </tr>
