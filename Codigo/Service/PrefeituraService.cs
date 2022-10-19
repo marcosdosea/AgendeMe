@@ -69,5 +69,15 @@ namespace Service
         {
             return _context.Prefeituras.AsNoTracking();
         }
+
+        public IEnumerable<Prefeitura> GetByProfissional(int idCidadao)
+        {
+            var query = from prefeituras in _context.Prefeituras
+                        from profissionalPrefeitura in prefeituras.Profissionalprefeituras
+                        where profissionalPrefeitura.IdProfissional == idCidadao
+                        select prefeituras;
+
+            return query;
+        }
     }
 }
