@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 
@@ -64,12 +65,21 @@ namespace Service
         /// </summary>
         /// <param name="idArea">Id da area de servico</param>
         /// <returns>Servicos publicos para uma area de servico</returns>
-        public IEnumerable<Servicopublico> GetAllByIdArea(int idArea)
+        public IEnumerable<ServicoPublicoDTO> GetAllByIdArea(int idArea)
         {
             var query = from servicoPublico in _context.Servicopublicos
                         where servicoPublico.IdArea.Equals(idArea)
-                        orderby servicoPublico.Nome
-                        select servicoPublico;
+                        group servicoPublico by new
+                        {
+                            servicoPublico.Nome,
+                            servicoPublico.Icone
+                        } into servicoPublicoGroup
+                        orderby servicoPublicoGroup.Key.Nome
+                        select new ServicoPublicoDTO
+                        {
+                            Nome = servicoPublicoGroup.Key.Nome,
+                            Icone = servicoPublicoGroup.Key.Icone
+                        };
 
             return query.AsNoTracking();
         }

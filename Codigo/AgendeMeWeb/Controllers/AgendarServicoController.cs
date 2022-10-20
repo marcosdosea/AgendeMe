@@ -157,8 +157,7 @@ namespace AgendeMeWeb.Controllers
             ViewBag.nomeAreaDeServico = nomeArea;
             ViewBag.iconeAreaDeServico = iconeArea;
             var listaServicoPublico = _servicoPublicoService.GetAllByIdArea(id);
-            var listaServicoPublicoModel = _mapper.Map<List<ServicoPublicoViewModel>>(listaServicoPublico);
-            return PartialView(listaServicoPublicoModel);
+            return PartialView(listaServicoPublico);
         }
 
         [HttpGet]
