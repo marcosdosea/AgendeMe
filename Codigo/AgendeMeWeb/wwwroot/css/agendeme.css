@@ -55,11 +55,7 @@
         margin:auto;
     }
     .d-flex-dinamic {
-        column-gap: 55px;
-    }
-}
-@media only screen and (max-width: 500px) {
-    .d-flex-dinamic {
         justify-content: center !important;
+        column-gap: 55px;
     }
 }
