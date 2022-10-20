@@ -30,10 +30,13 @@
 
 .flex-c-gap{
     column-gap: 50px;
+}
+
+.flex-r-gap {
     row-gap: 50px;
 }
 
-.loading-areas{
+.loading-areas {
     margin-top: 150px;
     margin-bottom: 120px;
 }
@@ -50,5 +53,13 @@
     .dinamic-margin{
         width: 100%;
         margin:auto;
+    }
+    .d-flex-dinamic {
+        column-gap: 55px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .d-flex-dinamic {
+        justify-content: center !important;
     }
 }

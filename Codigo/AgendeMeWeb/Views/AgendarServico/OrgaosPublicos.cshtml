@@ -8,7 +8,7 @@
 <h1 class="mt-5 fw-bold fs-2">Escolha o local desejado</h1>
 <h4 class="mb-5 fw-light fs-4">O serviço <span class="fw-bold">@ViewBag.nomeServicoPublico</span> está disponível nestes locais</h4>
 
-<div class="d-flex flex-column mb-5 pb-5 align-items-stretch flex-c-gap">
+<div class="d-flex flex-column mb-5 pb-5 align-items-stretch flex-r-gap flex-c-gap">
     @if (Model.Any())
         @foreach (var item in Model)
         {

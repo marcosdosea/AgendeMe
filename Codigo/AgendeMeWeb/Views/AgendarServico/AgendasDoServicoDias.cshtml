@@ -8,72 +8,80 @@
 <h1 class="mt-5 fw-bold fs-2">Escolha o local desejado</h1>
 <h4 class="mb-5 fw-light fs-4">O serviço <span class="fw-bold">@ViewBag.nomeServicoPublico</span> está disponível nestes locais</h4>
 
-<div class="d-flex flex-column mb-5 pb-5 align-items-stretch flex-c-gap">
+<div class="d-flex flex-wrap justify-content-between mb-5 pb-5 align-items-stretch flex-r-gap d-flex-dinamic">
     @if (Model.Any())
+    {
+        string? nomeAnterior = "";
         @foreach (var item in Model)
         {
-            <div class="br-card hover botao-box">
-                <a class="br-card hover mb-0 back-none" onclick="getServicos('@Url.Action("ServicosPublicos")')">
-                    <div class="card-content">
-                        <p class="text-break text-wrap azul-text user-select-none fs-4 mt-4 mb-4 fw-bold text-center text-uppercase">@Html.DisplayFor(modelItem => item.DiaSemana)</p>
-                        @{  
-                            if(item.DiaSemana.Equals("Segunda"))
-                            {
-                                DateTime data = @DateTime.Now;
-                                data = data.AddDays(1);
-                                while (data.DayOfWeek.ToString() != "Monday")
+            if (nomeAnterior != item.DiaSemana)
+            {
+                <div class="br-card hover botao-box">
+                    <a class="br-card hover mb-0 back-none" onclick="getServicos('@Url.Action("ServicosPublicos")')">
+                        <div class="card-content">
+                            <p class="text-break text-wrap azul-text user-select-none fs-4 mt-4 mb-4 fw-bold text-center text-uppercase">@Html.DisplayFor(modelItem => item.DiaSemana)</p>
+                            @{
+                                if (item.DiaSemana.Equals("Segunda"))
                                 {
+                                    DateTime data = @DateTime.Now;
                                     data = data.AddDays(1);
-                                }
+                                    while (data.DayOfWeek.ToString() != "Monday")
+                                    {
+                                        data = data.AddDays(1);
+                                    }
                                     <p>@data.ToString("dd/MM/yyyy")</p>
-                            }
-                            else if (item.DiaSemana.Equals("Terça"))
-                            {
-                                DateTime data = @DateTime.Now;
-                                data = data.AddDays(1);
-                                while (data.DayOfWeek.ToString() != "Tuesday")
-                                {
-                                    data = data.AddDays(1);
                                 }
-                                    <p>@data.DayOfWeek.ToString();</p>
-                            }
-                            else if (item.DiaSemana.Equals("Quarta"))
-                            {
-                                DateTime data = @DateTime.Now;
-                                data = data.AddDays(1);
-                                while (data.DayOfWeek.ToString() != "Wednesday")
+                                else if (item.DiaSemana.Equals("Terça"))
                                 {
+                                    DateTime data = @DateTime.Now;
                                     data = data.AddDays(1);
+                                    while (data.DayOfWeek.ToString() != "Tuesday")
+                                    {
+                                        data = data.AddDays(1);
+                                    }
+                                    <p>@data.ToString("dd/MM/yyyy")</p>
                                 }
-                                    <p>@data.DayOfWeek.ToString();</p>
-                            }
-                            else if (item.DiaSemana.Equals("Quinta"))
-                            {
-                                DateTime data = @DateTime.Now;
-                                data = data.AddDays(1);
-                                while (data.DayOfWeek.ToString() != "Thursday")
+                                else if (item.DiaSemana.Equals("Quarta"))
                                 {
+                                    DateTime data = @DateTime.Now;
                                     data = data.AddDays(1);
+                                    while (data.DayOfWeek.ToString() != "Wednesday")
+                                    {
+                                        data = data.AddDays(1);
+                                    }
+                                    <p>@data.ToString("dd/MM/yyyy")</p>
                                 }
-                                <p>@data.DayOfWeek.ToString();</p>
-                            }
-                            else if (item.DiaSemana.Equals("Sexta"))
-                            {
-                                DateTime data = @DateTime.Now;
-                                data = data.AddDays(1);
-                                while (data.DayOfWeek.ToString() != "Friday")
+                                else if (item.DiaSemana.Equals("Quinta"))
                                 {
+                                    DateTime data = @DateTime.Now;
                                     data = data.AddDays(1);
+                                    while (data.DayOfWeek.ToString() != "Thursday")
+                                    {
+                                        data = data.AddDays(1);
+                                    }
+                                    <p>@data.ToString("dd/MM/yyyy")</p>
                                 }
-                                <p>@data.DayOfWeek.ToString();</p>
+                                else if (item.DiaSemana.Equals("Sexta"))
+                                {
+                                    DateTime data = @DateTime.Now;
+                                    data = data.AddDays(1);
+                                    while (data.DayOfWeek.ToString() != "Friday")
+                                    {
+                                        data = data.AddDays(1);
+                                    }
+                                    <p>@data.ToString("dd/MM/yyyy")</p>
+                                }
                             }
-                        }
-                    </div>
+                        </div>
 
-                </a>
-            </div>
+                    </a>
+                </div>
+            }
+            nomeAnterior = item.DiaSemana;
+        }
 
-        }       else
+    }
+    else
     {
         <div class="br-message warning" role="alert">
             <div class="icon">
