@@ -1,0 +1,38 @@
+﻿@model Core.DTO.ProfissionalDTO
+
+<h4>ProfissionalDTO</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NomeCidadao" class="control-label"></label>
+                <span asp-for="NomeCidadao" class="form-control">@Model.NomeCidadao</span>
+                <span asp-validation-for="NomeCidadao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NomePrefeitura" class="control-label"></label>
+                <span asp-for="NomePrefeitura" class="form-control">@Model.NomePrefeitura</span>
+                <span asp-validation-for="NomePrefeitura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NomeCargo" class="control-label"></label>
+                <input asp-for="NomeCargo" class="form-control" />
+                <span asp-validation-for="NomeCargo" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar para a lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -8,7 +8,7 @@ namespace Core.Service
         void Edit(Cidadao cidadao);
         void Delete(int id);
         int AddProfissional(int idCidadao, int idPrefeitura, int idCargo);
-        void EditProfissional(); //TODO
+        void EditProfissional(int idCidadao, int idPrefeitura, string nomeCargo);
         void DeleteProfissional(int idCidadao, int idCargo, int idPrefeitura);
         Cidadao Get(int id);
         ProfissionalDTO GetProfissional(int idCidadao, string nomeCargo, string nomePrefeitura);

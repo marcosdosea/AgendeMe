@@ -90,9 +90,13 @@ namespace Service
             _context.SaveChanges();
         }
 
-        public void EditProfissional()
+        public void EditProfissional(int idCidadao, int idPrefeitura, string nomeCargo)
         {
-            throw new NotImplementedException();
+            var idCargo = (from cargos in _context.Cargos
+                          where cargos.Nome.Equals(nomeCargo)
+                          select cargos).First().Id;
+
+            var _profissionalCargo = _context.Profissionalcargos.Find(idCargo
         }
 
         /// <summary>

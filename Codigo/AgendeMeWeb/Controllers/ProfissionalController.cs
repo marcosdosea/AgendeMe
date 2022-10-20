@@ -60,16 +60,18 @@ namespace AgendeMeWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddProfissional(ProfissionalViewModel profissionalModel)
         {
-            _cidadaoService.AddProfissional(profissionalModel.IdCidadao, profissionalModel.IdProfissionalPrefeitura, profissionalModel.IdCargo);
-
+            _cidadaoService.AddProfissional(profissionalModel.IdCidadao,
+                                            profissionalModel.IdProfissionalPrefeitura,
+                                            profissionalModel.IdCargo);
             return RedirectToAction(nameof(Index));
 
         }
 
         // GET: ProfissionalController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int idCidadao, string nomeCargo, string nomePrefeitura)
         {
-            return View();
+            var profissional = _cidadaoService.GetProfissional(idCidadao, nomeCargo, nomePrefeitura);
+            return View(profissional);
         }
 
         // POST: ProfissionalController/Edit/5
@@ -77,6 +79,7 @@ namespace AgendeMeWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
+            // TODO - ainda não tenho ideia de como fazer esse aqui
             try
             {
                 return RedirectToAction(nameof(Index));
