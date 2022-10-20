@@ -1,7 +1,9 @@
 ﻿using AgendeMeWeb.Mappers;
+using AgendeMeWeb.Models;
 using AutoMapper;
 using Core;
 using Core.Service;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -35,49 +37,149 @@ namespace AgendeMeWeb.Controllers.Tests
         [TestMethod()]
         public void IndexTest()
         {
-            Assert.Fail();
+            // Act
+            var result = controller.Index();
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            ViewResult viewResult = (ViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(List<OrgaoPublicoViewModel>));
+
+            List<OrgaoPublicoViewModel>? lista = (List<OrgaoPublicoViewModel>)viewResult.ViewData.Model;
+            Assert.AreEqual(3, lista.Count);
         }
 
         [TestMethod()]
         public void DetailsTest()
         {
-            Assert.Fail();
+            // Act
+            var result = controller.Details(1);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            ViewResult viewResult = (ViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(OrgaoPublicoViewModel));
+            OrgaoPublicoViewModel orgaoPublicoViewModel = (OrgaoPublicoViewModel)viewResult.ViewData.Model;
+            Assert.AreEqual("OAB-Ordem dos Advogados do Brasil de Sergipe", orgaoPublicoViewModel.Nome);
+            Assert.AreEqual("Centro", orgaoPublicoViewModel.Bairro);
+            Assert.AreEqual("Av. Dr. Luiz Magalhães", orgaoPublicoViewModel.Rua);
+            Assert.AreEqual("9", orgaoPublicoViewModel.Numero);
+            Assert.AreEqual("Zona Urbana", orgaoPublicoViewModel.Complemento);
+            Assert.AreEqual("49500-000", orgaoPublicoViewModel.Cep);
+            Assert.AreEqual("07:00", orgaoPublicoViewModel.HoraAbre);
+            Assert.AreEqual("13:00", orgaoPublicoViewModel.HoraFecha);
+            Assert.AreEqual(1, orgaoPublicoViewModel.IdPrefeitura);
         }
 
         [TestMethod()]
-        public void CreateTest()
+        public void CreateTest_Test()
         {
-            Assert.Fail();
+            // Act
+            var result = controller.Create();
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
 
         [TestMethod()]
-        public void CreateTest1()
+        public void CreateTest_Valid()
         {
-            Assert.Fail();
+            // Act
+            var result = controller.Create(GetNewOrgaoPublico());
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
+            RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
+            Assert.IsNull(redirectToActionResult.ControllerName);
+            Assert.AreEqual("Index", redirectToActionResult.ActionName);
+
         }
 
         [TestMethod()]
-        public void EditTest()
+        public void CreateTest_InValid()
         {
-            Assert.Fail();
+            // Arrange
+            controller.ModelState.AddModelError("Nome", "Campo requerido");
+
+            // Act
+            var result = controller.Create(GetNewOrgaoPublico());
+
+            // Assert
+            Assert.AreEqual(1, controller.ModelState.ErrorCount);
+            Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
+            RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
+            Assert.IsNull(redirectToActionResult.ControllerName);
+            Assert.AreEqual("Index", redirectToActionResult.ActionName);
         }
 
         [TestMethod()]
-        public void EditTest1()
+        public void EditTest_Get()
         {
-            Assert.Fail();
+            // Act
+            var result = controller.Edit(1);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            ViewResult viewResult = (ViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(OrgaoPublicoViewModel));
+            OrgaoPublicoViewModel orgaoPublicoViewModel = (OrgaoPublicoViewModel)viewResult.ViewData.Model;
+            Assert.AreEqual("OAB-Ordem dos Advogados do Brasil de Sergipe", orgaoPublicoViewModel.Nome);
+            Assert.AreEqual("Centro", orgaoPublicoViewModel.Bairro);
+            Assert.AreEqual("Av. Dr. Luiz Magalhães", orgaoPublicoViewModel.Rua);
+            Assert.AreEqual("9", orgaoPublicoViewModel.Numero);
+            Assert.AreEqual("Zona Urbana", orgaoPublicoViewModel.Complemento);
+            Assert.AreEqual("49500-000", orgaoPublicoViewModel.Cep);
+            Assert.AreEqual("07:00", orgaoPublicoViewModel.HoraAbre);
+            Assert.AreEqual("13:00", orgaoPublicoViewModel.HoraFecha);
+            Assert.AreEqual(1, orgaoPublicoViewModel.IdPrefeitura);
         }
 
         [TestMethod()]
-        public void DeleteTest()
+        public void EditTest_Post()
         {
-            Assert.Fail();
+            // Act
+            var result = controller.Edit(GetTargetOrgaoPublicoViewModel().Id, GetTargetOrgaoPublicoViewModel());
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
+            RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
+            Assert.IsNull(redirectToActionResult.ControllerName);
+            Assert.AreEqual("Index", redirectToActionResult.ActionName);
+        }
+
+
+        [TestMethod()]
+        public void DeleteTest_Post()
+        {
+            // Act
+            var result = controller.Delete(1);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            ViewResult viewResult = (ViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(OrgaoPublicoViewModel));
+            OrgaoPublicoViewModel orgaoPublicoViewModel = (OrgaoPublicoViewModel)viewResult.ViewData.Model;
+            Assert.AreEqual("OAB-Ordem dos Advogados do Brasil de Sergipe", orgaoPublicoViewModel.Nome);
+            Assert.AreEqual("Centro", orgaoPublicoViewModel.Bairro);
+            Assert.AreEqual("Av. Dr. Luiz Magalhães", orgaoPublicoViewModel.Rua);
+            Assert.AreEqual("9", orgaoPublicoViewModel.Numero);
+            Assert.AreEqual("Zona Urbana", orgaoPublicoViewModel.Complemento);
+            Assert.AreEqual("49500-000", orgaoPublicoViewModel.Cep);
+            Assert.AreEqual("07:00", orgaoPublicoViewModel.HoraAbre);
+            Assert.AreEqual("13:00", orgaoPublicoViewModel.HoraFecha);
+            Assert.AreEqual(1, orgaoPublicoViewModel.IdPrefeitura);
         }
 
         [TestMethod()]
-        public void DeleteTest1()
+        public void DeleteTest_Get()
         {
-            Assert.Fail();
+            // Act
+            var result = controller.Delete(GetTargetOrgaoPublicoViewModel().Id, GetTargetOrgaoPublicoViewModel());
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
+            RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
+            Assert.IsNull(redirectToActionResult.ControllerName);
+            Assert.AreEqual("Index", redirectToActionResult.ActionName);
         }
 
         private Orgaopublico GetTargetOrgaoPublico()
@@ -141,6 +243,40 @@ namespace AgendeMeWeb.Controllers.Tests
                     HoraFecha = "13:00",
                     IdPrefeitura = 1
                 }
+            };
+        }
+
+        private OrgaoPublicoViewModel GetNewOrgaoPublico()
+        {
+            return new OrgaoPublicoViewModel
+            {
+                Id = 4,
+                Nome = "Clínica de Saúde da Família Raimunda Ribeiro dos Santos",
+                Bairro = "Centro",
+                Rua = "Rua Roque Bispo de Menezes",
+                Numero = "s/n",
+                Complemento = "Zona Urbana",
+                Cep = "49565-000",
+                HoraAbre = "07:00",
+                HoraFecha = "15:00",
+                IdPrefeitura = 2
+            };
+        }
+
+        private OrgaoPublicoViewModel GetTargetOrgaoPublicoViewModel()
+        {
+            return new OrgaoPublicoViewModel
+            {
+                Id = 7,
+                Nome = "Clínica de Saúde da Família Raimunda Ribeiro dos Santos",
+                Bairro = "Centro",
+                Rua = "Rua Roque Bispo de Menezes",
+                Numero = "s/n",
+                Complemento = "Zona Urbana",
+                Cep = "49565-000",
+                HoraAbre = "07:00",
+                HoraFecha = "15:00",
+                IdPrefeitura = 2
             };
         }
 
