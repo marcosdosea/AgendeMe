@@ -69,12 +69,16 @@ namespace Service
         {
             var query = from agenda in _context.Agendadoservicos
                         where agenda.IdServicoPublico.Equals(idServico)
-                        orderby agenda.DiaSemana
+                        group agenda by new
+                        {
+                            agenda.DiaSemana,
+                            agenda.IdServicoPublico
+                        } into agendaGroup
                         select new AgendaDoServicoDiasDTO
                         {
-                            DiaSemana = agenda.DiaSemana,
-                            IdServico = agenda.IdServicoPublico,
-                            Vagas = agenda.VagasAtendimento
+                            DiaSemana = agendaGroup.Key.DiaSemana,
+                            IdServico = agendaGroup.Key.IdServicoPublico,
+                            Vagas = agendaGroup.Sum(p => p.VagasAtendimento)
                         };
             return query.AsNoTracking();
         }

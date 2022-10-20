@@ -10,12 +10,9 @@
 
 <div class="d-flex flex-wrap justify-content-between mb-5 pb-5 align-items-stretch flex-r-gap d-flex-dinamic">
     @if (Model.Any())
-    {
-        string? nomeAnterior = "";
         @foreach (var item in Model)
         {
-            if (nomeAnterior != item.DiaSemana)
-            {
+            
                 <div class="br-card hover botao-box">
                     <a class="br-card hover mb-0 back-none" onclick="getServicos('@Url.Action("ServicosPublicos")')">
                         <div class="card-content">
@@ -29,6 +26,7 @@
                                     {
                                         data = data.AddDays(1);
                                     }
+                                    <p>@item.Vagas</p>
                                     <p>@data.ToString("dd/MM/yyyy")</p>
                                 }
                                 else if (item.DiaSemana.Equals("Terça"))
@@ -77,10 +75,6 @@
                     </a>
                 </div>
             }
-            nomeAnterior = item.DiaSemana;
-        }
-
-    }
     else
     {
         <div class="br-message warning" role="alert">
