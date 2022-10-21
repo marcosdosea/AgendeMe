@@ -13,6 +13,7 @@ namespace AgendeMeWeb.Controllers
         private readonly IAreaDeServicoService _areaDeServicoService;
         private readonly IServicoPublicoService _servicoPublicoService;
         private readonly IOrgaoPublicoService _orgaoPublicoService;
+        private readonly IAgendaDoServicoService _agendaDoServicoService;
         private readonly IMapper _mapper;
 
         public AgendarServicoController(IAgendamentoService agendamentoService,
@@ -20,6 +21,7 @@ namespace AgendeMeWeb.Controllers
                                         IAreaDeServicoService areaDeServicoService,
                                         IServicoPublicoService servicoPublicoService,
                                         IOrgaoPublicoService orgaoPublicoService,
+                                        IAgendaDoServicoService agendaDoServicoService,
                                         IMapper mapper)
         {
             _agendamentoService = agendamentoService;
@@ -27,6 +29,7 @@ namespace AgendeMeWeb.Controllers
             _areaDeServicoService = areaDeServicoService;
             _servicoPublicoService = servicoPublicoService;
             _orgaoPublicoService = orgaoPublicoService;
+            _agendaDoServicoService = agendaDoServicoService;
             _mapper = mapper;
         }
 
@@ -154,8 +157,7 @@ namespace AgendeMeWeb.Controllers
             ViewBag.nomeAreaDeServico = nomeArea;
             ViewBag.iconeAreaDeServico = iconeArea;
             var listaServicoPublico = _servicoPublicoService.GetAllByIdArea(id);
-            var listaServicoPublicoModel = _mapper.Map<List<ServicoPublicoViewModel>>(listaServicoPublico);
-            return PartialView(listaServicoPublicoModel);
+            return PartialView(listaServicoPublico);
         }
 
         [HttpGet]
@@ -163,9 +165,27 @@ namespace AgendeMeWeb.Controllers
         {
             ViewBag.iconeServicoPublico = iconeServico;
             ViewBag.nomeServicoPublico = nomeServico;
-            var listaOrgaosPublico = _orgaoPublicoService.GetAllByNomeServicoPublico(nomeServico);
-            var listaOrgaosPublicoModel = _mapper.Map<List<OrgaoPublicoViewModel>>(listaOrgaosPublico);
-            return PartialView(listaOrgaosPublicoModel);
+            var listaOrgaosPublicoDTO = _orgaoPublicoService.GetAllByNomeServicoPublico(nomeServico);
+            return PartialView(listaOrgaosPublicoDTO);
+        }
+
+        [HttpGet]
+        public ActionResult AgendasDoServicoDias(int idServico, string nomeOrgao, string nomeServico)
+        {
+            ViewBag.nomeOrgaoPublico = nomeOrgao;
+            ViewBag.nomeServicoPublico = nomeServico;
+            var listaAgendasDoServico = _agendaDoServicoService.GetAllDiasByIdServico(idServico);
+            return PartialView(listaAgendasDoServico);
+        }
+
+        [HttpGet]
+        public ActionResult AgendasDoServicoHoras(int idServico, string dia)
+        {
+            //ViewBag.iconeServicoPublico = iconeServico;
+            //ViewBag.nomeServicoPublico = nomeServico;
+            var listaAgendasDoServico = _agendaDoServicoService.GetAllHorasByIdServicoAndDia(idServico, dia);
+            //return PartialView(listaAgendasDoServico);
+            return View(listaAgendasDoServico);
         }
     }
 }
