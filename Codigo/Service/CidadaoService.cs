@@ -2,11 +2,6 @@
 using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service
 {
@@ -70,7 +65,7 @@ namespace Service
 
         public void DeletProfissional(int idCidadao, int idCargo, int idPrefeitura)
         {
-            var _profissionalCargo = _context.Profissionalcargos.Find(idCargo, idCidadao);
+            /*var _profissionalCargo = _context.Profissionalcargos.Find(idCargo, idCidadao);
             var _profissionalPrefeitura = _context.Profissionalprefeituras.Find(idCidadao, idPrefeitura);
 
             _context.Remove(_profissionalCargo);
@@ -78,6 +73,7 @@ namespace Service
 
             _context.Remove(_profissionalPrefeitura);
             _context.SaveChanges();
+            */
         }
 
         /// <summary>
@@ -107,7 +103,7 @@ namespace Service
 
         public IEnumerable<ProfissionalDTO> GetProfissional(int id)
         {
-            var profissional = (from cidadao in _context.Cidadaos
+            /*var profissional = (from cidadao in _context.Cidadaos
                                 where cidadao.Id == id
                                 from prefeituras in cidadao.Profissionalprefeituras
                                 from cargos in cidadao.Profissionalcargos
@@ -117,9 +113,11 @@ namespace Service
                                     IdCidadao = cidadao.Id,
                                     NomeCargo = cargos.IdCargoNavigation.Nome,
                                     NomePrefeitura = prefeituras.IdPrefeituraNavigation.Nome
-                                }) ;
+                                });
 
             return profissional;
+            */
+            return null;
         }
 
         /// <summary>
@@ -134,7 +132,7 @@ namespace Service
         public IEnumerable<ProfissionalDTO> GetAllProfissional(int idPrefeitura)
         {
 
-            var query = from cidadao in _context.Cidadaos
+            /*var query = from cidadao in _context.Cidadaos
                         from prefeituras in cidadao.Profissionalprefeituras.Where(p => p.IdPrefeitura > 0)
                         from cargos in cidadao.Profissionalcargos.Where(p => p.IdCargo > 0)
                         orderby cidadao.Nome
@@ -147,6 +145,8 @@ namespace Service
                         };
 
             return query;
+            */
+            return null;
         }
     }
 }

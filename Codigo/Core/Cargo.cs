@@ -1,4 +1,7 @@
-﻿#nullable disable
+﻿using System;
+using System.Collections.Generic;
+
+#nullable disable
 
 namespace Core
 {
@@ -6,13 +9,13 @@ namespace Core
     {
         public Cargo()
         {
-            Profissionalcargos = new HashSet<Profissionalcargo>();
+            Cargoprofissionalprefeituras = new HashSet<Cargoprofissionalprefeitura>();
         }
 
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
 
-        public virtual ICollection<Profissionalcargo> Profissionalcargos { get; set; }
+        public virtual ICollection<Cargoprofissionalprefeitura> Cargoprofissionalprefeituras { get; set; }
     }
 }

@@ -1,11 +1,6 @@
 ﻿using Core;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service
 {
@@ -73,12 +68,14 @@ namespace Service
 
         public IEnumerable<Cargo> GetByProfissional(int idCidadao)
         {
-            var query = (from cargos in _context.Cargos
+            /*var query = (from cargos in _context.Cargos
                         from profissionalCargos in cargos.Profissionalcargos
                         where profissionalCargos.IdProfissional == idCidadao
                         select cargos);
-
+            
             return query;
+            */
+            return null;
         }
     }
 }
