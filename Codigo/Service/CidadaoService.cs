@@ -2,11 +2,6 @@
 using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service
 {
@@ -117,7 +112,7 @@ namespace Service
                                     IdCidadao = cidadao.Id,
                                     NomeCargo = cargos.IdCargoNavigation.Nome,
                                     NomePrefeitura = prefeituras.IdPrefeituraNavigation.Nome
-                                }) ;
+                                });
 
             return profissional;
         }
@@ -147,6 +142,31 @@ namespace Service
                         };
 
             return query;
+        }
+
+        public IEnumerable<CidadaoDTO> GetById(int idCidadao)
+        {
+            var query = from cidadao in _context.Cidadaos
+                        where cidadao.Id == idCidadao
+                        select new CidadaoDTO
+                        {
+                            Id = cidadao.Id,
+                            Nome = cidadao.Nome,
+                            Cpf = cidadao.Cpf,
+                            DataNascimento = cidadao.DataNascimento,
+                            Sexo = cidadao.Sexo,
+                            Sus = cidadao.Sus,
+                            Telefone = cidadao.Telefone,
+                            Email = cidadao.Email,
+                            Cep = cidadao.Cep,
+                            Estado = cidadao.Estado,
+                            Cidade = cidadao.Cidade,
+                            Bairro = cidadao.Bairro,
+                            Rua = cidadao.Rua,
+                            NumeroCasa = cidadao.NumeroCasa,
+                            Complemento = cidadao.Complemento,
+                        };
+            return query.AsNoTracking();
         }
     }
 }

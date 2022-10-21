@@ -14,5 +14,6 @@ namespace Core.Service
         IEnumerable<ProfissionalDTO> GetProfissional(int id);
         IEnumerable<Cidadao> GetAll();
         IEnumerable<ProfissionalDTO> GetAllProfissional(int idPrefeitura);
+        IEnumerable<CidadaoDTO> GetById(int idCidadao);
     }
 }

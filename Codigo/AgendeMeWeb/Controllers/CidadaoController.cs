@@ -1,8 +1,8 @@
 ﻿using AgendeMeWeb.Models;
 using AutoMapper;
 using Core;
+using Core.DTO;
 using Core.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgendeMeWeb.Controllers
@@ -29,9 +29,11 @@ namespace AgendeMeWeb.Controllers
         // GET: CidadaoController/Details/5
         public ActionResult Details(int id)
         {
-            Cidadao cidadao = _cidadaoService.Get(id);
+            /*Cidadao cidadao = _cidadaoService.Get(id);
             CidadaoViewModel cidadaoViewModel = _mapper.Map<CidadaoViewModel>(cidadao);
-            return View(cidadaoViewModel);
+            return View(cidadaoViewModel);*/
+            IEnumerable<CidadaoDTO> cidadaoDTO = _cidadaoService.GetById(id);
+            return View(cidadaoDTO);
         }
 
         // GET: CidadaoController/Create
