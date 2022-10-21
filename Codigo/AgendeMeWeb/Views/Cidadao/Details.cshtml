@@ -1,126 +1,119 @@
-﻿@model AgendeMeWeb.Models.CidadaoViewModel
+﻿@model IEnumerable<Core.DTO.CidadaoDTO>
 
 @{
     ViewData["Title"] = "Informações de cidadão";
 }
 
-<h1>Informações de cidadão</h1>
+@foreach (var item in Model)
+{
+    <h1 class="fw-bold fs-3">@item.Nome</h1>
 
-<div>
-    <h4>CidadaoViewModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cpf)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cpf)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataNascimento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataNascimento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Sus)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Sus)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telefone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Telefone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cep)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cep)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cidade)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cidade)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Bairro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Bairro)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Rua)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Rua)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumeroCasa)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumeroCasa)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Sexo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Sexo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TipoCidadao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TipoCidadao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Complemento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Complemento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdOrgaoPublico)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdOrgaoPublico)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdPrefeitura)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdPrefeitura)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Editar", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Voltar para lista</a>
-</div>
+    <div>
+        <h4 class="fs-5 fw-normal">Essas são suas informações de cadastro</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd class="col-sm-10">
+                @item.Nome
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Cpf)
+            </dt>
+            <dd class="col-sm-10">
+                @item.Cpf
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </dt>
+            <dd class="col-sm-10">
+                @item.DataNascimento
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Sexo)
+            </dt>
+            <dd class="col-sm-10">
+                @item.Sexo
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Sus)
+            </dt>
+            <dd class="col-sm-10">
+                @item.Sus
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Telefone)
+            </dt>
+            <dd class="col-sm-10">
+                @item.Telefone
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-10">
+                @item.Email
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Cep)
+            </dt>
+            <dd class="col-sm-10">
+                @item.Cep
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Estado)
+            </dt>
+            <dd class="col-sm-10">
+                @item.Estado
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Cidade)
+            </dt>
+            <dd class="col-sm-10">
+                @item.Cidade
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Bairro)
+            </dt>
+            <dd class="col-sm-10">
+                @item.Bairro
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Rua)
+            </dt>
+            <dd class="col-sm-10">
+                @item.Rua
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NumeroCasa)
+            </dt>
+            <dd class="col-sm-10">
+                @item.NumeroCasa
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Complemento)
+            </dt>
+            <dd class="col-sm-10">
+                @if (item.Complemento == null)
+                {
+                    <span>Não informado</span>
+                }
+                else
+                    @item.Complemento
+
+
+
+                </dd>
+            </dl>
+        </div>
+    <div>
+        <a class="back-none" asp-controller="Cidadao" asp-action="Edit" asp-route-id="@item.Id">
+            <button class="br-button secondary mr-3" type="button">
+                Editar
+            </button>
+        </a>
+        <button class="br-button" type="button">
+            <a class="back-none" asp-action="Index">Voltar para lista</a>
+        </button>
+    </div>
+}

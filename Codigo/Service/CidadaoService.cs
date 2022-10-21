@@ -148,5 +148,30 @@ namespace Service
             */
             return null;
         }
+
+        public IEnumerable<CidadaoDTO> GetById(int idCidadao)
+        {
+            var query = from cidadao in _context.Cidadaos
+                        where cidadao.Id == idCidadao
+                        select new CidadaoDTO
+                        {
+                            Id = cidadao.Id,
+                            Nome = cidadao.Nome,
+                            Cpf = cidadao.Cpf,
+                            DataNascimento = cidadao.DataNascimento,
+                            Sexo = cidadao.Sexo,
+                            Sus = cidadao.Sus,
+                            Telefone = cidadao.Telefone,
+                            Email = cidadao.Email,
+                            Cep = cidadao.Cep,
+                            Estado = cidadao.Estado,
+                            Cidade = cidadao.Cidade,
+                            Bairro = cidadao.Bairro,
+                            Rua = cidadao.Rua,
+                            NumeroCasa = cidadao.NumeroCasa,
+                            Complemento = cidadao.Complemento,
+                        };
+            return query.AsNoTracking();
+        }
     }
 }
