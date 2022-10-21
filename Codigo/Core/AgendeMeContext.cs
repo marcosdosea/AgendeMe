@@ -20,11 +20,11 @@ namespace Core
         public virtual DbSet<Areadeservico> Areadeservicos { get; set; }
         public virtual DbSet<Atendenteorgaopublico> Atendenteorgaopublicos { get; set; }
         public virtual DbSet<Cargo> Cargos { get; set; }
+        public virtual DbSet<Cargoprofissionalprefeitura> Cargoprofissionalprefeituras { get; set; }
         public virtual DbSet<Cidadao> Cidadaos { get; set; }
+        public virtual DbSet<Diaagendamento> Diaagendamentos { get; set; }
         public virtual DbSet<Orgaopublico> Orgaopublicos { get; set; }
         public virtual DbSet<Prefeitura> Prefeituras { get; set; }
-        public virtual DbSet<Profissionalcargo> Profissionalcargos { get; set; }
-        public virtual DbSet<Profissionalprefeitura> Profissionalprefeituras { get; set; }
         public virtual DbSet<Servicopublico> Servicopublicos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -100,19 +100,15 @@ namespace Core
             {
                 entity.ToTable("agendamento");
 
-                entity.HasIndex(e => e.Data, "dataAgendamento");
-
                 entity.HasIndex(e => e.DataCadastro, "dataAtendimento");
 
                 entity.HasIndex(e => e.IdRetorno, "fk_Agendamento_Agendamento1_idx");
 
+                entity.HasIndex(e => e.IdDiaAgendamento, "fk_Agendamento_AgendamentoDia1_idx");
+
                 entity.HasIndex(e => e.IdAtendente, "fk_Agendamento_Atendente_idx");
 
-                entity.HasIndex(e => e.IdProfissional, "fk_Agendamento_Cidadao3_idx");
-
                 entity.HasIndex(e => e.IdCidadao, "fk_Agendamento_Cidadao_idx");
-
-                entity.HasIndex(e => e.IdServicoPublico, "fk_Agendamento_ServicoPublico1_idx");
 
                 entity.HasIndex(e => e.Situacao, "situacao");
 
@@ -120,21 +116,7 @@ namespace Core
                     .HasColumnType("int unsigned")
                     .HasColumnName("id");
 
-                entity.Property(e => e.Data).HasColumnName("data");
-
                 entity.Property(e => e.DataCadastro).HasColumnName("dataCadastro");
-
-                entity.Property(e => e.HorarioFim)
-                    .IsRequired()
-                    .HasMaxLength(5)
-                    .HasColumnName("horarioFim")
-                    .IsFixedLength(true);
-
-                entity.Property(e => e.HorarioInicio)
-                    .IsRequired()
-                    .HasMaxLength(5)
-                    .HasColumnName("horarioInicio")
-                    .IsFixedLength(true);
 
                 entity.Property(e => e.IdAtendente)
                     .HasColumnType("int unsigned")
@@ -144,17 +126,13 @@ namespace Core
                     .HasColumnType("int unsigned")
                     .HasColumnName("idCidadao");
 
-                entity.Property(e => e.IdProfissional)
+                entity.Property(e => e.IdDiaAgendamento)
                     .HasColumnType("int unsigned")
-                    .HasColumnName("idProfissional");
+                    .HasColumnName("idDiaAgendamento");
 
                 entity.Property(e => e.IdRetorno)
                     .HasColumnType("int unsigned")
                     .HasColumnName("idRetorno");
-
-                entity.Property(e => e.IdServicoPublico)
-                    .HasColumnType("int unsigned")
-                    .HasColumnName("idServicoPublico");
 
                 entity.Property(e => e.Situacao)
                     .IsRequired()
@@ -177,22 +155,16 @@ namespace Core
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_Agendamento_Cidadao1");
 
-                entity.HasOne(d => d.IdProfissionalNavigation)
-                    .WithMany(p => p.AgendamentoIdProfissionalNavigations)
-                    .HasForeignKey(d => d.IdProfissional)
+                entity.HasOne(d => d.IdDiaAgendamentoNavigation)
+                    .WithMany(p => p.Agendamentos)
+                    .HasForeignKey(d => d.IdDiaAgendamento)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_Agendamento_Cidadao3");
+                    .HasConstraintName("fk_Agendamento_AgendamentoDia1");
 
                 entity.HasOne(d => d.IdRetornoNavigation)
                     .WithMany(p => p.InverseIdRetornoNavigation)
                     .HasForeignKey(d => d.IdRetorno)
                     .HasConstraintName("fk_Agendamento_Agendamento1");
-
-                entity.HasOne(d => d.IdServicoPublicoNavigation)
-                    .WithMany(p => p.Agendamentos)
-                    .HasForeignKey(d => d.IdServicoPublico)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_Agendamento_ServicoPublico1");
             });
 
             modelBuilder.Entity<Areadeservico>(entity =>
@@ -274,6 +246,50 @@ namespace Core
                     .IsRequired()
                     .HasMaxLength(70)
                     .HasColumnName("nome");
+            });
+
+            modelBuilder.Entity<Cargoprofissionalprefeitura>(entity =>
+            {
+                entity.HasKey(e => new { e.IdCargo, e.IdProfissional, e.IdPrefeitura })
+                    .HasName("PRIMARY");
+
+                entity.ToTable("cargoprofissionalprefeitura");
+
+                entity.HasIndex(e => e.IdCargo, "fk_CargoProfissionalPrefeitura_Cargo1_idx");
+
+                entity.HasIndex(e => e.IdProfissional, "fk_CargoProfissionalPrefeitura_Cidadao1_idx");
+
+                entity.HasIndex(e => e.IdPrefeitura, "fk_CargoProfissionalPrefeitura_Prefeitura1_idx");
+
+                entity.Property(e => e.IdCargo)
+                    .HasColumnType("int unsigned")
+                    .HasColumnName("idCargo");
+
+                entity.Property(e => e.IdProfissional)
+                    .HasColumnType("int unsigned")
+                    .HasColumnName("idProfissional");
+
+                entity.Property(e => e.IdPrefeitura)
+                    .HasColumnType("int unsigned")
+                    .HasColumnName("idPrefeitura");
+
+                entity.HasOne(d => d.IdCargoNavigation)
+                    .WithMany(p => p.Cargoprofissionalprefeituras)
+                    .HasForeignKey(d => d.IdCargo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_CargoProfissionalPrefeitura_Cargo1");
+
+                entity.HasOne(d => d.IdPrefeituraNavigation)
+                    .WithMany(p => p.Cargoprofissionalprefeituras)
+                    .HasForeignKey(d => d.IdPrefeitura)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_CargoProfissionalPrefeitura_Prefeitura1");
+
+                entity.HasOne(d => d.IdProfissionalNavigation)
+                    .WithMany(p => p.Cargoprofissionalprefeituras)
+                    .HasForeignKey(d => d.IdProfissional)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_CargoProfissionalPrefeitura_Cidadao1");
             });
 
             modelBuilder.Entity<Cidadao>(entity =>
@@ -390,6 +406,54 @@ namespace Core
                     .WithMany(p => p.Cidadaos)
                     .HasForeignKey(d => d.IdPrefeitura)
                     .HasConstraintName("fk_Cidadao_Prefeitura1");
+            });
+
+            modelBuilder.Entity<Diaagendamento>(entity =>
+            {
+                entity.ToTable("diaagendamento");
+
+                entity.HasIndex(e => e.IdServicoPublico, "fk_AgendamentoDia_ServicoPublico1_idx");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int unsigned")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.Data).HasColumnName("data");
+
+                entity.Property(e => e.DiaSemana)
+                    .IsRequired()
+                    .HasColumnType("enum('Segunda','Terça','Quarta','Quinta','Sexta')")
+                    .HasColumnName("diaSemana");
+
+                entity.Property(e => e.HorarioFim)
+                    .IsRequired()
+                    .HasMaxLength(5)
+                    .HasColumnName("horarioFim")
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.HorarioInicio)
+                    .IsRequired()
+                    .HasMaxLength(5)
+                    .HasColumnName("horarioInicio")
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.IdServicoPublico)
+                    .HasColumnType("int unsigned")
+                    .HasColumnName("idServicoPublico");
+
+                entity.Property(e => e.VagasAgendadas).HasColumnName("vagasAgendadas");
+
+                entity.Property(e => e.VagasAgendadasRetorno).HasColumnName("vagasAgendadasRetorno");
+
+                entity.Property(e => e.VagasAtendimento).HasColumnName("vagasAtendimento");
+
+                entity.Property(e => e.VagasRetorno).HasColumnName("vagasRetorno");
+
+                entity.HasOne(d => d.IdServicoPublicoNavigation)
+                    .WithMany(p => p.Diaagendamentos)
+                    .HasForeignKey(d => d.IdServicoPublico)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_AgendamentoDia_ServicoPublico1");
             });
 
             modelBuilder.Entity<Orgaopublico>(entity =>
@@ -513,70 +577,6 @@ namespace Core
                 entity.Property(e => e.Rua)
                     .HasMaxLength(70)
                     .HasColumnName("rua");
-            });
-
-            modelBuilder.Entity<Profissionalcargo>(entity =>
-            {
-                entity.HasKey(e => new { e.IdCargo, e.IdProfissional })
-                    .HasName("PRIMARY");
-
-                entity.ToTable("profissionalcargo");
-
-                entity.HasIndex(e => e.IdCargo, "fk_CargoCidadao_Cargo1_idx");
-
-                entity.HasIndex(e => e.IdProfissional, "fk_CargoCidadao_Cidadao1_idx");
-
-                entity.Property(e => e.IdCargo)
-                    .HasColumnType("int unsigned")
-                    .HasColumnName("idCargo");
-
-                entity.Property(e => e.IdProfissional)
-                    .HasColumnType("int unsigned")
-                    .HasColumnName("idProfissional");
-
-                entity.HasOne(d => d.IdCargoNavigation)
-                    .WithMany(p => p.Profissionalcargos)
-                    .HasForeignKey(d => d.IdCargo)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_CargoCidadao_Cargo1");
-
-                entity.HasOne(d => d.IdProfissionalNavigation)
-                    .WithMany(p => p.Profissionalcargos)
-                    .HasForeignKey(d => d.IdProfissional)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_CargoCidadao_Cidadao1");
-            });
-
-            modelBuilder.Entity<Profissionalprefeitura>(entity =>
-            {
-                entity.HasKey(e => new { e.IdProfissional, e.IdPrefeitura })
-                    .HasName("PRIMARY");
-
-                entity.ToTable("profissionalprefeitura");
-
-                entity.HasIndex(e => e.IdProfissional, "fk_CidadaoPrefeitura_Cidadao1_idx");
-
-                entity.HasIndex(e => e.IdPrefeitura, "fk_CidadaoPrefeitura_Prefeitura1_idx");
-
-                entity.Property(e => e.IdProfissional)
-                    .HasColumnType("int unsigned")
-                    .HasColumnName("idProfissional");
-
-                entity.Property(e => e.IdPrefeitura)
-                    .HasColumnType("int unsigned")
-                    .HasColumnName("idPrefeitura");
-
-                entity.HasOne(d => d.IdPrefeituraNavigation)
-                    .WithMany(p => p.Profissionalprefeituras)
-                    .HasForeignKey(d => d.IdPrefeitura)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_CidadaoPrefeitura_Prefeitura1");
-
-                entity.HasOne(d => d.IdProfissionalNavigation)
-                    .WithMany(p => p.Profissionalprefeituras)
-                    .HasForeignKey(d => d.IdProfissional)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_CidadaoPrefeitura_Cidadao1");
             });
 
             modelBuilder.Entity<Servicopublico>(entity =>

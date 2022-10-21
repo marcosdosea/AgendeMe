@@ -1,0 +1,72 @@
+﻿@model AgendeMeWeb.Models.DiaAgendamentoViewModel
+
+<h4>DiaAgendamentoViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Data" class="control-label"></label>
+                <input asp-for="Data" class="form-control" />
+                <span asp-validation-for="Data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiaSemana" class="control-label"></label>
+                <input asp-for="DiaSemana" class="form-control" />
+                <span asp-validation-for="DiaSemana" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HorarioInicio" class="control-label"></label>
+                <input asp-for="HorarioInicio" class="form-control" />
+                <span asp-validation-for="HorarioInicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HorarioFim" class="control-label"></label>
+                <input asp-for="HorarioFim" class="form-control" />
+                <span asp-validation-for="HorarioFim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VagasAtendimento" class="control-label"></label>
+                <input asp-for="VagasAtendimento" class="form-control" />
+                <span asp-validation-for="VagasAtendimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VagasAgendadas" class="control-label"></label>
+                <input asp-for="VagasAgendadas" class="form-control" />
+                <span asp-validation-for="VagasAgendadas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VagasRetorno" class="control-label"></label>
+                <input asp-for="VagasRetorno" class="form-control" />
+                <span asp-validation-for="VagasRetorno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VagasAgendadasRetorno" class="control-label"></label>
+                <input asp-for="VagasAgendadasRetorno" class="form-control" />
+                <span asp-validation-for="VagasAgendadasRetorno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdServicoPublico" class="control-label"></label>
+                <input asp-for="IdServicoPublico" class="form-control" />
+                <span asp-validation-for="IdServicoPublico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
