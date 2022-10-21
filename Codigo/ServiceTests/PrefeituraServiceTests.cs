@@ -64,13 +64,27 @@ namespace Service.Tests
         [TestMethod()]
         public void DeleteTest()
         {
-            Assert.Fail();
+            // Act
+            _prefeituraService.Delete(2);
+            // Assert
+            Assert.AreEqual(2, _prefeituraService.GetAll().Count());
+            var prefeitura = _prefeituraService.Get(2);
+            Assert.AreEqual(null, prefeitura);
         }
 
         [TestMethod()]
         public void EditTest()
         {
-            Assert.Fail();
+            //Act 
+            var prefeitura = _prefeituraService.Get(3);
+            prefeitura.Nome = "Tecnico em informatica";
+            prefeitura.Descricao = "Conserta impressora";
+            _prefeituraService.Edit(prefeitura);
+            //Assert
+            prefeitura = _prefeituraService.Get(3);
+            Assert.IsNotNull(prefeitura);
+            Assert.AreEqual("Tecnico em informatica", prefeitura.Nome);
+            Assert.AreEqual("Conserta impressora", prefeitura.Descricao);
         }
 
         [TestMethod()]
