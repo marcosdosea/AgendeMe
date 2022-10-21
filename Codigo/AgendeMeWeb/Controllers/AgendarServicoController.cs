@@ -179,11 +179,11 @@ namespace AgendeMeWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult AgendasDoServicoHoras(int idServico, string Dia)
+        public ActionResult AgendasDoServicoHoras(int idServico, string dia)
         {
             //ViewBag.iconeServicoPublico = iconeServico;
             //ViewBag.nomeServicoPublico = nomeServico;
-            var listaAgendasDoServico = _agendaDoServicoService.GetAllHorasByIdServicoAndDia(idServico, Dia);
+            var listaAgendasDoServico = _agendaDoServicoService.GetAllHorasByIdServicoAndDia(idServico, dia);
             //return PartialView(listaAgendasDoServico);
             return View(listaAgendasDoServico);
         }
