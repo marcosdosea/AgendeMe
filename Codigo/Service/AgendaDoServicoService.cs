@@ -65,7 +65,7 @@ namespace Service
         /// </summary>
         /// <param name="idServico">Id do servico</param>
         /// <returns>Todas as agendas do servico para um servico</returns>
-        public IEnumerable<AgendaDoServicoDiasDTO> GetAllByIdServico(int idServico)
+        public IEnumerable<AgendaDoServicoDiasDTO> GetAllDiasByIdServico(int idServico)
         {
             var query = from agenda in _context.Agendadoservicos
                         where agenda.IdServicoPublico.Equals(idServico)

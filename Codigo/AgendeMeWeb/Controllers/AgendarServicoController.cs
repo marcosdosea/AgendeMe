@@ -170,12 +170,11 @@ namespace AgendeMeWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult AgendasDoServicoDias(int idServico, string nomeOrgao)
+        public ActionResult AgendasDoServicoDias(int idServico, string nomeOrgao, string nomeServico)
         {
             ViewBag.nomeOrgaoPublico = nomeOrgao;
-            var listaAgendasDoServico = _agendaDoServicoService.GetAllByIdServico(idServico);
-            //var listaAgendasDoServicoModel = _mapper.Map<List<AgendaDoServicoViewModel>>(listaAgendasDoServico);
-            //return PartialView(listaAgendasDoServicoModel);
+            ViewBag.nomeServicoPublico = nomeServico;
+            var listaAgendasDoServico = _agendaDoServicoService.GetAllDiasByIdServico(idServico);
             return View(listaAgendasDoServico);
         }
 

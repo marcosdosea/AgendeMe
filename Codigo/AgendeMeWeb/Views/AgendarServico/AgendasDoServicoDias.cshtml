@@ -1,12 +1,15 @@
 ﻿@model IEnumerable<Core.DTO.AgendaDoServicoDiasDTO>
 
 <div class="mb-4 pb-4">
-    <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto @ViewBag.iconeServicoPublico text-center"></i>
-    <h2 class="text-center fw-bold azul-text">@ViewBag.nomeServicoPublico</h2>
+    <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto fas fa-building text-center"></i>
+    <h2 class="text-center fw-bold azul-text">@ViewBag.nomeOrgaoPublico</h2>
 </div>
 
 <h1 class="mt-5 fw-bold fs-2">Escolha o local desejado</h1>
-<h4 class="mb-5 fw-light fs-4">O serviço <span class="fw-bold">@ViewBag.nomeServicoPublico</span> está disponível nestes locais</h4>
+<h4 class="mb-5 fw-light fs-4">
+    O local <span class="fw-bold">@ViewBag.nomeOrgaoPublico</span> oferta o serviço
+    <span class="fw-bold">@ViewBag.nomeServicoPublico</span> nestes dias
+</h4>
 
 <div class="d-flex flex-wrap justify-content-between mb-5 pb-5 align-items-stretch flex-r-gap d-flex-dinamic">
     @if (Model.Any())
@@ -26,8 +29,8 @@
                                     {
                                         data = data.AddDays(1);
                                     }
-                                    <p>@item.Vagas</p>
-                                    <p>@data.ToString("dd/MM/yyyy")</p>
+                                    <p class="text-center fs-5" >@data.ToString("dd/MM/yyyy")</p>
+                                    <p class="text-center fs-5">@Html.DisplayNameFor(modelItem => item.Vagas): @item.Vagas</p>
                                 }
                                 else if (item.DiaSemana.Equals("Terça"))
                                 {
@@ -37,7 +40,8 @@
                                     {
                                         data = data.AddDays(1);
                                     }
-                                    <p>@data.ToString("dd/MM/yyyy")</p>
+                                    <p class="text-center fs-5">@data.ToString("dd/MM/yyyy")</p>
+                                    <p class="text-center fs-5">@Html.DisplayNameFor(modelItem => item.Vagas): @item.Vagas</p>
                                 }
                                 else if (item.DiaSemana.Equals("Quarta"))
                                 {
@@ -47,7 +51,8 @@
                                     {
                                         data = data.AddDays(1);
                                     }
-                                    <p>@data.ToString("dd/MM/yyyy")</p>
+                                    <p class="text-center fs-5">@data.ToString("dd/MM/yyyy")</p>
+                                    <p class="text-center fs-5">@Html.DisplayNameFor(modelItem => item.Vagas): @item.Vagas</p>
                                 }
                                 else if (item.DiaSemana.Equals("Quinta"))
                                 {
@@ -57,7 +62,8 @@
                                     {
                                         data = data.AddDays(1);
                                     }
-                                    <p>@data.ToString("dd/MM/yyyy")</p>
+                                    <p class="text-center fs-5">@data.ToString("dd/MM/yyyy")</p>
+                                    <p class="text-center fs-5">@Html.DisplayNameFor(modelItem => item.Vagas): @item.Vagas</p>
                                 }
                                 else if (item.DiaSemana.Equals("Sexta"))
                                 {
@@ -67,7 +73,8 @@
                                     {
                                         data = data.AddDays(1);
                                     }
-                                    <p>@data.ToString("dd/MM/yyyy")</p>
+                                    <p class="text-center fs-5" >@data.ToString("dd/MM/yyyy")</p>
+                                    <p class="text-center fs-5">@Html.DisplayNameFor(modelItem => item.Vagas): @item.Vagas</p>
                                 }
                             }
                         </div>

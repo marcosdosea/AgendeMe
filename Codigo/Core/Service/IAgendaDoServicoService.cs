@@ -9,7 +9,7 @@ namespace Core.Service
         void Delete(int id);
         Agendadoservico Get(int id);
         IEnumerable<Agendadoservico> GetAll();
-        public IEnumerable<AgendaDoServicoDiasDTO> GetAllByIdServico(int idServico);
+        public IEnumerable<AgendaDoServicoDiasDTO> GetAllDiasByIdServico(int idServico);
 
     }
 }
