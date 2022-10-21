@@ -77,26 +77,59 @@ namespace Service.Tests
         {
             //Act 
             var prefeitura = _prefeituraService.Get(3);
-            prefeitura.Nome = "Tecnico em informatica";
-            prefeitura.Descricao = "Conserta impressora";
+            prefeitura.Nome = "Prefeitura de informatica";
+            prefeitura.Cnpj = "79.520.261/0001-92";
+            prefeitura.Estado = "SP";
+            prefeitura.Cidade = "São Paulo";
+            prefeitura.Bairro = "Centro";
+            prefeitura.Cep = "00000-000";
+            prefeitura.Rua = "Dois";
+            prefeitura.Numero = "765";
+            prefeitura.Icone = "dasdew";
+
             _prefeituraService.Edit(prefeitura);
             //Assert
             prefeitura = _prefeituraService.Get(3);
             Assert.IsNotNull(prefeitura);
-            Assert.AreEqual("Tecnico em informatica", prefeitura.Nome);
-            Assert.AreEqual("Conserta impressora", prefeitura.Descricao);
+            Assert.AreEqual("Prefeitura de informatica", prefeitura.Nome);
+            Assert.AreEqual("79.520.261/0001-92", prefeitura.Cnpj);
+            Assert.AreEqual("SP", prefeitura.Estado);
+            Assert.AreEqual("São Paulo", prefeitura.Cidade);
+            Assert.AreEqual("Centro", prefeitura.Bairro);
+            Assert.AreEqual("00000-000", prefeitura.Cep);
+            Assert.AreEqual("Dois", prefeitura.Rua);
+            Assert.AreEqual("765", prefeitura.Numero);
+            Assert.AreEqual("dasdew", prefeitura.Icone);
         }
 
         [TestMethod()]
         public void GetTest()
         {
-            Assert.Fail();
+            var prefeitura = _prefeituraService.Get(1);
+            Assert.IsNotNull(prefeitura);
+            Assert.AreEqual("Prefeitura de Motorista", prefeitura.Nome);
+            Assert.AreEqual("94.259.898/0001-60", prefeitura.Cnpj);
+            Assert.AreEqual("SE", prefeitura.Estado);
+            Assert.AreEqual("Ribeiropolis", prefeitura.Cidade);
+            Assert.AreEqual("Centro", prefeitura.Bairro);
+            Assert.AreEqual("49530-000", prefeitura.Cep);
+            Assert.AreEqual("Rua 1", prefeitura.Rua);
+            Assert.AreEqual("45", prefeitura.Numero);
+            Assert.AreEqual("dsfse", prefeitura.Icone);
+
         }
 
         [TestMethod()]
         public void GetAllTest()
         {
-            Assert.Fail();
+            // Act
+            var listaPrefeitura = _prefeituraService.GetAll();
+            // Assert
+            Assert.IsInstanceOfType(listaPrefeitura, typeof(IEnumerable<Prefeitura>));
+            Assert.IsNotNull(listaPrefeitura);
+            Assert.AreEqual(3, listaPrefeitura.Count());
+            Assert.AreEqual(1, listaPrefeitura.First().Id);
+            Assert.AreEqual("Prefeitura de Motorista", listaPrefeitura.First().Nome);
         }
     }
 }
