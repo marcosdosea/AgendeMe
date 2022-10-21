@@ -82,5 +82,26 @@ namespace Service
                         };
             return query.AsNoTracking();
         }
+        /// <summary>
+        /// Consulta todas as horas de uma agendas de servico para um servico e um dia
+        /// </summary>
+        /// <param name="idServico">Id do servico</param>
+        /// <param name="dia">Nome do dia</param>
+        /// <returns>DTO com as horas e vagas da agenda</returns>
+        public IEnumerable<AgendaDoServicoHorasDTO> GetAllHorasByIdServicoAndDia(int idServico, string dia)
+        {
+            var query = from agenda in _context.Agendadoservicos
+                        where agenda.IdServicoPublico.Equals(idServico)
+                        where agenda.DiaSemana.Equals(dia)
+                        select new AgendaDoServicoHorasDTO
+                        {
+                            Id = agenda.Id,
+                            IdServico = agenda.IdServicoPublico,
+                            HorarioInicio = agenda.HorarioInicio,
+                            HorarioFim = agenda.HorarioFim,
+                            Vagas = agenda.VagasAtendimento
+                        };
+            return query.AsNoTracking();
+        }
     }
 }

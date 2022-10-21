@@ -10,6 +10,7 @@ namespace Core.Service
         Agendadoservico Get(int id);
         IEnumerable<Agendadoservico> GetAll();
         public IEnumerable<AgendaDoServicoDiasDTO> GetAllDiasByIdServico(int idServico);
+        public IEnumerable<AgendaDoServicoHorasDTO> GetAllHorasByIdServicoAndDia(int idServico, string dia);
 
     }
 }
