@@ -29,9 +29,6 @@ namespace AgendeMeWeb.Controllers
         // GET: CidadaoController/Details/5
         public ActionResult Details(int id)
         {
-            /*Cidadao cidadao = _cidadaoService.Get(id);
-            CidadaoViewModel cidadaoViewModel = _mapper.Map<CidadaoViewModel>(cidadao);
-            return View(cidadaoViewModel);*/
             IEnumerable<CidadaoDTO> cidadaoDTO = _cidadaoService.GetById(id);
             return View(cidadaoDTO);
         }

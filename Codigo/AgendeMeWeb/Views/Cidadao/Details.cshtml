@@ -101,13 +101,17 @@
                 else
                     @item.Complemento
 
+
+
                 </dd>
             </dl>
         </div>
     <div>
-        <button class="br-button secondary mr-3" type="button">
-            <a class="back-none" asp-controller="Cidadao" asp-action="Edit" asp-route-id="@item.Id"> Editar </a>
-        </button>
+        <a class="back-none" asp-controller="Cidadao" asp-action="Edit" asp-route-id="@item.Id">
+            <button class="br-button secondary mr-3" type="button">
+                Editar
+            </button>
+        </a>
         <button class="br-button" type="button">
             <a class="back-none" asp-action="Index">Voltar para lista</a>
         </button>
