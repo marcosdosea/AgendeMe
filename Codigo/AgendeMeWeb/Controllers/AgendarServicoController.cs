@@ -175,7 +175,7 @@ namespace AgendeMeWeb.Controllers
             ViewBag.nomeOrgaoPublico = nomeOrgao;
             ViewBag.nomeServicoPublico = nomeServico;
             var listaAgendasDoServico = _agendaDoServicoService.GetAllDiasByIdServico(idServico);
-            return View(listaAgendasDoServico);
+            return PartialView(listaAgendasDoServico);
         }
 
         [HttpGet]

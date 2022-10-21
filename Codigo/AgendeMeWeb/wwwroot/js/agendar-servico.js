@@ -62,3 +62,20 @@ function getOrgaos(url, nomeServico, iconeServico) {
         },
     });
 }
+
+function getAgendaDoServicoDias(url, idServico, nomeOrgao, nomeServico) {
+    $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "HTML",
+        data: { idServico: idServico, nomeOrgao: nomeOrgao, nomeServico: nomeServico },
+
+        success: function (result) {
+            $("#ajaxBox").html(result);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //TODO::
+        },
+    });
+}
