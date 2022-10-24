@@ -9,10 +9,10 @@ namespace Core.DTO
 {
     public class ProfissionalDTO
     {
-        public int IdCidadao { get; set; }
+        public int IdProfissional { get; set; }
 
         [Display(Name = "Nome")]
-        public string? NomeCidadao { get; set; }
+        public string? NomeProfissional { get; set; }
 
         [Display(Name = "Cargo")]
         public string? NomeCargo { get; set; }

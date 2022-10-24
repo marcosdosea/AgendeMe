@@ -8,7 +8,7 @@ namespace AgendeMeWeb.Mappers
     {
         public ProfissionalProfile()
         {
-            CreateMap<ProfissionalViewModel, Cidadao>().ReverseMap();
+            CreateMap<ProfissionalViewModel, Cargoprofissionalprefeitura>().ReverseMap();
         }
     }
 }

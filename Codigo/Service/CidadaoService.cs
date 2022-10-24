@@ -20,19 +20,19 @@ namespace Service
         /// <param name="prefeitura">prefeitura</param>
         /// <param name="cargo">cargo</param>
         /// <returns></returns>
-        public int AddProfissional(int idCidadao, int idPrefeitura, int idCargo)
+        public int AddProfissional(int IdProfissional, int idPrefeitura, int idCargo)
         {
             Cargoprofissionalprefeitura profissional = new()
             {
                 IdCargo = idCargo,
                 IdPrefeitura = idPrefeitura,
-                IdProfissional = idCidadao
+                IdProfissional = IdProfissional
             };
 
             _context.Add(profissional);
             _context.SaveChanges();
 
-            return idCidadao;
+            return IdProfissional;
 
         }
 
@@ -59,7 +59,7 @@ namespace Service
             _context.SaveChanges();
         }
 
-        public void DeleteProfissional(int idCidadao, string nomeCargo, string nomePrefeitura)
+        public void DeleteProfissional(int IdProfissional, string nomeCargo, string nomePrefeitura)
         {
 
         }
@@ -81,7 +81,7 @@ namespace Service
         /// <param name="prefeitura">prefeitura</param>
         /// <param name="cargo">cargo</param>
         /// <returns></returns>
-        public void EditProfissional(int idCidadao, string nomePrefeitura, string nomeCargo)
+        public void EditProfissional(int IdProfissional, string nomePrefeitura, string nomeCargo)
         {
             int idCargo = int.Parse((from cargos in _context.Cargos
                                      where cargos.Nome == nomeCargo
@@ -107,16 +107,17 @@ namespace Service
             return _context.Cidadaos.Find(id);
         }
 
-        public ProfissionalDTO GetProfissional(int idCidadao, string nomeCargo, string nomePrefeitura)
+        public ProfissionalDTO GetProfissional(int IdProfissional, string nomeCargo, string nomePrefeitura)
         {
             var query = from cidadao in _context.Cidadaos
                         from profissional in cidadao.Cargoprofissionalprefeituras
                         where profissional.IdPrefeituraNavigation.Nome == nomePrefeitura
                         where profissional.IdCargoNavigation.Nome == nomeCargo
+                        where cidadao.Id == IdProfissional
                         select new ProfissionalDTO
                         {
-                            IdCidadao = cidadao.Id,
-                            NomeCidadao = cidadao.Nome,
+                            IdProfissional = cidadao.Id,
+                            NomeProfissional = cidadao.Nome,
                             NomeCargo = profissional.IdCargoNavigation.Nome,
                             NomePrefeitura = profissional.IdPrefeituraNavigation.Nome
                         };
@@ -139,8 +140,8 @@ namespace Service
                         where profissional.IdPrefeitura != null
                         select new ProfissionalDTO
                         {
-                            IdCidadao = cidadao.Id,
-                            NomeCidadao = cidadao.Nome,
+                            IdProfissional = cidadao.Id,
+                            NomeProfissional = cidadao.Nome,
                             NomeCargo = profissional.IdCargoNavigation.Nome,
                             NomePrefeitura = profissional.IdPrefeituraNavigation.Nome
                         };

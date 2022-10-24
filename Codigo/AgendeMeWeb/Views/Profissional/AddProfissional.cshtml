@@ -7,9 +7,9 @@
         <form asp-action="AddProfissional">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="IdCidadao" class="control-label"></label>
-                <input asp-for="IdCidadao" class="form-control" />
-                <span asp-validation-for="IdCidadao" class="text-danger"></span>
+                <label asp-for="IdProfissional" class="control-label"></label>
+                <input asp-for="IdProfissional" class="form-control" />
+                <span asp-validation-for="IdProfissional" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IdCargo" class="control-label"></label>
@@ -31,7 +31,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar para a lista</a>
 </div>
 
 @section Scripts {

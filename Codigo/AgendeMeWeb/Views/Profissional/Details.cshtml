@@ -11,10 +11,10 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeCidadao)
+            @Html.DisplayNameFor(model => model.NomeProfissional)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NomeCidadao)
+            @Html.DisplayFor(model => model.NomeProfissional)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.NomePrefeitura)
@@ -31,6 +31,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Editar", "Edit", new { IdProfissional = Model.IdProfissional, nomeCargo = Model.NomeCargo, nomePrefeitura = Model.NomePrefeitura }) |
+    <a asp-action="Index">Voltar para a lista</a>
 </div>

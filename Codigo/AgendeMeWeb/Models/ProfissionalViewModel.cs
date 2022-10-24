@@ -7,9 +7,9 @@ namespace AgendeMeWeb.Models
     public class ProfissionalViewModel
     {
         [Required(ErrorMessage = "O campo Id é obrigatório.")]
-        public int IdCidadao { get; set; }
+        public int IdProfissional { get; set; }
 
-        public string? NomeCidadao { get; set; }
+        public string? NomeProfissional { get; set; }
 
         [Required(ErrorMessage = "O campo Id é obrigatório.")]
         public int IdCargo { get; set; }
