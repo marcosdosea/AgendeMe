@@ -29,15 +29,15 @@ namespace AgendeMeWeb.Controllers
         // GET: ProfissionalController
         public ActionResult Index()
         {
-            var listaProfissionais = _cidadaoService.GetAllProfissional(1);
+            var listaProfissionais = _cidadaoService.GetAllProfissional();
 
             return View(listaProfissionais);
         }
 
         // GET: ProfissionalController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int idCidadao, string nomeCargo, string nomePrefeitura)
         {
-            var profissional = _cidadaoService.GetProfissional(id);
+            var profissional = _cidadaoService.GetProfissional(idCidadao, nomeCargo, nomePrefeitura);
             return View(profissional);
         }
 
@@ -60,53 +60,47 @@ namespace AgendeMeWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddProfissional(ProfissionalViewModel profissionalModel)
         {
-            _cidadaoService.AddProfissional(profissionalModel.IdCidadao, profissionalModel.IdProfissionalPrefeitura, profissionalModel.IdCargo);
-
+            _cidadaoService.AddProfissional(profissionalModel.IdCidadao,
+                                            profissionalModel.IdPrefeitura,
+                                            profissionalModel.IdCargo);
             return RedirectToAction(nameof(Index));
-
         }
 
         // GET: ProfissionalController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
+        public ActionResult Edit(int idCidadao, string nomeCargo, string nomePrefeitura)
+        { 
+            var profissional = _cidadaoService.GetProfissional(idCidadao, nomeCargo, nomePrefeitura);
+
+            IEnumerable<Cargo> listaCargos = _cargoService.GetAll();
+            ViewBag.Cargos = new SelectList(listaCargos, "Id", "Nome", null);
+
+            return View(profissional);
         }
 
         // POST: ProfissionalController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+        public ActionResult Edit(int idCidadao, string nomeCargo, string nomePrefeitura, ProfissionalDTO profissional)
+        {   //TODO
+            //_cidadaoService.EditProfissional(idCidadao, nomePrefeitura, nomeCargo);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: ProfissionalController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int idCidadao, string nomeCargo, string nomePrefeitura)
         {
-            var profissional = _cidadaoService.GetProfissional(id);
+            var profissional = _cidadaoService.GetProfissional(idCidadao, nomeCargo, nomePrefeitura);
             return View(profissional);
         }
 
         // POST: ProfissionalController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+        public ActionResult Delete(int idCidadao, string nomeCargo, string nomePrefeitura, ProfissionalDTO profissional)
+        { //ta chegnado vazio
+            _cidadaoService.DeleteProfissional(idCidadao, nomeCargo, nomePrefeitura);
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }

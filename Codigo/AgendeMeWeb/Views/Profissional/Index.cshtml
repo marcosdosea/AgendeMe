@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.NomePrefeitura)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id=item.IdCidadao}) |
-                @Html.ActionLink("Detalhes", "Details", new { id=item.IdCidadao }) |
-                @Html.ActionLink("Remover", "Delete", new { id=item.IdCidadao })
+                @Html.ActionLink("Editar", "Edit", new { idCidadao=item.IdCidadao, nomeCargo = item.NomeCargo, nomePrefeitura = item.NomePrefeitura }) |
+                @Html.ActionLink("Detalhes", "Details", new { idCidadao=item.IdCidadao, nomeCargo = item.NomeCargo, nomePrefeitura = item.NomePrefeitura }) |
+                @Html.ActionLink("Remover", "Delete", new { idCidadao=item.IdCidadao, nomeCargo = item.NomeCargo, nomePrefeitura = item.NomePrefeitura })
             </td>
         </tr>
 }

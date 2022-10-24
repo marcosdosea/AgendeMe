@@ -22,18 +22,14 @@ namespace Service
         /// <returns></returns>
         public int AddProfissional(int idCidadao, int idPrefeitura, int idCargo)
         {
-            Profissionalcargo profissionalcargo = new();
-            profissionalcargo.IdCargo = idCargo;
-            profissionalcargo.IdProfissional = idCidadao;
+            Cargoprofissionalprefeitura profissional = new()
+            {
+                IdCargo = idCargo,
+                IdPrefeitura = idPrefeitura,
+                IdProfissional = idCidadao
+            };
 
-            Profissionalprefeitura profissionalprefeitura = new();
-            profissionalprefeitura.IdProfissional = idCidadao;
-            profissionalprefeitura.IdPrefeitura = idPrefeitura;
-
-            _context.Add(profissionalcargo);
-            _context.SaveChanges();
-
-            _context.Add(profissionalprefeitura);
+            _context.Add(profissional);
             _context.SaveChanges();
 
             return idCidadao;
@@ -63,17 +59,9 @@ namespace Service
             _context.SaveChanges();
         }
 
-        public void DeletProfissional(int idCidadao, int idCargo, int idPrefeitura)
+        public void DeleteProfissional(int idCidadao, string nomeCargo, string nomePrefeitura)
         {
-            /*var _profissionalCargo = _context.Profissionalcargos.Find(idCargo, idCidadao);
-            var _profissionalPrefeitura = _context.Profissionalprefeituras.Find(idCidadao, idPrefeitura);
 
-            _context.Remove(_profissionalCargo);
-            _context.SaveChanges();
-
-            _context.Remove(_profissionalPrefeitura);
-            _context.SaveChanges();
-            */
         }
 
         /// <summary>
@@ -86,9 +74,27 @@ namespace Service
             _context.SaveChanges();
         }
 
-        public void EditProfissional()
+        /// <summary>
+        /// Editar cargo de um profissional existente
+        /// </summary>
+        /// <param name="cidadao"></param>
+        /// <param name="prefeitura">prefeitura</param>
+        /// <param name="cargo">cargo</param>
+        /// <returns></returns>
+        public void EditProfissional(int idCidadao, string nomePrefeitura, string nomeCargo)
         {
-            throw new NotImplementedException();
+            int idCargo = int.Parse((from cargos in _context.Cargos
+                                     where cargos.Nome == nomeCargo
+                                     select cargos.Id).First().ToString());
+
+            int idPrefeitura = int.Parse((from prefeitura in _context.Cargos
+                                          where prefeitura.Nome == nomePrefeitura
+                                          select prefeitura.Id).First().ToString());
+
+            Cargoprofissionalprefeitura? cargoprofissionalprefeitura = _context.Cargoprofissionalprefeituras.SingleOrDefault(p => p.IdPrefeitura == idPrefeitura
+                                                                                                                               && p.IdCargo == idCargo);
+            cargoprofissionalprefeitura.IdCargo = idCargo;
+
         }
 
         /// <summary>
@@ -101,23 +107,20 @@ namespace Service
             return _context.Cidadaos.Find(id);
         }
 
-        public IEnumerable<ProfissionalDTO> GetProfissional(int id)
+        public ProfissionalDTO GetProfissional(int idCidadao, string nomeCargo, string nomePrefeitura)
         {
-            /*var profissional = (from cidadao in _context.Cidadaos
-                                where cidadao.Id == id
-                                from prefeituras in cidadao.Profissionalprefeituras
-                                from cargos in cidadao.Profissionalcargos
-                                select new ProfissionalDTO
-                                {
-                                    NomeCidadao = cidadao.Nome,
-                                    IdCidadao = cidadao.Id,
-                                    NomeCargo = cargos.IdCargoNavigation.Nome,
-                                    NomePrefeitura = prefeituras.IdPrefeituraNavigation.Nome
-                                });
-
-            return profissional;
-            */
-            return null;
+            var query = from cidadao in _context.Cidadaos
+                        from profissional in cidadao.Cargoprofissionalprefeituras
+                        where profissional.IdPrefeituraNavigation.Nome == nomePrefeitura
+                        where profissional.IdCargoNavigation.Nome == nomeCargo
+                        select new ProfissionalDTO
+                        {
+                            IdCidadao = cidadao.Id,
+                            NomeCidadao = cidadao.Nome,
+                            NomeCargo = profissional.IdCargoNavigation.Nome,
+                            NomePrefeitura = profissional.IdPrefeituraNavigation.Nome
+                        };
+            return query.First();
         }
 
         /// <summary>
@@ -129,24 +132,19 @@ namespace Service
             return _context.Cidadaos.AsNoTracking();
         }
 
-        public IEnumerable<ProfissionalDTO> GetAllProfissional(int idPrefeitura)
+        public IEnumerable<ProfissionalDTO> GetAllProfissional()
         {
-
-            /*var query = from cidadao in _context.Cidadaos
-                        from prefeituras in cidadao.Profissionalprefeituras.Where(p => p.IdPrefeitura > 0)
-                        from cargos in cidadao.Profissionalcargos.Where(p => p.IdCargo > 0)
-                        orderby cidadao.Nome
+            var query = from cidadao in _context.Cidadaos
+                        from profissional in cidadao.Cargoprofissionalprefeituras
+                        where profissional.IdPrefeitura != null
                         select new ProfissionalDTO
                         {
-                            NomeCidadao = cidadao.Nome,
                             IdCidadao = cidadao.Id,
-                            NomeCargo = cargos.IdCargoNavigation.Nome,
-                            NomePrefeitura = prefeituras.IdPrefeituraNavigation.Nome
+                            NomeCidadao = cidadao.Nome,
+                            NomeCargo = profissional.IdCargoNavigation.Nome,
+                            NomePrefeitura = profissional.IdPrefeituraNavigation.Nome
                         };
-
-            return query;
-            */
-            return null;
+            return query.AsNoTracking();
         }
 
         public IEnumerable<CidadaoDTO> GetById(int idCidadao)

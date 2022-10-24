@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Core.DTO.ProfissionalDTO>
+﻿@model Core.DTO.ProfissionalDTO
 
 @{
     ViewData["Title"] = "Details";
@@ -14,23 +14,20 @@
             @Html.DisplayNameFor(model => model.NomeCidadao)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => Model.FirstOrDefault().NomeCidadao)
+            @Html.DisplayFor(model => model.NomeCidadao)
         </dd>
-        @foreach (var item in Model)
-        {
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.NomePrefeitura)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(modelItem => item.NomePrefeitura)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.NomeCargo)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(modelItem => item.NomeCargo)
-            </dd>
-        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NomePrefeitura)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NomePrefeitura)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NomeCargo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NomeCargo)
+        </dd>
     </dl>
 </div>
 <div>
