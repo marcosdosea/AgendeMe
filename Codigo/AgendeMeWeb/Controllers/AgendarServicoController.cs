@@ -13,7 +13,7 @@ namespace AgendeMeWeb.Controllers
         private readonly IAreaDeServicoService _areaDeServicoService;
         private readonly IServicoPublicoService _servicoPublicoService;
         private readonly IOrgaoPublicoService _orgaoPublicoService;
-        private readonly IAgendaDoServicoService _agendaDoServicoService;
+        private readonly IDiaAgendamentoService _diaAgendamentoService;
         private readonly IMapper _mapper;
 
         public AgendarServicoController(IAgendamentoService agendamentoService,
@@ -21,7 +21,7 @@ namespace AgendeMeWeb.Controllers
                                         IAreaDeServicoService areaDeServicoService,
                                         IServicoPublicoService servicoPublicoService,
                                         IOrgaoPublicoService orgaoPublicoService,
-                                        IAgendaDoServicoService agendaDoServicoService,
+                                        IDiaAgendamentoService diaAgendamentoService,
                                         IMapper mapper)
         {
             _agendamentoService = agendamentoService;
@@ -29,7 +29,7 @@ namespace AgendeMeWeb.Controllers
             _areaDeServicoService = areaDeServicoService;
             _servicoPublicoService = servicoPublicoService;
             _orgaoPublicoService = orgaoPublicoService;
-            _agendaDoServicoService = agendaDoServicoService;
+            _diaAgendamentoService = diaAgendamentoService;
             _mapper = mapper;
         }
 
@@ -170,20 +170,20 @@ namespace AgendeMeWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult AgendasDoServicoDias(int idServico, string nomeOrgao, string nomeServico)
+        public ActionResult AgendarServicoDias(int idServico, string nomeOrgao, string nomeServico)
         {
             ViewBag.nomeOrgaoPublico = nomeOrgao;
             ViewBag.nomeServicoPublico = nomeServico;
-            var listaAgendasDoServico = _agendaDoServicoService.GetAllDiasByIdServico(idServico);
+            var listaAgendasDoServico = _diaAgendamentoService.GetAllDiasByIdServico(idServico);
             return PartialView(listaAgendasDoServico);
         }
 
         [HttpGet]
-        public ActionResult AgendasDoServicoHoras(int idServico, string dia)
+        public ActionResult AgendarServicoHoras(int idServico, DateTime dia)
         {
             //ViewBag.iconeServicoPublico = iconeServico;
             //ViewBag.nomeServicoPublico = nomeServico;
-            var listaAgendasDoServico = _agendaDoServicoService.GetAllHorasByIdServicoAndDia(idServico, dia);
+            var listaAgendasDoServico = _diaAgendamentoService.GetAllHorasByIdServicoAndDia(idServico, dia);
             //return PartialView(listaAgendasDoServico);
             return View(listaAgendasDoServico);
         }
