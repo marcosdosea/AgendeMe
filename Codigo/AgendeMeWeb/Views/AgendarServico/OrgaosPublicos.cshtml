@@ -13,7 +13,7 @@
         @foreach (var item in Model)
         {
             <div class="br-card hover">
-                <a class="br-card hover mb-0 back-none" onclick="getAgendaDoServicoDias('@Url.Action("AgendasDoServicoDias")','@item.IdServico','@item.Nome','@ViewBag.nomeServicoPublico')">
+                <a class="br-card hover mb-0 back-none" onclick="getAgendaDoServicoDias('@Url.Action("AgendarServicoDias")','@item.IdServico','@item.Nome','@ViewBag.nomeServicoPublico')">
                     <div class="card-content d-flex flex-wrap align-items-center dinamic-flex">
                         <i class="azul-agende-me icone-botao-box fas fa-building text-center dinamic-margin"></i>
                         <div>
