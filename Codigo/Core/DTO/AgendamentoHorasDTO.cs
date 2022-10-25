@@ -2,7 +2,7 @@
 
 namespace Core.DTO
 {
-    public class AgendaDoServicoHorasDTO
+    public class AgendamentoHorasDTO
     {
         public int Id { get; set; }
         public int IdServico { get; set; }

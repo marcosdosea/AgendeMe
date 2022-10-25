@@ -1,5 +1,4 @@
 ﻿using Core;
-using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 
@@ -59,49 +58,6 @@ namespace Service
         public IEnumerable<Agendadoservico> GetAll()
         {
             return _context.Agendadoservicos.AsNoTracking();
-        }
-        /// <summary>
-        /// Consulta todas as agendas de servico para um servico
-        /// </summary>
-        /// <param name="idServico">Id do servico</param>
-        /// <returns>Todas as agendas do servico para um servico</returns>
-        public IEnumerable<AgendaDoServicoDiasDTO> GetAllDiasByIdServico(int idServico)
-        {
-            var query = from agenda in _context.Agendadoservicos
-                        where agenda.IdServicoPublico.Equals(idServico)
-                        group agenda by new
-                        {
-                            agenda.DiaSemana,
-                            agenda.IdServicoPublico
-                        } into agendaGroup
-                        select new AgendaDoServicoDiasDTO
-                        {
-                            DiaSemana = agendaGroup.Key.DiaSemana,
-                            IdServico = agendaGroup.Key.IdServicoPublico,
-                            Vagas = agendaGroup.Sum(p => p.VagasAtendimento)
-                        };
-            return query.AsNoTracking();
-        }
-        /// <summary>
-        /// Consulta todas as horas de uma agendas de servico para um servico e um dia
-        /// </summary>
-        /// <param name="idServico">Id do servico</param>
-        /// <param name="dia">Nome do dia</param>
-        /// <returns>DTO com as horas e vagas da agenda</returns>
-        public IEnumerable<AgendaDoServicoHorasDTO> GetAllHorasByIdServicoAndDia(int idServico, string dia)
-        {
-            var query = from agenda in _context.Agendadoservicos
-                        where agenda.IdServicoPublico.Equals(idServico)
-                        where agenda.DiaSemana.Equals(dia)
-                        select new AgendaDoServicoHorasDTO
-                        {
-                            Id = agenda.Id,
-                            IdServico = agenda.IdServicoPublico,
-                            HorarioInicio = agenda.HorarioInicio,
-                            HorarioFim = agenda.HorarioFim,
-                            Vagas = agenda.VagasAtendimento
-                        };
-            return query.AsNoTracking();
         }
     }
 }

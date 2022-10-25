@@ -2,7 +2,7 @@
 
 namespace Core.DTO
 {
-    public class AgendaDoServicoDiasDTO
+    public class AgendamentoDiasDTO
     {
         public int IdServico { get; set; }
         public string? DiaSemana { get; set; }
