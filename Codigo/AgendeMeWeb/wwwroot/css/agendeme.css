@@ -22,14 +22,21 @@
     color: #0C326F;
 }
 
-.botao-box {
+.box {
     cursor: pointer;
     margin-bottom: 0px !important;
+}
+
+.w-250 {
     width: 250px;
 }
 
+.w-200 {
+    width: 200px;
+}
+
 .flex-c-gap{
-    column-gap: 50px;
+    column-gap: 40px;
 }
 
 .flex-r-gap {

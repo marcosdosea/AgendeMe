@@ -72,11 +72,13 @@ namespace Service
                         group diaAgendamento by new
                         {
                             diaAgendamento.DiaSemana,
+                            diaAgendamento.Data,
                             diaAgendamento.IdServicoPublico
                         } into diaGroup
                         select new AgendamentoDiasDTO
                         {
                             DiaSemana = diaGroup.Key.DiaSemana,
+                            Data = diaGroup.Key.Data,
                             IdServico = diaGroup.Key.IdServicoPublico,
                             Vagas = diaGroup.Sum(p => p.VagasAtendimento)
                         };

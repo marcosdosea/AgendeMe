@@ -16,69 +16,13 @@
         @foreach (var item in Model)
         {
             
-                <div class="br-card hover botao-box">
+                <div class="br-card hover box w-200">
                     <a class="br-card hover mb-0 back-none" onclick="getServicos('@Url.Action("ServicosPublicos")')">
                         <div class="card-content">
                             <p class="text-break text-wrap azul-text user-select-none fs-4 mt-4 mb-4 fw-bold text-center text-uppercase">@Html.DisplayFor(modelItem => item.DiaSemana)</p>
-                            @{
-                                if (item.DiaSemana.Equals("Segunda"))
-                                {
-                                    DateTime data = @DateTime.Now;
-                                    data = data.AddDays(1);
-                                    while (data.DayOfWeek.ToString() != "Monday")
-                                    {
-                                        data = data.AddDays(1);
-                                    }
-                                    <p class="text-center fs-5" >@data.ToString("dd/MM/yyyy")</p>
-                                    <p class="text-center fs-5">@Html.DisplayNameFor(modelItem => item.Vagas): @item.Vagas</p>
-                                }
-                                else if (item.DiaSemana.Equals("Terça"))
-                                {
-                                    DateTime data = @DateTime.Now;
-                                    data = data.AddDays(1);
-                                    while (data.DayOfWeek.ToString() != "Tuesday")
-                                    {
-                                        data = data.AddDays(1);
-                                    }
-                                    <p class="text-center fs-5">@data.ToString("dd/MM/yyyy")</p>
-                                    <p class="text-center fs-5">@Html.DisplayNameFor(modelItem => item.Vagas): @item.Vagas</p>
-                                }
-                                else if (item.DiaSemana.Equals("Quarta"))
-                                {
-                                    DateTime data = @DateTime.Now;
-                                    data = data.AddDays(1);
-                                    while (data.DayOfWeek.ToString() != "Wednesday")
-                                    {
-                                        data = data.AddDays(1);
-                                    }
-                                    <p class="text-center fs-5">@data.ToString("dd/MM/yyyy")</p>
-                                    <p class="text-center fs-5">@Html.DisplayNameFor(modelItem => item.Vagas): @item.Vagas</p>
-                                }
-                                else if (item.DiaSemana.Equals("Quinta"))
-                                {
-                                    DateTime data = @DateTime.Now;
-                                    data = data.AddDays(1);
-                                    while (data.DayOfWeek.ToString() != "Thursday")
-                                    {
-                                        data = data.AddDays(1);
-                                    }
-                                    <p class="text-center fs-5">@data.ToString("dd/MM/yyyy")</p>
-                                    <p class="text-center fs-5">@Html.DisplayNameFor(modelItem => item.Vagas): @item.Vagas</p>
-                                }
-                                else if (item.DiaSemana.Equals("Sexta"))
-                                {
-                                    DateTime data = @DateTime.Now;
-                                    data = data.AddDays(1);
-                                    while (data.DayOfWeek.ToString() != "Friday")
-                                    {
-                                        data = data.AddDays(1);
-                                    }
-                                    <p class="text-center fs-5" >@data.ToString("dd/MM/yyyy")</p>
-                                    <p class="text-center fs-5">@Html.DisplayNameFor(modelItem => item.Vagas): @item.Vagas</p>
-                                }
-                            }
+                            <p class="text-center fs-5">@item.Data.ToString("dd/MM/yyyy")</p>
+                            <p class="text-center fs-5">@Html.DisplayNameFor(modelItem => item.Vagas): @item.Vagas</p>
                         </div>
-
                     </a>
                 </div>
             }
