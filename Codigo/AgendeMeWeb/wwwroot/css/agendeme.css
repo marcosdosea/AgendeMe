@@ -25,6 +25,7 @@
 .box {
     cursor: pointer;
     margin-bottom: 0px !important;
+    border-bottom: 2px solid #6c6c6c61;
 }
 
 .w-250 {

@@ -17,7 +17,7 @@
         {
             
                 <div class="br-card hover box w-200">
-                    <a class="br-card hover mb-0 back-none" onclick="getServicos('@Url.Action("ServicosPublicos")')">
+                <a class="br-card hover mb-0 back-none" onclick="getHoras('@Url.Action("AgendarServicoHoras")', @item.IdServico, '@item.Data.ToString("yyyy-MM-dd")', '@item.DiaSemana', '@ViewBag.nomeOrgaoPublico', '@ViewBag.nomeServicoPublico')">
                         <div class="card-content">
                             <p class="text-break text-wrap azul-text user-select-none fs-4 mt-4 mb-4 fw-bold text-center text-uppercase">@Html.DisplayFor(modelItem => item.DiaSemana)</p>
                             <p class="text-center fs-5">@item.Data.ToString("dd/MM/yyyy")</p>
