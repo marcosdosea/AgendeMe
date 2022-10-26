@@ -63,13 +63,13 @@ function getOrgaos(url, nomeServico, iconeServico) {
     });
 }
 
-function getDias(url, idServico, nomeOrgao, nomeServico) {
+function getDias(url, idServico, nomeOrgao, nomeServico, idOrgao) {
     $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
     $.ajax({
         type: "GET",
         url: url,
         dataType: "HTML",
-        data: { idServico: idServico, nomeOrgao: nomeOrgao, nomeServico: nomeServico },
+        data: { idServico: idServico, nomeOrgao: nomeOrgao, nomeServico: nomeServico, idOrgao: idOrgao },
 
         success: function (result) {
             $("#ajaxBox").html(result);
@@ -80,13 +80,13 @@ function getDias(url, idServico, nomeOrgao, nomeServico) {
     });
 }
 
-function getHoras(url, idServico, data, diaSemana, nomeOrgao, nomeServico) {
+function getHoras(url, idServico, data, diaSemana, nomeOrgao, nomeServico, idOrgao) {
     $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
     $.ajax({
         type: "GET",
         url: url,
         dataType: "HTML",
-        data: { idServico: idServico, dia: data, nomeDia: diaSemana ,nomeOrgao: nomeOrgao, nomeServico: nomeServico },
+        data: { idServico: idServico, dia: data, nomeDia: diaSemana, nomeOrgao: nomeOrgao, nomeServico: nomeServico, idOrgao: idOrgao },
 
         success: function (result) {
             $("#ajaxBox").html(result);

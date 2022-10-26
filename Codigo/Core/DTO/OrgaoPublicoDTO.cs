@@ -4,6 +4,7 @@ namespace Core.DTO
 {
     public class OrgaoPublicoDTO
     {
+        public int Id { get; set; }
         public int IdServico { get; set; }
 
         public string? Nome { get; set; }

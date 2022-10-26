@@ -170,10 +170,11 @@ namespace AgendeMeWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult AgendarServicoDias(int idServico, string nomeOrgao, string nomeServico)
+        public ActionResult AgendarServicoDias(int idServico, string nomeOrgao, string nomeServico, int idOrgao)
         {
             ViewBag.nomeOrgaoPublico = nomeOrgao;
             ViewBag.nomeServicoPublico = nomeServico;
+            ViewBag.idOrgao = idOrgao;
             var listaAgendasDoServico = _diaAgendamentoService.GetAllDiasByIdServico(idServico);
             return PartialView(listaAgendasDoServico);
         }
@@ -181,13 +182,21 @@ namespace AgendeMeWeb.Controllers
         [HttpGet]
         public ActionResult AgendarServicoHoras(int idServico, DateTime dia,
                                                 string nomeDia, string nomeOrgao,
-                                                string nomeServico)
+                                                string nomeServico, int idOrgao)
         {
             ViewBag.nomeOrgaoPublico = nomeOrgao;
             ViewBag.nomeServicoPublico = nomeServico;
             ViewBag.nomeDia = nomeDia;
+            ViewBag.idOrgao = idOrgao;
             var listaAgendasDoServico = _diaAgendamentoService.GetAllHorasByIdServicoAndDia(idServico, dia);
             return PartialView(listaAgendasDoServico);
         }
+
+        /*[HttpPost]
+        public ActionResult ConfirmarAgendamento(int idDiaAgendamento, )
+        {
+            return View();
+        }
+        */
     }
 }
