@@ -192,11 +192,10 @@ namespace AgendeMeWeb.Controllers
             return PartialView(listaAgendasDoServico);
         }
 
-        /*[HttpPost]
-        public ActionResult ConfirmarAgendamento(int idDiaAgendamento, )
+        [HttpGet]
+        public ActionResult ConfirmarAgendamento(int idDiaAgendamento)
         {
             return View();
         }
-        */
     }
 }
