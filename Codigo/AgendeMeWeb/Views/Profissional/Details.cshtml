@@ -1,13 +1,13 @@
 ﻿@model AgendeMeWeb.Models.ProfissionalViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes";
 }
 
-<h1>Details</h1>
+<h1>Detalhes</h1>
 
 <div>
-    <h4>ProfissionalViewModel</h4>
+    <h4>@Model.NomePrefeitura</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -31,6 +31,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Editar", "Edit", new { /*IdProfissional = Model.IdProfissional, nomeCargo = Model.NomeCargo, nomePrefeitura = Model.NomePrefeitura*/ }) |
+    @Html.ActionLink("Editar", "Edit", new { IdProfissional = Model.IdProfissional, IdCargo = Model.IdCargo, IdPrefeitura = Model.IdPrefeitura }) |
     <a asp-action="Index">Voltar para a lista</a>
 </div>
