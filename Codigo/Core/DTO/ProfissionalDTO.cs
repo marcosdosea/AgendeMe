@@ -10,6 +10,8 @@ namespace Core.DTO
     public class ProfissionalDTO
     {
         public int IdProfissional { get; set; }
+        public int IdPrefeitura { get; set; }
+        public int IdCargo { get; set; }
 
         [Display(Name = "Nome")]
         public string? NomeProfissional { get; set; }

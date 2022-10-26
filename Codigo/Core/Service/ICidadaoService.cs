@@ -8,10 +8,10 @@ namespace Core.Service
         void Edit(Cidadao cidadao);
         void Delete(int id);
         int AddProfissional(int IdProfissional, int idPrefeitura, int idCargo);
-        void EditProfissional(int IdProfissional, string idPrefeitura, string nomeCargo);
-        void DeleteProfissional(int IdProfissional, string nomeCargo, string nomePrefeitura);
+        void EditProfissional(int IdProfissional, int IdCargo, int IdPrefeitura);
+        void DeleteProfissional(int IdProfissional, int IdCargo, int IdPrefeitura);
         Cidadao Get(int id);
-        ProfissionalDTO GetProfissional(int IdProfissional, string nomeCargo, string nomePrefeitura);
+        Cargoprofissionalprefeitura GetProfissional(int IdProfissional, int IdCargo, int IdPrefeitura);
         IEnumerable<Cidadao> GetAll();
         IEnumerable<ProfissionalDTO> GetAllProfissional();
         IEnumerable<CidadaoDTO> GetById(int idCidadao);

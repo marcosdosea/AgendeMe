@@ -1,4 +1,4 @@
-﻿@model Core.DTO.ProfissionalDTO
+﻿@model AgendeMeWeb.Models.ProfissionalViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -31,6 +31,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Editar", "Edit", new { IdProfissional = Model.IdProfissional, nomeCargo = Model.NomeCargo, nomePrefeitura = Model.NomePrefeitura }) |
+    @Html.ActionLink("Editar", "Edit", new { /*IdProfissional = Model.IdProfissional, nomeCargo = Model.NomeCargo, nomePrefeitura = Model.NomePrefeitura*/ }) |
     <a asp-action="Index">Voltar para a lista</a>
 </div>

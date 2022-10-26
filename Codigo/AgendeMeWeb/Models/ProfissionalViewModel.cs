@@ -6,21 +6,14 @@ namespace AgendeMeWeb.Models
 {
     public class ProfissionalViewModel
     {
-        [Required(ErrorMessage = "O campo Id é obrigatório.")]
-        public int IdProfissional { get; set; }
-
-        public string? NomeProfissional { get; set; }
-
-        [Required(ErrorMessage = "O campo Id é obrigatório.")]
         public int IdCargo { get; set; }
-
-        public string? NomeCargo { get; set; }
-
-        [Required(ErrorMessage = "O campo Id é obrigatório.")]
+        public int IdProfissional { get; set; }
         public int IdPrefeitura { get; set; }
 
-        public string? NomePrefeitura { get; set; }
 
+        public string? NomeProfissional { get; set; }
+        public string? NomePrefeitura { get; set; }
+        public string? NomeCargo { get; set; }
         public SelectList? ListaCargos { get; set; }
         public SelectList? ListaPrefeituras { get; set; }
     }
