@@ -40,14 +40,14 @@ namespace AgendeMeWeb.Controllers
             Cargoprofissionalprefeitura profissional = _cidadaoService.GetProfissional(IdProfissional, IdCargo, IdPrefeitura);
             ProfissionalViewModel profissionalViewModel = _mapper.Map<ProfissionalViewModel>(profissional);
 
-            Cidadao cidadao = _cidadaoService.Get(IdProfissional);
+            /*Cidadao cidadao = _cidadaoService.Get(IdProfissional);
             profissionalViewModel.NomeProfissional = cidadao.Nome;
 
             Prefeitura prefeitura = _prefeituraService.Get(IdPrefeitura);
             profissionalViewModel.NomePrefeitura = prefeitura.Nome;
 
             Cargo cargo = _cargoService.Get(IdCargo);
-            profissionalViewModel.NomeCargo = cargo.Nome;
+            profissionalViewModel.NomeCargo = cargo.Nome;*/
 
             return View(profissionalViewModel);
         }
@@ -83,14 +83,14 @@ namespace AgendeMeWeb.Controllers
             Cargoprofissionalprefeitura profissional = _cidadaoService.GetProfissional(IdProfissional, IdCargo, IdPrefeitura);
             ProfissionalViewModel profissionalViewModel = _mapper.Map<ProfissionalViewModel>(profissional);
 
-            Cidadao cidadao = _cidadaoService.Get(IdProfissional);
+            /*Cidadao cidadao = _cidadaoService.Get(IdProfissional);
             profissionalViewModel.NomeProfissional = cidadao.Nome;
 
             Prefeitura prefeitura = _prefeituraService.Get(IdPrefeitura);
             profissionalViewModel.NomePrefeitura = prefeitura.Nome;
 
             Cargo cargo = _cargoService.Get(IdCargo);
-            profissionalViewModel.NomeCargo = cargo.Nome;
+            profissionalViewModel.NomeCargo = cargo.Nome;*/
 
             IEnumerable<Cargo> listaCargos = _cargoService.GetAll();
             
@@ -102,13 +102,13 @@ namespace AgendeMeWeb.Controllers
         // POST: ProfissionalController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int IdCargo, ProfissionalViewModel profissionalModel)
+        public ActionResult Edit(int IdCargo, int IdProfissional, int IdPrefeitura, ProfissionalViewModel profissionalModel)
         {   //TODO
             try
             {
                 if (ModelState.IsValid)
                 {
-                    Cargoprofissionalprefeitura profissional = _mapper.Map<Cargoprofissionalprefeitura>(profissionalModel);
+                    var profissional = _mapper.Map<Cargoprofissionalprefeitura>(profissionalModel);
                     _cidadaoService.EditProfissional(profissional);
                 }
                 return RedirectToAction(nameof(Index));
@@ -120,19 +120,20 @@ namespace AgendeMeWeb.Controllers
         }
 
         // GET: ProfissionalController/Delete/5
+        [Route("[controller]/Delete/{IdCargo:int}/{IdProfissional:int}/{IdPrefeitura:int}")]
         public ActionResult Delete(int IdProfissional, int IdCargo, int IdPrefeitura)
         {
             Cargoprofissionalprefeitura profissional = _cidadaoService.GetProfissional(IdProfissional, IdCargo, IdPrefeitura);
             ProfissionalViewModel profissionalViewModel = _mapper.Map<ProfissionalViewModel>(profissional);
 
-            Cidadao cidadao = _cidadaoService.Get(IdProfissional);
+            /*Cidadao cidadao = _cidadaoService.Get(IdProfissional);
             profissionalViewModel.NomeProfissional = cidadao.Nome;
 
             Prefeitura prefeitura = _prefeituraService.Get(IdPrefeitura);
             profissionalViewModel.NomePrefeitura = prefeitura.Nome;
 
             Cargo cargo = _cargoService.Get(IdCargo);
-            profissionalViewModel.NomeCargo = cargo.Nome;
+            profissionalViewModel.NomeCargo = cargo.Nome;*/
 
             return View(profissionalViewModel);
         }
@@ -140,11 +141,10 @@ namespace AgendeMeWeb.Controllers
         // POST: ProfissionalController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int IdProfissional, ProfissionalViewModel profissional)
+        public ActionResult DeleteProfissional(int IdProfissional, ProfissionalViewModel profissional)
         { //ta chegnado vazio
-            _cidadaoService.DeleteProfissional(IdProfissional, profissional.IdCargo, profissional.IdPrefeitura);
+            _cidadaoService.DeleteProfissional(1, 1, 1);
             return RedirectToAction(nameof(Index));
-
         }
     }
 }

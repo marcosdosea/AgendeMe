@@ -33,7 +33,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { IdProfissional=item.IdProfissional, IdCargo = item.IdCargo, IdPrefeitura = item.IdPrefeitura }) |
                 @Html.ActionLink("Detalhes", "Details", new { IdProfissional=item.IdProfissional, IdCargo = item.IdCargo, IdPrefeitura = item.IdPrefeitura }) |
-                @Html.ActionLink("Remover", "Delete", new { IdProfissional=item.IdProfissional, IdCargo = item.IdCargo, IdPrefeitura = item.IdPrefeitura })
+                @Html.ActionLink("Remover", "Delete", new { IdProfissional=item.IdProfissional, IdCargo = item.IdCargo, IdPrefeitura = item.IdPrefeitura }, null)
             </td>
         </tr>
 }

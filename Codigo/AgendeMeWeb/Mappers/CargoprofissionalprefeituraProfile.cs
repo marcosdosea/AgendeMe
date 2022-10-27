@@ -4,9 +4,9 @@ using Core;
 
 namespace AgendeMeWeb.Mappers
 {
-    public class ProfissionalProfile : Profile
+    public class CargoprofissionalprefeituraProfile : Profile
     {
-        public ProfissionalProfile()
+        public CargoprofissionalprefeituraProfile()
         {
             CreateMap<ProfissionalViewModel, Cargoprofissionalprefeitura>().ReverseMap();
         }

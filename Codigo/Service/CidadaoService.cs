@@ -59,9 +59,11 @@ namespace Service
             _context.SaveChanges();
         }
 
-        public void DeleteProfissional(Cargoprofissionalprefeitura profissional)
+        public void DeleteProfissional(int IdCargo, int IdProfissional, int IdPrefeitura)
         {
-
+            var _profissional = _context.Cargoprofissionalprefeituras.Find(IdCargo, IdProfissional, IdPrefeitura);
+            _context.Remove(_profissional);
+            _context.SaveChanges();
         }
 
         /// <summary>
@@ -83,7 +85,9 @@ namespace Service
         /// <returns></returns>
         public void EditProfissional(Cargoprofissionalprefeitura profissional)
         {
+
             _context.Update(profissional);
+
             _context.SaveChanges();
         }
 
