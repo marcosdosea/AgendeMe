@@ -53,6 +53,30 @@ namespace Service
             return _context.Diaagendamentos.Find(id);
         }
         /// <summary>
+        /// Consulta os dados do agendamento para sua confirmacao
+        /// </summary>
+        /// <param name="id">Id do dia do agendamento</param>
+        /// <returns>Dados do agendamento</returns>
+        ConfirmarAgendamentoDTO GetDadosAgendamento(int id)
+        {
+            var query = from diaAgendamento in _context.Diaagendamentos
+                        where diaAgendamento.Id.Equals(id)
+                        select new ConfirmarAgendamentoDTO
+                        {
+                            Id = diaAgendamento.Id,
+                            NomeServico = diaAgendamento.IdServicoPublicoNavigation.Nome,
+                            OrgaoPublico = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Nome,
+                            Bairro = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Bairro,
+                            Rua = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Rua,
+                            Numero = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Numero,
+                            Complemento = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Complemento,
+                            Data = diaAgendamento.Data,
+                            Horario = string.Join(" às ", diaAgendamento.HorarioInicio, diaAgendamento.HorarioFim),
+                            DataCadastro = DateTime.Now
+                        };
+            return query.AsNoTracking().First();
+        }
+        /// <summary>
         /// Consulta todos os dias agendamento
         /// </summary>
         /// <returns></returns>
@@ -105,6 +129,11 @@ namespace Service
                             Vagas = (diaAgendamento.VagasAtendimento - diaAgendamento.VagasAgendadas)
                         };
             return query.AsNoTracking();
+        }
+
+        ConfirmarAgendamentoDTO IDiaAgendamentoService.GetDadosAgendamento(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
