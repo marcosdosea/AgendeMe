@@ -32,7 +32,10 @@
     </dl>
     
     <form asp-action="DeleteProfissional">
-        <input type="submit" value="Remover " class="btn btn-danger" /> |
+        <input type="hidden" name="idCargo" value="@Model.IdCargo" />
+        <input type="hidden" name="idProfissional" value="@Model.IdProfissional" />
+        <input type="hidden" name="idPrefeitura" value="@Model.IdPrefeitura" />
+        <input type="submit" value="Remover" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
