@@ -78,7 +78,8 @@ namespace AgendeMeWeb.Controllers
         }
 
         // GET: ProfissionalController/Edit/5
-        public ActionResult Edit(int IdProfissional, int IdCargo, int IdPrefeitura)
+        [Route("[controller]/Edit/{IdCargo:int}/{IdProfissional:int}/{IdPrefeitura:int}")]
+        public ActionResult Edit(int IdCargo, int IdProfissional, int IdPrefeitura)
         {
             Cargoprofissionalprefeitura profissional = _cidadaoService.GetProfissional(IdProfissional, IdCargo, IdPrefeitura);
             ProfissionalViewModel profissionalViewModel = _mapper.Map<ProfissionalViewModel>(profissional);
