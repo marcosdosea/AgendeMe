@@ -79,22 +79,44 @@ namespace AgendeMeWeb.Controllers
 
         // GET: ProfissionalController/Edit/5
         public ActionResult Edit(int IdProfissional, int IdCargo, int IdPrefeitura)
-        { 
-            var profissional = _cidadaoService.GetProfissional(IdProfissional, IdCargo, IdPrefeitura);
+        {
+            Cargoprofissionalprefeitura profissional = _cidadaoService.GetProfissional(IdProfissional, IdCargo, IdPrefeitura);
+            ProfissionalViewModel profissionalViewModel = _mapper.Map<ProfissionalViewModel>(profissional);
+
+            Cidadao cidadao = _cidadaoService.Get(IdProfissional);
+            profissionalViewModel.NomeProfissional = cidadao.Nome;
+
+            Prefeitura prefeitura = _prefeituraService.Get(IdPrefeitura);
+            profissionalViewModel.NomePrefeitura = prefeitura.Nome;
+
+            Cargo cargo = _cargoService.Get(IdCargo);
+            profissionalViewModel.NomeCargo = cargo.Nome;
 
             IEnumerable<Cargo> listaCargos = _cargoService.GetAll();
-            ViewBag.Cargos = new SelectList(listaCargos, "Id", "Nome", null);
+            
+            profissionalViewModel.ListaCargos = new SelectList(listaCargos, "Id", "Nome", null);
 
-            return View(profissional);
+            return View(profissionalViewModel);
         }
 
         // POST: ProfissionalController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int IdProfissional, string nomeCargo, string nomePrefeitura, ProfissionalDTO profissional)
+        public ActionResult Edit(int IdCargo, ProfissionalViewModel profissionalModel)
         {   //TODO
-            //_cidadaoService.EditProfissional(idCidadao, nomePrefeitura, nomeCargo);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var profissional = _mapper.Map<Cargoprofissionalprefeitura>(profissionalModel);
+                    _cidadaoService.EditProfissional(profissional);
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: ProfissionalController/Delete/5

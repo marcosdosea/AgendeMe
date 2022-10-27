@@ -8,7 +8,7 @@ namespace Core.Service
         void Edit(Cidadao cidadao);
         void Delete(int id);
         int AddProfissional(int IdProfissional, int idPrefeitura, int idCargo);
-        void EditProfissional(int IdProfissional, int IdCargo, int IdPrefeitura);
+        void EditProfissional(Cargoprofissionalprefeitura profissional);
         void DeleteProfissional(int IdProfissional, int IdCargo, int IdPrefeitura);
         Cidadao Get(int id);
         Cargoprofissionalprefeitura GetProfissional(int IdProfissional, int IdCargo, int IdPrefeitura);

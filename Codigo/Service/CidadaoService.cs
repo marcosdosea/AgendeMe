@@ -81,20 +81,10 @@ namespace Service
         /// <param name="prefeitura">prefeitura</param>
         /// <param name="cargo">cargo</param>
         /// <returns></returns>
-        public void EditProfissional(int IdProfissional, int IdCargo, int IdPrefeitura)
+        public void EditProfissional(Cargoprofissionalprefeitura profissional)
         {
-            /*int idCargo = int.Parse((from cargos in _context.Cargos
-                                     where cargos.Nome == nomeCargo
-                                     select cargos.Id).First().ToString());
-
-            int idPrefeitura = int.Parse((from prefeitura in _context.Cargos
-                                          where prefeitura.Nome == nomePrefeitura
-                                          select prefeitura.Id).First().ToString());
-
-            Cargoprofissionalprefeitura? cargoprofissionalprefeitura = _context.Cargoprofissionalprefeituras.SingleOrDefault(p => p.IdPrefeitura == idPrefeitura
-                                                                                                                               && p.IdCargo == idCargo);
-            cargoprofissionalprefeitura.IdCargo = idCargo;*/
-
+            _context.Update(profissional);
+            _context.SaveChanges();
         }
 
         /// <summary>
@@ -126,6 +116,7 @@ namespace Service
             var query = from cidadao in _context.Cidadaos
                         from profissional in cidadao.Cargoprofissionalprefeituras
                         where profissional.IdPrefeitura != null
+                        orderby cidadao.Nome
                         select new ProfissionalDTO
                         {
                             IdProfissional = cidadao.Id,

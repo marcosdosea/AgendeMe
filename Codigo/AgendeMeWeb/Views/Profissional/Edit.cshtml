@@ -1,36 +1,43 @@
-﻿@model Core.DTO.ProfissionalDTO
+﻿@model AgendeMeWeb.Models.ProfissionalViewModel
 
-<h4>ProfissionalDTO</h4>
+<h4>ProfissionalViewModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="IdProfissional" class="control-label"></label>
+                <input asp-for="IdProfissional" class="form-control" />
+                <span asp-validation-for="IdProfissional" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdPrefeitura" class="control-label"></label>
+                <input asp-for="IdPrefeitura" class="form-control" />
+                <span asp-validation-for="IdPrefeitura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="NomeProfissional" class="control-label"></label>
-                <span asp-for="NomeCidadao" class="form-control">@Model.NomeProfissional</span>
-                <span asp-validation-for="NomeProfissional" class="text-danger"></span>
+                <span asp-for="NomeProfissional" class="form-control">@Model.NomeProfissional</span>
             </div>
             <div class="form-group">
                 <label asp-for="NomePrefeitura" class="control-label"></label>
                 <span asp-for="NomePrefeitura" class="form-control">@Model.NomePrefeitura</span>
-                <span asp-validation-for="NomePrefeitura" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NomeCargo" class="control-label"></label>
-                <select asp-for="NomeCargo" asp-items="ViewBag.Cargos" class="form-control"> </select>
-                <span asp-validation-for="NomeCargo" class="text-danger"></span>
+                <label asp-for="IdCargo" class="control-label"></label>
+                <select asp-for="IdCargo" asp-items="@Model.ListaCargos" class="form-control"></select>
+                <span asp-validation-for="IdCargo" class="text-danger"></span>
             </div>
-            
             <div class="form-group">
-                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Voltar para a lista</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
