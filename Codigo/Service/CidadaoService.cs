@@ -59,7 +59,7 @@ namespace Service
             _context.SaveChanges();
         }
 
-        public void DeleteProfissional(int IdProfissional, int IdCargo, int IdPrefeitura)
+        public void DeleteProfissional(Cargoprofissionalprefeitura profissional)
         {
 
         }
