@@ -40,7 +40,6 @@
             <th>
                 Remover
             </th>
-            
         </tr>
     </thead>
     <tbody>
@@ -66,10 +65,15 @@
                 @Html.DisplayFor(modelItem => item.VagasRetorno)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new {  id=item.Id }) 
+                 <i class="fas fa-edit">
+                     @Html.ActionLink("", "Edit", new { id=item.Id })
+                 </i>
             </td>
             <td>
-                @Html.ActionLink("Remover", "Delete", new { id=item.Id })
+                <i class="fas fa-times-circle">
+                    @Html.ActionLink("", "Delete", new { id=item.Id })
+                </i>
+                
             </td>
         </tr>
 }
