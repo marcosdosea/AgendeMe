@@ -21,10 +21,11 @@ namespace AgendeMeWeb.Models
         [StringLength(5, MinimumLength = 1, ErrorMessage = "O Horário de fim deve ter entre 1 e 5 caracteres")]
         public string HorarioFim { get; set; }
 
-
+        [Display(Name = "Vagas de atendimento")]
         [Required(ErrorMessage = "O número de VagasAtendimento é obrigatório")]
         public int VagasAtendimento { get; set; }
 
+        [Display(Name = "Vagas de retorno")]
         [Required(ErrorMessage = "O número de VagasRetorno é obrigatório")]
         public int VagasRetorno { get; set; }
 

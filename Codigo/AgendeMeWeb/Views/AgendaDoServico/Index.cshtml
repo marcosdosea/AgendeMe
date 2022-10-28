@@ -7,9 +7,7 @@
 <h1>Agenda de serviços</h1>
 
 <p>
-    <button>
-        <a asp-action="Create">Cadastrar nova agenda de serviço</a>
-    </button>
+    <a asp-action="Create" class="br-button primary mr-3">Cadastrar nova agenda de serviço</a>
 </p>
 <table class="table">
     <thead>
@@ -37,6 +35,12 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IdProfissional)
+            </th>
+            <th>
+                Editar
+            </th>
+            <th>
+                Remover
             </th>
             <th></th>
         </tr>
@@ -69,9 +73,13 @@
                 @Html.DisplayFor(modelItem => item.IdProfissional)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new {  id=item.Id }) |
-                @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Editar", "Edit", new {  id=item.Id }) 
+            </td>
+            <td>
                 @Html.ActionLink("Remover", "Delete", new { id=item.Id })
+            </td>
+            <td>
+                @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) 
             </td>
         </tr>
 }
