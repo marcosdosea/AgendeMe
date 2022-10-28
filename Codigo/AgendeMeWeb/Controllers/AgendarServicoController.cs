@@ -175,8 +175,8 @@ namespace AgendeMeWeb.Controllers
             ViewBag.nomeOrgaoPublico = nomeOrgao;
             ViewBag.nomeServicoPublico = nomeServico;
             ViewBag.idOrgao = idOrgao;
-            var listaAgendasDoServico = _diaAgendamentoService.GetAllDiasByIdServico(idServico);
-            return PartialView(listaAgendasDoServico);
+            var listaDias = _diaAgendamentoService.GetAllDiasByIdServico(idServico);
+            return PartialView(listaDias);
         }
 
         [HttpGet]
@@ -188,14 +188,15 @@ namespace AgendeMeWeb.Controllers
             ViewBag.nomeServicoPublico = nomeServico;
             ViewBag.nomeDia = nomeDia;
             ViewBag.idOrgao = idOrgao;
-            var listaAgendasDoServico = _diaAgendamentoService.GetAllHorasByIdServicoAndDia(idServico, dia);
-            return PartialView(listaAgendasDoServico);
+            var listaHoras = _diaAgendamentoService.GetAllHorasByIdServicoAndDia(idServico, dia);
+            return PartialView(listaHoras);
         }
 
         [HttpGet]
-        public ActionResult ConfirmarAgendamento(int idDiaAgendamento)
+        public ActionResult ConfirmarAgendamento(int id)
         {
-            return View();
+            var agendamento = _diaAgendamentoService.GetDadosAgendamento(id);
+            return View(agendamento);
         }
     }
 }

@@ -57,7 +57,7 @@ namespace Service
         /// </summary>
         /// <param name="id">Id do dia do agendamento</param>
         /// <returns>Dados do agendamento</returns>
-        ConfirmarAgendamentoDTO GetDadosAgendamento(int id)
+        public ConfirmarAgendamentoDTO GetDadosAgendamento(int id)
         {
             var query = from diaAgendamento in _context.Diaagendamentos
                         where diaAgendamento.Id.Equals(id)
@@ -129,11 +129,6 @@ namespace Service
                             Vagas = (diaAgendamento.VagasAtendimento - diaAgendamento.VagasAgendadas)
                         };
             return query.AsNoTracking();
-        }
-
-        ConfirmarAgendamentoDTO IDiaAgendamentoService.GetDadosAgendamento(int id)
-        {
-            throw new NotImplementedException();
         }
     }
 }

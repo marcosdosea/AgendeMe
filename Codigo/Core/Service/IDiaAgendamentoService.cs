@@ -10,7 +10,7 @@ namespace Core.Service
         Diaagendamento Get(int id);
         ConfirmarAgendamentoDTO GetDadosAgendamento(int id);
         IEnumerable<Diaagendamento> GetAll();
-        public IEnumerable<AgendamentoDiasDTO> GetAllDiasByIdServico(int idServico);
-        public IEnumerable<AgendamentoHorasDTO> GetAllHorasByIdServicoAndDia(int idServico, DateTime dia);
+        IEnumerable<AgendamentoDiasDTO> GetAllDiasByIdServico(int idServico);
+        IEnumerable<AgendamentoHorasDTO> GetAllHorasByIdServicoAndDia(int idServico, DateTime dia);
     }
 }
