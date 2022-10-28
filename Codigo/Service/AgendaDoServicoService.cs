@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 
@@ -55,9 +56,22 @@ namespace Service
         /// Consulta todas as agendas de servico
         /// </summary>
         /// <returns>Dados de todas as agendas de servico</returns>
-        public IEnumerable<Agendadoservico> GetAll()
+        public IEnumerable<AgendadoservicoDTO> GetAll()
         {
-            return _context.Agendadoservicos.AsNoTracking();
+            var query = from Agendadoservico in _context.Agendadoservicos
+                        select new AgendadoservicoDTO
+                        {
+                            Id = Agendadoservico.Id,
+                            DiaSemana = Agendadoservico.DiaSemana,
+                            HorarioInicio = Agendadoservico.HorarioInicio,
+                            HorarioFim = Agendadoservico.HorarioFim,
+                            VagasAtendimento = Agendadoservico.VagasAtendimento,
+                            VagasRetorno = Agendadoservico.VagasRetorno,
+                            NomeDoServicoPublico = Agendadoservico.IdServicoPublicoNavigation.Nome,
+                            NomeDoProfissional = Agendadoservico.IdProfissionalNavigation.Nome
+                        };
+
+            return query;
         }
     }
 }
