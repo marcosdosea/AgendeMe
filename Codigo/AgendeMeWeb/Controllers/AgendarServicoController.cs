@@ -193,11 +193,12 @@ namespace AgendeMeWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult ConfirmarAgendamento(int id)
+        public ActionResult ConfirmarAgendamento(int idDiaAgendamento)
         {
-            var agendamento = _diaAgendamentoService.GetDadosAgendamento(id);
-            return View(agendamento);
+            var dadosAgendamento = _diaAgendamentoService.GetDadosAgendamento(idDiaAgendamento);
+            return PartialView(dadosAgendamento);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmarAgendamento(AgendarServicoViewModel agendamentoModel)
@@ -217,8 +218,13 @@ namespace AgendeMeWeb.Controllers
                 return RedirectToAction(nameof(List));
             }
             ViewBag.erro = "O campo CPF é obrigatório";
-            var agendamento = _diaAgendamentoService.GetDadosAgendamento(agendamentoModel.IdDiaAgendamento);
-            return View(agendamento);
+            var dadosAgendamento = _diaAgendamentoService.GetDadosAgendamento(agendamentoModel.IdDiaAgendamento);
+            return View(dadosAgendamento);
+        }
+
+        public ActionResult GetCidadao(string CPF)
+        {
+            throw new NotImplementedException();
         }
     }
 }

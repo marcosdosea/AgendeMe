@@ -50,7 +50,7 @@
         <div class="d-flex flex-column align-items-center mt-2">
             <div class="form-group">
                 <label for="CPF" class="control-label">Digite o seu CPF</label>
-                <input name="CPF"  class="form-control" value="" />
+                <input name="CPF"  class="form-control" value="" id="CPF"/>
             </div>
         @if (@ViewBag.erro != null)
         {
@@ -58,6 +58,9 @@
                 <span class="feedback danger" role="alert"><i class="fas fa-times-circle" aria-hidden="true"></i>@ViewBag.erro</span>
             </div> 
         }
+            <button class="br-button primary mr-3" type="button" onclick="getCidadao('@Url.Action("GetCidadao")',this)">
+                Verificar CPF
+            </button>
         </div>
         <div class="br-magic-button large mt-4">
             <form asp-action="ConfirmarAgendamento">
