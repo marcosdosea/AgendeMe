@@ -25,7 +25,6 @@ namespace Service
             else
                 agendamento.Tipo = "Agendamento";
             agendamento.Situacao = "Agendado";
-            agendamento.DataCadastro = DateTime.Now;
             _context.Add(agendamento);
             _context.SaveChanges();
             return agendamento.Id;

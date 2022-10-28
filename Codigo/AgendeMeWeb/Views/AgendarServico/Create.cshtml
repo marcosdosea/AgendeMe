@@ -28,6 +28,11 @@
                 <span asp-validation-for="IdRetorno" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="IdDiaAgendamento" class="control-label"></label> (Opcional)
+                <input asp-for="IdDiaAgendamento" class="form-control" />
+                <span asp-validation-for="IdDiaAgendamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Cadastrar" class="btn btn-primary" />
             </div>
         </form>

@@ -71,11 +71,11 @@ namespace AgendeMeWeb.Controllers
             {
                 var agendamento = _mapper.Map<Agendamento>(agendamentoModel);
                 _agendamentoService.Create(agendamento);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(List));
             }
             catch
             {
-                return View();
+                return View(nameof(List));
             }
         }
 
@@ -196,6 +196,28 @@ namespace AgendeMeWeb.Controllers
         public ActionResult ConfirmarAgendamento(int id)
         {
             var agendamento = _diaAgendamentoService.GetDadosAgendamento(id);
+            return View(agendamento);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmarAgendamento(AgendarServicoViewModel agendamentoModel)
+        {
+            if (ModelState.IsValid)
+            {
+                /*Agendamento agendamento = new()
+                {
+                    IdCidadao = idCidadao,
+                    IdAtendente = idAtendente != 0 ? idAtendente : null,
+                    DataCadastro = dataCadastro,
+                    IdDiaAgendamento = idDiaAgendamento,
+                    IdRetorno = idRetorno != 0 ? idRetorno : null
+                };
+                _agendamentoService.Create(agendamento);
+                */
+                return RedirectToAction(nameof(List));
+            }
+            ViewBag.erro = "O campo CPF é obrigatório";
+            var agendamento = _diaAgendamentoService.GetDadosAgendamento(agendamentoModel.IdDiaAgendamento);
             return View(agendamento);
         }
     }
