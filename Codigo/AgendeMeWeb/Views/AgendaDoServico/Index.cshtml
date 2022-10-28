@@ -65,15 +65,14 @@
                 @Html.DisplayFor(modelItem => item.VagasRetorno)
             </td>
             <td>
-                 <i class="fas fa-edit">
-                     @Html.ActionLink("", "Edit", new { id=item.Id })
-                 </i>
+                 <a asp-action="Edit" asp-route-id="@item.Id">
+                     <i class="fas fa-edit"></i>
+                 </a>
             </td>
             <td>
-                <i class="fas fa-times-circle">
-                    @Html.ActionLink("", "Delete", new { id=item.Id })
-                </i>
-                
+                <a asp-action="Delete" asp-route-id="@item.Id">
+                    <i class="fas fa-times-circle" id="iconeRemover"></i>
+                </a>
             </td>
         </tr>
 }
