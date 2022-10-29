@@ -75,6 +75,7 @@ namespace Service
                         where Servicopublico.Nome.Equals(nomeServico)
                         select new OrgaoPublicoDTO
                         {
+                            Id = Servicopublico.IdOrgaoPublicoNavigation.Id,
                             IdServico = Servicopublico.Id,
                             Nome = Servicopublico.IdOrgaoPublicoNavigation.Nome,
                             Atendimento = string.Join(" às ", Servicopublico.IdOrgaoPublicoNavigation.HoraAbre,

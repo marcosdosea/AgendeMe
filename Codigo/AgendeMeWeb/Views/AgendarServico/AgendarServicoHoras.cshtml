@@ -1,13 +1,13 @@
-﻿@model IEnumerable<Core.DTO.AgendaDoServicoHorasDTO>
+﻿@model IEnumerable<Core.DTO.AgendamentoHorasDTO>
 
 <div class="mb-4 pb-4">
     <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto fas fa-building text-center"></i>
     <h2 class="text-center fw-bold azul-text">@ViewBag.nomeOrgaoPublico</h2>
 </div>
 
-<h1 class="mt-5 fw-bold fs-2">Escolha o local desejado</h1>
+<h1 class="mt-5 fw-bold fs-2">Escolha o horário desejado</h1>
 <h4 class="mb-5 fw-light fs-4">
-    Na <span class="fw-bold">@ViewBag.dia</span> 
+    Na <span class="fw-bold">@ViewBag.nomeDia</span>
     o local <span class="fw-bold">@ViewBag.nomeOrgaoPublico</span> oferta o serviço
     <span class="fw-bold">@ViewBag.nomeServicoPublico</span> nestes horários
 </h4>
@@ -17,8 +17,8 @@
     @foreach (var item in Model)
     {
 
-        <div class="br-card hover botao-box">
-            <a class="br-card hover mb-0 back-none" onclick="getServicos('@Url.Action("ServicosPublicos")')">
+            <div class="br-card hover box w-200">
+                <a class="br-card hover mb-0 back-none" onclick="getDadosAgendamento('@Url.Action("ConfirmarAgendamento")',@item.Id)">
                 <div class="card-content">
                     <p class="text-break text-wrap azul-text user-select-none fs-5 mt-4 mb-4 fw-bold text-center">
                         @Html.DisplayFor(modelItem => item.HorarioInicio) às @Html.DisplayFor(modelItem => item.HorarioFim)

@@ -7,7 +7,7 @@
     @if (Model.Any())
         @foreach (var item in Model)
         {
-            <div class="br-card hover botao-box">
+            <div class="br-card hover box w-250">
                 <a class="br-card hover mb-0 back-none" onclick="getServicos('@Url.Action("ServicosPublicos")', @item.Id, '@item.Nome', '@item.Icone')">
                             <div class="card-content">
                                 <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto @Html.DisplayFor(modelItem => item.Icone) text-center"></i>

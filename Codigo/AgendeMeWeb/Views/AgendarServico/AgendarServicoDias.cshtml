@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Core.DTO.AgendamentoDiasDTO>
+
+<div class="mb-4 pb-4">
+    <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto fas fa-building text-center"></i>
+    <h2 class="text-center fw-bold azul-text">@ViewBag.nomeOrgaoPublico</h2>
+</div>
+
+<h1 class="mt-5 fw-bold fs-2">Escolha o local desejado</h1>
+<h4 class="mb-5 fw-light fs-4">
+    O local <span class="fw-bold">@ViewBag.nomeOrgaoPublico</span> oferta o serviço
+    <span class="fw-bold">@ViewBag.nomeServicoPublico</span> nestes dias
+</h4>
+
+<div class="d-flex flex-wrap flex-c-gap mb-5 pb-5 align-items-stretch flex-r-gap d-flex-dinamic">
+    @if (Model.Any())
+        @foreach (var item in Model)
+        {
+            
+                <div class="br-card hover box w-200">
+                <a class="br-card hover mb-0 back-none" onclick="getHoras('@Url.Action("AgendarServicoHoras")', @item.IdServico, '@item.Data.ToString("yyyy-MM-dd")', '@item.DiaSemana', '@ViewBag.nomeOrgaoPublico', '@ViewBag.nomeServicoPublico','@ViewBag.idOrgao')">
+                        <div class="card-content">
+                            <p class="text-break text-wrap azul-text user-select-none fs-4 mt-4 mb-4 fw-bold text-center text-uppercase">@Html.DisplayFor(modelItem => item.DiaSemana)</p>
+                            <p class="text-center fs-5">@item.Data.ToString("dd/MM/yyyy")</p>
+                            <p class="text-center fs-5">@Html.DisplayNameFor(modelItem => item.Vagas): @item.Vagas</p>
+                        </div>
+                    </a>
+                </div>
+            }
+    else
+    {
+        <div class="br-message warning" role="alert">
+            <div class="icon">
+                <i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
+            </div>
+            <div class="content">
+                <span class="message-title">Atenção.</span><span class="message-body">
+                    Não há dias disponíveis nesse órgão para esse serviço público, <br />
+                    Por favor entre em contato com o gestor do órgão para mais informações.
+                </span>
+            </div>
+            <div class="close">
+                <button class="br-button circle small" type="button" aria-label="Fechar">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    }
+</div>

@@ -63,13 +63,65 @@ function getOrgaos(url, nomeServico, iconeServico) {
     });
 }
 
-function getAgendaDoServicoDias(url, idServico, nomeOrgao, nomeServico) {
+function getDias(url, idServico, nomeOrgao, nomeServico, idOrgao) {
     $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
     $.ajax({
         type: "GET",
         url: url,
         dataType: "HTML",
-        data: { idServico: idServico, nomeOrgao: nomeOrgao, nomeServico: nomeServico },
+        data: { idServico: idServico, nomeOrgao: nomeOrgao, nomeServico: nomeServico, idOrgao: idOrgao },
+
+        success: function (result) {
+            $("#ajaxBox").html(result);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //TODO::
+        },
+    });
+}
+
+function getHoras(url, idServico, data, diaSemana, nomeOrgao, nomeServico, idOrgao) {
+    $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "HTML",
+        data: { idServico: idServico, dia: data, nomeDia: diaSemana, nomeOrgao: nomeOrgao, nomeServico: nomeServico, idOrgao: idOrgao },
+
+        success: function (result) {
+            $("#ajaxBox").html(result);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //TODO::
+        },
+    });
+}
+
+function getDadosAgendamento(url, id) {
+    $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "HTML",
+        data: { idDiaAgendamento: id },
+
+        success: function (result) {
+            $("#ajaxBox").html(result);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //TODO::
+        },
+    });
+}
+
+/* temporario */
+function getCidadao(url, button) {
+    button.className = "br-button primary loading";
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "HTML",
+        data: { idServico: idServico, dia: data, nomeDia: diaSemana, nomeOrgao: nomeOrgao, nomeServico: nomeServico, idOrgao: idOrgao },
 
         success: function (result) {
             $("#ajaxBox").html(result);
