@@ -4,113 +4,123 @@
     ViewData["Title"] = "Cadastrar novo cidadão";
 }
 
-<h1>Cadastrar novo cidadão</h1>
+<h1 class="fw-bold fs-3">Cadastro de Cidadão</h1>
 
-<h4>CidadaoViewModel</h4>
+<h4 class="fs-5 fw-normal">Com uma conta agende-me você tem acesso a diversos serviços de agendamento</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
+                <input asp-for="Id" type="hidden" class="form-control" />
                 <span asp-validation-for="Id" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-4 col-lg-12 mb-3">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-4 col-lg-8 mb-3">
                 <label asp-for="Cpf" class="control-label"></label>
                 <input asp-for="Cpf" class="form-control" />
                 <span asp-validation-for="Cpf" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+            <div class="form-group br-datetimepicker col-sm-4 col-lg-8 mb-3" data-mode="single" data-type="text">
+                <div class="br-input has-icon">
+                    <label asp-for="DataNascimento" class="control-label" for="simples-input"></label>
+                    <input asp-for="DataNascimento" class="form-control" id="simples-input" type="text" placeholder="dd/mm/aaaa" data-input="data-input" />
+                    <button class="br-button circle small" type="button" aria-label="Abrir Timepicker" data-toggle="data-toggle" id="simples-input-btn">
+                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group col-sm-4 col-lg-8 mb-3">
+                <label asp-for="Sexo" class="control-label"></label>
+                <input asp-for="Sexo" class="form-control" />
+                <span asp-validation-for="Sexo" class="text-danger"></span>
+            </div>
+           <!-- <div class="form-group br-datetimepicker" data-mode="single" data-type="text">
                 <label asp-for="DataNascimento" class="control-label"></label>
                 <input asp-for="DataNascimento" class="form-control" />
                 <span asp-validation-for="DataNascimento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+                     </div>-->
+            <div class="form-group col-sm-4 col-lg-8 mb-3">
                 <label asp-for="Sus" class="control-label"></label>
                 <input asp-for="Sus" class="form-control" />
                 <span asp-validation-for="Sus" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-4 col-lg-8 mb-3">
                 <label asp-for="Telefone" class="control-label"></label>
                 <input asp-for="Telefone" class="form-control" />
                 <span asp-validation-for="Telefone" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-4 col-lg-12 mb-3">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-4 col-lg-8 mb-3">
                 <label asp-for="Cep" class="control-label"></label>
                 <input asp-for="Cep" class="form-control" />
                 <span asp-validation-for="Cep" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-4 col-lg-4 mb-3">
                 <label asp-for="Estado" class="control-label"></label>
                 <input asp-for="Estado" class="form-control" />
                 <span asp-validation-for="Estado" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-4 col-lg-12 mb-3">
                 <label asp-for="Cidade" class="control-label"></label>
                 <input asp-for="Cidade" class="form-control" />
                 <span asp-validation-for="Cidade" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-4 col-lg-12 mb-3">
                 <label asp-for="Bairro" class="control-label"></label>
                 <input asp-for="Bairro" class="form-control" />
                 <span asp-validation-for="Bairro" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-4 col-lg-10 mb-3">
                 <label asp-for="Rua" class="control-label"></label>
                 <input asp-for="Rua" class="form-control" />
                 <span asp-validation-for="Rua" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-4 col-lg-3 mb-3">
                 <label asp-for="NumeroCasa" class="control-label"></label>
                 <input asp-for="NumeroCasa" class="form-control" />
                 <span asp-validation-for="NumeroCasa" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Sexo" class="control-label"></label>
-                <input asp-for="Sexo" class="form-control" />
-                <span asp-validation-for="Sexo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TipoCidadao" class="control-label"></label>
-                <input asp-for="TipoCidadao" class="form-control" />
+                <input asp-for="TipoCidadao" type="hidden" class="form-control" />
                 <span asp-validation-for="TipoCidadao" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-4 col-lg-11 mb-3">
                 <label asp-for="Complemento" class="control-label"></label>
                 <input asp-for="Complemento" class="form-control" />
                 <span asp-validation-for="Complemento" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdOrgaoPublico" class="control-label"></label>
-                <input asp-for="IdOrgaoPublico" class="form-control" />
+                <input asp-for="IdOrgaoPublico" type="hidden" class="form-control" />
                 <span asp-validation-for="IdOrgaoPublico" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdPrefeitura" class="control-label"></label>
-                <input asp-for="IdPrefeitura" class="form-control" />
+                <input asp-for="IdPrefeitura" type="hidden" class="form-control" />
                 <span asp-validation-for="IdPrefeitura" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                <div class="br-magic-button medium">
+                    <button class="br-button" type="submit">
+                        Cadastrar
+                    </button>
+                </div>
+                <button class="br-button" type="button">
+                    <a class="back-none" asp-action="Index">Voltar para lista</a>
+                </button>
+                <!--<input type="submit" value="Cadastrar" class="btn btn-primary" />-->
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Voltar para lista</a>
 </div>
 
 @section Scripts {
