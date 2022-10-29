@@ -27,5 +27,6 @@ namespace AgendeMeWeb.Models
 
         public SelectList? ListaCargos { get; set; }
         public SelectList? ListaPrefeituras { get; set; }
+        public SelectList? ListaProfissionais { get; set; }
     }
 }

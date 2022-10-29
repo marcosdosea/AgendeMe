@@ -59,9 +59,11 @@ namespace AgendeMeWeb.Controllers
 
             IEnumerable<Cargo> listaCargos = _cargoService.GetAll();
             IEnumerable<Prefeitura> listaPrefeituras = _prefeituraService.GetAll();
+            IEnumerable<Cidadao> listaProfissionais = _cidadaoService.GetAll();
 
             profissionalViewModel.ListaCargos = new SelectList(listaCargos, "Id", "Nome", null);
             profissionalViewModel.ListaPrefeituras = new SelectList(listaPrefeituras, "Id", "Nome");
+            profissionalViewModel.ListaProfissionais = new SelectList(listaProfissionais, "Id", "Nome", null);
 
             return View(profissionalViewModel);
         }
@@ -103,8 +105,8 @@ namespace AgendeMeWeb.Controllers
         // POST: ProfissionalController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int IdCargo, int IdProfissional, int IdPrefeitura, ProfissionalViewModel profissionalModel)
-        {   //TODO
+        public ActionResult EditProfissional(int IdCargo, int IdProfissional, int IdPrefeitura, ProfissionalViewModel profissionalModel)
+        {   
             try
             {
                 if (ModelState.IsValid)
