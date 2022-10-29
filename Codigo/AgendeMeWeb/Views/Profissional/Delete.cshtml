@@ -1,27 +1,21 @@
-﻿@model Core.DTO.ProfissionalDTO
+﻿@model AgendeMeWeb.Models.ProfissionalViewModel
 
-<h3>Are you sure you want to delete this?</h3>
+@{
+    ViewData["Title"] = "Remover Profissional";
+}
+
+<h1>Remover Profissional</h1>
+
+<h3>Tem certeza de que deseja remover este profissional?</h3>
 <div>
-    <h4>ProfissionalDTO</h4>
+    <h4>@Model.NomePrefeitura</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdCidadao)
+            @Html.DisplayNameFor(model => model.NomeProfissional)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdCidadao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeCidadao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomeCidadao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeCargo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomeCargo)
+            @Html.DisplayFor(model => model.NomeProfissional)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.NomePrefeitura)
@@ -29,10 +23,19 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.NomePrefeitura)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NomeCargo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NomeCargo)
+        </dd>
     </dl>
     
-    <form asp-action="Delete">
+    <form asp-action="DeleteProfissional">
+        <input type="hidden" name="idCargo" value="@Model.IdCargo" />
+        <input type="hidden" name="idProfissional" value="@Model.IdProfissional" />
+        <input type="hidden" name="idPrefeitura" value="@Model.IdPrefeitura" />
         <input type="submit" value="Remover" class="btn btn-danger" /> |
-        <a asp-action="Index">Voltar para a lista</a>
+        <a asp-action="Index">Voltar para a lista de profissionais</a>
     </form>
 </div>
