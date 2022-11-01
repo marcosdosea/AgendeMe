@@ -4,35 +4,39 @@
     ViewData["Title"] = "Cadastrar novo cargo";
 }
 
-<div class="row justify-content-start">
+<div class="row container col-md-8 col-lg-6 mt-5">
     <h1 class="mb-0">Cadastro de Cargo</h1>
     <h4 class="mt-2 mb-6">Sessão para cadastro de cargos</h4>
     
     <form asp-action="Create">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <div class="col-sm-6 col-lg-4 mb-3 ps-0">
+        <div class="row mb-3 px-0">
             <div class="br-input">
                 <label asp-for="Nome"></label>
                 <input asp-for="Nome" type="text" placeholder="Nome do cargo" />
             </div>
         </div>
 
-        <div class="col-sm-6 col-lg-4 mb-6 ps-0">
+        <div class="row mb-6 px-0">
             <div class="br-textarea large">
                 <label asp-for="Descricao"></label>
                 <textarea asp-for="Descricao" placeholder="Descrição do que faz o cargo"></textarea>
             </div>
         </div>
-            
-        <div class="col-sm-3 col-lg-2 br-magic-button ms-5">
-            <button type="submit" class="br-button">Cadastrar Cargo</button>
+
+        <div class="d-grid gap-2">
+            <div class="br-magic-button small col-7 col-lg-6 mx-auto justify-content-center">
+                <button type="submit" class="br-button btn-block">Cadastrar Cargo</button>
+            </div>
         </div>
 
     </form>
 
-    <div class="">
-        <a asp-action="Index">Voltar para lista</a>
+    <div class="d-grid gap-2 text-center mt-3 justify-content-center">
+        <a class="br-button secondary small" asp-action="Index">
+            Voltar para a lista
+        </a>
     </div>
 
 </div>
