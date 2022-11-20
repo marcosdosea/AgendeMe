@@ -43,6 +43,9 @@ namespace Service
         /// <returns></returns>
         public int Create(Cidadao cidadao)
         {
+            if (cidadao.TipoCidadao == null)
+                cidadao.TipoCidadao = "Cidadao";
+
             _context.Add(cidadao);
             _context.SaveChanges();
             return cidadao.Id;
