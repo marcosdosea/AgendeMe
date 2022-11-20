@@ -2,6 +2,7 @@
 using AgendeMeWeb.Models;
 using AutoMapper;
 using Core;
+using Core.DTO;
 using Core.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -30,6 +31,7 @@ namespace AgendeMeWeb.Controllers.Tests
             {
                 cfg.AddProfile(new AgendarServicoProfile());
                 cfg.AddProfile(new PrefeituraProfile());
+                cfg.AddProfile(new AreaDeServicoProfile());
             });
             IMapper mapper = new Mapper(mapperConfig);
 
@@ -48,20 +50,18 @@ namespace AgendeMeWeb.Controllers.Tests
             mockServiceAreaDeServico.Setup(service => service.GetAllByIdPrefeitura(1))
                 .Returns(GetTestAreasDeServico());
 
-            /*mockServiceServicoPublico.Setup(service => service.GetAll())
+            mockServiceServicoPublico.Setup(service => service.GetAllByIdArea(1))
                 .Returns(GetTestServicosPublico());
-            mockServiceServicoPublico.Setup(service => service.Get(1))
-                .Returns(GetTargetServicoPublico());
 
-            mockServiceOrgaoPublico.Setup(service => service.GetAll())
+            mockServiceOrgaoPublico.Setup(service => service.GetAllByNomeServicoPublico("Clínico Geral"))
                 .Returns(GetTestOrgaosPublicos());
-            mockServiceOrgaoPublico.Setup(service => service.Get(1))
-                .Returns(GetTargetOrgaoPublico());
 
-            mockServiceDiaAgendamento.Setup(service => service.GetAll())
-                .Returns(GetTestDiasAgendamento());
-            mockServiceDiaAgendamento.Setup(service => service.Get(1))
-                .Returns(GetTargetDiaAgendamento());*/
+            mockServiceDiaAgendamento.Setup(service => service.GetAllDiasByIdServico(1))
+                .Returns(GetTestAgendamentoDias());
+            mockServiceDiaAgendamento.Setup(service => service.GetAllHorasByIdServicoAndDia(1, new DateTime(2022, 10, 09)))
+                .Returns(GetTestAgendamentoHoras());
+            mockServiceDiaAgendamento.Setup(service => service.GetDadosAgendamento(1))
+                .Returns(GetTargetConfirmarAgendamento());
 
             controller = new AgendarServicoController(mockServiceAgendamento.Object,
                                                       mockServicePrefeitura.Object,
@@ -191,7 +191,7 @@ namespace AgendeMeWeb.Controllers.Tests
         public void AtenderCidadaoTest()
         {
             // Act
-            var result = controller.AtenderCidadao(GetNewAgendarServico().Id);
+            var result = controller.AtenderCidadao(1);
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
@@ -237,7 +237,7 @@ namespace AgendeMeWeb.Controllers.Tests
         public void AgendarRetornoTest()
         {
             // Act
-            var result = controller.AgendarRetorno(GetNewAgendarServico().Id);
+            var result = controller.AgendarRetorno(1);
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
@@ -256,48 +256,119 @@ namespace AgendeMeWeb.Controllers.Tests
             var result = controller.AreasDeServico(1);
 
             // Assert
-            Assert.IsInstanceOfType(result, typeof(ViewResult));
-            ViewResult viewResult = (ViewResult)result;
+            Assert.IsInstanceOfType(result, typeof(PartialViewResult));
+            PartialViewResult viewResult = (PartialViewResult)result;
             Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(List<AreaDeServicoViewModel>));
 
             List<AreaDeServicoViewModel> lista = (List<AreaDeServicoViewModel>)viewResult.ViewData.Model;
-            Assert.AreEqual(2, lista.Count);
+            Assert.AreEqual(3, lista.Count);
         }
 
         [TestMethod()]
         public void ServicosPublicosTest()
         {
-            Assert.Fail();
+            // Act
+            var result = controller.ServicosPublicos(1, "Saúde", "Icone");
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(PartialViewResult));
+            PartialViewResult viewResult = (PartialViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(List<ServicoPublicoDTO>));
+
+            List<ServicoPublicoDTO> lista = (List<ServicoPublicoDTO>)viewResult.ViewData.Model;
+            Assert.AreEqual(3, lista.Count);
         }
 
         [TestMethod()]
         public void OrgaosPublicosTest()
         {
-            Assert.Fail();
+            // Act
+            var result = controller.OrgaosPublicos("Clínico Geral", "Icone");
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(PartialViewResult));
+            PartialViewResult viewResult = (PartialViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(List<OrgaoPublicoDTO>));
+
+            List<OrgaoPublicoDTO> lista = (List<OrgaoPublicoDTO>)viewResult.ViewData.Model;
+            Assert.AreEqual(3, lista.Count);
         }
 
         [TestMethod()]
         public void AgendarServicoDiasTest()
         {
-            Assert.Fail();
+            // Act
+            var result = controller.AgendarServicoDias(1,
+                "Hospital Regional de Itabaiana",
+                "Clínico Geral", 1);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(PartialViewResult));
+            PartialViewResult viewResult = (PartialViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(List<AgendamentoDiasDTO>));
+
+            List<AgendamentoDiasDTO> lista = (List<AgendamentoDiasDTO>)viewResult.ViewData.Model;
+            Assert.AreEqual(3, lista.Count);
         }
 
         [TestMethod()]
         public void AgendarServicoHorasTest()
         {
-            Assert.Fail();
+            // Act
+            var result = controller.AgendarServicoHoras(1,
+                new DateTime(2022, 10, 09),
+                "Segunda",
+                "Hospital Regional de Itabaiana",
+                "Clínico Geral",
+                1);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(PartialViewResult));
+            PartialViewResult viewResult = (PartialViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(List<AgendamentoHorasDTO>));
+
+            List<AgendamentoHorasDTO> lista = (List<AgendamentoHorasDTO>)viewResult.ViewData.Model;
+            Assert.AreEqual(3, lista.Count);
         }
 
         [TestMethod()]
         public void ConfirmarAgendamentoTest_Get()
         {
-            Assert.Fail();
+            // Act
+            var result = controller.ConfirmarAgendamento(1);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(PartialViewResult));
+            PartialViewResult viewResult = (PartialViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(ConfirmarAgendamentoDTO));
         }
 
         [TestMethod()]
-        public void ConfirmarAgendamentoTest_Post()
+        public void ConfirmarAgendamentoTest_Post_Valid()
         {
-            Assert.Fail();
+            // Act
+            var result = controller.ConfirmarAgendamento(GetNewAgendarServico());
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
+            RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
+            Assert.IsNull(redirectToActionResult.ControllerName);
+            Assert.AreEqual("List", redirectToActionResult.ActionName);
+        }
+
+        [TestMethod()]
+        public void ConfirmarAgendamentoTest_Post_InValid()
+        {
+            // Arrange
+            controller.ModelState.AddModelError("IdCidadao", "Campo requerido");
+
+            // Act
+            var result = controller.ConfirmarAgendamento(GetNewAgendarServico());
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            ViewResult viewResult = (ViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(ConfirmarAgendamentoDTO));
         }
 
         private AgendarServicoViewModel GetNewAgendarServico()
@@ -444,8 +515,143 @@ namespace AgendeMeWeb.Controllers.Tests
                     Id = 3,
                     Nome = "Esporte",
                     Icone = "qualquer icone",
-                    IdPrefeitura = 2
+                    IdPrefeitura = 1
                 }
+            };
+        }
+
+        private IEnumerable<ServicoPublicoDTO> GetTestServicosPublico()
+        {
+            return new List<ServicoPublicoDTO>
+            {
+                new ServicoPublicoDTO
+                {
+                    Nome = "Clínico Geral",
+                    Icone = "qualquer icone",
+                },
+                new ServicoPublicoDTO
+                {
+                    Nome = "Clínico Geral",
+                    Icone = "qualquer icone",
+                },
+                new ServicoPublicoDTO
+                {
+                    Nome = "Clínico Geral",
+                    Icone = "qualquer icone",
+                }
+            };
+        }
+
+        private IEnumerable<OrgaoPublicoDTO> GetTestOrgaosPublicos()
+        {
+            return new List<OrgaoPublicoDTO>
+            {
+                new OrgaoPublicoDTO
+                {
+                    Id = 1,
+                    Nome = "OAB-Ordem dos Advogados do Brasil de Sergipe",
+                    Bairro = "Centro",
+                    Rua = "Av. Dr. Luiz Magalhães",
+                    Numero = "9",
+                    Atendimento = "07:00 às 12:00"
+                },
+                new OrgaoPublicoDTO
+                {
+                    Id = 1,
+                    Nome = "Hospital Regional de itabaiana Dr. Pedro Garcia Moreno",
+                    Bairro = "Centro",
+                    Rua = "Av. Treze de Junho",
+                    Numero = "776",
+                    Atendimento = "07:00 às 12:00"
+
+                },
+                new OrgaoPublicoDTO
+                {
+                    Id = 1,
+                    Nome = "Secretaria de Saúde de Itabaiana Sergipe",
+                    Bairro = "Sítio Porto",
+                    Rua = "Av. Ver. Olímpio Grande",
+                    Numero = "77",
+                    Atendimento = "07:00 às 12:00"
+                }
+            };
+        }
+
+        private IEnumerable<AgendamentoDiasDTO> GetTestAgendamentoDias()
+        {
+            return new List<AgendamentoDiasDTO>
+            {
+                new AgendamentoDiasDTO
+                {
+                    IdServico = 1,
+                    DiaSemana = "Segunda",
+                    Data = new DateTime(2022, 10, 09),
+                    Vagas = 20
+                },
+                new AgendamentoDiasDTO
+                {
+                    IdServico = 1,
+                    DiaSemana = "Terça",
+                    Data = new DateTime(2022, 10, 09),
+                    Vagas = 20
+
+                },
+                new AgendamentoDiasDTO
+                {
+                    IdServico = 1,
+                    DiaSemana = "Quarta",
+                    Data = new DateTime(2022, 10, 09),
+                    Vagas = 20
+                }
+            };
+        }
+
+        private IEnumerable<AgendamentoHorasDTO> GetTestAgendamentoHoras()
+        {
+            return new List<AgendamentoHorasDTO>
+            {
+                new AgendamentoHorasDTO
+                {
+                    Id = 1,
+                    IdServico = 1,
+                    HorarioInicio = "07:00",
+                    HorarioFim = "12:00",
+                    Vagas = 10
+                },
+                new AgendamentoHorasDTO
+                {
+                    Id = 2,
+                    IdServico = 1,
+                    HorarioInicio = "13:00",
+                    HorarioFim = "17:00",
+                    Vagas = 10
+
+                },
+                new AgendamentoHorasDTO
+                {
+                    Id = 1,
+                    IdServico = 1,
+                    HorarioInicio = "18:00",
+                    HorarioFim = "20:00",
+                    Vagas = 5
+                }
+            };
+        }
+
+        private ConfirmarAgendamentoDTO GetTargetConfirmarAgendamento()
+        {
+            return new ConfirmarAgendamentoDTO
+            {
+                Id = 1,
+                NomeServico = "Clínico Geral",
+                OrgaoPublico = "Clínica Dono Mininão",
+                Bairro = "Centro",
+                Rua = "Rua da Clínica Dono Mininão",
+                Numero = "111",
+                Complemento = "Próximo ao México Maravilhoso",
+                Data = new DateTime(2022, 10, 09),
+                Horario = "07:00 às 12:00",
+                DataCadastro = DateTime.Now
             };
         }
     }
