@@ -25,7 +25,13 @@ namespace AgendeMeWeb.Controllers.Tests
             var mockServiceOrgaoPublico = new Mock<IOrgaoPublicoService>();
             var mockServiceDiaAgendamento = new Mock<IDiaAgendamentoService>();
 
-            IMapper mapper = new MapperConfiguration(cfg => cfg.AddProfile(new AgendarServicoProfile())).CreateMapper();
+            MapperConfiguration mapperConfig = new MapperConfiguration(
+            cfg =>
+            {
+                cfg.AddProfile(new AgendarServicoProfile());
+                cfg.AddProfile(new PrefeituraProfile());
+            });
+            IMapper mapper = new Mapper(mapperConfig);
 
             mockServiceAgendamento.Setup(service => service.GetAll()).Returns(GetTestAgendamentos);
             mockServiceAgendamento.Setup(service => service.Get(1))
@@ -38,12 +44,11 @@ namespace AgendeMeWeb.Controllers.Tests
             mockServicePrefeitura.Setup(service => service.GetAll())
                 .Returns(GetTestPrefeituras());
 
-            /*mockServiceAreaDeServico.Setup(service => service.GetAll())
-                .Returns(GetTestAreasDeServico());
-            mockServiceAreaDeServico.Setup(service => service.Get(1))
-                .Returns(GetTargetAreaDeServico());
 
-            mockServiceServicoPublico.Setup(service => service.GetAll())
+            mockServiceAreaDeServico.Setup(service => service.GetAllByIdPrefeitura(1))
+                .Returns(GetTestAreasDeServico());
+
+            /*mockServiceServicoPublico.Setup(service => service.GetAll())
                 .Returns(GetTestServicosPublico());
             mockServiceServicoPublico.Setup(service => service.Get(1))
                 .Returns(GetTargetServicoPublico());
@@ -72,6 +77,7 @@ namespace AgendeMeWeb.Controllers.Tests
         {
             // Act
             var result = controller.Index();
+
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
@@ -244,7 +250,52 @@ namespace AgendeMeWeb.Controllers.Tests
         }
 
         [TestMethod()]
-        public void AjaxAreasDeServicoTest()
+        public void AreasDeServicoTest()
+        {
+            // Act
+            var result = controller.AreasDeServico(1);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            ViewResult viewResult = (ViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(List<AreaDeServicoViewModel>));
+
+            List<AreaDeServicoViewModel> lista = (List<AreaDeServicoViewModel>)viewResult.ViewData.Model;
+            Assert.AreEqual(2, lista.Count);
+        }
+
+        [TestMethod()]
+        public void ServicosPublicosTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void OrgaosPublicosTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void AgendarServicoDiasTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void AgendarServicoHorasTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void ConfirmarAgendamentoTest_Get()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void ConfirmarAgendamentoTest_Post()
         {
             Assert.Fail();
         }
@@ -367,6 +418,34 @@ namespace AgendeMeWeb.Controllers.Tests
 
                 }
 
+            };
+        }
+
+        private IEnumerable<Areadeservico> GetTestAreasDeServico()
+        {
+            return new List<Areadeservico>
+            {
+                new Areadeservico
+                {
+                    Id = 1,
+                    Nome = "Saúde",
+                    Icone = "qualquer icone",
+                    IdPrefeitura = 1
+                },
+                new Areadeservico
+                {
+                    Id = 2,
+                    Nome = "Transporte",
+                    Icone = "qualquer icone",
+                    IdPrefeitura = 1
+                },
+                new Areadeservico
+                {
+                    Id = 3,
+                    Nome = "Esporte",
+                    Icone = "qualquer icone",
+                    IdPrefeitura = 2
+                }
             };
         }
     }
