@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,16 +19,38 @@ namespace Service
         /// </summary>
         /// <param name="agendamento">Dados do agendamento</param>
         /// <returns>Id do agendamento</returns>
-        public int Create(Agendamento agendamento)
+        public async Task<int> Create(Agendamento agendamento)
         {
-            if (agendamento.IdRetorno != null)
-                agendamento.Tipo = "Retorno";
-            else
-                agendamento.Tipo = "Agendamento";
-            agendamento.Situacao = "Agendado";
-            _context.Add(agendamento);
-            _context.SaveChanges();
-            return agendamento.Id;
+            using var transaction = _context.Database.BeginTransaction();
+
+            try
+            {
+                if (agendamento.IdRetorno != null)
+                    agendamento.Tipo = "Retorno";
+                else
+                    agendamento.Tipo = "Agendamento";
+                agendamento.Situacao = "Agendado";
+
+                await _context.AddAsync(agendamento);
+
+                var diaAgendamento = await _context.Diaagendamentos.FindAsync(agendamento.IdDiaAgendamento);
+                if (diaAgendamento.VagasAtendimento > diaAgendamento.VagasAgendadas)
+                {
+                    diaAgendamento.VagasAgendadas += 1;
+                    _context.Update(diaAgendamento);
+                }
+                else
+                {
+                    await transaction.RollbackAsync();
+                }
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+                return agendamento.Id;
+            }
+            catch
+            {
+                return -1;
+            }
         }
 
         /// <summary>
@@ -66,6 +89,28 @@ namespace Service
         public IEnumerable<Agendamento> GetAll()
         {
             return _context.Agendamentos.AsNoTracking();
+        }
+
+        public AgendamentoDTO GetDados(int id)
+        {
+            var query = from agendamento in _context.Agendamentos
+                        where agendamento.Id.Equals(id)
+                        select new AgendamentoDTO
+                        {
+                            Id = agendamento.Id,
+                            Tipo = agendamento.Tipo,
+                            Situacao = agendamento.Situacao,
+                            NomeServico = agendamento.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.Nome,
+                            OrgaoPublico = agendamento.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Nome,
+                            Bairro = agendamento.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Bairro,
+                            Rua = agendamento.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Rua,
+                            Numero = agendamento.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Numero,
+                            Complemento = agendamento.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Complemento,
+                            Data = agendamento.IdDiaAgendamentoNavigation.Data,
+                            Horario = string.Join(" às ", agendamento.IdDiaAgendamentoNavigation.HorarioInicio, agendamento.IdDiaAgendamentoNavigation.HorarioFim),
+                            DataCadastro = agendamento.DataCadastro
+                        };
+            return query.AsNoTracking().First();
         }
     }
 }

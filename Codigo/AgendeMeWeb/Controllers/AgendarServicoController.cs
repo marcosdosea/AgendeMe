@@ -210,9 +210,19 @@ namespace AgendeMeWeb.Controllers
             try
             {
                 var agendamento = _mapper.Map<Agendamento>(agendamentoModel);
-                _agendamentoService.Create(agendamento);
+                var id = _agendamentoService.Create(agendamento);
 
-                return RedirectToAction(nameof(List));
+                if (id.Result == -1)
+                {
+                    ViewBag.erro = "Ocorreu um problema, por favor tente novamente!";
+                    var dadosAgendamento = _diaAgendamentoService.GetDadosAgendamento(agendamentoModel.IdDiaAgendamento);
+                    return View(dadosAgendamento);
+                }
+                else
+                {
+                    return RedirectToAction(nameof(AgendamentoConfirmado), new { id = id.Result });
+                }
+
             }
             catch
             {
@@ -228,6 +238,13 @@ namespace AgendeMeWeb.Controllers
         {
             CidadaoDTO cidadaoDTO = _cidadaoService.GetByCPF(CPF);
             return PartialView(cidadaoDTO);
+        }
+
+        [HttpGet]
+        public ActionResult AgendamentoConfirmado(int id)
+        {
+            AgendamentoDTO agendamento = _agendamentoService.GetDados(id);
+            return View(agendamento);
         }
     }
 }
