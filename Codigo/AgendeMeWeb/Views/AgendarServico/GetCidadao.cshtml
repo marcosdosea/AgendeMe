@@ -1,0 +1,14 @@
+﻿@model Core.DTO.CidadaoDTO
+
+
+<p class="text-break text-wrap user-select-none fs-5 mt-2 text-center">
+    <span class="fw-bold">@Html.DisplayNameFor(model => model.Nome):</span> @Model.Nome
+</p>
+<p class="text-break text-wrap user-select-none fs-5 mt-2 text-center">
+    <span class="fw-bold">@Html.DisplayNameFor(model => model.DataNascimento):</span> @Model.DataNascimento.ToString("dd/MM/yyyy")
+</p>
+<p class="text-break text-wrap user-select-none fs-5 mt-2 text-center">
+    <span class="fw-bold">@Html.DisplayNameFor(model => model.Cidade):</span> @Model.Cidade
+</p>
+
+<input type="hidden" value="@Model.Id" id="idCidadao"/>
