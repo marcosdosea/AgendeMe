@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\datatable\**" />
+    <Content Remove="wwwroot\lib\datatable\**" />
+    <EmbeddedResource Remove="wwwroot\lib\datatable\**" />
+    <EntityDeploy Remove="wwwroot\lib\datatable\**" />
+    <None Remove="wwwroot\lib\datatable\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\assets\" />
   </ItemGroup>
 

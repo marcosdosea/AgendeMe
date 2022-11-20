@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<Core.DTO.AgendadoservicoDTO>
 
-@{
+@{          
     ViewData["Title"] = "Agenda de serviços";
 }
+<link rel="stylesheet" type="text/css" href="~/lib/datatable/css/jquery.dataTables.min.css" />
+
 
 <h1>
     Agenda de serviços
@@ -16,7 +18,7 @@
     </p>
 </div>
 
-<table class="table">
+<table id="tableServicoPublico" class="table">
     <thead>
         <tr>
             <th>
@@ -81,3 +83,30 @@
 }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        $(document).ready( function () {
+            $('#tableServicoPublico').DataTable({
+                  language: {
+                    url: '/lib/datatable/js/pt-BR.json'
+                },
+                columns: [
+                    { data: "Id" },
+                    { data: "NomeDoServico" },
+                    { data: "DiaSemana" },
+                    { data: "HorarioInicio" },
+                    { data: "HorarioFim" },
+                    { data: "NomeDoProfissional" },
+                    { data: "VagasAtendimento" },
+                    { data: "VagasRetorno" }
+                ],
+            });
+        } );
+    </script>
+    
+   <script src="~/lib/datatable/js/jquery.dataTables.min.js"></script>
+}
+
+
+ 
