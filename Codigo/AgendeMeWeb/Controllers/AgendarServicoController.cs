@@ -1,6 +1,7 @@
 ﻿using AgendeMeWeb.Models;
 using AutoMapper;
 using Core;
+using Core.DTO;
 using Core.Service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +15,7 @@ namespace AgendeMeWeb.Controllers
         private readonly IServicoPublicoService _servicoPublicoService;
         private readonly IOrgaoPublicoService _orgaoPublicoService;
         private readonly IDiaAgendamentoService _diaAgendamentoService;
+        private readonly ICidadaoService _cidadaoService;
         private readonly IMapper _mapper;
 
         public AgendarServicoController(IAgendamentoService agendamentoService,
@@ -22,6 +24,7 @@ namespace AgendeMeWeb.Controllers
                                         IServicoPublicoService servicoPublicoService,
                                         IOrgaoPublicoService orgaoPublicoService,
                                         IDiaAgendamentoService diaAgendamentoService,
+                                        ICidadaoService cidadaoService,
                                         IMapper mapper)
         {
             _agendamentoService = agendamentoService;
@@ -30,6 +33,7 @@ namespace AgendeMeWeb.Controllers
             _servicoPublicoService = servicoPublicoService;
             _orgaoPublicoService = orgaoPublicoService;
             _diaAgendamentoService = diaAgendamentoService;
+            _cidadaoService = cidadaoService;
             _mapper = mapper;
         }
 
@@ -203,28 +207,44 @@ namespace AgendeMeWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmarAgendamento(AgendarServicoViewModel agendamentoModel)
         {
-            if (ModelState.IsValid)
+            try
             {
-                /*Agendamento agendamento = new()
+                var agendamento = _mapper.Map<Agendamento>(agendamentoModel);
+                var id = _agendamentoService.Create(agendamento);
+
+                if (id.Result == -1)
                 {
-                    IdCidadao = idCidadao,
-                    IdAtendente = idAtendente != 0 ? idAtendente : null,
-                    DataCadastro = dataCadastro,
-                    IdDiaAgendamento = idDiaAgendamento,
-                    IdRetorno = idRetorno != 0 ? idRetorno : null
-                };
-                _agendamentoService.Create(agendamento);
-                */
-                return RedirectToAction(nameof(List));
+                    ViewBag.erro = "Ocorreu um problema, por favor tente novamente!";
+                    var dadosAgendamento = _diaAgendamentoService.GetDadosAgendamento(agendamentoModel.IdDiaAgendamento);
+                    return View(dadosAgendamento);
+                }
+                else
+                {
+                    return RedirectToAction(nameof(AgendamentoConfirmado), new { id = id.Result });
+                }
+
             }
-            ViewBag.erro = "O campo CPF é obrigatório";
-            var dadosAgendamento = _diaAgendamentoService.GetDadosAgendamento(agendamentoModel.IdDiaAgendamento);
-            return View(dadosAgendamento);
+            catch
+            {
+                ViewBag.erro = "O campo CPF é obrigatório";
+                var dadosAgendamento = _diaAgendamentoService.GetDadosAgendamento(agendamentoModel.IdDiaAgendamento);
+                return View(dadosAgendamento);
+            }
+
         }
 
+        [HttpGet]
         public ActionResult GetCidadao(string CPF)
         {
-            throw new NotImplementedException();
+            CidadaoDTO cidadaoDTO = _cidadaoService.GetByCPF(CPF);
+            return PartialView(cidadaoDTO);
+        }
+
+        [HttpGet]
+        public ActionResult AgendamentoConfirmado(int id)
+        {
+            AgendamentoDTO agendamento = _agendamentoService.GetDados(id);
+            return View(agendamento);
         }
     }
 }

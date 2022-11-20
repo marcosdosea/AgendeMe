@@ -116,18 +116,28 @@ function getDadosAgendamento(url, id) {
 
 /* temporario */
 function getCidadao(url, button) {
-    button.className = "br-button primary loading";
+    button.className = "br-button primary loading mr-3 mt-2";
+    var cpf = document.getElementById("CPF").value;
     $.ajax({
         type: "GET",
         url: url,
         dataType: "HTML",
-        data: { idServico: idServico, dia: data, nomeDia: diaSemana, nomeOrgao: nomeOrgao, nomeServico: nomeServico, idOrgao: idOrgao },
+        data: { CPF: cpf },
 
         success: function (result) {
-            $("#ajaxBox").html(result);
+            $("#cpfBox").html(result);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //TODO::
+            button.className = "br-button primary mr-3 mt-2";
         },
     });
+}
+
+/* temporario */
+function verificaCidadao() {
+    var cidadaoId = document.getElementById("idCidadao");
+    if (cidadaoId != null) {
+        document.getElementById("idCidadaoForm").value = cidadaoId.value;
+    }
 }

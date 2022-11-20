@@ -127,7 +127,7 @@ namespace Service
                         select new ProfissionalDTO
                         {
                             IdProfissional = cidadao.Id,
-                            IdPrefeitura  = profissional.IdPrefeituraNavigation.Id,
+                            IdPrefeitura = profissional.IdPrefeituraNavigation.Id,
                             IdCargo = profissional.IdCargoNavigation.Id,
                             NomeProfissional = cidadao.Nome,
                             NomeCargo = profissional.IdCargoNavigation.Nome,
@@ -159,6 +159,31 @@ namespace Service
                             Complemento = cidadao.Complemento,
                         };
             return query.AsNoTracking();
+        }
+
+        public CidadaoDTO GetByCPF(string CPF)
+        {
+            var query = from cidadao in _context.Cidadaos
+                        where cidadao.Cpf == CPF
+                        select new CidadaoDTO
+                        {
+                            Id = cidadao.Id,
+                            Nome = cidadao.Nome,
+                            Cpf = cidadao.Cpf,
+                            DataNascimento = cidadao.DataNascimento,
+                            Sexo = cidadao.Sexo,
+                            Sus = cidadao.Sus,
+                            Telefone = cidadao.Telefone,
+                            Email = cidadao.Email,
+                            Cep = cidadao.Cep,
+                            Estado = cidadao.Estado,
+                            Cidade = cidadao.Cidade,
+                            Bairro = cidadao.Bairro,
+                            Rua = cidadao.Rua,
+                            NumeroCasa = cidadao.NumeroCasa,
+                            Complemento = cidadao.Complemento,
+                        };
+            return query.AsNoTracking().First();
         }
 
     }
