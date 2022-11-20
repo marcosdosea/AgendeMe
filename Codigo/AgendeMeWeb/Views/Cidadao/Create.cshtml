@@ -4,19 +4,15 @@
     ViewData["Title"] = "Cadastrar novo cidadão";
 }
 
-<h1>Cadastrar novo cidadão</h1>
+<br />
+<h1 class="fw-bold fs-3">Cadastro de Cidadão</h1>
 
-<h4>CidadaoViewModel</h4>
+<h4 class="fs-5 fw-normal">Com uma conta agende-me você tem acesso a diversos serviços de agendamento</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <!--<div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>-->
             <div class="form-group col-sm-4 col-lg-12 mb-3">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
@@ -92,20 +88,9 @@
                 <span asp-validation-for="Complemento" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TipoCidadao" class="control-label"></label>
-                <input asp-for="TipoCidadao" class="form-control" />
+                <input asp-for="TipoCidadao" type="hidden" class="form-control" />
                 <span asp-validation-for="TipoCidadao" class="text-danger"></span>
             </div>
-            <!--<div class="form-group">
-                <label asp-for="IdOrgaoPublico" class="control-label"></label>
-                <input asp-for="IdOrgaoPublico" class="form-control" />
-                <span asp-validation-for="IdOrgaoPublico" class="text-danger"></span>
-            </div>-->
-            <!--<div class="form-group">
-                <label asp-for="IdPrefeitura" class="control-label"></label>
-                <input asp-for="IdPrefeitura" class="form-control" />
-                <span asp-validation-for="IdPrefeitura" class="text-danger"></span>
-            </div>-->
 
             <div class="form-group">
                 <div class="br-magic-button medium">
@@ -116,16 +101,10 @@
                 <button class="br-button" type="button">
                     <a class="back-none" asp-action="Index">Voltar para lista</a>
                 </button>
-                <!--<input type="submit" value="Cadastrar" class="btn btn-primary" />-->
             </div>
         </form>
     </div>
 </div>
-
-<!--
-<div>
-    <a asp-action="Index">Voltar para lista</a>
-</div> -->
 
 @section Scripts {
     @{
