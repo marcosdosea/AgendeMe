@@ -200,7 +200,7 @@ namespace AgendeMeWeb.Controllers
         public ActionResult ConfirmarAgendamento(int idDiaAgendamento)
         {
             var dadosAgendamento = _diaAgendamentoService.GetDadosAgendamento(idDiaAgendamento);
-            return View(dadosAgendamento);
+            return PartialView(dadosAgendamento);
         }
 
         [HttpPost]

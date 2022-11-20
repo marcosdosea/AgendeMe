@@ -25,6 +25,7 @@ namespace AgendeMeWeb.Controllers.Tests
             var mockServiceServicoPublico = new Mock<IServicoPublicoService>();
             var mockServiceOrgaoPublico = new Mock<IOrgaoPublicoService>();
             var mockServiceDiaAgendamento = new Mock<IDiaAgendamentoService>();
+            var mockServiceCidadao = new Mock<ICidadaoService>();
 
             MapperConfiguration mapperConfig = new MapperConfiguration(
             cfg =>
@@ -38,6 +39,8 @@ namespace AgendeMeWeb.Controllers.Tests
             mockServiceAgendamento.Setup(service => service.GetAll()).Returns(GetTestAgendamentos);
             mockServiceAgendamento.Setup(service => service.Get(1))
                 .Returns(GetTargetAgendamento());
+            mockServiceAgendamento.Setup(service => service.GetDados(1))
+                .Returns(GetTargetAgendamentoDTO());
             mockServiceAgendamento.Setup(service => service.Edit(It.IsAny<Agendamento>()))
                 .Verifiable();
             mockServiceAgendamento.Setup(service => service.Create(It.IsAny<Agendamento>()))
@@ -63,12 +66,16 @@ namespace AgendeMeWeb.Controllers.Tests
             mockServiceDiaAgendamento.Setup(service => service.GetDadosAgendamento(1))
                 .Returns(GetTargetConfirmarAgendamento());
 
+            mockServiceCidadao.Setup(service => service.GetByCPF("000.000.000-00"))
+                .Returns(GetTargetCidadao());
+
             controller = new AgendarServicoController(mockServiceAgendamento.Object,
                                                       mockServicePrefeitura.Object,
                                                       mockServiceAreaDeServico.Object,
                                                       mockServiceServicoPublico.Object,
                                                       mockServiceOrgaoPublico.Object,
                                                       mockServiceDiaAgendamento.Object,
+                                                      mockServiceCidadao.Object,
                                                       mapper);
         }
 
@@ -353,7 +360,7 @@ namespace AgendeMeWeb.Controllers.Tests
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
             RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
             Assert.IsNull(redirectToActionResult.ControllerName);
-            Assert.AreEqual("List", redirectToActionResult.ActionName);
+            Assert.AreEqual("AgendamentoConfirmado", redirectToActionResult.ActionName);
         }
 
         [TestMethod()]
@@ -366,9 +373,33 @@ namespace AgendeMeWeb.Controllers.Tests
             var result = controller.ConfirmarAgendamento(GetNewAgendarServico());
 
             // Assert
+            Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
+            RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
+            Assert.IsNull(redirectToActionResult.ControllerName);
+        }
+
+        [TestMethod()]
+        public void GetCidadaoTest()
+        {
+            // Act
+            var result = controller.GetCidadao("000.000.000-00");
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(PartialViewResult));
+            PartialViewResult viewResult = (PartialViewResult)result;
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(CidadaoDTO));
+        }
+
+        [TestMethod()]
+        public void AgendamentoConfirmadoTest()
+        {
+            // Act
+            var result = controller.AgendamentoConfirmado(1);
+
+            // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
-            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(ConfirmarAgendamentoDTO));
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(AgendamentoDTO));
         }
 
         private AgendarServicoViewModel GetNewAgendarServico()
@@ -385,6 +416,25 @@ namespace AgendeMeWeb.Controllers.Tests
                 IdRetorno = null
             };
 
+        }
+
+        private AgendamentoDTO GetTargetAgendamentoDTO()
+        {
+            return new AgendamentoDTO
+            {
+                Id = 1,
+                Tipo = "Agendamento",
+                Situacao = "Agendado",
+                NomeServico = "Clínico Geral",
+                OrgaoPublico = "Clínica Dono Mininão",
+                Bairro = "Centro",
+                Rua = "Rua da Clínica Dono Mininão",
+                Numero = "11",
+                Complemento = "Sem",
+                Data = new DateTime(2022, 10, 09),
+                Horario = "07:00 às 12:00",
+                DataCadastro = DateTime.Now
+            };
         }
 
         private Agendamento GetTargetAgendamento()
@@ -652,6 +702,28 @@ namespace AgendeMeWeb.Controllers.Tests
                 Data = new DateTime(2022, 10, 09),
                 Horario = "07:00 às 12:00",
                 DataCadastro = DateTime.Now
+            };
+        }
+
+        private CidadaoDTO GetTargetCidadao()
+        {
+            return new CidadaoDTO
+            {
+                Id = 2,
+                Nome = "José Vinícius de Carvalho Oliveira",
+                Cpf = "649.105.050-59",
+                Sus = "715291864550008",
+                DataNascimento = DateTime.Parse("1979-06-21"),
+                Sexo = "M",
+                Cep = "49560-000",
+                Estado = "SE",
+                Cidade = "Moita Bonita",
+                Bairro = "Anísio Amâncio de Oliveira",
+                Rua = "Rua Ribeiropolis",
+                NumeroCasa = "S/N",
+                Complemento = "Rua do ginásio",
+                Email = "emailteste123@gmail.com",
+                Telefone = "79 994429921"
             };
         }
     }
