@@ -116,7 +116,7 @@ function getDadosAgendamento(url, id) {
 
 /* temporario */
 function getCidadao(url, button) {
-    button.className = "br-button primary loading";
+    button.className = "br-button primary loading mr-3 mt-2";
     var cpf = document.getElementById("CPF").value;
     $.ajax({
         type: "GET",
@@ -129,6 +129,7 @@ function getCidadao(url, button) {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //TODO::
+            button.className = "br-button primary mr-3 mt-2";
         },
     });
 }
