@@ -50,7 +50,7 @@
         <div class="d-flex flex-column align-items-center mt-2">
             <div class="form-group">
                 <label for="CPF" class="control-label">Digite o seu CPF</label>
-                <input name="CPF"  class="form-control" value="" id="CPF"/>
+                <input onfocus="cpfMask(this)" name="CPF" class="form-control" value="" id="CPF" maxlength="14"/>
             </div>
         @if (@ViewBag.erro != null)
         {
@@ -77,3 +77,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/mascaras.js"></script>
+}
