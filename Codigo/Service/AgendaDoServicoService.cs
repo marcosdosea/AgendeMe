@@ -3,7 +3,6 @@ using Core;
 using Core.DTO;
 using Core.Service;
 using LinqKit;
-using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace Service
@@ -106,9 +105,10 @@ namespace Service
                        HorarioFim = AgendaDoServico.HorarioFim,
                        VagasAtendimento = AgendaDoServico.VagasAtendimento,
                        VagasRetorno = AgendaDoServico.VagasRetorno,
-                       NomeDoProfissional = AgendaDoServico.IdProfissionalNavigation.Nome, 
-                       NomeDoServicoPublico  = AgendaDoServico.IdServicoPublicoNavigation.Nome 
+                       NomeDoProfissional = AgendaDoServico.IdProfissionalNavigation.Nome,
+                       NomeDoServicoPublico = AgendaDoServico.IdServicoPublicoNavigation.Nome
                    })
+                   //.OrderBy(sortBy, sortDir)
                    .Skip(skip)
                    .Take(take)
                    .ToList();

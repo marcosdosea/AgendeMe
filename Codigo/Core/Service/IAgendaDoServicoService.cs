@@ -1,4 +1,5 @@
-﻿using Core.DTO;
+﻿using AgendeMeWeb.Models;
+using Core.DTO;
 
 namespace Core.Service
 {
@@ -10,5 +11,6 @@ namespace Core.Service
         Agendadoservico Get(int id);
 
         IEnumerable<AgendadoservicoDTO> GetAll();
+        public IEnumerable<AgendadoservicoDTO> GetByPage(DatatableDTO model, out int filteredResultsCount, out int totalResultsCount);
     }
 }
