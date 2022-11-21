@@ -4,7 +4,7 @@
   "libraries": [
     {
       "library": "datatables@1.10.21",
-      "destination": "wwwroot/lib/datatable/",
+      "destination": "wwwroot/lib/datatable.net/",
       "files": [
         "js/jquery.dataTables.min.js",
         "css/jquery.dataTables.min.css"

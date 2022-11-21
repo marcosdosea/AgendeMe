@@ -3,7 +3,7 @@
 @{          
     ViewData["Title"] = "Agenda de serviços";
 }
-<link rel="stylesheet" type="text/css" href="~/lib/datatable/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="~/lib/datatable.net/css/jquery.dataTables.min.css" />
 
 
 <h1>
@@ -89,7 +89,7 @@
         $(document).ready( function () {
             $('#tableServicoPublico').DataTable({
                   language: {
-                    url: '/lib/datatable/js/pt-BR.json'
+                    url: '/lib/datatable.net/js/pt-BR.json'
                 },
                 columns: [
                     { data: "Id" },
@@ -105,7 +105,7 @@
         } );
     </script>
     
-   <script src="~/lib/datatable/js/jquery.dataTables.min.js"></script>
+   <script src="~/lib/datatable.net/js/jquery.dataTables.min.js"></script>
 }
 
 
