@@ -1,6 +1,10 @@
-﻿using Core;
+﻿using AgendeMeWeb.Models;
+using Core;
+using Core.DTO;
 using Core.Service;
+using LinqKit;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Service
 {
@@ -104,7 +108,7 @@ namespace Service
                        NomeDoProfissional = AgendaDoServico.IdProfissionalNavigation.Nome,
                        NomeDoServicoPublico = AgendaDoServico.IdServicoPublicoNavigation.Nome
                    })
-                   //.OrderBy(sortBy, sortDir)
+                   //.OrderBy(sortBy, sortDir) //Obs: esta está com problemas
                    .Skip(skip)
                    .Take(take)
                    .ToList();
