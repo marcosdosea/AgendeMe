@@ -2,6 +2,8 @@ using Core;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 using Service;
+using Microsoft.AspNetCore.Identity;
+using AgendeMeWeb.Areas.Identity.Data;
 
 namespace AgendeMeWeb
 {
@@ -16,6 +18,9 @@ namespace AgendeMeWeb
 
             builder.Services.AddDbContext<AgendeMeContext>(
                 options => options.UseMySQL(builder.Configuration.GetConnectionString("AgendeMeDatabase")));
+
+                        builder.Services.AddDefaultIdentity<UsuarioIdentity>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<IdentityContext>();
 
             builder.Services.AddTransient<IAgendaDoServicoService, AgendaDoServicoService>();
             builder.Services.AddTransient<IAgendamentoService, AgendamentoService>();
@@ -43,6 +48,7 @@ namespace AgendeMeWeb
             app.UseStaticFiles();
 
             app.UseRouting();
+                        app.UseAuthentication();;
 
             app.UseAuthorization();
 
