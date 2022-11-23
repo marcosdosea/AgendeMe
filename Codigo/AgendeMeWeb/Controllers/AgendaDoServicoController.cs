@@ -22,8 +22,8 @@ namespace AgendeMeWeb.Controllers
         public ActionResult Index()
         {
             var listaAgendasDosServicos = _agendaDoServicoService.GetAll();
-            var listaAgendasDosServicosModel = _mapper.Map<List<AgendaDoServicoViewModel>>(listaAgendasDosServicos);
-            return View(listaAgendasDosServicosModel);
+            /*var listaAgendasDosServicosModel = _mapper.Map<List<AgendaDoServicoViewModel>>(listaAgendasDosServicos);*/
+            return View(listaAgendasDosServicos);
         }
 
         // GET: AgendaDoServicoController/Details/5

@@ -1,28 +1,37 @@
-﻿@model IEnumerable<AgendeMeWeb.Models.AgendaDoServicoViewModel>
+﻿@model IEnumerable<Core.DTO.AgendadoservicoDTO>
 
-@{
+@{          
     ViewData["Title"] = "Agenda de serviços";
 }
+<link rel="stylesheet" type="text/css" href="~/lib/datatable.net/css/jquery.dataTables.min.css" />
 
-<h1>Agenda de serviços</h1>
 
-<p>
-    <a asp-action="Create">Cadastrar nova agenda de serviço</a>
-</p>
-<table class="table">
+<h1>
+    Agenda de serviços
+</h1>
+
+<div id="novaAgenda">
+    <h6>Agenda de serviços cadastradas</h6>
+
+    <p>
+        <a asp-action="Create" class="br-button primary mr-3">Cadastrar nova agenda de serviço</a>
+    </p>
+</div>
+
+<table id="tableServicoPublico" class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.NomeDoServicoPublico)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DiaSemana)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HorarioInicio)
+                Horário
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HorarioFim)
+                @Html.DisplayNameFor(model => model.NomeDoProfissional)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.VagasAtendimento)
@@ -31,28 +40,28 @@
                 @Html.DisplayNameFor(model => model.VagasRetorno)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdServicoPublico)
+                Editar
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdProfissional)
+                Remover
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => item.NomeDoServicoPublico)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DiaSemana)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HorarioInicio)
+                @Html.DisplayFor(modelItem => item.HorarioInicio) às 
+                @Html.DisplayFor(modelItem => item.HorarioFim)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HorarioFim)
+                @Html.DisplayFor(modelItem => item.NomeDoProfissional)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.VagasAtendimento)
@@ -61,17 +70,30 @@
                 @Html.DisplayFor(modelItem => item.VagasRetorno)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdServicoPublico)
+                 <a asp-action="Edit" asp-route-id="@item.Id">
+                     <i class="fas fa-edit"></i>
+                 </a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdProfissional)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new {  id=item.Id }) |
-                @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Remover", "Delete", new { id=item.Id })
+                <a asp-action="Delete" asp-route-id="@item.Id">
+                    <i class="fas fa-times-circle" id="iconeRemover"></i>
+                </a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        $(document).ready( function () {
+            $('#tableServicoPublico').DataTable({
+                  language: {
+                    url: '/lib/datatable.net/js/pt-BR.json'
+                }
+            });
+        } );
+    </script>
+    
+   <script src="~/lib/datatable.net/js/jquery.dataTables.min.js"></script>
+}
