@@ -1,0 +1,57 @@
+﻿@model Core.DTO.AgendamentoDTO
+
+<div class="mb-4 pb-4 text-center">
+    <i class="verde-agende-me icone-botao-box mt-4 w-100 d-block mx-auto fas fa-check-circle text-center"></i>
+    <h2 class="text-center fw-bold azul-text">Agendado com sucesso</h2>
+    <h4 class="mb-5 fw-light fs-4">
+        @Html.DisplayNameFor(model => model.Id): @Html.DisplayFor(model => model.Id)
+    </h4>
+</div>
+
+<h1 class="mt-5 fw-bold fs-2">Agendamento Realizado</h1>
+<h4 class="mb-5 fw-light fs-4">
+    Parabéns seu agendamento foi concluido com sucesso
+</h4>
+
+<div class="card-content">
+    <div class="d-flex flex-column align-items-center">
+        <div class="border border-2 p-3">
+            <p class="text-break text-wrap user-select-none fs-5">
+                <span class="fw-bold">@Html.DisplayNameFor(model => model.NomeServico):</span> @Html.DisplayFor(model => model.NomeServico)
+            </p>
+            <p class="text-break text-wrap user-select-none fs-5 mt-2">
+                <span class="fw-bold">@Html.DisplayNameFor(model => model.OrgaoPublico):</span>
+                @Html.DisplayFor(model => model.OrgaoPublico)
+            </p>
+            <p class="text-break text-wrap user-select-none fs-5 mt-2">
+                <span class="fw-bold">@Html.DisplayNameFor(model => model.Bairro):</span> @Model.Bairro
+            </p>
+            <p class="text-break text-wrap user-select-none fs-5 mt-2">
+                <span class="fw-bold">@Html.DisplayNameFor(model => model.Rua):</span> @Model.Rua
+            </p>
+            <p class="text-break text-wrap user-select-none fs-5 mt-2">
+                <span class="fw-bold">@Html.DisplayNameFor(model => model.Numero):</span> @Model.Numero
+            </p>
+            <p class="text-break text-wrap user-select-none fs-5 mt-2">
+                <span class="fw-bold">@Html.DisplayNameFor(model => model.Complemento):</span> @Model.Complemento
+            </p>
+            <p class="text-break text-wrap user-select-none fs-5 mt-2">
+                <span class="fw-bold">@Html.DisplayNameFor(model => model.Data):</span> @Model.Data.ToString("dd/MM/yyyy")
+            </p>
+            <p class="text-break text-wrap user-select-none fs-5 mt-2">
+                <span class="fw-bold">@Html.DisplayNameFor(model => model.Horario):</span> @Model.Horario
+            </p>
+            <div class="d-flex flex-column align-items-center mt-2">
+                <p class="text-break text-wrap user-select-none fs-5 m-0">
+                    @Html.DisplayNameFor(model => model.DataCadastro)
+                </p>
+                <p class="text-break text-wrap user-select-none fs-5 m-0">
+                    @Model.DataCadastro.ToString("dd/MM/yyyy")
+                </p>
+            </div>
+        </div>
+        <button class="br-button secondary mr-3 mt-3" type="button" onclick="@("window.location.href='" + @Url.Action("List", "AgendarServico") + "'")">
+                Consulta Agendamentos
+        </button>
+    </div>
+</div>

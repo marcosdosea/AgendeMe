@@ -3,11 +3,11 @@
 <h1 class="mt-5 text-center fw-bold fs-2">Áreas Disponíveis</h1>
 <h4 class="mb-5 text-center fw-light fs-4">Encontre o serviço desejado através das áreas</h4>
 
-<div class="d-flex flex-wrap mb-5 pb-5 justify-content-center align-items-stretch flex-c-gap" id="buttonBoxs">
+<div class="d-flex flex-wrap mb-5 pb-5 d-flex-dinamic align-items-stretch flex-c-gap flex-r-gap" id="buttonBoxs">
     @if (Model.Any())
         @foreach (var item in Model)
         {
-            <div class="br-card hover botao-box">
+            <div class="br-card hover box w-250">
                 <a class="br-card hover mb-0 back-none" onclick="getServicos('@Url.Action("ServicosPublicos")', @item.Id, '@item.Nome', '@item.Icone')">
                             <div class="card-content">
                                 <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto @Html.DisplayFor(modelItem => item.Icone) text-center"></i>

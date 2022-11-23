@@ -1,0 +1,42 @@
+﻿@model AgendeMeWeb.Models.ProfissionalViewModel
+
+<h4>Editar Profissional</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditProfissional">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="IdProfissional" class="form-control" type="hidden" />
+            </div>
+            <div class="form-group">
+                <input asp-for="IdPrefeitura" class="form-control" type="hidden" />
+            </div>
+            <div class="form-group">
+                <label asp-for="NomeProfissional" class="control-label"></label>
+                <span asp-for="NomeProfissional" class="form-control" type="hidden">@Model.NomeProfissional</span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NomePrefeitura" class="control-label"></label>
+                <span asp-for="NomePrefeitura" class="form-control" type="hidden">@Model.NomePrefeitura</span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCargo" class="control-label"></label>
+                <select asp-for="IdCargo" asp-items="@Model.ListaCargos" class="form-control"></select>
+                <span asp-validation-for="IdCargo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar para a lista de profissionais</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

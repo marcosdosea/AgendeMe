@@ -87,10 +87,17 @@ namespace AgendeMeWeb.Controllers
         // POST: OrgaoPublicoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, OrgaoPublicoViewModel orgaoPublicoViewModel)
         {
-            _orgaoPublicoService.Delete(id);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                _orgaoPublicoService.Delete(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }

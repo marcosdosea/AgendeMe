@@ -1,5 +1,7 @@
+using AgendeMeWeb.Areas.Identity.Data;
 using Core;
 using Core.Service;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Service;
 
@@ -17,6 +19,46 @@ namespace AgendeMeWeb
             builder.Services.AddDbContext<AgendeMeContext>(
                 options => options.UseMySQL(builder.Configuration.GetConnectionString("AgendeMeDatabase")));
 
+            builder.Services.AddDbContext<IdentityContext>(
+                options => options.UseMySQL(builder.Configuration.GetConnectionString("AgendeMeDatabase")));
+
+            builder.Services.AddDefaultIdentity<UsuarioIdentity>(options =>
+            {
+                // SignIn settings
+                options.SignIn.RequireConfirmedAccount = false;
+                options.SignIn.RequireConfirmedEmail = false;
+                options.SignIn.RequireConfirmedPhoneNumber = false;
+
+                // Password settings
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+
+                // Default User settings.
+                options.User.AllowedUserNameCharacters =
+                        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = false;
+
+                // Default Lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+            }).AddEntityFrameworkStores<IdentityContext>();
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.Cookie.Name = "YourAppCookieName";
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.LoginPath = "/Identity/Account/Login";
+                // ReturnUrlParameter requires 
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
+            });
+
             builder.Services.AddTransient<IAgendaDoServicoService, AgendaDoServicoService>();
             builder.Services.AddTransient<IAgendamentoService, AgendamentoService>();
             builder.Services.AddTransient<IAreaDeServicoService, AreaDeServicoService>();
@@ -25,6 +67,7 @@ namespace AgendeMeWeb
             builder.Services.AddTransient<IOrgaoPublicoService, OrgaoPublicoService>();
             builder.Services.AddTransient<IPrefeituraService, PrefeituraService>();
             builder.Services.AddTransient<IServicoPublicoService, ServicoPublicoService>();
+            builder.Services.AddTransient<IDiaAgendamentoService, DiaAgendamentoService>();
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -42,6 +85,9 @@ namespace AgendeMeWeb
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
+
+            app.MapRazorPages();
 
             app.UseAuthorization();
 

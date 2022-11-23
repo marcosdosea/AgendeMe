@@ -12,10 +12,8 @@ namespace Core
             Agendadoservicos = new HashSet<Agendadoservico>();
             AgendamentoIdAtendenteNavigations = new HashSet<Agendamento>();
             AgendamentoIdCidadaoNavigations = new HashSet<Agendamento>();
-            AgendamentoIdProfissionalNavigations = new HashSet<Agendamento>();
             Atendenteorgaopublicos = new HashSet<Atendenteorgaopublico>();
-            Profissionalcargos = new HashSet<Profissionalcargo>();
-            Profissionalprefeituras = new HashSet<Profissionalprefeitura>();
+            Cargoprofissionalprefeituras = new HashSet<Cargoprofissionalprefeitura>();
         }
 
         public int Id { get; set; }
@@ -42,9 +40,7 @@ namespace Core
         public virtual ICollection<Agendadoservico> Agendadoservicos { get; set; }
         public virtual ICollection<Agendamento> AgendamentoIdAtendenteNavigations { get; set; }
         public virtual ICollection<Agendamento> AgendamentoIdCidadaoNavigations { get; set; }
-        public virtual ICollection<Agendamento> AgendamentoIdProfissionalNavigations { get; set; }
         public virtual ICollection<Atendenteorgaopublico> Atendenteorgaopublicos { get; set; }
-        public virtual ICollection<Profissionalcargo> Profissionalcargos { get; set; }
-        public virtual ICollection<Profissionalprefeitura> Profissionalprefeituras { get; set; }
+        public virtual ICollection<Cargoprofissionalprefeitura> Cargoprofissionalprefeituras { get; set; }
     }
 }

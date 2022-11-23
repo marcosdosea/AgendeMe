@@ -62,3 +62,82 @@ function getOrgaos(url, nomeServico, iconeServico) {
         },
     });
 }
+
+function getDias(url, idServico, nomeOrgao, nomeServico, idOrgao) {
+    $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "HTML",
+        data: { idServico: idServico, nomeOrgao: nomeOrgao, nomeServico: nomeServico, idOrgao: idOrgao },
+
+        success: function (result) {
+            $("#ajaxBox").html(result);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //TODO::
+        },
+    });
+}
+
+function getHoras(url, idServico, data, diaSemana, nomeOrgao, nomeServico, idOrgao) {
+    $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "HTML",
+        data: { idServico: idServico, dia: data, nomeDia: diaSemana, nomeOrgao: nomeOrgao, nomeServico: nomeServico, idOrgao: idOrgao },
+
+        success: function (result) {
+            $("#ajaxBox").html(result);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //TODO::
+        },
+    });
+}
+
+function getDadosAgendamento(url, id) {
+    $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "HTML",
+        data: { idDiaAgendamento: id },
+
+        success: function (result) {
+            $("#ajaxBox").html(result);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //TODO::
+        },
+    });
+}
+
+/* temporario */
+function getCidadao(url, button) {
+    button.className = "br-button primary loading mr-3 mt-2";
+    var cpf = document.getElementById("CPF").value;
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "HTML",
+        data: { CPF: cpf },
+
+        success: function (result) {
+            $("#cpfBox").html(result);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //TODO::
+            button.className = "br-button primary mr-3 mt-2";
+        },
+    });
+}
+
+/* temporario */
+function verificaCidadao() {
+    var cidadaoId = document.getElementById("idCidadao");
+    if (cidadaoId != null) {
+        document.getElementById("idCidadaoForm").value = cidadaoId.value;
+    }
+}

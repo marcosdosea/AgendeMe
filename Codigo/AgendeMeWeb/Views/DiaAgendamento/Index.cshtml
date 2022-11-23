@@ -1,0 +1,83 @@
+﻿@model IEnumerable<AgendeMeWeb.Models.DiaAgendamentoViewModel>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaSemana)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HorarioInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HorarioFim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VagasAtendimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VagasAgendadas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VagasRetorno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VagasAgendadasRetorno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdServicoPublico)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaSemana)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HorarioInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HorarioFim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VagasAtendimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VagasAgendadas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VagasRetorno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VagasAgendadasRetorno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdServicoPublico)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

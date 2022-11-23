@@ -9,10 +9,6 @@
     
     <!-- Design System GOV.BR -->
     <link rel="stylesheet"
-          href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css" />
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900&amp;display=swap" />
-    <link rel="stylesheet"
           href="~/css/core.min.css" />
     <!-- Font Awesome utilizado pelo GOV.BR -->
     <link rel="stylesheet"
@@ -43,7 +39,7 @@
                                 <a class="br-item" href="javascript:void(0)">Prefeituras</a>
                                 <a class="br-item" href="javascript:void(0)">Ajuda</a>
                                 <a class="br-item" href="javascript:void(0)">Acessibilidade</a>
-                                <a class="br-item" href="javascript:void(0)">Cadastre-se</a>
+                                <a class="br-item" id="register" asp-area="Identity" asp-page="/Account/Register">Cadastre-se</a>
                         </div>
                     </div><span class="br-divider vertical mx-half mx-sm-1"></span>
                     <div class="header-functions dropdown">
@@ -63,9 +59,7 @@
                     </div>
                     <div>
                         <div class="header-sign-in">
-                            <button class="br-sign-in small" type="button" data-trigger="login">
-                                <i class="fas fa-user" aria-hidden="true"></i><span class="d-sm-inline">Entrar</span>
-                            </button>
+                            <partial name="_LoginPartial" />
                         </div>
                     </div>
                 </div>
@@ -163,6 +157,7 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/vanilla-masker.min.js"></script>
     <!-- Scripts de componentes GOV.BR -->
     <script src="~/js/core-init.js"></script>
 

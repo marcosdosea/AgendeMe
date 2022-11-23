@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AgendeMeWeb.Models.ServicoPublicoViewModel>
+﻿@model IEnumerable<Core.DTO.ServicoPublicoDTO>
 
 <div class="mb-4 pb-4">
     <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto @ViewBag.iconeAreaDeServico text-center"></i>
@@ -8,25 +8,20 @@
 <h1 class="mt-5 text-center fw-bold fs-2">Serviços Disponíveis</h1>
 <h4 class="mb-5 text-center fw-light fs-4">Escolha o serviço desejado</h4>
 
-<div class="d-flex flex-wrap mb-5 pb-5 justify-content-center align-items-stretch flex-c-gap">
+<div class="d-flex flex-wrap mb-5 pb-5 d-flex-dinamic align-items-stretch flex-c-gap flex-r-gap">
     @if (Model.Any())
     {
-        string? nomeAnterior = "";
         @foreach (var item in Model)
         {
-            if (nomeAnterior != item.Nome)
-            {
-                <div class="br-card hover botao-box">
-                    <a class="br-card hover mb-0 back-none" onclick="getOrgaos('@Url.Action("OrgaosPublicos")','@item.Nome', '@item.Icone')">
-                    <div class="card-content">
-                        <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto @Html.DisplayFor(modelItem => item.Icone) text-center"></i>
-                        <p class="text-break text-wrap azul-text user-select-none fs-4 mt-4 mb-4 fw-bold text-center text-uppercase">@Html.DisplayFor(modelItem => item.Nome)</p>
-                    </div>
-
-                </a>
+            <div class="br-card hover box w-250">
+                <a class="br-card hover mb-0 back-none" onclick="getOrgaos('@Url.Action("OrgaosPublicos")','@item.Nome', '@item.Icone')">
+                <div class="card-content">
+                    <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto @Html.DisplayFor(modelItem => item.Icone) text-center"></i>
+                    <p class="text-break text-wrap azul-text user-select-none fs-4 mt-4 mb-4 fw-bold text-center text-uppercase">@Html.DisplayFor(modelItem => item.Nome)</p>
                 </div>
-            }
-            nomeAnterior = item.Nome;
+
+            </a>
+            </div>
         }
 
     }

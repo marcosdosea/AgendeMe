@@ -27,11 +27,14 @@ namespace Service
         /// Deleta uma area de servico do banco de dados
         /// </summary>
         /// <param name="idAreaDeServico">Id da area de servico</param>
-        public void Delete(int idAreaDeServico)
+        public async void Delete(int idAreaDeServico)
         {
-            var _areaDeServico = _context.Agendamentos.Find(idAreaDeServico);
-            _context.Remove(_areaDeServico);
-            _context.SaveChanges();
+            var areaDeServico = await _context.Areadeservicos.FirstOrDefaultAsync(a => a.Id == idAreaDeServico);
+
+            if (areaDeServico == null) return;
+
+            _context.Remove(areaDeServico);
+            await _context.SaveChangesAsync();
         }
         /// <summary>
         /// Edita uma area de servico do banco de dados

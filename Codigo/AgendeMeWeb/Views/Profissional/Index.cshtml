@@ -7,7 +7,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NomeCidadao)
+                @Html.DisplayNameFor(model => model.NomeProfissional)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.NomeCargo)
@@ -22,7 +22,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.NomeCidadao)
+                @Html.DisplayFor(modelItem => item.NomeProfissional)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NomeCargo)
@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.NomePrefeitura)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id=item.IdCidadao}) |
-                @Html.ActionLink("Detalhes", "Details", new { id=item.IdCidadao }) |
-                @Html.ActionLink("Remover", "Delete", new { id=item.IdCidadao })
+                @Html.ActionLink("Editar", "Edit", new { IdProfissional=item.IdProfissional, IdCargo = item.IdCargo, IdPrefeitura = item.IdPrefeitura }) |
+                @Html.ActionLink("Detalhes", "Details", new { IdProfissional=item.IdProfissional, IdCargo = item.IdCargo, IdPrefeitura = item.IdPrefeitura }) |
+                @Html.ActionLink("Remover", "Delete", new { IdProfissional=item.IdProfissional, IdCargo = item.IdCargo, IdPrefeitura = item.IdPrefeitura }, null)
             </td>
         </tr>
 }

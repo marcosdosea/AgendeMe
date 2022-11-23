@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 
@@ -68,11 +69,21 @@ namespace Service
         /// </summary>
         /// <param name="nomeServico">Nome do servico publico</param>
         /// <returns>Todos os orgaos publicos</returns>
-        public IEnumerable<Orgaopublico> GetAllByNomeServicoPublico(string nomeServico)
+        public IEnumerable<OrgaoPublicoDTO> GetAllByNomeServicoPublico(string nomeServico)
         {
             var query = from Servicopublico in _context.Servicopublicos
                         where Servicopublico.Nome.Equals(nomeServico)
-                        select Servicopublico.IdOrgaoPublicoNavigation;
+                        select new OrgaoPublicoDTO
+                        {
+                            Id = Servicopublico.IdOrgaoPublicoNavigation.Id,
+                            IdServico = Servicopublico.Id,
+                            Nome = Servicopublico.IdOrgaoPublicoNavigation.Nome,
+                            Atendimento = string.Join(" às ", Servicopublico.IdOrgaoPublicoNavigation.HoraAbre,
+                            Servicopublico.IdOrgaoPublicoNavigation.HoraFecha),
+                            Bairro = Servicopublico.IdOrgaoPublicoNavigation.Bairro,
+                            Rua = Servicopublico.IdOrgaoPublicoNavigation.Rua,
+                            Numero = Servicopublico.IdOrgaoPublicoNavigation.Numero
+                        };
 
             return query.AsNoTracking();
         }

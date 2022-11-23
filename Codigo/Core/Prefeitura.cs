@@ -10,9 +10,9 @@ namespace Core
         public Prefeitura()
         {
             Areadeservicos = new HashSet<Areadeservico>();
+            Cargoprofissionalprefeituras = new HashSet<Cargoprofissionalprefeitura>();
             Cidadaos = new HashSet<Cidadao>();
             Orgaopublicos = new HashSet<Orgaopublico>();
-            Profissionalprefeituras = new HashSet<Profissionalprefeitura>();
         }
 
         public int Id { get; set; }
@@ -27,8 +27,8 @@ namespace Core
         public string Icone { get; set; }
 
         public virtual ICollection<Areadeservico> Areadeservicos { get; set; }
+        public virtual ICollection<Cargoprofissionalprefeitura> Cargoprofissionalprefeituras { get; set; }
         public virtual ICollection<Cidadao> Cidadaos { get; set; }
         public virtual ICollection<Orgaopublico> Orgaopublicos { get; set; }
-        public virtual ICollection<Profissionalprefeitura> Profissionalprefeituras { get; set; }
     }
 }

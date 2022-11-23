@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AgendeMeWeb.Models
 {
@@ -51,7 +50,6 @@ namespace AgendeMeWeb.Models
         public string? Sexo { get; set; }
 
         [Display(Name = "Tipo do cidadão")]
-        [Required(ErrorMessage = "O campo Tipo do cidadão é obrigatório.")]
         public string? TipoCidadao { get; set; }
         public string? Complemento { get; set; }
         public int? IdOrgaoPublico { get; set; }

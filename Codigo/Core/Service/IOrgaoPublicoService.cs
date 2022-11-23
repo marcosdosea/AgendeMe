@@ -1,4 +1,6 @@
-﻿namespace Core.Service
+﻿using Core.DTO;
+
+namespace Core.Service
 {
     public interface IOrgaoPublicoService
     {
@@ -7,6 +9,6 @@
         void Delete(int id);
         Orgaopublico Get(int id);
         IEnumerable<Orgaopublico> GetAll();
-        IEnumerable<Orgaopublico> GetAllByNomeServicoPublico(string nomeServico);
+        IEnumerable<OrgaoPublicoDTO> GetAllByNomeServicoPublico(string nomeServico);
     }
 }

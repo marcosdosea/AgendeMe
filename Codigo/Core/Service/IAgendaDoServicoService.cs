@@ -9,7 +9,6 @@ namespace Core.Service
         void Edit(Agendadoservico agendadoservico);
         void Delete(int id);
         Agendadoservico Get(int id);
-
         IEnumerable<AgendadoservicoDTO> GetAll();
         public IEnumerable<AgendadoservicoDTO> GetByPage(DatatableDTO model, out int filteredResultsCount, out int totalResultsCount);
     }
