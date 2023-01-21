@@ -30,7 +30,7 @@ on:
   push:
     branches: [ "main", Branch ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", closed ]
   workflow_dispatch:
 
 permissions:
