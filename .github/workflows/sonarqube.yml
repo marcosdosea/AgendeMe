@@ -30,7 +30,7 @@ on:
   push:
     branches: [ "main", Branch ]
   pull_request:
-    branches: [ "main", closed ]
+    types: [opened, closed, reopened]
   workflow_dispatch:
 
 permissions:
