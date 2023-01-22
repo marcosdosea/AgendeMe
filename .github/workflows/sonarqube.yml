@@ -30,8 +30,11 @@ on:
   push:
     branches: [ "main", Branch ]
   pull_request:
-    types: [opened, closed, reopened]
+    types: [opened, closed, reopened, deleted]
+  schedule:
+    - cron: '40 5 * * *'
   workflow_dispatch:
+  
 
 permissions:
   pull-requests: read # allows SonarQube to decorate PRs with analysis results
