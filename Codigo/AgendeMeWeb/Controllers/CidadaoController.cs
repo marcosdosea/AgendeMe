@@ -36,7 +36,7 @@ namespace AgendeMeWeb.Controllers
         // GET: CidadaoController/Create
         public ActionResult Create()
         {
-            return PartialView();
+            return View();
         }
 
         // POST: CidadaoController/Create

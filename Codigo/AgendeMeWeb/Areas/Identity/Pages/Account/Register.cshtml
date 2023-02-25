@@ -1,7 +1,7 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Cadastrar novo cidadão";
 }
 
 <h1 class="fw-bold fs-3 mt-4">Cadastro de Cidadão</h1>
@@ -12,61 +12,113 @@
 <div class="row">
     <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
         <div class="col-md-4">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group mb-3 w-75">
-                    <label asp-for="Input.Email" class="control-label"></label>
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <label asp-for="Input.Email" class="control-label"></label>
+                <input asp-for="Input.Email" class="form-control w-75" autocomplete="username" aria-required="true" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Input.Password" class="control-label"></label>
+                <input asp-for="Input.Password" class="form-control w-50" autocomplete="new-password" aria-required="true" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Input.ConfirmPassword" class="control-label"></label>
+                <input asp-for="Input.ConfirmPassword" class="form-control w-50" autocomplete="new-password" aria-required="true" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <label asp-for="Input.Cidadao.Nome" class="control-label"></label>
+                <input asp-for="Input.Cidadao.Nome" class="form-control" />
+                <span asp-validation-for="Input.Cidadao.Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Input.Cidadao.Cpf" class="control-label"></label>
+                <input asp-for="Input.Cidadao.Cpf" class="form-control w-50" />
+                <span asp-validation-for="Input.Cidadao.Cpf" class="text-danger"></span>
+            </div>
+            <div class="form-group br-datetimepicker mb-3" data-mode="single" data-type="text">
+                <div class="br-input has-icon w-50">
+                    <label asp-for="Input.Cidadao.DataNascimento" class="control-label" for="simples-input"></label>
+                    <input asp-for="Input.Cidadao.DataNascimento" class="form-control" id="simples-input" type="text" placeholder="dd/mm/aaaa" data-input="data-input" />
+                    <button class="br-button circle small" type="button" aria-label="Abrir Timepicker" data-toggle="data-toggle" id="simples-input-btn">
+                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                    </button>
                 </div>
-                <div class="form-group mb-3 w-50">
-                    <label asp-for="Input.Password" class="control-label"></label>
-                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Input.Cidadao.Sexo" class="control-label"></label>
+                <input asp-for="Input.Cidadao.Sexo" class="form-control w-25" />
+                <span asp-validation-for="Input.Cidadao.Sexo" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Input.Cidadao.Sus" class="control-label"></label>
+                <input asp-for="Input.Cidadao.Sus" class="form-control w-50" />
+                <span asp-validation-for="Input.Cidadao.Sus" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Input.Cidadao.Telefone" class="control-label"></label>
+                <input asp-for="Input.Cidadao.Telefone" class="form-control w-50" />
+                <span asp-validation-for="Input.Cidadao.Telefone" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <input type="hidden" asp-for="Input.Cidadao.Email" class="form-control w-75" />
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Input.Cidadao.Cep" class="control-label"></label>
+                <input asp-for="Input.Cidadao.Cep" class="form-control w-50" />
+                <span asp-validation-for="Input.Cidadao.Cep" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Input.Cidadao.Estado" class="control-label"></label>
+                <input asp-for="Input.Cidadao.Estado" class="form-control w-50" />
+                <span asp-validation-for="Input.Cidadao.Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Input.Cidadao.Cidade" class="control-label"></label>
+                <input asp-for="Input.Cidadao.Cidade" class="form-control w-50" />
+                <span asp-validation-for="Input.Cidadao.Cidade" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Input.Cidadao.Bairro" class="control-label"></label>
+                <input asp-for="Input.Cidadao.Bairro" class="form-control w-50" />
+                <span asp-validation-for="Input.Cidadao.Bairro" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Input.Cidadao.Rua" class="control-label"></label>
+                <input asp-for="Input.Cidadao.Rua" class="form-control w-75" />
+                <span asp-validation-for="Input.Cidadao.Rua" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Input.Cidadao.NumeroCasa" class="control-label"></label>
+                <input asp-for="Input.Cidadao.NumeroCasa" class="form-control w-25" />
+                <span asp-validation-for="Input.Cidadao.NumeroCasa" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Input.Cidadao.Complemento" class="control-label"></label>
+                <input asp-for="Input.Cidadao.Complemento" class="form-control w-75" />
+                <span asp-validation-for="Input.Cidadao.Complemento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Input.Cidadao.TipoCidadao" type="hidden" class="form-control" />
+                <span asp-validation-for="Input.Cidadao.TipoCidadao" class="text-danger"></span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="br-magic-button medium">
+                    <button id="registerSubmit" type="submit" class="br-button">
+                        Criar Conta
+                    </button>
                 </div>
-            <div class="form-group mb-3 w-50">
-                    <label asp-for="Input.ConfirmPassword" class="control-label"></label>
-                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                </div>
+                <button class="br-button" type="button">
+                    <a class="back-none" asp-controller="AgendarServico" asp-action="Index">Voltar</a>
+                </button>
+            </div>
         </div>
-        <div id="cidadaoForm">
-        </div>
-        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
     </form>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
-    </div>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-    <partial name="_Scripts" />
-    <script src="~/js/cidadao.js"></script>
 }
