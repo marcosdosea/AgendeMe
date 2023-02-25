@@ -69,6 +69,18 @@ body {
     padding: 0;
 }
 
+.wi-120{
+    width: 120px !important;
+}
+
+.wi-200 {
+    width: 200px !important;
+}
+
+.wi-250 {
+    width: 250px !important;
+}
+
 @media only screen and (max-width: 1000px) {
     .dinamic-margin{
         width: 100%;
