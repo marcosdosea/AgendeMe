@@ -186,5 +186,14 @@ namespace Service
             return query.AsNoTracking().First();
         }
 
+        public Cidadao GetByEmail(string email)
+        {
+            var query = from cidadao in _context.Cidadaos
+                        where cidadao.Email.Equals(email)
+                        select cidadao;
+            if (query.Any())
+                return query.AsNoTracking().First();
+            return null;
+        }
     }
 }
