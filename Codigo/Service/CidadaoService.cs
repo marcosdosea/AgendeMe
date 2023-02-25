@@ -161,7 +161,7 @@ namespace Service
             return query.AsNoTracking();
         }
 
-        public CidadaoDTO GetByCPF(string CPF)
+        public CidadaoDTO? GetByCPF(string CPF)
         {
             var query = from cidadao in _context.Cidadaos
                         where cidadao.Cpf == CPF
@@ -183,10 +183,12 @@ namespace Service
                             NumeroCasa = cidadao.NumeroCasa,
                             Complemento = cidadao.Complemento,
                         };
-            return query.AsNoTracking().First();
+            if (query.Any())
+                return query.AsNoTracking().First();
+            return null;
         }
 
-        public Cidadao GetByEmail(string email)
+        public Cidadao? GetByEmail(string email)
         {
             var query = from cidadao in _context.Cidadaos
                         where cidadao.Email.Equals(email)

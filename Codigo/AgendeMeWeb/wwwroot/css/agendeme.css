@@ -64,6 +64,10 @@ body {
 .dinamic-margin{
     width: auto;
 }
+#loginErrors > ul{
+    list-style: none;
+    padding: 0;
+}
 
 @media only screen and (max-width: 1000px) {
     .dinamic-margin{

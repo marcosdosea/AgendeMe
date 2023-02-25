@@ -61,9 +61,13 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            /// 
             [EmailAddress]
             public string Email { get; set; }
+
+            [Required(ErrorMessage = "Esse campo é obrigatório.")]
+            [Display(Name = "Número de CPF ou E-mail")]
+            public string CPFOrEmail { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -71,13 +75,14 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
             /// </summary>
             [Required]
             [DataType(DataType.Password)]
+            [Display(Name = "Senha")]
             public string Password { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Lembre-me?")]
             public bool RememberMe { get; set; }
         }
 
@@ -108,10 +113,21 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
-                var resultEmail = _cidadaoService.GetByEmail(Input.Email);
-                if (resultEmail is not null)
+                if (Input.CPFOrEmail.Contains('@'))
                 {
+                    var cidadaoLoginEmail = _cidadaoService.GetByEmail(Input.CPFOrEmail);
+                    Input.Email = cidadaoLoginEmail?.Email;
+                }
+                else
+                {
+                    var cidadaoLoginCPF = _cidadaoService.GetByCPF(Input.CPFOrEmail);
+                    Input.Email = cidadaoLoginCPF?.Email;
+                }
+
+                if (Input.Email is not null)
+                {
+                    var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+
                     if (result.Succeeded)
                     {
                         _logger.LogInformation("User logged in.");
@@ -128,16 +144,16 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                        ModelState.AddModelError(string.Empty, "Login inválido");
                         return Page();
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    await _signInManager.SignOutAsync();
-                    return Page();
+                    ModelState.AddModelError(string.Empty, "Login inválido");
                 }
+
+
             }
 
             // If we got this far, something failed, redisplay form
