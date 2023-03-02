@@ -1,6 +1,7 @@
 ﻿using Core;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Service.Tests
@@ -17,12 +18,16 @@ namespace Service.Tests
             //Arrange
             var builder = new DbContextOptionsBuilder<AgendeMeContext>();
             builder.UseInMemoryDatabase("AgendeMe");
+            builder.ConfigureWarnings(builder =>
+            {
+                builder.Ignore(InMemoryEventId.TransactionIgnoredWarning);
+            });
             var options = builder.Options;
 
             _context = new AgendeMeContext(options);
             _context.Database.EnsureDeleted();
             _context.Database.EnsureCreated();
-            var agendamento = new List<Agendamento>
+            var agendamentos = new List<Agendamento>
             {
                 new Agendamento {Id = 1, Tipo = "Agendamento", Situacao = "Agendado",  DataCadastro = new DateTime(2023, 02, 20), IdCidadao = 2, IdDiaAgendamento = 4, IdAtendente = null, IdRetorno = null},
                 new Agendamento {Id = 2, Tipo = "Retorno", Situacao = "Cancelado", DataCadastro = new DateTime(2023, 02, 27), IdCidadao = 2, IdDiaAgendamento = 7, IdAtendente = null, IdRetorno = 1},
@@ -30,7 +35,7 @@ namespace Service.Tests
                 new Agendamento {Id = 4, Tipo = "Agendamento", Situacao = "Atendido",  DataCadastro = new DateTime(2023, 02, 27), IdCidadao = 5, IdDiaAgendamento = 7, IdAtendente = null, IdRetorno = null}
             };
 
-            _context.AddRange(agendamento);
+            _context.AddRange(agendamentos);
             _context.SaveChanges();
 
             _agendamentoService = new AgendamentoService(_context);
@@ -40,13 +45,13 @@ namespace Service.Tests
         public void CreateTest()
         {
             // Act
-            _agendamentoService.Create(new Agendamento { Id = 5, Tipo = "Agendamento", Situacao = "Atendido", DataCadastro = new DateTime(2023, 02, 01), IdCidadao = 5, IdDiaAgendamento = 7, IdAtendente = null, IdRetorno = null });
+            _agendamentoService.Create(new Agendamento { Id = 5, DataCadastro = new DateTime(2023, 02, 01), IdCidadao = 5, IdDiaAgendamento = 7, IdAtendente = null, IdRetorno = null });
 
             // Assert
-            Assert.AreEqual(4, _agendamentoService.GetAll().Count());
-            var agendamento = _agendamentoService.Get(4);
-            Assert.AreEqual("Atendido", agendamento.Situacao);
-            Assert.AreEqual(new DateTime(2023, 02, 27), agendamento.DataCadastro);
+            var agendamento = _agendamentoService.Get(5);
+            Assert.AreEqual("Agendado", agendamento.Situacao);
+            Assert.AreEqual(5, agendamento.IdCidadao);
+            Assert.AreEqual(new DateTime(2023, 02, 01), agendamento.DataCadastro);
         }
 
         [TestMethod()]
