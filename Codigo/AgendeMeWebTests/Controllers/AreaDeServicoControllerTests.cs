@@ -168,8 +168,8 @@ namespace AgendeMeWeb.Controllers.Tests
             {
                 Id = 4,
                 Nome = "Agricultura e Meio Ambiente",
-                Icone = "qualquer icone",
-                IdPrefeitura = 1
+                Icone = "fas fa-solid fa-tractor",
+                IdPrefeitura = 3
             };
 
         }
@@ -179,7 +179,7 @@ namespace AgendeMeWeb.Controllers.Tests
             {
                 Id = 1,
                 Nome = "Saúde",
-                Icone = "qualquer icone",
+                Icone = "fas fa-solid fa-user-nurse",
                 IdPrefeitura = 1
             };
         }
@@ -188,10 +188,10 @@ namespace AgendeMeWeb.Controllers.Tests
         {
             return new AreaDeServicoViewModel
             {
-                Id = 2,
-                Nome = "Transporte",
-                Icone = "qualquer icone",
-                IdPrefeitura = 1
+                Id = 3,
+                Nome = "Esporte",
+                Icone = "fas fa-solid fa-futbol",
+                IdPrefeitura = 2
             };
         }
 
@@ -203,22 +203,22 @@ namespace AgendeMeWeb.Controllers.Tests
                 {
                     Id = 1,
                     Nome = "Saúde",
-                    Icone = "qualquer icone",
+                    Icone = "fas fa-solid fa-user-nurse",
                     IdPrefeitura = 1
                 },
                 new Areadeservico
                 {
                     Id = 2,
                     Nome = "Transporte",
-                    Icone = "qualquer icone",
+                    Icone = "fas fa-solid fa-bus",
                     IdPrefeitura = 1
                 },
                 new Areadeservico
                 {
                     Id = 3,
                     Nome = "Esporte",
-                    Icone = "qualquer icone",
-                    IdPrefeitura = 1
+                    Icone = "fas fa-solid fa-futbol",
+                    IdPrefeitura = 2
                 }
             };
         }
