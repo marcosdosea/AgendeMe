@@ -168,11 +168,12 @@ namespace AgendeMeWeb.Controllers.Tests
             return new CargoViewModel
             {
                 Id = 4,
-                Nome = "Test4",
-                Descricao = "Usado apenas para testar"
+                Nome = "Cardiologista",
+                Descricao = "Especialista no tratamento de doenças que afeta o coração."
             };
 
         }
+
         private Cargo GetTargetCargo()
         {
             return new Cargo
@@ -212,8 +213,8 @@ namespace AgendeMeWeb.Controllers.Tests
                 new Cargo
                 {
                     Id = 3,
-                    Nome = "Marcos Dósea",
-                    Descricao = "PO"
+                    Nome = "Advogado",
+                    Descricao = "Responsável por defender os interresses dos cidadãos, usando o conhecimento das leis para esta finalidade."
                 },
             };
         }
