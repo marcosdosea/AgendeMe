@@ -24,9 +24,9 @@ namespace Service.Tests
             _context.Database.EnsureCreated();
             var cargos = new List<Cargo>
                 {
-                    new Cargo { Id = 1, Nome = "Motorista", Descricao = "Dirige os veículos" },
-                    new Cargo { Id = 2, Nome = "Personal trainer", Descricao = "Professor de educação física" },
-                    new Cargo { Id = 3, Nome = "Marcos Dósea", Descricao = "PO" },
+                    new Cargo { Id = 1, Nome = "Gestor de Orgão", Descricao = "Responsável por um determinado órgão público" },
+                    new Cargo { Id = 2, Nome = "Atendente", Descricao = "Responsável por atender os usuários em um orgão e mudar a situação dos agendamentos" },
+                    new Cargo { Id = 3, Nome = "Clínico Geral", Descricao = "Médico responsável pela primeira avaliação de um paciente" },
                 };
 
             _context.AddRange(cargos);
@@ -39,12 +39,12 @@ namespace Service.Tests
         public void CreateTest()
         {
             // Act
-            _cargoService.Create(new Cargo() { Id = 4, Nome = "Eletricista", Descricao = "mexe com a rede eletrica" });
+            _cargoService.Create(new Cargo() { Id = 4, Nome = "Eletricista", Descricao = "Responsável por cuidar de problemas com redes elétricas nos órgãos" });
             // Assert
             Assert.AreEqual(4, _cargoService.GetAll().Count());
             var cargo = _cargoService.Get(4);
             Assert.AreEqual("Eletricista", cargo.Nome);
-            Assert.AreEqual("mexe com a rede eletrica", cargo.Descricao);
+            Assert.AreEqual("Responsável por cuidar de problemas com redes elétricas nos órgãos", cargo.Descricao);
         }
 
         [TestMethod()]
@@ -63,14 +63,14 @@ namespace Service.Tests
         {
             //Act 
             var cargo = _cargoService.Get(3);
-            cargo.Nome = "Tecnico em informatica";
-            cargo.Descricao = "Conserta impressora";
+            cargo.Nome = "Tecnico em Informatica";
+            cargo.Descricao = "Responsável por manutenção de todos os dispostivos eletrônicos dos órgãos";
             _cargoService.Edit(cargo);
             //Assert
             cargo = _cargoService.Get(3);
             Assert.IsNotNull(cargo);
-            Assert.AreEqual("Tecnico em informatica", cargo.Nome);
-            Assert.AreEqual("Conserta impressora", cargo.Descricao);
+            Assert.AreEqual("Tecnico em Informatica", cargo.Nome);
+            Assert.AreEqual("Responsável por manutenção de todos os dispostivos eletrônicos dos órgãos", cargo.Descricao);
         }
 
         [TestMethod()]
@@ -78,8 +78,8 @@ namespace Service.Tests
         {
             var cargo = _cargoService.Get(1);
             Assert.IsNotNull(cargo);
-            Assert.AreEqual("Motorista", cargo.Nome);
-            Assert.AreEqual("Dirige os veículos", cargo.Descricao);
+            Assert.AreEqual("Gestor de Orgão", cargo.Nome);
+            Assert.AreEqual("Responsável por um determinado órgão público", cargo.Descricao);
         }
 
         [TestMethod()]
@@ -92,7 +92,7 @@ namespace Service.Tests
             Assert.IsNotNull(listaCargo);
             Assert.AreEqual(3, listaCargo.Count());
             Assert.AreEqual(1, listaCargo.First().Id);
-            Assert.AreEqual("Motorista", listaCargo.First().Nome);
+            Assert.AreEqual("Gestor de Orgão", listaCargo.First().Nome);
         }
     }
 }
