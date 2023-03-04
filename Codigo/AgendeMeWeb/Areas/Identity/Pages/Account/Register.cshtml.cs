@@ -2,23 +2,20 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using AgendeMeWeb.Areas.Identity.Data;
+using AgendeMeWeb.Models;
+using AutoMapper;
+using Core;
+using Core.Service;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Encodings.Web;
 
 namespace AgendeMeWeb.Areas.Identity.Pages.Account
 {
@@ -30,13 +27,17 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<UsuarioIdentity> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IMapper _mapper;
+        private readonly ICidadaoService _cidadaoService;
 
         public RegisterModel(
             UserManager<UsuarioIdentity> userManager,
             IUserStore<UsuarioIdentity> userStore,
             SignInManager<UsuarioIdentity> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IMapper mapper,
+            ICidadaoService cidadaoService)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,6 +45,8 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _mapper = mapper;
+            _cidadaoService = cidadaoService;
         }
 
         /// <summary>
@@ -87,7 +90,7 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Senha")]
             public string Password { get; set; }
 
             /// <summary>
@@ -95,9 +98,11 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
+            [Display(Name = "Confirmar Senha")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            public CidadaoViewModel Cidadao { get; set; }
         }
 
 
@@ -121,6 +126,10 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    var cidadaoModel = Input.Cidadao;
+                    var cidadao = _mapper.Map<Cidadao>(cidadaoModel);
+                    cidadao.Email = Input.Email;
+                    _cidadaoService.Create(cidadao);
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

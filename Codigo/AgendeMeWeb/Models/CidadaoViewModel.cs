@@ -12,6 +12,7 @@ namespace AgendeMeWeb.Models
         public string? Nome { get; set; }
 
         [Required(ErrorMessage = "O campo CPF é obrigatório.")]
+        [StringLength(15)]
         public string? Cpf { get; set; }
 
         [Display(Name = "Data de nascimento")]
@@ -21,32 +22,41 @@ namespace AgendeMeWeb.Models
 
         [Display(Name = "Cartão do SUS")]
         [Required(ErrorMessage = "O campo Cartão do SUS é obrigatório.")]
+        [StringLength(20)]
         public string? Sus { get; set; }
 
         [Required(ErrorMessage = "O campo telefone é obrigatório.")]
+        [StringLength(20)]
         public string? Telefone { get; set; }
         public string? Email { get; set; }
 
         [Required(ErrorMessage = "O campo CEP é obrigatório.")]
+        [StringLength(10)]
         public string? Cep { get; set; }
 
         [Required(ErrorMessage = "O estado é um campo obrigatório.")]
+        [StringLength(2)]
         public string? Estado { get; set; }
 
         [Required(ErrorMessage = "O campo Cidade é obrigatório.")]
+        [StringLength(70)]
         public string? Cidade { get; set; }
 
         [Required(ErrorMessage = "O campo Bairro é obrigatório.")]
+        [StringLength(70)]
         public string? Bairro { get; set; }
 
         [Required(ErrorMessage = "O campo Rua é obrigatório.")]
+        [StringLength(70)]
         public string? Rua { get; set; }
 
         [Display(Name = "Número da casa")]
         [Required(ErrorMessage = "O campo Número da casa é obrigatório. Caso não possua número informe: SN")]
+        [StringLength(7)]
         public string? NumeroCasa { get; set; }
 
         [Required(ErrorMessage = "O campo Sexo é obrigatório.")]
+        [StringLength(1)]
         public string? Sexo { get; set; }
 
         [Display(Name = "Tipo do cidadão")]
