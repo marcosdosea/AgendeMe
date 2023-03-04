@@ -65,7 +65,8 @@ namespace AgendeMeWeb.Controllers.Tests
             Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(CargoViewModel));
             CargoViewModel cargoViewModel = (CargoViewModel)viewResult.ViewData.Model;
             Assert.AreEqual("Motorista", cargoViewModel.Nome);
-            Assert.AreEqual("Dirige os veículos", cargoViewModel.Descricao);
+            Assert.AreEqual("Responsável pela condução de veículos", cargoViewModel.Descricao);
+
         }
 
         [TestMethod()]
@@ -118,7 +119,7 @@ namespace AgendeMeWeb.Controllers.Tests
             Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(CargoViewModel));
             CargoViewModel cargoViewModel = (CargoViewModel)viewResult.ViewData.Model;
             Assert.AreEqual("Motorista", cargoViewModel.Nome);
-            Assert.AreEqual("Dirige os veículos", cargoViewModel.Descricao);
+            Assert.AreEqual("Responsável pela condução de veículos", cargoViewModel.Descricao);
         }
 
         [TestMethod()]
@@ -146,7 +147,7 @@ namespace AgendeMeWeb.Controllers.Tests
             Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(CargoViewModel));
             CargoViewModel cargoViewModel = (CargoViewModel)viewResult.ViewData.Model;
             Assert.AreEqual("Motorista", cargoViewModel.Nome);
-            Assert.AreEqual("Dirige os veículos", cargoViewModel.Descricao);
+            Assert.AreEqual("Responsável pela condução de veículos", cargoViewModel.Descricao);
         }
 
         [TestMethod()]
@@ -169,7 +170,7 @@ namespace AgendeMeWeb.Controllers.Tests
             {
                 Id = 4,
                 Nome = "Cardiologista",
-                Descricao = "Especialista no tratamento de doenças que afeta o coração."
+                Descricao = "Especialista no tratamento de doenças que afetam o coração."
             };
 
         }
@@ -180,7 +181,7 @@ namespace AgendeMeWeb.Controllers.Tests
             {
                 Id = 1,
                 Nome = "Motorista",
-                Descricao = "Dirige os veículos"
+                Descricao = "Responsável pela condução de veículos"
             };
         }
 
@@ -201,20 +202,20 @@ namespace AgendeMeWeb.Controllers.Tests
                 new Cargo
                 {
                     Id = 1,
-                    Nome = "Motorista",
-                    Descricao = "Dirige os veículos"
+                    Nome = "Gestor de Orgão",
+                    Descricao = "Responsável por um determinado órgão público"
                 },
                 new Cargo
                 {
                     Id = 2,
-                    Nome = "Personal trainer",
-                    Descricao = "Professor de educação física"
+                    Nome = "Atendente",
+                    Descricao = "Responsável por atender os usuários em um orgão e mudar a situação dos agendamentos"
                 },
                 new Cargo
                 {
                     Id = 3,
-                    Nome = "Advogado",
-                    Descricao = "Responsável por defender os interresses dos cidadãos, usando o conhecimento das leis para esta finalidade."
+                    Nome = "Clínico Geral",
+                    Descricao = "Médico responsável pela primeira avaliação de um paciente"
                 },
             };
         }
