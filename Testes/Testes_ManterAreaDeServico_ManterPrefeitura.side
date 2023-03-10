@@ -1,0 +1,785 @@
+{
+  "id": "814ab154-b395-4ad1-ae81-752e8ca751ba",
+  "version": "2.0",
+  "name": "Testes_ManterAreaDeServico_ManterPrefeitura",
+  "url": "https://localhost:7258",
+  "tests": [{
+    "id": "73015bb7-b10c-4072-81e8-6b0b03929a4c",
+    "name": "CadastrarAreaDeServicoValido",
+    "commands": [{
+      "id": "dbf3ddf7-c9e8-40ce-a77f-9f3aa6d02ce0",
+      "comment": "",
+      "command": "open",
+      "target": "/areadeservico",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3a1c2c65-9b76-4d63-bab4-0540d5d71143",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9651373d-cb05-45d0-89a1-13132bfeb912",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Cadastrar nova área de serviço",
+      "targets": [
+        ["linkText=Cadastrar nova área de serviço", "linkText"],
+        ["css=p > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Cadastrar nova área de serviço')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/AreaDeServico/Create')]", "xpath:href"],
+        ["xpath=//p/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Cadastrar nova área de serviço')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "41a58ae7-758b-4009-8cfc-6eba6ba8d0c4",
+      "comment": "",
+      "command": "click",
+      "target": "id=Nome",
+      "targets": [
+        ["id=Nome", "id"],
+        ["name=Nome", "name"],
+        ["css=#Nome", "css:finder"],
+        ["xpath=//input[@id='Nome']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5167c631-90a0-4fdd-b309-052d9a2fd7f4",
+      "comment": "",
+      "command": "type",
+      "target": "id=Nome",
+      "targets": [
+        ["id=Nome", "id"],
+        ["name=Nome", "name"],
+        ["css=#Nome", "css:finder"],
+        ["xpath=//input[@id='Nome']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Meio Ambiente"
+    }, {
+      "id": "a7142f76-6303-4500-b88d-d03c3ed30244",
+      "comment": "",
+      "command": "click",
+      "target": "id=IdPrefeitura",
+      "targets": [
+        ["id=IdPrefeitura", "id"],
+        ["name=IdPrefeitura", "name"],
+        ["css=#IdPrefeitura", "css:finder"],
+        ["xpath=//input[@id='IdPrefeitura']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "70e1b77f-32af-40d1-8348-7e9c726fa44c",
+      "comment": "",
+      "command": "type",
+      "target": "id=IdPrefeitura",
+      "targets": [
+        ["id=IdPrefeitura", "id"],
+        ["name=IdPrefeitura", "name"],
+        ["css=#IdPrefeitura", "css:finder"],
+        ["xpath=//input[@id='IdPrefeitura']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "794b00cf-f369-4b4c-94d7-74b08d234701",
+      "comment": "",
+      "command": "click",
+      "target": "id=Icone",
+      "targets": [
+        ["id=Icone", "id"],
+        ["name=Icone", "name"],
+        ["css=#Icone", "css:finder"],
+        ["xpath=//input[@id='Icone']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ffbaeff7-5564-46b3-881c-3d45eda525ea",
+      "comment": "",
+      "command": "type",
+      "target": "id=Icone",
+      "targets": [
+        ["id=Icone", "id"],
+        ["name=Icone", "name"],
+        ["css=#Icone", "css:finder"],
+        ["xpath=//input[@id='Icone']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "Sem "
+    }, {
+      "id": "69a7d23e-617a-4217-a364-955c9a4f5396",
+      "comment": "",
+      "command": "type",
+      "target": "id=Icone",
+      "targets": [
+        ["id=Icone", "id"],
+        ["name=Icone", "name"],
+        ["css=#Icone", "css:finder"],
+        ["xpath=//input[@id='Icone']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "Sem Icone"
+    }, {
+      "id": "70ec60f0-af6f-4a52-a6ce-9a8e3245ced8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@value='Cadastrar']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e8aa0aa8-4974-4120-8b26-3c16ebd6f2b9",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(10) > td:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(10) > td:nth-child(2)", "css:finder"],
+        ["xpath=//tr[10]/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'Meio Ambiente')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4f598469-da13-4a34-b8cd-e550a6ddcb33",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(10) > td:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(10) > td:nth-child(2)", "css:finder"],
+        ["xpath=//tr[10]/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'Meio Ambiente')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "15d120e4-8385-4400-8291-f1113a155982",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(10) > td:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(10) > td:nth-child(2)", "css:finder"],
+        ["xpath=//tr[10]/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'Meio Ambiente')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ea403d0f-e90a-4310-bfd8-c2885b562603",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=tr:nth-child(10) > td:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(10) > td:nth-child(2)", "css:finder"],
+        ["xpath=//tr[10]/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'Meio Ambiente')]", "xpath:innerText"]
+      ],
+      "value": "Meio Ambiente"
+    }]
+  }, {
+    "id": "bd3d48fb-cfc7-4f90-a72b-b44419f72bc9",
+    "name": "ExcluirAreaDeServicoValido",
+    "commands": [{
+      "id": "5ca2377f-33ae-4f39-a507-96de014fdd4a",
+      "comment": "",
+      "command": "open",
+      "target": "/areadeservico",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "da8ce71e-b172-4727-b240-3f43755cd6d8",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0c15dcee-f19e-4234-9949-1000c41eb3e5",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(4) a:nth-child(3)",
+      "targets": [
+        ["css=tr:nth-child(4) a:nth-child(3)", "css:finder"],
+        ["xpath=(//a[contains(text(),'Remover')])[4]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/AreaDeServico/Delete/4')]", "xpath:href"],
+        ["xpath=//tr[4]/td[5]/a[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e764ffc9-71a0-4b07-982e-e20a31cac6fd",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@value='Remover']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "157ba3ac-e9e9-4f4a-a644-2aded6515ece",
+    "name": "ConsultarAreaDeServicoValido",
+    "commands": [{
+      "id": "b3177126-d9f5-457a-bee9-fd16accc59ce",
+      "comment": "",
+      "command": "open",
+      "target": "/areadeservico",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "28b55ac0-923b-4e36-b504-1048f9ce9c68",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bc3478f2-bc57-4601-898b-54ef75d3ff3a",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) a:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(2) a:nth-child(2)", "css:finder"],
+        ["xpath=(//a[contains(text(),'Detalhes')])[2]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/AreaDeServico/Details/2')]", "xpath:href"],
+        ["xpath=//tr[2]/td[5]/a[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5a3dad5e-d895-427a-a2a7-020986a8a41e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-sm-10:nth-child(4)",
+      "targets": [
+        ["css=.col-sm-10:nth-child(4)", "css:finder"],
+        ["xpath=//dd[2]", "xpath:position"],
+        ["xpath=//dd[contains(.,'Transporte')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b3cccc3d-c03a-4d73-9f1c-a9f2e15652be",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.col-sm-10:nth-child(4)",
+      "targets": [
+        ["css=.col-sm-10:nth-child(4)", "css:finder"],
+        ["xpath=//dd[2]", "xpath:position"],
+        ["xpath=//dd[contains(.,'Transporte')]", "xpath:innerText"]
+      ],
+      "value": "Transporte"
+    }, {
+      "id": "1cc76e70-5d78-4a1c-8653-2c2f15b8134e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-sm-10:nth-child(6)",
+      "targets": [
+        ["css=.col-sm-10:nth-child(6)", "css:finder"],
+        ["xpath=//dd[3]", "xpath:position"],
+        ["xpath=//dd[contains(.,'1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "41c4152f-8291-4d71-90bc-1b3f9826cb68",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-sm-10:nth-child(8)",
+      "targets": [
+        ["css=.col-sm-10:nth-child(8)", "css:finder"],
+        ["xpath=//dd[4]", "xpath:position"],
+        ["xpath=//dd[contains(.,'fas fa-bus')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "382e975d-620b-4466-83c6-7ed72e1ed5e8",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.col-sm-10:nth-child(8)",
+      "targets": [
+        ["css=.col-sm-10:nth-child(8)", "css:finder"],
+        ["xpath=//dd[4]", "xpath:position"],
+        ["xpath=//dd[contains(.,'fas fa-bus')]", "xpath:innerText"]
+      ],
+      "value": "fas fa-bus"
+    }, {
+      "id": "2ddc670b-aa3c-466b-b620-c3fc55bcf4eb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-sm-10:nth-child(6)",
+      "targets": [
+        ["css=.col-sm-10:nth-child(6)", "css:finder"],
+        ["xpath=//dd[3]", "xpath:position"],
+        ["xpath=//dd[contains(.,'1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "2d377586-7945-410a-84cb-6ba36c6577c6",
+    "name": "AlterarAreaDeServicoValido",
+    "commands": [{
+      "id": "68fa3806-817b-432b-8504-b7bf694b08c7",
+      "comment": "",
+      "command": "open",
+      "target": "/areadeservico",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d579942b-c1b7-429c-a51f-8ff70396f0ea",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "afbec7fa-7c71-4afc-a0c4-4905766ee353",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(9) a:nth-child(1)",
+      "targets": [
+        ["css=tr:nth-child(9) a:nth-child(1)", "css:finder"],
+        ["xpath=(//a[contains(text(),'Editar')])[9]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/AreaDeServico/Edit/11')]", "xpath:href"],
+        ["xpath=//tr[9]/td[5]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1d7753b0-c564-4a37-a464-8c120caf3761",
+      "comment": "",
+      "command": "click",
+      "target": "id=Nome",
+      "targets": [
+        ["id=Nome", "id"],
+        ["name=Nome", "name"],
+        ["css=#Nome", "css:finder"],
+        ["xpath=//input[@id='Nome']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c3a4ec44-a163-4ce4-9ea8-e12a06f352d1",
+      "comment": "",
+      "command": "type",
+      "target": "id=Nome",
+      "targets": [
+        ["id=Nome", "id"],
+        ["name=Nome", "name"],
+        ["css=#Nome", "css:finder"],
+        ["xpath=//input[@id='Nome']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Agricultura"
+    }, {
+      "id": "6c75174e-0fa8-4383-9294-688a266025e4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@value='Salvar']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d71a9edc-98fa-43d5-989b-1b004b30af51",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(9) > td:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(9) > td:nth-child(2)", "css:finder"],
+        ["xpath=//tr[9]/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'Agricultura')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0c6c18cd-b116-458f-b3b3-a68f066e1a5d",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=tr:nth-child(9) > td:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(9) > td:nth-child(2)", "css:finder"],
+        ["xpath=//tr[9]/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'Agricultura')]", "xpath:innerText"]
+      ],
+      "value": "Agricultura"
+    }]
+  }, {
+    "id": "563ace74-423b-4d29-9571-21ab5694ca54",
+    "name": "CadastrarPrefeituraValido",
+    "commands": [{
+      "id": "1cd68070-5092-472b-9e76-4f12b54feb29",
+      "comment": "",
+      "command": "open",
+      "target": "/prefeitura",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8ff0bab2-2ce2-4ed5-9646-684a721a6ddf",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "06b726eb-db4f-4812-b85c-804aaacd14f4",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Cadastrar nova prefeitura",
+      "targets": [
+        ["linkText=Cadastrar nova prefeitura", "linkText"],
+        ["css=p > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Cadastrar nova prefeitura')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Prefeitura/Create')]", "xpath:href"],
+        ["xpath=//p/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Cadastrar nova prefeitura')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3163f90e-220a-49e6-8449-9b4f6c5f17a3",
+      "comment": "",
+      "command": "click",
+      "target": "id=Id",
+      "targets": [
+        ["id=Id", "id"],
+        ["name=Id", "name"],
+        ["css=#Id", "css:finder"],
+        ["xpath=//input[@id='Id']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b59229aa-9b89-4487-b0e4-9c64a46315af",
+      "comment": "",
+      "command": "type",
+      "target": "id=Id",
+      "targets": [
+        ["id=Id", "id"],
+        ["name=Id", "name"],
+        ["css=#Id", "css:finder"],
+        ["xpath=//input[@id='Id']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "3"
+    }, {
+      "id": "f7ee8ee6-b4ba-45f5-991d-da572427e728",
+      "comment": "",
+      "command": "click",
+      "target": "id=Nome",
+      "targets": [
+        ["id=Nome", "id"],
+        ["name=Nome", "name"],
+        ["css=#Nome", "css:finder"],
+        ["xpath=//input[@id='Nome']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "da8f7b92-3b5d-45f6-bde2-e485e1c22b73",
+      "comment": "",
+      "command": "type",
+      "target": "id=Nome",
+      "targets": [
+        ["id=Nome", "id"],
+        ["name=Nome", "name"],
+        ["css=#Nome", "css:finder"],
+        ["xpath=//input[@id='Nome']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Prefeitura Municipal de Moita Bonita"
+    }, {
+      "id": "1b015783-e2a5-40f7-abfa-ce1b05c33730",
+      "comment": "",
+      "command": "click",
+      "target": "id=Cnpj",
+      "targets": [
+        ["id=Cnpj", "id"],
+        ["name=Cnpj", "name"],
+        ["css=#Cnpj", "css:finder"],
+        ["xpath=//input[@id='Cnpj']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2af2f6fa-da25-42e5-9178-ac71887943e3",
+      "comment": "",
+      "command": "type",
+      "target": "id=Cnpj",
+      "targets": [
+        ["id=Cnpj", "id"],
+        ["name=Cnpj", "name"],
+        ["css=#Cnpj", "css:finder"],
+        ["xpath=//input[@id='Cnpj']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "13104112000135"
+    }, {
+      "id": "9ef64d48-23cd-47bf-bb5c-76b2e690b996",
+      "comment": "",
+      "command": "click",
+      "target": "id=Estado",
+      "targets": [
+        ["id=Estado", "id"],
+        ["name=Estado", "name"],
+        ["css=#Estado", "css:finder"],
+        ["xpath=//input[@id='Estado']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "58f8de18-a644-429e-8e45-bdfc176d557c",
+      "comment": "",
+      "command": "type",
+      "target": "id=Estado",
+      "targets": [
+        ["id=Estado", "id"],
+        ["name=Estado", "name"],
+        ["css=#Estado", "css:finder"],
+        ["xpath=//input[@id='Estado']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "SE"
+    }, {
+      "id": "a5c6329d-2273-449d-86d7-eafcbcd27610",
+      "comment": "",
+      "command": "click",
+      "target": "id=Cidade",
+      "targets": [
+        ["id=Cidade", "id"],
+        ["name=Cidade", "name"],
+        ["css=#Cidade", "css:finder"],
+        ["xpath=//input[@id='Cidade']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fae6eb20-30c4-4298-93fe-8843d7137dc9",
+      "comment": "",
+      "command": "type",
+      "target": "id=Cidade",
+      "targets": [
+        ["id=Cidade", "id"],
+        ["name=Cidade", "name"],
+        ["css=#Cidade", "css:finder"],
+        ["xpath=//input[@id='Cidade']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "Moita Bonita"
+    }, {
+      "id": "ec5140de-3afc-4795-8c8e-c430fc78a6fa",
+      "comment": "",
+      "command": "click",
+      "target": "id=Bairro",
+      "targets": [
+        ["id=Bairro", "id"],
+        ["name=Bairro", "name"],
+        ["css=#Bairro", "css:finder"],
+        ["xpath=//input[@id='Bairro']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f8aecf7d-6816-4cc6-a8f8-e612ec76b112",
+      "comment": "",
+      "command": "click",
+      "target": "id=Cep",
+      "targets": [
+        ["id=Cep", "id"],
+        ["name=Cep", "name"],
+        ["css=#Cep", "css:finder"],
+        ["xpath=//input[@id='Cep']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a6ee369c-2398-4bbe-b203-707c1ee86508",
+      "comment": "",
+      "command": "click",
+      "target": "id=Cep",
+      "targets": [
+        ["id=Cep", "id"],
+        ["name=Cep", "name"],
+        ["css=#Cep", "css:finder"],
+        ["xpath=//input[@id='Cep']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "da7d34e6-a4c2-4928-88c2-58f64c91259c",
+      "comment": "",
+      "command": "type",
+      "target": "id=Cep",
+      "targets": [
+        ["id=Cep", "id"],
+        ["name=Cep", "name"],
+        ["css=#Cep", "css:finder"],
+        ["xpath=//input[@id='Cep']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": "49560-000"
+    }, {
+      "id": "88d0f965-a30b-4e85-9dbe-3a86af3cd2e1",
+      "comment": "",
+      "command": "click",
+      "target": "id=Bairro",
+      "targets": [
+        ["id=Bairro", "id"],
+        ["name=Bairro", "name"],
+        ["css=#Bairro", "css:finder"],
+        ["xpath=//input[@id='Bairro']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0784acc0-4a71-4c18-beb3-082010a83a89",
+      "comment": "",
+      "command": "type",
+      "target": "id=Bairro",
+      "targets": [
+        ["id=Bairro", "id"],
+        ["name=Bairro", "name"],
+        ["css=#Bairro", "css:finder"],
+        ["xpath=//input[@id='Bairro']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "Centro"
+    }, {
+      "id": "16d171e1-5b26-4a74-b4eb-96d3378c61b1",
+      "comment": "",
+      "command": "click",
+      "target": "id=Rua",
+      "targets": [
+        ["id=Rua", "id"],
+        ["name=Rua", "name"],
+        ["css=#Rua", "css:finder"],
+        ["xpath=//input[@id='Rua']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff8c1f3a-f32e-447f-a0f2-a00c01f84a28",
+      "comment": "",
+      "command": "type",
+      "target": "id=Rua",
+      "targets": [
+        ["id=Rua", "id"],
+        ["name=Rua", "name"],
+        ["css=#Rua", "css:finder"],
+        ["xpath=//input[@id='Rua']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": "Praça Santa Terezinha"
+    }, {
+      "id": "169f6a0c-a356-4492-9eff-5d63c011fcd2",
+      "comment": "",
+      "command": "click",
+      "target": "id=Numero",
+      "targets": [
+        ["id=Numero", "id"],
+        ["name=Numero", "name"],
+        ["css=#Numero", "css:finder"],
+        ["xpath=//input[@id='Numero']", "xpath:attributes"],
+        ["xpath=//div[9]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "aa0b7d2f-a405-4d6d-96c3-c8b47f0a5e50",
+      "comment": "",
+      "command": "type",
+      "target": "id=Numero",
+      "targets": [
+        ["id=Numero", "id"],
+        ["name=Numero", "name"],
+        ["css=#Numero", "css:finder"],
+        ["xpath=//input[@id='Numero']", "xpath:attributes"],
+        ["xpath=//div[9]/input", "xpath:position"]
+      ],
+      "value": "26"
+    }, {
+      "id": "2c2a934e-283d-48c9-b1ff-17c16b089285",
+      "comment": "",
+      "command": "click",
+      "target": "id=Icone",
+      "targets": [
+        ["id=Icone", "id"],
+        ["name=Icone", "name"],
+        ["css=#Icone", "css:finder"],
+        ["xpath=//input[@id='Icone']", "xpath:attributes"],
+        ["xpath=//div[10]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2d9efb27-dc1c-48b9-8151-6d9d153e5e8b",
+      "comment": "",
+      "command": "click",
+      "target": "id=Icone",
+      "targets": [
+        ["id=Icone", "id"],
+        ["name=Icone", "name"],
+        ["css=#Icone", "css:finder"],
+        ["xpath=//input[@id='Icone']", "xpath:attributes"],
+        ["xpath=//div[10]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7f591a76-480b-437e-b6e6-da6011899909",
+      "comment": "",
+      "command": "type",
+      "target": "id=Icone",
+      "targets": [
+        ["id=Icone", "id"],
+        ["name=Icone", "name"],
+        ["css=#Icone", "css:finder"],
+        ["xpath=//input[@id='Icone']", "xpath:attributes"],
+        ["xpath=//div[10]/input", "xpath:position"]
+      ],
+      "value": "brasaoMoitaBonita.png"
+    }, {
+      "id": "11da205d-4cfb-4b43-bf46-2b44e03c9f49",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@value='Cadastrar']", "xpath:attributes"],
+        ["xpath=//div[11]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6b58df4d-24eb-4c94-8b21-b66357674740",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) > td:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(2) > td:nth-child(2)", "css:finder"],
+        ["xpath=//tr[2]/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'Prefeitura Municipal de Moita Bonita')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "56064684-68d0-4f02-a61e-73cab6569303",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=tr:nth-child(2) > td:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(2) > td:nth-child(2)", "css:finder"],
+        ["xpath=//tr[2]/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'Prefeitura Municipal de Moita Bonita')]", "xpath:innerText"]
+      ],
+      "value": "Prefeitura Municipal de Moita Bonita"
+    }]
+  }],
+  "suites": [{
+    "id": "0ab30ae4-6401-4382-be69-9215fbb779a5",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["73015bb7-b10c-4072-81e8-6b0b03929a4c"]
+  }],
+  "urls": ["https://localhost:7258/"],
+  "plugins": []
+}
