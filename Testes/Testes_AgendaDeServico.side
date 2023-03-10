@@ -1,0 +1,780 @@
+{
+  "id": "9beef766-a981-4e2e-901c-0d4fd88f459e",
+  "version": "2.0",
+  "name": "Testes_AgendaDeServico",
+  "url": "https://localhost:7258/AgendaDoServico",
+  "tests": [{
+    "id": "2de42474-16f9-406e-b753-a8bf8b4c2c0b",
+    "name": "AG-21:Cadastrar Agenda de Serviço Válido",
+    "commands": [{
+      "id": "da5bea8d-8230-4786-b1da-d3fe95352f76",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:7258/AgendaDoServico",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1526c7b1-b804-45c7-bc81-8b444d25bd26",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cb4f34e9-d26f-44b1-b0e1-63575e81ec04",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Cadastrar nova agenda de serviço",
+      "targets": [
+        ["linkText=Cadastrar nova agenda de serviço", "linkText"],
+        ["css=.primary", "css:finder"],
+        ["xpath=//a[contains(text(),'Cadastrar nova agenda de serviço')]", "xpath:link"],
+        ["xpath=//div[@id='novaAgenda']/p/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/AgendaDoServico/Create')]", "xpath:href"],
+        ["xpath=//p/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Cadastrar nova agenda de serviço')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8ecd68a1-69c4-4cc8-9a66-929b3b3516bc",
+      "comment": "",
+      "command": "click",
+      "target": "id=DiaSemana",
+      "targets": [
+        ["id=DiaSemana", "id"],
+        ["name=DiaSemana", "name"],
+        ["css=#DiaSemana", "css:finder"],
+        ["xpath=//input[@id='DiaSemana']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0ced3c2c-91c9-4875-8dc0-bf283a8203d2",
+      "comment": "",
+      "command": "type",
+      "target": "id=DiaSemana",
+      "targets": [
+        ["id=DiaSemana", "id"],
+        ["name=DiaSemana", "name"],
+        ["css=#DiaSemana", "css:finder"],
+        ["xpath=//input[@id='DiaSemana']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Segunda"
+    }, {
+      "id": "89bc4dc2-6d3f-4c3e-a0f6-1577129cc036",
+      "comment": "",
+      "command": "type",
+      "target": "id=HorarioInicio",
+      "targets": [
+        ["id=HorarioInicio", "id"],
+        ["name=HorarioInicio", "name"],
+        ["css=#HorarioInicio", "css:finder"],
+        ["xpath=//input[@id='HorarioInicio']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "08:00"
+    }, {
+      "id": "37e19567-bee4-4770-8fdf-81e52662f733",
+      "comment": "",
+      "command": "type",
+      "target": "id=HorarioFim",
+      "targets": [
+        ["id=HorarioFim", "id"],
+        ["name=HorarioFim", "name"],
+        ["css=#HorarioFim", "css:finder"],
+        ["xpath=//input[@id='HorarioFim']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "12:00"
+    }, {
+      "id": "115c5652-ecbf-458f-9756-be1d9a590223",
+      "comment": "",
+      "command": "type",
+      "target": "id=VagasAtendimento",
+      "targets": [
+        ["id=VagasAtendimento", "id"],
+        ["name=VagasAtendimento", "name"],
+        ["css=#VagasAtendimento", "css:finder"],
+        ["xpath=//input[@id='VagasAtendimento']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "10"
+    }, {
+      "id": "acd82fdd-1cd5-4cd0-aa51-883479ac3034",
+      "comment": "",
+      "command": "type",
+      "target": "id=VagasRetorno",
+      "targets": [
+        ["id=VagasRetorno", "id"],
+        ["name=VagasRetorno", "name"],
+        ["css=#VagasRetorno", "css:finder"],
+        ["xpath=//input[@id='VagasRetorno']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "10"
+    }, {
+      "id": "028d8d9f-d20e-4c4e-9d5a-d092974f20a1",
+      "comment": "",
+      "command": "type",
+      "target": "id=IdServicoPublico",
+      "targets": [
+        ["id=IdServicoPublico", "id"],
+        ["name=IdServicoPublico", "name"],
+        ["css=#IdServicoPublico", "css:finder"],
+        ["xpath=//input[@id='IdServicoPublico']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "5cf6d1d0-537c-4bcf-a6c7-518f05042cd8",
+      "comment": "",
+      "command": "type",
+      "target": "id=IdProfissional",
+      "targets": [
+        ["id=IdProfissional", "id"],
+        ["name=IdProfissional", "name"],
+        ["css=#IdProfissional", "css:finder"],
+        ["xpath=//input[@id='IdProfissional']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "9766fd62-9749-467d-b600-0a5b7ee65383",
+      "comment": "",
+      "command": "click",
+      "target": "css=.container",
+      "targets": [
+        ["css=.container", "css:finder"],
+        ["xpath=//body/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b3b92b2-1d72-4ed9-b378-7fcd1847d5e9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@value='Cadastrar']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d937a0fb-04c6-44df-8fe2-d61eebbbf46f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=2",
+      "targets": [
+        ["linkText=2", "linkText"],
+        ["css=.paginate_button:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'2')]", "xpath:link"],
+        ["xpath=//div[@id='tableServicoPublico_paginate']/span/a[2]", "xpath:idRelative"],
+        ["xpath=//span/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'2')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "9e1b6401-07c2-40b1-b257-2671e198a532",
+    "name": "AG-22:Cadastrar Agenda de Serviço Inválido",
+    "commands": [{
+      "id": "2bd3f651-1eab-4c7e-b503-458ba5ff1f15",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:7258/AgendaDoServico",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "926a6a8d-ddf9-4949-862b-47c26ae6f942",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "823x708",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "056da6d1-00bd-40a5-96e7-5139dc393aa1",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Cadastrar nova agenda de serviço",
+      "targets": [
+        ["linkText=Cadastrar nova agenda de serviço", "linkText"],
+        ["css=.primary", "css:finder"],
+        ["xpath=//a[contains(text(),'Cadastrar nova agenda de serviço')]", "xpath:link"],
+        ["xpath=//div[@id='novaAgenda']/p/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/AgendaDoServico/Create')]", "xpath:href"],
+        ["xpath=//p/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Cadastrar nova agenda de serviço')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e00917f3-75ca-43c8-9a7c-c6968bd3ba74",
+      "comment": "",
+      "command": "click",
+      "target": "id=IdProfissional",
+      "targets": [
+        ["id=IdProfissional", "id"],
+        ["name=IdProfissional", "name"],
+        ["css=#IdProfissional", "css:finder"],
+        ["xpath=//input[@id='IdProfissional']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "75d116a6-4e9e-4b8c-8301-006efb7386e1",
+      "comment": "",
+      "command": "type",
+      "target": "id=IdProfissional",
+      "targets": [
+        ["id=IdProfissional", "id"],
+        ["name=IdProfissional", "name"],
+        ["css=#IdProfissional", "css:finder"],
+        ["xpath=//input[@id='IdProfissional']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "978cfdab-e49e-444a-8012-c298080a1f73",
+      "comment": "",
+      "command": "click",
+      "target": "css=.container",
+      "targets": [
+        ["css=.container", "css:finder"],
+        ["xpath=//body/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3bdac925-d00c-4ee5-92d4-f7706464698d",
+      "comment": "",
+      "command": "click",
+      "target": "id=IdServicoPublico",
+      "targets": [
+        ["id=IdServicoPublico", "id"],
+        ["name=IdServicoPublico", "name"],
+        ["css=#IdServicoPublico", "css:finder"],
+        ["xpath=//input[@id='IdServicoPublico']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1012ce9a-a24e-4902-877e-fb9daa32abb0",
+      "comment": "",
+      "command": "type",
+      "target": "id=IdServicoPublico",
+      "targets": [
+        ["id=IdServicoPublico", "id"],
+        ["name=IdServicoPublico", "name"],
+        ["css=#IdServicoPublico", "css:finder"],
+        ["xpath=//input[@id='IdServicoPublico']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "621f26e0-213a-4f85-a540-5be47e428d79",
+      "comment": "",
+      "command": "click",
+      "target": "css=.container",
+      "targets": [
+        ["css=.container", "css:finder"],
+        ["xpath=//body/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fb022b44-6dcf-4223-bbe6-20343387aab7",
+      "comment": "",
+      "command": "click",
+      "target": "id=VagasRetorno",
+      "targets": [
+        ["id=VagasRetorno", "id"],
+        ["name=VagasRetorno", "name"],
+        ["css=#VagasRetorno", "css:finder"],
+        ["xpath=//input[@id='VagasRetorno']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f7b4dc77-1234-43bd-9adb-0d2d51319856",
+      "comment": "",
+      "command": "type",
+      "target": "id=VagasRetorno",
+      "targets": [
+        ["id=VagasRetorno", "id"],
+        ["name=VagasRetorno", "name"],
+        ["css=#VagasRetorno", "css:finder"],
+        ["xpath=//input[@id='VagasRetorno']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "0"
+    }, {
+      "id": "e3695b6d-36c0-4195-9347-b7d6245df761",
+      "comment": "",
+      "command": "click",
+      "target": "id=VagasAtendimento",
+      "targets": [
+        ["id=VagasAtendimento", "id"],
+        ["name=VagasAtendimento", "name"],
+        ["css=#VagasAtendimento", "css:finder"],
+        ["xpath=//input[@id='VagasAtendimento']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f63e72ce-57d5-4f8d-b49f-4808d6a2978a",
+      "comment": "",
+      "command": "type",
+      "target": "id=VagasAtendimento",
+      "targets": [
+        ["id=VagasAtendimento", "id"],
+        ["name=VagasAtendimento", "name"],
+        ["css=#VagasAtendimento", "css:finder"],
+        ["xpath=//input[@id='VagasAtendimento']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "0"
+    }, {
+      "id": "feb6c6ca-b132-4e58-b5f6-39b476f722cb",
+      "comment": "",
+      "command": "click",
+      "target": "id=HorarioFim",
+      "targets": [
+        ["id=HorarioFim", "id"],
+        ["name=HorarioFim", "name"],
+        ["css=#HorarioFim", "css:finder"],
+        ["xpath=//input[@id='HorarioFim']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7399c641-e04a-4479-8320-19872ee4e4ed",
+      "comment": "",
+      "command": "type",
+      "target": "id=HorarioFim",
+      "targets": [
+        ["id=HorarioFim", "id"],
+        ["name=HorarioFim", "name"],
+        ["css=#HorarioFim", "css:finder"],
+        ["xpath=//input[@id='HorarioFim']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "10:00"
+    }, {
+      "id": "25849835-ef83-4c25-a415-959ee739bb9e",
+      "comment": "",
+      "command": "click",
+      "target": "id=HorarioInicio",
+      "targets": [
+        ["id=HorarioInicio", "id"],
+        ["name=HorarioInicio", "name"],
+        ["css=#HorarioInicio", "css:finder"],
+        ["xpath=//input[@id='HorarioInicio']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3fcab1c1-9d59-44e6-9862-f55b998e250e",
+      "comment": "",
+      "command": "type",
+      "target": "id=HorarioInicio",
+      "targets": [
+        ["id=HorarioInicio", "id"],
+        ["name=HorarioInicio", "name"],
+        ["css=#HorarioInicio", "css:finder"],
+        ["xpath=//input[@id='HorarioInicio']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "09:00"
+    }, {
+      "id": "2bacfe3a-ea61-4881-9a0b-5f1224159f2d",
+      "comment": "",
+      "command": "click",
+      "target": "id=DiaSemana",
+      "targets": [
+        ["id=DiaSemana", "id"],
+        ["name=DiaSemana", "name"],
+        ["css=#DiaSemana", "css:finder"],
+        ["xpath=//input[@id='DiaSemana']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "45cafe22-27ba-4ff6-b05e-c6a042360b24",
+      "comment": "",
+      "command": "type",
+      "target": "id=DiaSemana",
+      "targets": [
+        ["id=DiaSemana", "id"],
+        ["name=DiaSemana", "name"],
+        ["css=#DiaSemana", "css:finder"],
+        ["xpath=//input[@id='DiaSemana']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Terça"
+    }, {
+      "id": "7999d0b1-da8f-4a5c-b929-b2ac743940fc",
+      "comment": "",
+      "command": "click",
+      "target": "css=body",
+      "targets": [
+        ["css=body", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "42b5485f-68be-4fe5-9766-3454ed5da733",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@value='Cadastrar']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "60a1a7d8-3aa1-4589-a656-9a426bc2cc1d",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=2",
+      "targets": [
+        ["linkText=2", "linkText"],
+        ["css=.paginate_button:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'2')]", "xpath:link"],
+        ["xpath=//div[@id='tableServicoPublico_paginate']/span/a[2]", "xpath:idRelative"],
+        ["xpath=//span/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'2')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "496e25e2-deb0-4f3c-83a2-9485754ddde0",
+    "name": "AG-23:Alterar Agenda de Serviço Válido",
+    "commands": [{
+      "id": "00f86bd9-50a7-4901-9659-c145af091caa",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:7258/AgendaDoServico",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fa948a1a-4f55-4e59-817f-4f07d619ca42",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "823x708",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "02a00701-0934-4339-9cbe-8dc5ddc6645c",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=2",
+      "targets": [
+        ["linkText=2", "linkText"],
+        ["css=.paginate_button:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'2')]", "xpath:link"],
+        ["xpath=//div[@id='tableServicoPublico_paginate']/span/a[2]", "xpath:idRelative"],
+        ["xpath=//span/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'2')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "edb54382-79ff-4cd1-81e2-f241ea51a78b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.even:nth-child(4) .fa-edit",
+      "targets": [
+        ["css=.even:nth-child(4) .fa-edit", "css:finder"],
+        ["xpath=//table[@id='tableServicoPublico']/tbody/tr[4]/td[7]/a/i", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[7]/a/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f1654e5b-03d5-4138-b944-a3ce054c28fe",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "css=body",
+      "targets": [
+        ["css=body", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": "46,475"
+    }, {
+      "id": "8dc7a070-7b9c-4417-ae08-c51ab8a86f65",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "css=body",
+      "targets": [
+        ["css=body", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": "46,475"
+    }, {
+      "id": "c1551feb-eb26-4e59-9076-679b824aaaf3",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "css=body",
+      "targets": [
+        ["css=body", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": "46,475"
+    }, {
+      "id": "b844c3fa-c1da-4029-82fc-bb0fcd1ee593",
+      "comment": "",
+      "command": "click",
+      "target": "css=body",
+      "targets": [
+        ["css=body", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "60ee0e5f-f7d5-4c34-96cf-38e9fa6cb93c",
+      "comment": "",
+      "command": "type",
+      "target": "id=VagasAtendimento",
+      "targets": [
+        ["id=VagasAtendimento", "id"],
+        ["name=VagasAtendimento", "name"],
+        ["css=#VagasAtendimento", "css:finder"],
+        ["xpath=//input[@id='VagasAtendimento']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "10"
+    }, {
+      "id": "6bb15d50-9219-494d-95a8-2987d0baca4d",
+      "comment": "",
+      "command": "click",
+      "target": "css=body",
+      "targets": [
+        ["css=body", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "af3d59d2-86f0-485b-84fe-d3543766dcf4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@value='Salvar']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "741481bd-44e8-4205-8fed-28a9d08cec1c",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=2",
+      "targets": [
+        ["linkText=2", "linkText"],
+        ["css=.paginate_button:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'2')]", "xpath:link"],
+        ["xpath=//div[@id='tableServicoPublico_paginate']/span/a[2]", "xpath:idRelative"],
+        ["xpath=//span/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'2')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "4b90577e-ce36-4690-a61e-4e819d68232d",
+    "name": "AG-24:Alterar Agenda de Serviço Inválido",
+    "commands": [{
+      "id": "a61bfcb8-8e03-4b93-9d31-b96f957b2e5c",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:7258/AgendaDoServico",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6c9ed645-14af-4f78-a6d8-dba89b0b5dae",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "823x708",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "30cbb2c7-1411-4167-8a15-0b24313075f4",
+      "comment": "",
+      "command": "click",
+      "target": "id=tableServicoPublico_next",
+      "targets": [
+        ["id=tableServicoPublico_next", "id"],
+        ["linkText=Próximo", "linkText"],
+        ["css=#tableServicoPublico_next", "css:finder"],
+        ["xpath=//a[contains(text(),'Próximo')]", "xpath:link"],
+        ["xpath=//a[@id='tableServicoPublico_next']", "xpath:attributes"],
+        ["xpath=//div[@id='tableServicoPublico_paginate']/a[2]", "xpath:idRelative"],
+        ["xpath=//div[4]/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Próximo')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0534f5e8-7b65-4c6b-8a9c-7ba1b20a759a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.even:nth-child(4) .fa-edit",
+      "targets": [
+        ["css=.even:nth-child(4) .fa-edit", "css:finder"],
+        ["xpath=//table[@id='tableServicoPublico']/tbody/tr[4]/td[7]/a/i", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[7]/a/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "60659ed8-9f2f-487a-9810-af56027c0d58",
+      "comment": "",
+      "command": "click",
+      "target": "css=html",
+      "targets": [
+        ["css=html", "css:finder"],
+        ["xpath=//html", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9abb2ea3-6b54-4a0f-89ed-f219501a8e23",
+      "comment": "",
+      "command": "type",
+      "target": "id=VagasAtendimento",
+      "targets": [
+        ["id=VagasAtendimento", "id"],
+        ["name=VagasAtendimento", "name"],
+        ["css=#VagasAtendimento", "css:finder"],
+        ["xpath=//input[@id='VagasAtendimento']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "0"
+    }, {
+      "id": "fc3c0cbe-5e5e-46a0-af1c-4d902afb3795",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@value='Salvar']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "059b2e11-f999-4696-8384-9e9882cafd24",
+      "comment": "",
+      "command": "click",
+      "target": "id=tableServicoPublico_next",
+      "targets": [
+        ["id=tableServicoPublico_next", "id"],
+        ["linkText=Próximo", "linkText"],
+        ["css=#tableServicoPublico_next", "css:finder"],
+        ["xpath=//a[contains(text(),'Próximo')]", "xpath:link"],
+        ["xpath=//a[@id='tableServicoPublico_next']", "xpath:attributes"],
+        ["xpath=//div[@id='tableServicoPublico_paginate']/a[2]", "xpath:idRelative"],
+        ["xpath=//div[4]/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Próximo')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "4629251f-7b6d-4240-ba7b-106318e2222f",
+    "name": "AG-25:Consultar Agenda de Serviço Válido",
+    "commands": [{
+      "id": "c94949c8-18e6-49c7-ad0c-42e6ed084283",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:7258/AgendaDoServico",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fd99f29f-79ac-4737-9b53-9c7440b36752",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "eb3d8cc1-132b-49e8-90d1-7f3e3753dc5a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.focus-visible",
+      "targets": [
+        ["css=.focus-visible", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='tableServicoPublico_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7ea1b7f0-dec4-4931-817c-63bbd7897ecf",
+      "comment": "",
+      "command": "type",
+      "target": "css=.focus-visible",
+      "targets": [
+        ["css=.focus-visible", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='tableServicoPublico_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "José"
+    }, {
+      "id": "07f1a669-ab8c-4296-a059-e090deee5370",
+      "comment": "",
+      "command": "click",
+      "target": "id=novaAgenda",
+      "targets": [
+        ["id=novaAgenda", "id"],
+        ["css=#novaAgenda", "css:finder"],
+        ["xpath=//div[@id='novaAgenda']", "xpath:attributes"],
+        ["xpath=//main/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0ddccd93-e1c3-40fb-9a99-52f24a736792",
+      "comment": "",
+      "command": "click",
+      "target": "css=.focus-visible",
+      "targets": [
+        ["css=.focus-visible", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='tableServicoPublico_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "99b854ce-e418-4b75-b3a4-e09b727f895f",
+      "comment": "",
+      "command": "type",
+      "target": "css=.focus-visible",
+      "targets": [
+        ["css=.focus-visible", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='tableServicoPublico_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "José Teles"
+    }, {
+      "id": "bd8f9cb2-74c5-4a39-8a14-fd20e901bf8a",
+      "comment": "",
+      "command": "type",
+      "target": "css=.focus-visible",
+      "targets": [
+        ["css=.focus-visible", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='tableServicoPublico_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "José Teles Santana"
+    }, {
+      "id": "f6348927-c314-4921-ae94-6d6a1353eeb7",
+      "comment": "",
+      "command": "click",
+      "target": "id=tableServicoPublico_wrapper",
+      "targets": [
+        ["id=tableServicoPublico_wrapper", "id"],
+        ["css=#tableServicoPublico_wrapper", "css:finder"],
+        ["xpath=//div[@id='tableServicoPublico_wrapper']", "xpath:attributes"],
+        ["xpath=//main/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [],
+  "urls": ["https://localhost:7258/"],
+  "plugins": []
+}
