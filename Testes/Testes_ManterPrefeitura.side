@@ -1,0 +1,983 @@
+{
+  "id": "b584565c-9480-4932-a84e-abd3f0757c22",
+  "version": "2.0",
+  "name": "AgendeMe",
+  "url": "https://localhost:7258",
+  "tests": [{
+    "id": "3d7e8ca1-0a63-4e17-abaa-56885b1d1b95",
+    "name": "AG-87: Cadastrar Prefeitura Inválida",
+    "commands": [{
+      "id": "3c184c79-5553-4ee3-b8b6-ffe84af6ad26",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3ebd33fb-be9e-4d15-bfd3-9186f69ed4c7",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1094x584",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "893b93d0-4c54-471a-b049-eed88374c1ac",
+      "comment": "",
+      "command": "click",
+      "target": "id=login",
+      "targets": [
+        ["id=login", "id"],
+        ["linkText=Entrar", "linkText"],
+        ["css=#login", "css:finder"],
+        ["xpath=//a[@id='login']", "xpath:attributes"],
+        ["xpath=//a[contains(@href, '/Identity/Account/Login')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "74042b0b-7eca-4856-a906-3f3f9e01b3ec",
+      "comment": "",
+      "command": "click",
+      "target": "id=Input_Email",
+      "targets": [
+        ["id=Input_Email", "id"],
+        ["name=Input.Email", "name"],
+        ["css=#Input_Email", "css:finder"],
+        ["xpath=//input[@id='Input_Email']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f60f9a4b-5f10-4a3c-874b-3cdb6d7fb58d",
+      "comment": "",
+      "command": "type",
+      "target": "id=Input_Email",
+      "targets": [
+        ["id=Input_Email", "id"],
+        ["name=Input.Email", "name"],
+        ["css=#Input_Email", "css:finder"],
+        ["xpath=//input[@id='Input_Email']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "viniciusCarvalho@gmail.com"
+    }, {
+      "id": "7753849f-c5ab-444e-8c24-4c8fbd046ff7",
+      "comment": "",
+      "command": "click",
+      "target": "id=Input_Password",
+      "targets": [
+        ["id=Input_Password", "id"],
+        ["name=Input.Password", "name"],
+        ["css=#Input_Password", "css:finder"],
+        ["xpath=//input[@id='Input_Password']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "53495df9-ecc1-493c-a02b-d834ebf52ce2",
+      "comment": "",
+      "command": "type",
+      "target": "id=Input_Password",
+      "targets": [
+        ["id=Input_Password", "id"],
+        ["name=Input.Password", "name"],
+        ["css=#Input_Password", "css:finder"],
+        ["xpath=//input[@id='Input_Password']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "agendeMe@23"
+    }, {
+      "id": "13703b62-3f25-4e04-b3c8-dabdcbd3dc3d",
+      "comment": "",
+      "command": "click",
+      "target": "id=login-submit",
+      "targets": [
+        ["id=login-submit", "id"],
+        ["css=#login-submit", "css:finder"],
+        ["xpath=//button[@id='login-submit']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[4]/button", "xpath:idRelative"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Log in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3c62c12e-f82f-4a76-9076-d09ab3ef1cb7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.fa-ellipsis-v",
+      "targets": [
+        ["css=.fa-ellipsis-v", "css:finder"],
+        ["xpath=//i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d6feb8e-f1dd-4e24-9fea-12fb9bfcd8fa",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Prefeituras",
+      "targets": [
+        ["linkText=Prefeituras", "linkText"],
+        ["css=.header-links .br-item:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Prefeituras')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'javascript:void(0)')]", "xpath:href"],
+        ["xpath=//div[2]/div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Prefeituras')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "187feba3-c3da-404d-b646-b836a532157c",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Cadastrar nova prefeitura",
+      "targets": [
+        ["linkText=Cadastrar nova prefeitura", "linkText"],
+        ["css=p > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Cadastrar nova prefeitura')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Prefeitura/Create')]", "xpath:href"],
+        ["xpath=//p/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Cadastrar nova prefeitura')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "72e92429-a71a-445d-be4f-24476048bead",
+      "comment": "",
+      "command": "click",
+      "target": "id=Id",
+      "targets": [
+        ["id=Id", "id"],
+        ["name=Id", "name"],
+        ["css=#Id", "css:finder"],
+        ["xpath=//input[@id='Id']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "409159ce-395d-4bfc-a642-3393e1048cd7",
+      "comment": "",
+      "command": "type",
+      "target": "id=Id",
+      "targets": [
+        ["id=Id", "id"],
+        ["name=Id", "name"],
+        ["css=#Id", "css:finder"],
+        ["xpath=//input[@id='Id']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "00000000000"
+    }, {
+      "id": "a61c2fc5-0f21-4428-bb3c-a999e4d3c511",
+      "comment": "",
+      "command": "click",
+      "target": "id=Nome",
+      "targets": [
+        ["id=Nome", "id"],
+        ["name=Nome", "name"],
+        ["css=#Nome", "css:finder"],
+        ["xpath=//input[@id='Nome']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0c2d3450-6b44-4216-8ca6-cbae2a57ab73",
+      "comment": "",
+      "command": "click",
+      "target": "id=Id",
+      "targets": [
+        ["id=Id", "id"],
+        ["name=Id", "name"],
+        ["css=#Id", "css:finder"],
+        ["xpath=//input[@id='Id']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d8fa475e-81e9-4e2d-99fb-2587bff55160",
+      "comment": "",
+      "command": "type",
+      "target": "id=Id",
+      "targets": [
+        ["id=Id", "id"],
+        ["name=Id", "name"],
+        ["css=#Id", "css:finder"],
+        ["xpath=//input[@id='Id']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fe2a34d1-38cd-4757-bd07-1f004b7103d7",
+      "comment": "",
+      "command": "click",
+      "target": "id=Cnpj",
+      "targets": [
+        ["id=Cnpj", "id"],
+        ["name=Cnpj", "name"],
+        ["css=#Cnpj", "css:finder"],
+        ["xpath=//input[@id='Cnpj']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "95d7622c-31b6-40b9-ad0b-0ced5279617e",
+      "comment": "",
+      "command": "type",
+      "target": "id=Cnpj",
+      "targets": [
+        ["id=Cnpj", "id"],
+        ["name=Cnpj", "name"],
+        ["css=#Cnpj", "css:finder"],
+        ["xpath=//input[@id='Cnpj']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "00000000000"
+    }, {
+      "id": "46cc3c1f-10ce-42ee-b293-1f0f0f1e7957",
+      "comment": "",
+      "command": "click",
+      "target": "id=Cep",
+      "targets": [
+        ["id=Cep", "id"],
+        ["name=Cep", "name"],
+        ["css=#Cep", "css:finder"],
+        ["xpath=//input[@id='Cep']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "181a86af-53f5-404e-8703-5cae35f3888f",
+      "comment": "",
+      "command": "type",
+      "target": "id=Cep",
+      "targets": [
+        ["id=Cep", "id"],
+        ["name=Cep", "name"],
+        ["css=#Cep", "css:finder"],
+        ["xpath=//input[@id='Cep']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": "1111111"
+    }, {
+      "id": "d82bcfdb-fad9-4af8-bd90-77d76d11f4a3",
+      "comment": "",
+      "command": "click",
+      "target": "id=Estado",
+      "targets": [
+        ["id=Estado", "id"],
+        ["name=Estado", "name"],
+        ["css=#Estado", "css:finder"],
+        ["xpath=//input[@id='Estado']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a94c3eaf-6da1-45c7-87a9-adf5c2fe0c5b",
+      "comment": "",
+      "command": "type",
+      "target": "id=Estado",
+      "targets": [
+        ["id=Estado", "id"],
+        ["name=Estado", "name"],
+        ["css=#Estado", "css:finder"],
+        ["xpath=//input[@id='Estado']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "SE"
+    }, {
+      "id": "02a36d93-e07f-44b8-99d8-51ede459fce2",
+      "comment": "",
+      "command": "click",
+      "target": "id=Bairro",
+      "targets": [
+        ["id=Bairro", "id"],
+        ["name=Bairro", "name"],
+        ["css=#Bairro", "css:finder"],
+        ["xpath=//input[@id='Bairro']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b6bdd28d-f8e3-43ab-abdb-3cc7a9e11d2d",
+      "comment": "",
+      "command": "type",
+      "target": "id=Bairro",
+      "targets": [
+        ["id=Bairro", "id"],
+        ["name=Bairro", "name"],
+        ["css=#Bairro", "css:finder"],
+        ["xpath=//input[@id='Bairro']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "Centro"
+    }, {
+      "id": "207c4c72-4ff8-4572-b649-8708d6b8c940",
+      "comment": "",
+      "command": "click",
+      "target": "css=.row:nth-child(4)",
+      "targets": [
+        ["css=.row:nth-child(4)", "css:finder"],
+        ["xpath=//main/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9264ca24-5c86-41d2-8f3e-b6d4924abc88",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//input[@value='Cadastrar']", "xpath:attributes"],
+        ["xpath=//div[11]/input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "fc2bf8e5-16c0-48c2-b3bb-f65e9de30c2d",
+    "name": "AG-88 : Editar Prefeitura Válida",
+    "commands": [{
+      "id": "9bff8251-7ba9-4d2c-8807-7db97328d26f",
+      "comment": "",
+      "command": "open",
+      "target": "/Home",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "012b7edf-703f-495f-b0ce-58504fd40d0a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1094x584",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "334bf8ed-3d1e-4dee-9deb-9424974d5656",
+      "comment": "",
+      "command": "click",
+      "target": "id=login",
+      "targets": [
+        ["id=login", "id"],
+        ["linkText=Entrar", "linkText"],
+        ["css=#login", "css:finder"],
+        ["xpath=//a[@id='login']", "xpath:attributes"],
+        ["xpath=//a[contains(@href, '/Identity/Account/Login')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3daff0d7-b7ba-4d45-95b6-5cc0b6cce005",
+      "comment": "",
+      "command": "click",
+      "target": "id=Input_Email",
+      "targets": [
+        ["id=Input_Email", "id"],
+        ["name=Input.Email", "name"],
+        ["css=#Input_Email", "css:finder"],
+        ["xpath=//input[@id='Input_Email']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "10f7365c-4d39-4484-9b27-a6cb45c5f7e1",
+      "comment": "",
+      "command": "type",
+      "target": "id=Input_Email",
+      "targets": [
+        ["id=Input_Email", "id"],
+        ["name=Input.Email", "name"],
+        ["css=#Input_Email", "css:finder"],
+        ["xpath=//input[@id='Input_Email']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "viniciusCarvalho@gmail.com"
+    }, {
+      "id": "9dfecfc1-9a98-4c5a-96cb-bfa50ba05299",
+      "comment": "",
+      "command": "click",
+      "target": "id=Input_Password",
+      "targets": [
+        ["id=Input_Password", "id"],
+        ["name=Input.Password", "name"],
+        ["css=#Input_Password", "css:finder"],
+        ["xpath=//input[@id='Input_Password']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "62b8f550-7779-4a54-871a-3373d3ed76b9",
+      "comment": "",
+      "command": "type",
+      "target": "id=Input_Password",
+      "targets": [
+        ["id=Input_Password", "id"],
+        ["name=Input.Password", "name"],
+        ["css=#Input_Password", "css:finder"],
+        ["xpath=//input[@id='Input_Password']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "agendeMe@23"
+    }, {
+      "id": "22899ffb-79c9-498a-82aa-dde2ea1b4413",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=Input_Password",
+      "targets": [
+        ["id=Input_Password", "id"],
+        ["name=Input.Password", "name"],
+        ["css=#Input_Password", "css:finder"],
+        ["xpath=//input[@id='Input_Password']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "811bf24f-9254-49f9-92ce-7bace09adec4",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) a:nth-child(1)",
+      "targets": [
+        ["css=tr:nth-child(2) a:nth-child(1)", "css:finder"],
+        ["xpath=(//a[contains(text(),'Editar')])[2]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Prefeitura/Edit/2')]", "xpath:href"],
+        ["xpath=//tr[2]/td[11]/a", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "23e9feea-77d8-4a61-b2d6-0f88c66a49f9",
+    "name": "AG-89: Editar Prefeitura Inválida",
+    "commands": [{
+      "id": "0a07f2e9-211d-4999-9cd4-aca642efebd3",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "195f9197-74a3-4352-9ae9-099ce84f12fb",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1094x584",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e07f6958-41d2-40cb-9805-8040b46b1fde",
+      "comment": "",
+      "command": "click",
+      "target": "id=logout",
+      "targets": [
+        ["id=logout", "id"],
+        ["css=#logout", "css:finder"],
+        ["xpath=//button[@id='logout']", "xpath:attributes"],
+        ["xpath=//form[@id='logoutForm']/button", "xpath:idRelative"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Logout')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "421b1120-7090-4d51-a99a-eef9b33e1efd",
+      "comment": "",
+      "command": "click",
+      "target": "id=login",
+      "targets": [
+        ["id=login", "id"],
+        ["linkText=Entrar", "linkText"],
+        ["css=#login", "css:finder"],
+        ["xpath=//a[@id='login']", "xpath:attributes"],
+        ["xpath=//a[contains(@href, '/Identity/Account/Login')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4e24f6a1-3449-4989-87f2-24853b448edf",
+      "comment": "",
+      "command": "click",
+      "target": "id=Input_Email",
+      "targets": [
+        ["id=Input_Email", "id"],
+        ["name=Input.Email", "name"],
+        ["css=#Input_Email", "css:finder"],
+        ["xpath=//input[@id='Input_Email']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "83e3534c-1b45-42ce-9f0f-a63db3d5394e",
+      "comment": "",
+      "command": "type",
+      "target": "id=Input_Email",
+      "targets": [
+        ["id=Input_Email", "id"],
+        ["name=Input.Email", "name"],
+        ["css=#Input_Email", "css:finder"],
+        ["xpath=//input[@id='Input_Email']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "viniciusCarvalho"
+    }, {
+      "id": "c31e6c72-c43b-4691-ae39-0f27944e6d4e",
+      "comment": "",
+      "command": "mouseDown",
+      "target": "id=Input_Password",
+      "targets": [
+        ["id=Input_Password", "id"],
+        ["name=Input.Password", "name"],
+        ["css=#Input_Password", "css:finder"],
+        ["xpath=//input[@id='Input_Password']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7aa45214-d29c-464f-a045-8950bc6401ba",
+      "comment": "",
+      "command": "mouseUp",
+      "target": "css=.form-floating:nth-child(3)",
+      "targets": [
+        ["css=.form-floating:nth-child(3)", "css:finder"],
+        ["xpath=//form[@id='account']/div", "xpath:idRelative"],
+        ["xpath=//form/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6cbe7a7b-2a98-41c7-9014-302c3caedcd3",
+      "comment": "",
+      "command": "click",
+      "target": "id=account",
+      "targets": [
+        ["id=account", "id"],
+        ["css=#account", "css:finder"],
+        ["xpath=//form[@id='account']", "xpath:attributes"],
+        ["xpath=//form", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d0e22917-5dd7-4e30-a54f-233a8a571a74",
+      "comment": "",
+      "command": "click",
+      "target": "id=Input_Email",
+      "targets": [
+        ["id=Input_Email", "id"],
+        ["name=Input.Email", "name"],
+        ["css=#Input_Email", "css:finder"],
+        ["xpath=//input[@id='Input_Email']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "43c0b996-16c3-4906-ac0e-d9003594a896",
+      "comment": "",
+      "command": "type",
+      "target": "id=Input_Email",
+      "targets": [
+        ["id=Input_Email", "id"],
+        ["name=Input.Email", "name"],
+        ["css=#Input_Email", "css:finder"],
+        ["xpath=//input[@id='Input_Email']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "viniciusCarvalho@gmail.com"
+    }, {
+      "id": "a0c2f218-1b06-4feb-ba61-a2e785e2f55d",
+      "comment": "",
+      "command": "click",
+      "target": "id=Input_Password",
+      "targets": [
+        ["id=Input_Password", "id"],
+        ["name=Input.Password", "name"],
+        ["css=#Input_Password", "css:finder"],
+        ["xpath=//input[@id='Input_Password']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "03389d1d-6690-4bb3-813e-8d56948834ac",
+      "comment": "",
+      "command": "type",
+      "target": "id=Input_Password",
+      "targets": [
+        ["id=Input_Password", "id"],
+        ["name=Input.Password", "name"],
+        ["css=#Input_Password", "css:finder"],
+        ["xpath=//input[@id='Input_Password']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "agendemMe@23"
+    }, {
+      "id": "e661eed7-c228-457b-981c-d1c0c711f885",
+      "comment": "",
+      "command": "click",
+      "target": "id=login-submit",
+      "targets": [
+        ["id=login-submit", "id"],
+        ["css=#login-submit", "css:finder"],
+        ["xpath=//button[@id='login-submit']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[4]/button", "xpath:idRelative"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Log in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c761c2ae-c491-442d-8438-a53b1230004d",
+      "comment": "",
+      "command": "click",
+      "target": "id=Input_Password",
+      "targets": [
+        ["id=Input_Password", "id"],
+        ["name=Input.Password", "name"],
+        ["css=#Input_Password", "css:finder"],
+        ["xpath=//input[@id='Input_Password']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "78bd7182-a967-4dad-99ea-8966dbff520e",
+      "comment": "",
+      "command": "type",
+      "target": "id=Input_Password",
+      "targets": [
+        ["id=Input_Password", "id"],
+        ["name=Input.Password", "name"],
+        ["css=#Input_Password", "css:finder"],
+        ["xpath=//input[@id='Input_Password']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "agendeMe@23"
+    }, {
+      "id": "b6ca3f6b-38df-4ae0-a8fa-ffff55e4a1ac",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=Input_Password",
+      "targets": [
+        ["id=Input_Password", "id"],
+        ["name=Input.Password", "name"],
+        ["css=#Input_Password", "css:finder"],
+        ["xpath=//input[@id='Input_Password']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "8f6baf9a-9d69-4121-8922-8174e53e4c7d",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) a:nth-child(1)",
+      "targets": [
+        ["css=tr:nth-child(2) a:nth-child(1)", "css:finder"],
+        ["xpath=(//a[contains(text(),'Editar')])[2]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Prefeitura/Edit/2')]", "xpath:href"],
+        ["xpath=//tr[2]/td[11]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f85f765f-c935-4065-a7bd-46998e1c1648",
+      "comment": "",
+      "command": "click",
+      "target": "id=Cnpj",
+      "targets": [
+        ["id=Cnpj", "id"],
+        ["name=Cnpj", "name"],
+        ["css=#Cnpj", "css:finder"],
+        ["xpath=//input[@id='Cnpj']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5559ab3b-a614-4562-af18-6872f1b77c69",
+      "comment": "",
+      "command": "type",
+      "target": "id=Cnpj",
+      "targets": [
+        ["id=Cnpj", "id"],
+        ["name=Cnpj", "name"],
+        ["css=#Cnpj", "css:finder"],
+        ["xpath=//input[@id='Cnpj']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "00000000000"
+    }, {
+      "id": "b8ab47ac-f425-4ede-ad20-41dc61634544",
+      "comment": "",
+      "command": "type",
+      "target": "id=Cnpj",
+      "targets": [
+        ["id=Cnpj", "id"],
+        ["name=Cnpj", "name"],
+        ["css=#Cnpj", "css:finder"],
+        ["xpath=//input[@id='Cnpj']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "0000000000000"
+    }, {
+      "id": "401b188b-743e-406c-af17-a99fe5180f53",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//input[@value='Salvar']", "xpath:attributes"],
+        ["xpath=//div[11]/input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "3472f9ff-201c-4ff8-8d93-d4aadf21a292",
+    "name": "AG-90: Consultar Prefeitura Válida",
+    "commands": [{
+      "id": "24f190bd-4799-445a-bb0b-ad7f0de2c4c4",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1b82a233-71a7-44d0-93c1-955813051212",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1094x584",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6a429b76-452e-44a4-ab7d-0fa4a5ccac76",
+      "comment": "",
+      "command": "click",
+      "target": "id=logout",
+      "targets": [
+        ["id=logout", "id"],
+        ["css=#logout", "css:finder"],
+        ["xpath=//button[@id='logout']", "xpath:attributes"],
+        ["xpath=//form[@id='logoutForm']/button", "xpath:idRelative"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Logout')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b0ecafe1-37b1-4162-83bf-7ed7a2bffe6e",
+      "comment": "",
+      "command": "click",
+      "target": "id=login",
+      "targets": [
+        ["id=login", "id"],
+        ["linkText=Entrar", "linkText"],
+        ["css=#login", "css:finder"],
+        ["xpath=//a[@id='login']", "xpath:attributes"],
+        ["xpath=//a[contains(@href, '/Identity/Account/Login')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4df0ec24-4969-49f1-977e-02477e18ca02",
+      "comment": "",
+      "command": "click",
+      "target": "id=Input_Email",
+      "targets": [
+        ["id=Input_Email", "id"],
+        ["name=Input.Email", "name"],
+        ["css=#Input_Email", "css:finder"],
+        ["xpath=//input[@id='Input_Email']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4d0ab295-68ca-47c1-a848-fd9e718345ce",
+      "comment": "",
+      "command": "type",
+      "target": "id=Input_Email",
+      "targets": [
+        ["id=Input_Email", "id"],
+        ["name=Input.Email", "name"],
+        ["css=#Input_Email", "css:finder"],
+        ["xpath=//input[@id='Input_Email']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "viniciusCarvalho@gmail.com"
+    }, {
+      "id": "921885ed-a40d-4b85-8e5c-e3e2b167812d",
+      "comment": "",
+      "command": "click",
+      "target": "id=Input_Password",
+      "targets": [
+        ["id=Input_Password", "id"],
+        ["name=Input.Password", "name"],
+        ["css=#Input_Password", "css:finder"],
+        ["xpath=//input[@id='Input_Password']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4137c7d2-7353-4d1c-88b2-124630e10ea9",
+      "comment": "",
+      "command": "type",
+      "target": "id=Input_Password",
+      "targets": [
+        ["id=Input_Password", "id"],
+        ["name=Input.Password", "name"],
+        ["css=#Input_Password", "css:finder"],
+        ["xpath=//input[@id='Input_Password']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "agendeMe@23"
+    }, {
+      "id": "f4a09199-d494-4e2f-8fa7-4ec4fdaf091f",
+      "comment": "",
+      "command": "click",
+      "target": "id=login-submit",
+      "targets": [
+        ["id=login-submit", "id"],
+        ["css=#login-submit", "css:finder"],
+        ["xpath=//button[@id='login-submit']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[4]/button", "xpath:idRelative"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Log in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "f78b52df-ed08-4b24-b7db-ce029dc5b83a",
+    "name": "AG-91: Consultar Prefeitura Inválida",
+    "commands": [{
+      "id": "82ba24fa-1129-474b-932d-be17a38088c8",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a144eee4-f9a2-46f1-99be-688d07ff96f7",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1094x584",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "22f28bc6-8c6a-45d5-a4fc-916b03f33b52",
+      "comment": "",
+      "command": "click",
+      "target": "id=logout",
+      "targets": [
+        ["id=logout", "id"],
+        ["css=#logout", "css:finder"],
+        ["xpath=//button[@id='logout']", "xpath:attributes"],
+        ["xpath=//form[@id='logoutForm']/button", "xpath:idRelative"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Logout')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d4e5ecae-abac-4bec-9296-1071322884cd",
+      "comment": "",
+      "command": "click",
+      "target": "id=login",
+      "targets": [
+        ["id=login", "id"],
+        ["linkText=Entrar", "linkText"],
+        ["css=#login", "css:finder"],
+        ["xpath=//a[@id='login']", "xpath:attributes"],
+        ["xpath=//a[contains(@href, '/Identity/Account/Login')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d2640978-872c-45ec-84e8-f07cdff10bc0",
+      "comment": "",
+      "command": "click",
+      "target": "id=Input_Email",
+      "targets": [
+        ["id=Input_Email", "id"],
+        ["name=Input.Email", "name"],
+        ["css=#Input_Email", "css:finder"],
+        ["xpath=//input[@id='Input_Email']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "df662779-d83b-4aff-9baf-1455311fbadf",
+      "comment": "",
+      "command": "type",
+      "target": "id=Input_Email",
+      "targets": [
+        ["id=Input_Email", "id"],
+        ["name=Input.Email", "name"],
+        ["css=#Input_Email", "css:finder"],
+        ["xpath=//input[@id='Input_Email']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "viniciusCarvalho@gmail.com"
+    }, {
+      "id": "2485f499-9e45-4efe-b26e-6461b1a9ecae",
+      "comment": "",
+      "command": "click",
+      "target": "id=Input_Password",
+      "targets": [
+        ["id=Input_Password", "id"],
+        ["name=Input.Password", "name"],
+        ["css=#Input_Password", "css:finder"],
+        ["xpath=//input[@id='Input_Password']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dfc55593-feaf-4503-8b50-b79f3263ed3f",
+      "comment": "",
+      "command": "type",
+      "target": "id=Input_Password",
+      "targets": [
+        ["id=Input_Password", "id"],
+        ["name=Input.Password", "name"],
+        ["css=#Input_Password", "css:finder"],
+        ["xpath=//input[@id='Input_Password']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "agendeMe@23"
+    }, {
+      "id": "5dcf705c-88a2-494b-ae1a-30072a842f62",
+      "comment": "",
+      "command": "click",
+      "target": "id=login-submit",
+      "targets": [
+        ["id=login-submit", "id"],
+        ["css=#login-submit", "css:finder"],
+        ["xpath=//button[@id='login-submit']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[4]/button", "xpath:idRelative"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Log in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "ac2a66c3-8b9d-4b2b-9e18-99dd452057b7",
+    "name": "Suite Manter Prefeitura",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["3d7e8ca1-0a63-4e17-abaa-56885b1d1b95", "fc2bf8e5-16c0-48c2-b3bb-f65e9de30c2d", "23e9feea-77d8-4a61-b2d6-0f88c66a49f9", "3472f9ff-201c-4ff8-8d93-d4aadf21a292", "f78b52df-ed08-4b24-b7db-ce029dc5b83a"]
+  }],
+  "urls": ["https://localhost:7258/"],
+  "plugins": []
+}
