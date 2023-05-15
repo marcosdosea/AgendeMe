@@ -1,5 +1,11 @@
-# AgendeMe
-Projeto visa permitir aos cidadãos realizar o agendamento de serviços públicos disponibilizados pelo seu município.
+<div align="center">
+<img src="./Codigo/AgendeMeWeb/wwwroot/assets/logo.svg" width="60%"><br><br>
+
+<p>Tornando a vida do cidadão mais confortável e segura</p>  
+  
+</div>
+  
+
 
 ## Sumário
   <ul id="nav" >
