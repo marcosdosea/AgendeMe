@@ -39,9 +39,10 @@
   <p>Não obstante, também temos como público alvo grandes e médias empresas que buscam agilizar o processo de agendamento de seus clientes. Como principal exemplo podemos citar clínicas e laboratórios privados.</p>
   
   <h2 id="linksuteis">4. Links Úteis</h2>
-  <a href="" target="_blank">1 - Vídeo de Apresentação</a>  
 
-  <a href="https://docs.google.com/presentation/d/1Cmbkm9qs7LzeQW0scHY4Kl7dhek2OdU3ifELva2utpU/edit?usp=sharing" target="_blank">2 - Manual de Uso </a>
+  <a href="https://www.youtube.com/watch?v=9qpcoM956Vk" target="_blank">1 - Vídeo de Apresentação </a>
+
+  <a href="https://github.com/marcosdosea/AgendeMe/blob/main/Gerenciamento/Manual%20de%20Uso%20-%20AgendeMe.pdf" target="_blank">2 - Manual de Uso </a>
 
   
   <h2 id="equipe">5. Equipe :busts_in_silhouette::busts_in_silhouette: :bust_in_silhouette:</h2>
