@@ -12,16 +12,16 @@
 <table>
     <thead>
         <tr>
-            <th class="border-solid-sm text-center text-up-01" scope="col">
+            <th class="border-solid-sm text-center text-up-01 col-5" scope="col">
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
-            <th class="border-solid-sm text-center text-up-01" scope="col">
+            <th class="border-solid-sm text-center text-up-01 col-5" scope="col">
                 @Html.DisplayNameFor(model => model.Descricao)
             </th>
-            <th class="border-solid-sm text-center text-up-01" colspan="1" scope="col">
+            <th class="border-solid-sm text-center text-up-01 col-1" colspan="1" scope="col">
                 Editar
             </th>
-            <th class="border-solid-sm text-center text-up-01" colspan="1" scope="col">
+            <th class="border-solid-sm text-center text-up-01 col-1" colspan="1" scope="col">
                 Remover
             </th>
         </tr>
@@ -29,16 +29,16 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td class="text-center">
+            <td class="text-center border">
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
-            <td class="text-center">
+            <td class="text-center border">
                 @Html.DisplayFor(modelItem => item.Descricao)
             </td>
-            <td class="text-center">
+            <td class="text-center border">
                 @Html.ActionLink("Editar", "Edit", new { id=item.Id })
             </td>
-            <td class="text-center">
+            <td class="text-center border">
                 @Html.ActionLink("Remover", "Delete", new { id=item.Id })
             </td>
         </tr>
