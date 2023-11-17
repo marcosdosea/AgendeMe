@@ -9,37 +9,37 @@
 <p>
     <a asp-action="Create">Cadastrar novo cargo</a>
 </p>
-<table class="table">
+<table>
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
+            <th class="border-solid-sm text-center text-up-01" scope="col">
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
-            <th>
+            <th class="border-solid-sm text-center text-up-01" scope="col">
                 @Html.DisplayNameFor(model => model.Descricao)
             </th>
-            <th></th>
+            <th class="border-solid-sm text-center text-up-01" colspan="1" scope="col">
+                Editar
+            </th>
+            <th class="border-solid-sm text-center text-up-01" colspan="1" scope="col">
+                Remover
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
+            <td class="text-center">
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
-            <td>
+            <td class="text-center">
                 @Html.DisplayFor(modelItem => item.Descricao)
             </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
-                    @Html.ActionLink("Remover", "Delete", new { id=item.Id })
+            <td class="text-center">
+                @Html.ActionLink("Editar", "Edit", new { id=item.Id })
+            </td>
+            <td class="text-center">
+                @Html.ActionLink("Remover", "Delete", new { id=item.Id })
             </td>
         </tr>
 }
