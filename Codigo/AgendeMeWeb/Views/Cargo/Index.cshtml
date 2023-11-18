@@ -15,7 +15,7 @@
             <span class="text-up-01">Pesquisar</span>
         </label>
 
-        <input id="input-icon" type="text" placeholder="Placeholder" />
+        <input id="input-icon" type="text"/>
 
         <button class="br-button" type="button" aria-label="Botão de ação">
             <i class="fas fa-search fa-flip-horizontal" aria-hidden="true"></i>
@@ -52,10 +52,14 @@
                 @Html.DisplayFor(modelItem => item.Descricao)
             </td>
             <td class="text-center border">
-                @Html.ActionLink("Editar", "Edit", new { id=item.Id })
+                <a asp-action="Edit" asp-route-id="@item.Id">
+                    <i class="fas fa-lg fa-edit"></i>
+                </a>
             </td>
-            <td class="text-center border">
-                @Html.ActionLink("Remover", "Delete", new { id=item.Id })
+            <td class="text-center border w-25">
+                <a asp-action="Delete" asp-route-id="@item.Id">
+                    <i class="fas fa-lg fa-trash-alt"></i>
+                </a>
             </td>
         </tr>
 }
