@@ -4,42 +4,62 @@
     ViewData["Title"] = "Cargos";
 }
 
-<h1>Cargos</h1>
+<div class="my-5">
+    <h1>Cargos</h1>
+    <span class="text-up-01">Todos os cargos cadastrados</span>
+</div>
 
-<p>
+<div class="col-sm-5 col-lg-5 col-xl-4 mb-4">
+    <div class="br-input input-button">
+        <label for="input-icon">
+            <span class="text-up-01">Pesquisar</span>
+        </label>
+
+        <input id="input-icon" type="text"/>
+
+        <button class="br-button" type="button" aria-label="Botão de ação">
+            <i class="fas fa-search fa-flip-horizontal" aria-hidden="true"></i>
+    </div>
+</div>
+
+<!--<p>
     <a asp-action="Create">Cadastrar novo cargo</a>
-</p>
-<table class="table">
+</p>-->
+<table class="mb-5">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
+            <th class="border-solid-sm text-center text-up-01 col-5" scope="col">
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
-            <th>
+            <th class="border-solid-sm text-center text-up-01 col-5" scope="col">
                 @Html.DisplayNameFor(model => model.Descricao)
             </th>
-            <th></th>
+            <th class="border-solid-sm text-center text-up-01 col-1" colspan="1" scope="col">
+                Editar
+            </th>
+            <th class="border-solid-sm text-center text-up-01 col-1" colspan="1" scope="col">
+                Remover
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
+            <td class="text-center border">
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
-            <td>
+            <td class="text-center border">
                 @Html.DisplayFor(modelItem => item.Descricao)
             </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
-                    @Html.ActionLink("Remover", "Delete", new { id=item.Id })
+            <td class="text-center border">
+                <a asp-action="Edit" asp-route-id="@item.Id">
+                    <i class="fas fa-lg fa-edit"></i>
+                </a>
+            </td>
+            <td class="text-center border w-25">
+                <a asp-action="Delete" asp-route-id="@item.Id">
+                    <i class="fas fa-lg fa-trash-alt" style="color: #e70d0d;"></i>
+                </a>
             </td>
         </tr>
 }
