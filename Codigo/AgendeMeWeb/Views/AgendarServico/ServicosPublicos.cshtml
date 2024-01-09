@@ -1,5 +1,30 @@
 ﻿@model IEnumerable<Core.DTO.ServicoPublicoDTO>
 
+<div class="br-breadcrumb">
+    <ul class="crumb-list">
+        <li class="crumb home">
+            <a class="br-button circle breadcrumb-home" asp-controller="AgendarServico" asp-action="Index">
+                <span class="sr-only">Página inicial</span><i class="fas fa-home"></i>
+            </a>
+        </li>
+        <li class="crumb" data-active="active">
+            <i class="icon fas fa-chevron-right"></i>
+            <a asp-controller="AgendarServico" asp-action="Index">
+                <span class="ps-0">Agendar Serviço</span>
+            </a>
+        </li>
+        <li class="crumb" data-active="active">
+            <i class="icon fas fa-chevron-right"></i>
+            <span onclick="voltarArea('@Url.Action("AreasDeServico")', 1)">
+                Áreas de Serviço
+            </span>
+        </li>
+        <li class="crumb" data-active="active">
+            <i class="icon fas fa-chevron-right"></i><span>Serviços Públicos</span>
+        </li>
+    </ul>
+</div>
+
 <div class="mb-4 pb-4">
     <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto @ViewBag.iconeAreaDeServico text-center"></i>
     <h2 class="text-center fw-bold azul-text">@ViewBag.nomeAreaDeServico</h2>

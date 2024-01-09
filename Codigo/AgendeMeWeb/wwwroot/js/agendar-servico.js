@@ -141,3 +141,20 @@ function verificaCidadao() {
         document.getElementById("idCidadaoForm").value = cidadaoId.value;
     }
 }
+
+/* Voltar */
+function voltarArea(url, id) {
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "HTML",
+        data: { id: id },
+
+        success: function (result) {
+            $("#ajaxBox").html(result);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //TODO::
+        },
+    });
+}
