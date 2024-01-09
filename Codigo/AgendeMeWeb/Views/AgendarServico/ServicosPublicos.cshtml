@@ -1,30 +1,5 @@
 ﻿@model IEnumerable<Core.DTO.ServicoPublicoDTO>
 
-<div class="br-breadcrumb">
-    <ul class="crumb-list">
-        <li class="crumb home">
-            <a class="br-button circle breadcrumb-home" asp-controller="AgendarServico" asp-action="Index">
-                <span class="sr-only">Página inicial</span><i class="fas fa-home"></i>
-            </a>
-        </li>
-        <li class="crumb" data-active="active">
-            <i class="icon fas fa-chevron-right"></i>
-            <a asp-controller="AgendarServico" asp-action="Index">
-                <span class="ps-0">Agendar Serviço</span>
-            </a>
-        </li>
-        <li class="crumb" data-active="active">
-            <i class="icon fas fa-chevron-right"></i>
-            <span onclick="voltarArea('@Url.Action("AreasDeServico")', @ViewBag.idPrefeitura)">
-                Áreas de Serviço
-            </span>
-        </li>
-        <li class="crumb" data-active="active">
-            <i class="icon fas fa-chevron-right"></i><span>Serviços Públicos</span>
-        </li>
-    </ul>
-</div>
-
 <div class="mb-4 pb-4">
     <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto @ViewBag.iconeAreaDeServico text-center"></i>
     <h2 class="text-center fw-bold azul-text">@ViewBag.nomeAreaDeServico</h2>
@@ -34,7 +9,7 @@
 <h4 class="mb-5 text-center fw-light fs-4">Escolha o serviço desejado</h4>
     @if (Model.Any())
     {
-        <div class="d-flex flex-wrap mb-5 pb-5 d-flex-dinamic align-items-stretch flex-c-gap flex-r-gap">
+        <div class="d-flex flex-wrap pb-5 d-flex-dinamic align-items-stretch flex-c-gap flex-r-gap">
         @foreach (var item in Model)
         {
             <div class="br-card hover box w-250">
@@ -43,10 +18,14 @@
                     <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto @Html.DisplayFor(modelItem => item.Icone) text-center"></i>
                     <p class="text-break text-wrap azul-text user-select-none fs-4 mt-4 mb-4 fw-bold text-center text-uppercase">@Html.DisplayFor(modelItem => item.Nome)</p>
                 </div>
-
-            </a>
+                </a>
             </div>
         }
+        </div>
+        <div class="d-flex justify-content-center">
+            <button class="br-button primary large m-5 col-lg-3 col-md-4 col-8" type="button" onclick="voltarArea('@Url.Action("AreasDeServico")', @ViewBag.idPrefeitura)">
+                Voltar
+            </button>
         </div>
     }
     else
@@ -65,7 +44,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-center">
-            <button class="br-button secondary large m-3" type="button" onclick="voltarArea('@Url.Action("AreasDeServico")', @ViewBag.idPrefeitura)">
+            <button class="br-button primary large m-5 col-lg-3 col-md-4 col-8" type="button" onclick="voltarArea('@Url.Action("AreasDeServico")', @ViewBag.idPrefeitura)">
                 Voltar
             </button>
         </div>
