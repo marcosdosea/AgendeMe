@@ -160,6 +160,7 @@ namespace AgendeMeWeb.Controllers
         {
             ViewBag.nomeAreaDeServico = nomeArea;
             ViewBag.iconeAreaDeServico = iconeArea;
+            ViewBag.idPrefeitura = _areaDeServicoService.Get(id).IdPrefeitura;
             var listaServicoPublico = _servicoPublicoService.GetAllByIdArea(id);
             return PartialView(listaServicoPublico);
         }
