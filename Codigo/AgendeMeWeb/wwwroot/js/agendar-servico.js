@@ -29,13 +29,13 @@ function removeErro(select) {
     }
 }
 
-function getServicos(url, id, nomeArea, iconeArea) { 
+function getServicos(url, idArea) { 
     $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
         $.ajax({
             type: "GET",
             url: url,
             dataType: "HTML",
-            data: { id: id, nomeArea: nomeArea, iconeArea: iconeArea },
+            data: { idArea: idArea },
 
             success: function (result) {
                 $("#ajaxBox").html(result);
@@ -46,13 +46,13 @@ function getServicos(url, id, nomeArea, iconeArea) {
         });
 }
 
-function getOrgaos(url, nomeServico, iconeServico) {
+function getOrgaos(idArea, url, nomeServico, iconeServico) {
     $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
     $.ajax({
         type: "GET",
         url: url,
         dataType: "HTML",
-        data: { nomeServico: nomeServico, iconeServico: iconeServico },
+        data: { idArea: idArea, nomeServico: nomeServico, iconeServico: iconeServico },
 
         success: function (result) {
             $("#ajaxBox").html(result);
@@ -143,12 +143,12 @@ function verificaCidadao() {
 }
 
 /* Voltar */
-function voltarArea(url, id) {
+function voltarArea(url, idPrefeitura) {
     $.ajax({
         type: "GET",
         url: url,
         dataType: "HTML",
-        data: { id: id },
+        data: { id: idPrefeitura },
 
         success: function (result) {
             $("#ajaxBox").html(result);

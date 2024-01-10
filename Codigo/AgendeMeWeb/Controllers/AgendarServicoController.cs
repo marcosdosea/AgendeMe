@@ -156,20 +156,23 @@ namespace AgendeMeWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult ServicosPublicos(int id, string nomeArea, string iconeArea)
+        public ActionResult ServicosPublicos(int idArea)
         {
-            ViewBag.nomeAreaDeServico = nomeArea;
-            ViewBag.iconeAreaDeServico = iconeArea;
-            ViewBag.idPrefeitura = _areaDeServicoService.Get(id).IdPrefeitura;
-            var listaServicoPublico = _servicoPublicoService.GetAllByIdArea(id);
+            var area = _areaDeServicoService.Get(idArea);
+            ViewBag.nomeAreaDeServico = area.Nome;
+            ViewBag.iconeAreaDeServico = area.Icone;
+            ViewBag.idPrefeitura = area.IdPrefeitura;
+            ViewBag.idArea = area.Id;
+            var listaServicoPublico = _servicoPublicoService.GetAllByIdArea(idArea);
             return PartialView(listaServicoPublico);
         }
 
         [HttpGet]
-        public ActionResult OrgaosPublicos(string nomeServico, string iconeServico)
+        public ActionResult OrgaosPublicos(int idArea, string nomeServico, string iconeServico)
         {
             ViewBag.iconeServicoPublico = iconeServico;
             ViewBag.nomeServicoPublico = nomeServico;
+            ViewBag.idArea = idArea;
             var listaOrgaosPublicoDTO = _orgaoPublicoService.GetAllByNomeServicoPublico(nomeServico);
             return PartialView(listaOrgaosPublicoDTO);
         }

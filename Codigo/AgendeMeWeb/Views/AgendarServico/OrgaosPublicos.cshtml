@@ -8,45 +8,55 @@
 <h1 class="mt-5 fw-bold fs-2">Escolha o local desejado</h1>
 <h4 class="mb-5 fw-light fs-4">O serviço <span class="fw-bold">@ViewBag.nomeServicoPublico</span> está disponível nestes locais</h4>
 
-<div class="d-flex flex-column mb-5 pb-5 align-items-stretch flex-r-gap flex-c-gap">
-    @if (Model.Any())
-        @foreach (var item in Model)
-        {
-            <div class="br-card hover">
-                <a class="br-card hover mb-0 back-none" onclick="getDias('@Url.Action("AgendarServicoDias")','@item.IdServico','@item.Nome','@ViewBag.nomeServicoPublico','@item.Id')">
-                    <div class="card-content d-flex flex-wrap align-items-center dinamic-flex">
-                        <i class="azul-agende-me icone-botao-box fas fa-building text-center dinamic-margin"></i>
-                        <div>
-                            <p class="text-break text-wrap user-select-none fs-4 mb-4 fw-bold">@Html.DisplayFor(modelItem => item.Nome)</p>
-                            <p class="text-break text-wrap user-select-none fs-5 mt-4">
-                                <span class="fw-bold">@Html.DisplayNameFor(modelItem => item.Atendimento):</span> @Html.DisplayFor(modelItem => item.Atendimento)
-                            </p>
-                            <p class="text-break text-wrap user-select-none fs-5 mt-2"><span class="fw-bold">@Html.DisplayNameFor(modelItem => item.Bairro):</span> 
-                                @Html.DisplayFor(modelItem => item.Bairro)</p>
-                            <p class="text-break text-wrap user-select-none fs-5 mt-2"><span class="fw-bold">@Html.DisplayNameFor(modelItem => item.Rua):</span> @Html.DisplayFor(modelItem => item.Rua)</p>
-                            <p class="text-break text-wrap user-select-none fs-5 mt-2"><span class="fw-bold">@Html.DisplayNameFor(modelItem => item.Numero):</span> @Html.DisplayFor(modelItem => item.Numero)</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
 
-        }       else
-    {
-        <div class="br-message warning" role="alert">
-            <div class="icon">
-                <i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
+    @if (Model.Any()){
+        <div class="d-flex flex-column mb-5 pb-5 align-items-stretch flex-r-gap flex-c-gap">
+            @foreach (var item in Model)
+            {
+                <div class="br-card hover">
+                    <a class="br-card hover mb-0 back-none" onclick="getDias('@Url.Action("AgendarServicoDias")','@item.IdServico','@item.Nome','@ViewBag.nomeServicoPublico','@item.Id')">
+                        <div class="card-content d-flex flex-wrap align-items-center dinamic-flex">
+                            <i class="azul-agende-me icone-botao-box fas fa-building text-center dinamic-margin"></i>
+                            <div>
+                                <p class="text-break text-wrap user-select-none fs-4 mb-4 fw-bold">@Html.DisplayFor(modelItem => item.Nome)</p>
+                                <p class="text-break text-wrap user-select-none fs-5 mt-4">
+                                    <span class="fw-bold">@Html.DisplayNameFor(modelItem => item.Atendimento):</span> @Html.DisplayFor(modelItem => item.Atendimento)
+                                </p>
+                                <p class="text-break text-wrap user-select-none fs-5 mt-2"><span class="fw-bold">@Html.DisplayNameFor(modelItem => item.Bairro):</span> 
+                                    @Html.DisplayFor(modelItem => item.Bairro)</p>
+                                <p class="text-break text-wrap user-select-none fs-5 mt-2"><span class="fw-bold">@Html.DisplayNameFor(modelItem => item.Rua):</span> @Html.DisplayFor(modelItem => item.Rua)</p>
+                                <p class="text-break text-wrap user-select-none fs-5 mt-2"><span class="fw-bold">@Html.DisplayNameFor(modelItem => item.Numero):</span> @Html.DisplayFor(modelItem => item.Numero)</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="d-flex justify-content-center">
+            <button class="br-button primary large m-5 col-lg-3 col-md-4 col-8" type="button" onclick="getServicos('@Url.Action("ServicosPublicos")', @ViewBag.idArea)">
+                Voltar
+            </button>
+        </div>
+        }       
+        else
+        {
+        <div class="d-flex justify-content-center">
+            <div class="br-message warning" role="alert">
+                <div class="icon">
+                    <i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
+                </div>
+                <div class="content">
+                    <span class="message-title">Atenção.</span><span class="message-body">
+                        Não há órgãos públicos disponíveis para esse serviço público. <br />
+                        Por favor entre em contato com o gestor da prefeitura para mais informações.
+                    </span>
+                </div>
             </div>
-            <div class="content">
-                <span class="message-title">Atenção.</span><span class="message-body">
-                    Não há órgãos públicos disponíveis para esse serviço público. <br />
-                    Por favor entre em contato com o gestor da prefeitura para mais informações.
-                </span>
-            </div>
-            <div class="close">
-                <button class="br-button circle small" type="button" aria-label="Fechar">
-                    <i class="fas fa-times" aria-hidden="true"></i>
-                </button>
-            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button class="br-button primary large m-5 col-lg-3 col-md-4 col-8" type="button" onclick="getServicos('@Url.Action("ServicosPublicos")', @ViewBag.idArea)">
+                Voltar
+            </button>
         </div>
     }
 </div>
