@@ -63,13 +63,13 @@ function getOrgaos(idArea, url, nomeServico, iconeServico) {
     });
 }
 
-function getDias(url, idServico, nomeOrgao, nomeServico, idOrgao) {
+function getDias(url, idServico, nomeOrgao, nomeServico, idOrgao, idArea, iconeServico) {
     $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
     $.ajax({
         type: "GET",
         url: url,
         dataType: "HTML",
-        data: { idServico: idServico, nomeOrgao: nomeOrgao, nomeServico: nomeServico, idOrgao: idOrgao },
+        data: { idServico: idServico, nomeOrgao: nomeOrgao, nomeServico: nomeServico, idOrgao: idOrgao, idArea: idArea, iconeServico: iconeServico },
 
         success: function (result) {
             $("#ajaxBox").html(result);

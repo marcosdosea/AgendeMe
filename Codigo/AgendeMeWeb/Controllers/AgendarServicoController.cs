@@ -178,11 +178,15 @@ namespace AgendeMeWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult AgendarServicoDias(int idServico, string nomeOrgao, string nomeServico, int idOrgao)
+        public ActionResult AgendarServicoDias(int idServico, string nomeOrgao, 
+                                               string nomeServico, int idOrgao, 
+                                               int idArea, string iconeServico)
         {
             ViewBag.nomeOrgaoPublico = nomeOrgao;
             ViewBag.nomeServicoPublico = nomeServico;
+            ViewBag.iconeServico = iconeServico;
             ViewBag.idOrgao = idOrgao;
+            ViewBag.idArea = idArea;
             var listaDias = _diaAgendamentoService.GetAllDiasByIdServico(idServico);
             return PartialView(listaDias);
         }
