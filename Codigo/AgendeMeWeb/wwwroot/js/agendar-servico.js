@@ -80,13 +80,14 @@ function getDias(url, idServico, nomeOrgao, nomeServico, idOrgao, idArea, iconeS
     });
 }
 
-function getHoras(url, idServico, data, diaSemana, nomeOrgao, nomeServico, idOrgao) {
+function getHoras(url, idServico, data, diaSemana, nomeOrgao, nomeServico, idOrgao, iconeServico) {
     $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
     $.ajax({
         type: "GET",
         url: url,
         dataType: "HTML",
-        data: { idServico: idServico, dia: data, nomeDia: diaSemana, nomeOrgao: nomeOrgao, nomeServico: nomeServico, idOrgao: idOrgao },
+        data: { idServico: idServico, dia: data, nomeDia: diaSemana, nomeOrgao: nomeOrgao, 
+                nomeServico: nomeServico, idOrgao: idOrgao, iconeServico: iconeServico },
 
         success: function (result) {
             $("#ajaxBox").html(result);
