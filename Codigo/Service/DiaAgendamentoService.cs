@@ -64,12 +64,16 @@ namespace Service
                         select new ConfirmarAgendamentoDTO
                         {
                             Id = diaAgendamento.Id,
+                            IdServico = diaAgendamento.IdServicoPublico,
+                            IconeServico = diaAgendamento.IdServicoPublicoNavigation.Icone,
                             NomeServico = diaAgendamento.IdServicoPublicoNavigation.Nome,
-                            OrgaoPublico = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Nome,
+                            IdOrgao = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Id,
+                            NomeOrgao = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Nome,
                             Bairro = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Bairro,
                             Rua = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Rua,
                             Numero = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Numero,
                             Complemento = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Complemento,
+                            NomeDia = diaAgendamento.DiaSemana,
                             Data = diaAgendamento.Data,
                             Horario = string.Join(" às ", diaAgendamento.HorarioInicio, diaAgendamento.HorarioFim),
                             DataCadastro = DateTime.Now
