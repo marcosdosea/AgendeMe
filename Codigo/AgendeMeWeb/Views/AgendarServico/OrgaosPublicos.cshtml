@@ -13,8 +13,8 @@
         <div class="d-flex flex-column pb-5 align-items-stretch flex-r-gap flex-c-gap">
             @foreach (var item in Model)
             {
-                <div class="br-card hover">
-                    <a class="br-card hover mb-0 back-none" onclick="getDias('@Url.Action("AgendarServicoDias")','@item.IdServico','@item.Nome','@ViewBag.nomeServicoPublico','@item.Id', @ViewBag.idArea, '@ViewBag.iconeServicoPublico')">
+                <div class="br-card agendamento-card box">
+                    <a class="br-card agendamento-card box mb-0 back-none" onclick="getDias('@Url.Action("AgendarServicoDias")','@item.IdServico','@item.Nome','@ViewBag.nomeServicoPublico','@item.Id', @ViewBag.idArea, '@ViewBag.iconeServicoPublico')">
                         <div class="card-content d-flex flex-wrap align-items-center dinamic-flex">
                             <i class="azul-agende-me icone-botao-box fas fa-building text-center dinamic-margin"></i>
                             <div>
