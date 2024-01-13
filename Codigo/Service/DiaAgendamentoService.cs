@@ -75,6 +75,7 @@ namespace Service
                             Complemento = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Complemento,
                             NomeDia = diaAgendamento.DiaSemana,
                             Data = diaAgendamento.Data,
+                            IdArea = diaAgendamento.IdServicoPublicoNavigation.IdArea,
                             Horario = string.Join(" às ", diaAgendamento.HorarioInicio, diaAgendamento.HorarioFim),
                             DataCadastro = DateTime.Now
                         };

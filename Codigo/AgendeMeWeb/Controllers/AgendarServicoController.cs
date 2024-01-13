@@ -195,7 +195,7 @@ namespace AgendeMeWeb.Controllers
         public ActionResult AgendarServicoHoras(int idServico, DateTime data,
                                                 string nomeDia, string nomeOrgao,
                                                 string nomeServico, int idOrgao,
-                                                string iconeServico)
+                                                string iconeServico, int idArea)
         {
             ViewBag.nomeOrgaoPublico = nomeOrgao;
             ViewBag.nomeServicoPublico = nomeServico;
@@ -203,6 +203,7 @@ namespace AgendeMeWeb.Controllers
             ViewBag.idOrgao = idOrgao;
             ViewBag.iconeServico = iconeServico;
             ViewBag.idServico = idServico;
+            ViewBag.idArea = idArea;
             var listaHoras = _diaAgendamentoService.GetAllHorasByIdServicoAndDia(idServico, data);
             return PartialView(listaHoras);
         }
@@ -218,6 +219,7 @@ namespace AgendeMeWeb.Controllers
             ViewBag.iconeServico = dadosAgendamento.IconeServico;
             ViewBag.idOrgao = dadosAgendamento.IdOrgao;
             ViewBag.nomeOrgao = dadosAgendamento.NomeOrgao;
+            ViewBag.idArea = dadosAgendamento.IdArea;
             return PartialView(dadosAgendamento);
         }
 

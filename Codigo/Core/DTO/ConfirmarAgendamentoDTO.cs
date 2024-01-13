@@ -6,6 +6,7 @@ namespace Core.DTO
     {
         public int Id { get; set; }
         public int IdServico { get; set; }
+        public int IdArea { get; set; }
 
         [Display(Name = "Serviço")]
         public string? NomeServico { get; set; }
