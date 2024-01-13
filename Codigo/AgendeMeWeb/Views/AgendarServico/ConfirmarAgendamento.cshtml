@@ -62,23 +62,25 @@
                 Verificar CPF
             </button>
         </div>
-        <div class="br-magic-button large mt-4">
-            <form asp-action="ConfirmarAgendamento">
-                <input type="hidden" name="id" value="" />
-                <input type="hidden" name="idCidadao" value="" id="idCidadaoForm"/>
-                <input type="hidden" name="idDiaAgendamento" value="@Model.Id" />
-                <input type="hidden" name="dataCadastro" value="@Model.DataCadastro" />
-                <input type="hidden" name="idRetorno" value="" />
-                <input type="hidden" name="idAtendente" value="" />
-                <button class="br-button" type="submit" onmouseover="verificaCidadao()">
-                    Confirmar Agendamento
-                </button>
-            </form>
+        <div class="d-flex justify-content-center col-12">
+            <div class="br-magic-button large mt-4 col-lg-3 col-md-4 col-8">
+                <form class="flex-fill" asp-action="ConfirmarAgendamento">
+                    <input type="hidden" name="id" value="" />
+                    <input type="hidden" name="idCidadao" value="" id="idCidadaoForm"/>
+                    <input type="hidden" name="idDiaAgendamento" value="@Model.Id" />
+                    <input type="hidden" name="dataCadastro" value="@Model.DataCadastro" />
+                    <input type="hidden" name="idRetorno" value="" />
+                    <input type="hidden" name="idAtendente" value="" />
+                    <button class="br-button fs-6 fs-sm-5 col-lg-12 col-sm-12 text-wrap text-sm-nowrap w-100" type="submit" onmouseover="verificaCidadao()">
+                        Confirmar Agendamento
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center col-12">
+            <button class="br-button primary large fs-sm-5 m-5 col-lg-3 col-md-4 col-8" type="button" onclick="getHoras('@Url.Action("AgendarServicoHoras")','@ViewBag.idServico','@ViewBag.data','@ViewBag.nomeDia', '@ViewBag.nomeOrgao' ,'@ViewBag.nomeServico', '@ViewBag.idOrgao', '@ViewBag.iconeServico')">
+                Voltar
+            </button>
         </div>
     </div>
-</div>
-<div class="d-flex justify-content-center">
-    <button class="br-button primary large m-5 col-lg-3 col-md-4 col-8" type="button" onclick="getHoras('@Url.Action("AgendarServicoHoras")','@ViewBag.idServico','@ViewBag.data','@ViewBag.nomeDia', '@ViewBag.nomeOrgao' ,'@ViewBag.nomeServico', '@ViewBag.idOrgao', '@ViewBag.iconeServico')">
-        Voltar
-    </button>
 </div>
