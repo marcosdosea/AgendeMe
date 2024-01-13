@@ -108,7 +108,7 @@ namespace Service
                             DiaSemana = diaGroup.Key.DiaSemana,
                             Data = diaGroup.Key.Data,
                             IdServico = diaGroup.Key.IdServicoPublico,
-                            Vagas = diaGroup.Sum(p => p.VagasAtendimento)
+                            Vagas = diaGroup.Sum(p => p.VagasAtendimento) - diaGroup.Sum(p => p.VagasAgendadas)
                         };
             return query.AsNoTracking();
         }
