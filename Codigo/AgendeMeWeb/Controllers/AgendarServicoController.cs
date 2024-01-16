@@ -222,7 +222,7 @@ namespace AgendeMeWeb.Controllers
             ViewBag.nomeOrgao = dadosAgendamento.NomeOrgao;
             ViewBag.idArea = dadosAgendamento.IdArea;
 
-            return PartialView(dadosAgendamento);
+            return View(dadosAgendamento);
         }
 
         [HttpPost]
@@ -234,10 +234,11 @@ namespace AgendeMeWeb.Controllers
                 var cookie = Request.Cookies.FirstOrDefault(c => c.Key == "YourAppCookieName");
                 if (cookie.Value == null) 
                 {
-                    ViewBag.erro = "Para confirmar agendamento, é necessário se autenticar";
+                    ViewBag.logado = false;
                     var dadosAgendamento = _diaAgendamentoService.GetDadosAgendamento(agendamentoModel.IdDiaAgendamento);
                     return View(dadosAgendamento);
                 }
+                ViewBag.logado = true;
 
                 var agendamento = _mapper.Map<Agendamento>(agendamentoModel);
                 var id = _agendamentoService.Create(agendamento);

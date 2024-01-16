@@ -10,6 +10,34 @@
     Seu agendamento já está quase realizado
 </h4>
 
+@{
+    if (ViewBag.logado != null && !ViewBag.logado) {
+        <div class="br-message warning p-4" role="alert">
+            <div class="content d-flex flex-column align-items-center p-0">
+                <div class="icon">
+                    <i class="fas fa-exclamation-triangle fa-lg fs-1 mb-3" aria-hidden="true"></i>
+                </div>
+                <div class="mb-3 fs-4">
+                    <span class="message-title">Atenção.</span>
+                    <span class="message-body">
+                        Para confirmar o agendamento é necessário ter um acesso!
+                    </span>
+                </div>
+                <a asp-area="Identity" asp-page="/Account/Register" class="br-button block secondary mb-3 small col-12 col-lg-3" role="button" target="_blank">
+                    Criar Conta
+                </a>
+                 <a class="mb-3" asp-area="Identity" asp-page="/Account/Login" target="_blank">
+                    Entrar
+                </a>
+            </div>
+            <div class="close">
+                <button class="br-button circle small" type="button" aria-label="Fechar"><i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    }
+}
+
 <div class="card-content">
     <div class="d-flex flex-column align-items-center">
         <div class="border border-2 p-3">
@@ -48,7 +76,7 @@
             </div>
         </div>
         <div class="d-flex flex-column align-items-center mt-2" id="cpfBox">
-        @if (@ViewBag.erro != null)
+        @if (ViewBag.erro != null)
         {
             <div class="mb-3">
                 <span class="feedback danger" role="alert"><i class="fas fa-times-circle" aria-hidden="true"></i>@ViewBag.erro</span>
