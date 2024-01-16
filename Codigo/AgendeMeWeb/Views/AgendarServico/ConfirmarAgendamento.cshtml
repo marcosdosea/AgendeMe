@@ -48,19 +48,12 @@
             </div>
         </div>
         <div class="d-flex flex-column align-items-center mt-2" id="cpfBox">
-            <div class="form-group">
-                <label for="CPF" class="control-label">Digite o seu CPF</label>
-                <input onfocus="cpfMask(this)" name="CPF" class="form-control" value="" id="CPF" maxlength="14"/>
-            </div>
         @if (@ViewBag.erro != null)
         {
             <div class="mb-3">
                 <span class="feedback danger" role="alert"><i class="fas fa-times-circle" aria-hidden="true"></i>@ViewBag.erro</span>
             </div> 
         }
-            <button class="br-button primary mr-3 mt-2" type="button" onclick="getCidadao('@Url.Action("GetCidadao")',this)">
-                Verificar CPF
-            </button>
         </div>
         <div class="d-flex justify-content-center col-12">
             <div class="br-magic-button large mt-4 col-lg-3 col-md-4 col-8">

@@ -152,6 +152,7 @@ namespace AgendeMeWeb.Controllers
         {
             var listaAreasDeServico = _areaDeServicoService.GetAllByIdPrefeitura(id);
             var listaAreasDeServicoModel = _mapper.Map<List<AreaDeServicoViewModel>>(listaAreasDeServico);
+
             return PartialView(listaAreasDeServicoModel);
         }
 
@@ -220,6 +221,7 @@ namespace AgendeMeWeb.Controllers
             ViewBag.idOrgao = dadosAgendamento.IdOrgao;
             ViewBag.nomeOrgao = dadosAgendamento.NomeOrgao;
             ViewBag.idArea = dadosAgendamento.IdArea;
+
             return PartialView(dadosAgendamento);
         }
 
@@ -229,6 +231,14 @@ namespace AgendeMeWeb.Controllers
         {
             try
             {
+                var cookie = Request.Cookies.FirstOrDefault(c => c.Key == "YourAppCookieName");
+                if (cookie.Value == null) 
+                {
+                    ViewBag.erro = "Para confirmar agendamento, é necessário se autenticar";
+                    var dadosAgendamento = _diaAgendamentoService.GetDadosAgendamento(agendamentoModel.IdDiaAgendamento);
+                    return View(dadosAgendamento);
+                }
+
                 var agendamento = _mapper.Map<Agendamento>(agendamentoModel);
                 var id = _agendamentoService.Create(agendamento);
 
