@@ -15,6 +15,7 @@ function getSessionCookie() {
 }
 
 function submitForm(button) {
+    location.reload()
     if (getSessionCookie()){
         button.parentNode.submit()
     }
