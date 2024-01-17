@@ -246,8 +246,8 @@ namespace AgendeMeWeb.Controllers
                     return RedirectToAction(nameof(ConfirmarAgendamento), new { idDiaAgendamento = agendamentoModel.IdDiaAgendamento });
                 }
 
-
                 var agendamento = _mapper.Map<Agendamento>(agendamentoModel);
+                agendamento.IdCidadao = Convert.ToInt32(User.FindFirst("Id")?.Value);
                 var id = _agendamentoService.Create(agendamento);
 
                 if (id.Result == -1)

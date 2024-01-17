@@ -1,7 +1,9 @@
 using AgendeMeWeb.Areas.Identity.Data;
+using AgendeMeWeb.Helpers;
 using Core;
 using Core.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Service;
 
@@ -22,7 +24,7 @@ namespace AgendeMeWeb
             builder.Services.AddDbContext<IdentityContext>(
                 options => options.UseMySQL(builder.Configuration.GetConnectionString("AgendeMeDatabase")));
 
-            builder.Services.AddDefaultIdentity<UsuarioIdentity>(options =>
+            builder.Services.AddIdentity<UsuarioIdentity, IdentityRole>(options =>
             {
                 // SignIn settings
                 options.SignIn.RequireConfirmedAccount = false;
@@ -50,7 +52,7 @@ namespace AgendeMeWeb
             builder.Services.ConfigureApplicationCookie(options =>
             {
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-                options.Cookie.Name = "AgendeMeSession";
+                options.Cookie.Name = "AgendeMeSessionCookie";
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
                 options.LoginPath = "/Identity/Account/Login";
@@ -70,6 +72,9 @@ namespace AgendeMeWeb
             builder.Services.AddTransient<IDiaAgendamentoService, DiaAgendamentoService>();
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.AddScoped<IUserClaimsPrincipalFactory<UsuarioIdentity>, ApplicationUserClaims>();
+
+            builder.Services.AddRazorPages();
 
             var app = builder.Build();
 
