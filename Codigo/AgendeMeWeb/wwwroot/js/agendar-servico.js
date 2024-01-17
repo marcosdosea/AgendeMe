@@ -98,22 +98,22 @@ function getHoras(url, idServico, data, nomeDia, nomeOrgao, nomeServico, idOrgao
     });
 }
 
-function getDadosAgendamento(url, id) {
-    $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
-    $.ajax({
-        type: "GET",
-        url: url,
-        dataType: "HTML",
-        data: { idDiaAgendamento: id },
+// function getDadosAgendamento(url, id) {
+//     $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
+//     $.ajax({
+//         type: "GET",
+//         url: url,
+//         dataType: "HTML",
+//         data: { idDiaAgendamento: id },
 
-        success: function (result) {
-            $("#ajaxBox").html(result);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            //TODO::
-        },
-    });
-}
+//         success: function (result) {
+//             $("#ajaxBox").html(result);
+//         },
+//         error: function (jqXHR, textStatus, errorThrown) {
+//             //TODO::
+//         },
+//     });
+// }
 
 /* temporario */
 // function getCidadao(url, button) {

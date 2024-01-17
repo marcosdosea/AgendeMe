@@ -222,6 +222,15 @@ namespace AgendeMeWeb.Controllers
             ViewBag.nomeOrgao = dadosAgendamento.NomeOrgao;
             ViewBag.idArea = dadosAgendamento.IdArea;
 
+            var cookie = Request.Cookies.FirstOrDefault(c => c.Key == "AgendeMeSession");
+            if (cookie.Value == null) 
+            {
+                ViewBag.logado = false;
+            }else 
+            {
+                ViewBag.logado = true;
+            }
+
             return View(dadosAgendamento);
         }
 
@@ -231,14 +240,12 @@ namespace AgendeMeWeb.Controllers
         {
             try
             {
-                var cookie = Request.Cookies.FirstOrDefault(c => c.Key == "YourAppCookieName");
+                var cookie = Request.Cookies.FirstOrDefault(c => c.Key == "AgendeMeSession");
                 if (cookie.Value == null) 
                 {
-                    ViewBag.logado = false;
-                    var dadosAgendamento = _diaAgendamentoService.GetDadosAgendamento(agendamentoModel.IdDiaAgendamento);
-                    return View(dadosAgendamento);
+                    return RedirectToAction(nameof(ConfirmarAgendamento), new { idDiaAgendamento = agendamentoModel.IdDiaAgendamento });
                 }
-                ViewBag.logado = true;
+
 
                 var agendamento = _mapper.Map<Agendamento>(agendamentoModel);
                 var id = _agendamentoService.Create(agendamento);
