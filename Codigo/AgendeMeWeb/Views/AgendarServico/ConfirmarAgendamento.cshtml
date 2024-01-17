@@ -98,9 +98,20 @@
                     <form class="flex-fill" asp-controller="AgendarServico" asp-action="ConfirmarAgendamento">
                         <input type="hidden" name="idDiaAgendamento" value="@Model.Id" />
                         <input type="hidden" name="dataCadastro" value="@Model.DataCadastro" />
-                        <button class="br-button fs-6 fs-sm-5 col-lg-12 col-sm-12 text-wrap text-sm-nowrap w-100" type="submit" onmouseover="verificaCidadao()">
-                            Confirmar Agendamento
-                        </button>
+                        @{ 
+                            if (ViewBag.logado != null && !ViewBag.logado) 
+                            {
+                            <button class="br-button fs-6 fs-sm-5 col-lg-12 col-sm-12 text-wrap text-sm-nowrap w-100" type="button" onclick="submitForm(this)">
+                                Confirmar Agendamento
+                            </button>
+                            }
+                            else
+                            {
+                            <button class="br-button fs-6 fs-sm-5 col-lg-12 col-sm-12 text-wrap text-sm-nowrap w-100" type="submit" onmouseover="verificaCidadao()">
+                                Confirmar Agendamento
+                            </button>
+                            }
+                        }
                     </form>
                 </div>
             </div>
@@ -112,7 +123,16 @@
         </div>
     </div>
 </div>
-@section Scripts {
-    <script src="~/js/agendar-servico.js"></script>
-    <script src="~/js/mascaras.js"></script>
+@if (ViewBag.logado != null && !ViewBag.logado) 
+{ 
+    @section Scripts {
+        <script src="~/js/agendar-servico.js"></script>
+        <script src="~/js/cookie.js"></script>
+    }
+}else 
+{
+    @section Scripts {
+        <script src="~/js/agendar-servico.js"></script>
+    }
 }
+

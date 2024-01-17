@@ -272,10 +272,14 @@ namespace AgendeMeWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetCidadao(string CPF)
+        public ActionResult GetSession(string CPF)
         {
-            CidadaoDTO cidadaoDTO = _cidadaoService.GetByCPF(CPF);
-            return PartialView(cidadaoDTO);
+            var cookie = Request.Cookies.FirstOrDefault(c => c.Key == "AgendeMeSession");
+            if (cookie.Value == null) 
+            {
+                return NotFound();
+            }
+            return Ok();
         }
 
         [HttpGet]
