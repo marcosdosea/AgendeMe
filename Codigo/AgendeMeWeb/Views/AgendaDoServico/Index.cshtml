@@ -18,38 +18,38 @@
     </p>
 </div>
 
-<table id="tableServicoPublico" class="table list-agendeme">
+<table id="tableServicoPublico" class="table list-agendeme border border-0">
     <thead>
         <tr>
             <th class="border text-center">
                 @Html.DisplayNameFor(model => model.NomeDoServicoPublico)
             </th>
 
-            <th class="border">
+            <th class="border text-center">
                 @Html.DisplayNameFor(model => model.DiaSemana)
             </th>
 
-            <th class="border">
+            <th class="border text-center">
                 Horário
             </th>
 
-            <th class="border">
+            <th class="border text-center">
                 @Html.DisplayNameFor(model => model.NomeDoProfissional)
             </th>
 
-            <th class="border">
+            <th class="border text-center">
                 @Html.DisplayNameFor(model => model.VagasAtendimento)
             </th>
 
-            <th class="border">
+            <th class="border text-center">
                 @Html.DisplayNameFor(model => model.VagasRetorno)
             </th>
 
-            <th class="border">
+            <th class="border text-center">
                 Editar
             </th>
 
-            <th class="border">
+            <th class="border text-center">
                 Remover
             </th>
         </tr>
@@ -57,38 +57,38 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td class="border">
+            <td class="border text-center">
                 @Html.DisplayFor(modelItem => item.NomeDoServicoPublico)
             </td>
 
-            <td class="border">
+            <td class="border text-center">
                 @Html.DisplayFor(modelItem => item.DiaSemana)
             </td>
 
-            <td class="border">
+            <td class="border text-center">
                 @Html.DisplayFor(modelItem => item.HorarioInicio) às 
                 @Html.DisplayFor(modelItem => item.HorarioFim)
             </td>
 
-            <td class="border">
+            <td class="border text-center">
                 @Html.DisplayFor(modelItem => item.NomeDoProfissional)
             </td>
 
-            <td class="border">
+            <td class="border text-center">
                 @Html.DisplayFor(modelItem => item.VagasAtendimento)
             </td>
 
-            <td class="border">
+            <td class="border text-center">
                 @Html.DisplayFor(modelItem => item.VagasRetorno)
             </td>
 
-            <td class="border">
+            <td class="border text-center">
                  <a asp-action="Edit" asp-route-id="@item.Id">
                      <i class="fas fa-edit"></i>
                  </a>
             </td>
 
-            <td class="border">
+            <td class="border text-center">
                 <a asp-action="Delete" asp-route-id="@item.Id">
                     <i class="fas fa-times-circle" id="iconeRemover"></i>
                 </a>
