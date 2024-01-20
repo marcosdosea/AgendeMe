@@ -1,0 +1,61 @@
+name: AgendeMe-WEB CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: Produção
+    
+    env:
+      work-directory: Codigo/AgendeMeWeb
+
+    steps:
+    - name: Execute checkout in repository
+      uses: actions/checkout@v2
+    
+    - name: Configure .NET version
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.417
+      
+    - name: Replace variables
+      uses: microsoft/variable-substitution@v1
+      with:
+        files: '${{env.work-directory}}/appsettings.json'
+      env:
+        ConnectionStrings.AgendeMeDatabase: ${{secrets.FTP_DATABASE_CONNECTION_STRING}}
+
+    - name: Restore dependencies
+      run: |
+        cd ${{env.work-directory}}
+        dotnet restore
+
+    - name: Build Application
+      run: |
+        cd ${{env.work-directory}}
+        dotnet build --no-restore ./AgendeMeWeb.csproj
+      
+    - name: Publish Application
+      run: |
+        cd ${{env.work-directory}}
+        dotnet publish -c Release --no-restore -o ./publishWEB ./AgendeMeWeb.csproj
+    
+    - name: Upload via FTP
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASS }}
+        local-dir: '${{env.work-directory}}/publishWEB/'
+        remote-dir: ./
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/AnaliseProjeto
