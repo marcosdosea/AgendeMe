@@ -52,7 +52,7 @@ namespace AgendeMeWeb
             builder.Services.ConfigureApplicationCookie(options =>
             {
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-                options.Cookie.Name = "AgendeMeSessionCookie";
+                options.Cookie.Name = "AgendeMeSession";
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
                 options.LoginPath = "/Identity/Account/Login";
