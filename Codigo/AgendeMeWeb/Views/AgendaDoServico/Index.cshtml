@@ -6,43 +6,53 @@
 <link rel="stylesheet" type="text/css" href="~/lib/datatable.net/css/jquery.dataTables.min.css" />
 
 
-<h1>
-    Agenda de serviços
-</h1>
+<div class="row d-flex">
+    <div class="col col-md col-sm-12 p-0 ms-4">
+        <h1 class="row fw-bold">
+            Agenda de serviços
+        </h1>
+        <h6 class="row fw-normal">Agenda de serviços cadastradas</h6>
+    </div>
 
-<div id="novaAgenda">
-    <h6>Agenda de serviços cadastradas</h6>
-
-    <p>
+    <div class="col col-md-5 col-sm-12 text-md-end text-sm-start align-self-center p-0">
         <a asp-action="Create" class="br-button primary mr-3">Cadastrar nova agenda de serviço</a>
-    </p>
+    </div>
 </div>
 
-<table id="tableServicoPublico" class="table">
+
+
+<table id="tableServicoPublico" class="table list-agendeme border border-0">
     <thead>
         <tr>
-            <th>
+            <th class="border text-center">
                 @Html.DisplayNameFor(model => model.NomeDoServicoPublico)
             </th>
-            <th>
+
+            <th class="border text-center">
                 @Html.DisplayNameFor(model => model.DiaSemana)
             </th>
-            <th>
+
+            <th class="border text-center">
                 Horário
             </th>
-            <th>
+
+            <th class="border text-center">
                 @Html.DisplayNameFor(model => model.NomeDoProfissional)
             </th>
-            <th>
+
+            <th class="border text-center">
                 @Html.DisplayNameFor(model => model.VagasAtendimento)
             </th>
-            <th>
+
+            <th class="border text-center">
                 @Html.DisplayNameFor(model => model.VagasRetorno)
             </th>
-            <th>
+
+            <th class="border text-center">
                 Editar
             </th>
-            <th>
+
+            <th class="border text-center">
                 Remover
             </th>
         </tr>
@@ -50,35 +60,43 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td class="border text-center">
                 @Html.DisplayFor(modelItem => item.NomeDoServicoPublico)
             </td>
-            <td>
+
+            <td class="border text-center">
                 @Html.DisplayFor(modelItem => item.DiaSemana)
             </td>
-            <td>
+
+            <td class="border text-center">
                 @Html.DisplayFor(modelItem => item.HorarioInicio) às 
                 @Html.DisplayFor(modelItem => item.HorarioFim)
             </td>
-            <td>
+
+            <td class="border text-center">
                 @Html.DisplayFor(modelItem => item.NomeDoProfissional)
             </td>
-            <td>
+
+            <td class="border text-center">
                 @Html.DisplayFor(modelItem => item.VagasAtendimento)
             </td>
-            <td>
+
+            <td class="border text-center">
                 @Html.DisplayFor(modelItem => item.VagasRetorno)
             </td>
-            <td>
+
+            <td class="border text-center">
                  <a asp-action="Edit" asp-route-id="@item.Id">
                      <i class="fas fa-edit"></i>
                  </a>
             </td>
-            <td>
+
+            <td class="border text-center">
                 <a asp-action="Delete" asp-route-id="@item.Id">
                     <i class="fas fa-times-circle" id="iconeRemover"></i>
                 </a>
             </td>
+
         </tr>
 }
     </tbody>

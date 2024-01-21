@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `agendeme` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `agendeme`;
+CREATE DATABASE  IF NOT EXISTS `AgendeMe` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `AgendeMe`;
 -- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: agendeme
@@ -144,40 +144,40 @@ INSERT INTO `areadeservico` VALUES (1,'Saúde',1,'fas fa-plus'),(2,'Transporte',
 UNLOCK TABLES;
 
 --
--- Table structure for table `aspnetroleclaims`
+-- Table structure for table `AspNetRoleClaims`
 --
 
-DROP TABLE IF EXISTS `aspnetroleclaims`;
+DROP TABLE IF EXISTS `AspNetRoleClaims`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `aspnetroleclaims` (
+CREATE TABLE `AspNetRoleClaims` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `RoleId` varchar(767) NOT NULL,
   `ClaimType` text,
   `ClaimValue` text,
   PRIMARY KEY (`Id`),
   KEY `IX_AspNetRoleClaims_RoleId` (`RoleId`),
-  CONSTRAINT `FK_AspNetRoleClaims_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE
+  CONSTRAINT `FK_AspNetRoleClaims_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `AspNetRoles` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `aspnetroleclaims`
+-- Dumping data for table `AspNetRoleClaims`
 --
 
-LOCK TABLES `aspnetroleclaims` WRITE;
-/*!40000 ALTER TABLE `aspnetroleclaims` DISABLE KEYS */;
-/*!40000 ALTER TABLE `aspnetroleclaims` ENABLE KEYS */;
+LOCK TABLES `AspNetRoleClaims` WRITE;
+/*!40000 ALTER TABLE `AspNetRoleClaims` DISABLE KEYS */;
+/*!40000 ALTER TABLE `AspNetRoleClaims` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `aspnetroles`
+-- Table structure for table `AspNetRoles`
 --
 
-DROP TABLE IF EXISTS `aspnetroles`;
+DROP TABLE IF EXISTS `AspNetRoles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `aspnetroles` (
+CREATE TABLE `AspNetRoles` (
   `Id` varchar(767) NOT NULL,
   `Name` varchar(256) DEFAULT NULL,
   `NormalizedName` varchar(256) DEFAULT NULL,
@@ -188,102 +188,102 @@ CREATE TABLE `aspnetroles` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `aspnetroles`
+-- Dumping data for table `AspNetRoles`
 --
 
-LOCK TABLES `aspnetroles` WRITE;
-/*!40000 ALTER TABLE `aspnetroles` DISABLE KEYS */;
-/*!40000 ALTER TABLE `aspnetroles` ENABLE KEYS */;
+LOCK TABLES `AspNetRoles` WRITE;
+/*!40000 ALTER TABLE `AspNetRoles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `AspNetRoles` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `aspnetuserclaims`
+-- Table structure for table `AspNetUserClaims`
 --
 
-DROP TABLE IF EXISTS `aspnetuserclaims`;
+DROP TABLE IF EXISTS `AspNetUserClaims`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `aspnetuserclaims` (
+CREATE TABLE `AspNetUserClaims` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `UserId` varchar(767) NOT NULL,
   `ClaimType` text,
   `ClaimValue` text,
   PRIMARY KEY (`Id`),
   KEY `IX_AspNetUserClaims_UserId` (`UserId`),
-  CONSTRAINT `FK_AspNetUserClaims_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `aspnetusers` (`Id`) ON DELETE CASCADE
+  CONSTRAINT `FK_AspNetUserClaims_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `aspnetuserclaims`
+-- Dumping data for table `AspNetUserClaims`
 --
 
-LOCK TABLES `aspnetuserclaims` WRITE;
-/*!40000 ALTER TABLE `aspnetuserclaims` DISABLE KEYS */;
-/*!40000 ALTER TABLE `aspnetuserclaims` ENABLE KEYS */;
+LOCK TABLES `AspNetUserClaims` WRITE;
+/*!40000 ALTER TABLE `AspNetUserClaims` DISABLE KEYS */;
+/*!40000 ALTER TABLE `AspNetUserClaims` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Table structure for table `aspnetuserlogins`
 --
 
-DROP TABLE IF EXISTS `aspnetuserlogins`;
+DROP TABLE IF EXISTS `AspNetUserLogins`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `aspnetuserlogins` (
+CREATE TABLE `AspNetUserLogins` (
   `LoginProvider` varchar(128) NOT NULL,
   `ProviderKey` varchar(128) NOT NULL,
   `ProviderDisplayName` text,
   `UserId` varchar(767) NOT NULL,
   PRIMARY KEY (`LoginProvider`,`ProviderKey`),
   KEY `IX_AspNetUserLogins_UserId` (`UserId`),
-  CONSTRAINT `FK_AspNetUserLogins_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `aspnetusers` (`Id`) ON DELETE CASCADE
+  CONSTRAINT `FK_AspNetUserLogins_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `aspnetuserlogins`
+-- Dumping data for table `AspNetUserLogins`
 --
 
-LOCK TABLES `aspnetuserlogins` WRITE;
-/*!40000 ALTER TABLE `aspnetuserlogins` DISABLE KEYS */;
-/*!40000 ALTER TABLE `aspnetuserlogins` ENABLE KEYS */;
+LOCK TABLES `AspNetUserLogins` WRITE;
+/*!40000 ALTER TABLE `AspNetUserLogins` DISABLE KEYS */;
+/*!40000 ALTER TABLE `AspNetUserLogins` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `aspnetuserroles`
+-- Table structure for table `AspNetUserRoles`
 --
 
-DROP TABLE IF EXISTS `aspnetuserroles`;
+DROP TABLE IF EXISTS `AspNetUserRoles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `aspnetuserroles` (
+CREATE TABLE `AspNetUserRoles` (
   `UserId` varchar(767) NOT NULL,
   `RoleId` varchar(767) NOT NULL,
   PRIMARY KEY (`UserId`,`RoleId`),
   KEY `IX_AspNetUserRoles_RoleId` (`RoleId`),
-  CONSTRAINT `FK_AspNetUserRoles_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_AspNetUserRoles_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `aspnetusers` (`Id`) ON DELETE CASCADE
+  CONSTRAINT `FK_AspNetUserRoles_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `AspNetRoles` (`Id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_AspNetUserRoles_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `aspnetuserroles`
+-- Dumping data for table `AspNetUserRoles`
 --
 
-LOCK TABLES `aspnetuserroles` WRITE;
-/*!40000 ALTER TABLE `aspnetuserroles` DISABLE KEYS */;
-/*!40000 ALTER TABLE `aspnetuserroles` ENABLE KEYS */;
+LOCK TABLES `AspNetUserRoles` WRITE;
+/*!40000 ALTER TABLE `AspNetUserRoles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `AspNetUserRoles` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `aspnetusers`
+-- Table structure for table `AspNetUsers`
 --
 
-DROP TABLE IF EXISTS `aspnetusers`;
+DROP TABLE IF EXISTS `AspNetUsers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `aspnetusers` (
+CREATE TABLE `AspNetUsers` (
   `Id` varchar(767) NOT NULL,
   `UserName` varchar(256) DEFAULT NULL,
   `NormalizedUserName` varchar(256) DEFAULT NULL,
@@ -306,39 +306,41 @@ CREATE TABLE `aspnetusers` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `aspnetusers`
+-- Dumping data for table `AspNetUsers`
 --
 
-LOCK TABLES `aspnetusers` WRITE;
-/*!40000 ALTER TABLE `aspnetusers` DISABLE KEYS */;
-INSERT INTO `aspnetusers` VALUES ('320d61b6-1a06-49a0-bab6-8afb1973ccc7','bestlaurobr@gmail.com','BESTLAUROBR@GMAIL.COM','bestlaurobr@gmail.com','BESTLAUROBR@GMAIL.COM',_binary '\0','AQAAAAEAACcQAAAAEIlaJTk8O3pyeTXpQ6vXYAVfx874qipILvw9YzCyiwKtuzuyPFAircvFxGtNL6gJ/Q==','TQUVBNZYUEAC4FDUJYHK5PVN5JLYNDYF','0de031fd-8b34-47de-b403-33a6ebf9d1c6',NULL,_binary '\0',_binary '\0',NULL,_binary '',0);
-/*!40000 ALTER TABLE `aspnetusers` ENABLE KEYS */;
+LOCK TABLES `AspNetUsers` WRITE;
+/*!40000 ALTER TABLE `AspNetUsers` DISABLE KEYS */;
+INSERT INTO `AspNetUsers` 
+VALUES 
+('f5094213-c8ef-403b-a106-7dc5c85a4c45','devlauross2@gmail.com','DEVLAUROSS2@GMAIL.COM','devlauross2@gmail.com','DEVLAUROSS2@GMAIL.COM',_binary '\0','AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==','IKMCPEUEGO3DFPNZ3GTZ3DVREZEMHR2I','c2ebb266-388f-469f-afac-e0ee0a6a3b9c',NULL,_binary '\0',_binary '\0',NULL,_binary '',0);
+/*!40000 ALTER TABLE `AspNetUsers` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `aspnetusertokens`
+-- Table structure for table `AspNetUserTokens`
 --
 
-DROP TABLE IF EXISTS `aspnetusertokens`;
+DROP TABLE IF EXISTS `AspNetUserTokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `aspnetusertokens` (
+CREATE TABLE `AspNetUserTokens` (
   `UserId` varchar(767) NOT NULL,
   `LoginProvider` varchar(128) NOT NULL,
   `Name` varchar(128) NOT NULL,
   `Value` text,
   PRIMARY KEY (`UserId`,`LoginProvider`,`Name`),
-  CONSTRAINT `FK_AspNetUserTokens_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `aspnetusers` (`Id`) ON DELETE CASCADE
+  CONSTRAINT `FK_AspNetUserTokens_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `aspnetusertokens`
+-- Dumping data for table `AspNetUserTokens`
 --
 
-LOCK TABLES `aspnetusertokens` WRITE;
-/*!40000 ALTER TABLE `aspnetusertokens` DISABLE KEYS */;
-/*!40000 ALTER TABLE `aspnetusertokens` ENABLE KEYS */;
+LOCK TABLES `AspNetUserTokens` WRITE;
+/*!40000 ALTER TABLE `AspNetUserTokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `AspNetUserTokens` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -468,7 +470,9 @@ CREATE TABLE `cidadao` (
 
 LOCK TABLES `cidadao` WRITE;
 /*!40000 ALTER TABLE `cidadao` DISABLE KEYS */;
-INSERT INTO `cidadao` VALUES (1,'José da Silva','999.999.999-09','1998-10-09','888 9999 7777 6666','999998888','garelaxxx@yahool.com','49530-000','SE','Ribeirópolis','Centro','Rua Manoel','69','M','Profissional','Qualquer Complemento',NULL,NULL),(2,'Julia Almeida','888.999.999-09','2000-10-09','888 5999 7777 6666','799998888','garelaxx2x@yahool.com','49530-000','SE','Ribeirópolis','Centro','Rua Juju','65','F','Cidadao','Qualquer Complemento',NULL,NULL),(4,'José','999.999.929-09','1998-10-09','888 9999 7772 6666','999998888','garelaxxxs@yahool.com','49530-000','SE','Ribeirópolis','Centro','Rua Manoel','69','M','Cidadao','Qualquer Complemento',NULL,NULL);
+INSERT INTO `cidadao` 
+VALUES 
+(1,'Lauro Santana','111111111111111','1998-09-10','11111111111111111111','11111111111111111111','devlauross2@gmail.com','1111111111','SE','Ribeirópolis','Centro','Rua José Romualdo de Menezes','103','M','Cidadao',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `cidadao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -502,7 +506,34 @@ CREATE TABLE `diaagendamento` (
 
 LOCK TABLES `diaagendamento` WRITE;
 /*!40000 ALTER TABLE `diaagendamento` DISABLE KEYS */;
-INSERT INTO `diaagendamento` VALUES (1,'2022-10-24 00:00:00','Segunda','08:00','12:00',10,8,2,0,1),(2,'2022-10-24 00:00:00','Segunda','13:00','17:00',10,2,2,0,1),(3,'2022-10-25 00:00:00','Terça','08:00','12:00',8,0,2,0,1),(4,'2022-10-25 00:00:00','Terça','13:00','17:00',10,0,2,0,1),(5,'2022-10-26 00:00:00','Quarta','08:00','12:00',10,0,2,0,1),(6,'2022-10-26 00:00:00','Quarta','13:00','17:00',10,0,2,0,1),(7,'2022-10-27 00:00:00','Quinta','08:00','12:00',10,0,2,0,1),(8,'2022-10-27 00:00:00','Quinta','13:00','17:00',10,0,2,0,1),(9,'2022-10-28 00:00:00','Sexta','08:00','12:00',10,0,2,0,1),(10,'2022-10-28 00:00:00','Sexta','13:00','17:00',10,0,2,0,1),(11,'2022-10-24 00:00:00','Segunda','08:00','12:00',10,0,2,0,2),(12,'2022-10-24 00:00:00','Segunda','13:00','17:00',10,0,2,0,3),(13,'2022-10-25 00:00:00','Terça','08:00','12:00',10,0,2,0,2),(14,'2022-10-25 00:00:00','Terça','13:00','17:00',10,0,2,0,3),(15,'2022-10-26 00:00:00','Quarta','08:00','12:00',10,0,2,0,2),(16,'2022-10-26 00:00:00','Quarta','13:00','17:00',10,0,2,0,3),(17,'2022-10-27 00:00:00','Quinta','08:00','12:00',10,0,2,0,2),(18,'2022-10-27 00:00:00','Quinta','13:00','17:00',10,0,2,0,3),(19,'2022-10-28 00:00:00','Sexta','08:00','12:00',10,0,2,0,2),(20,'2022-10-28 00:00:00','Sexta','13:00','17:00',10,0,2,0,3),(21,'2022-10-28 00:00:00','Sexta','07:00','09:00',10,0,2,0,12),(22,'2022-10-28 00:00:00','Sexta','15:00','17:00',10,0,2,0,12),(23,'2022-10-24 00:00:00','Sexta','08:00','12:00',10,0,2,0,9),(24,'2022-10-28 00:00:00','Sexta','08:00','12:00',10,0,2,0,9),(25,'2022-10-25 00:00:00','Sexta','08:00','12:00',10,0,2,0,10),(26,'2022-10-27 00:00:00','Sexta','08:00','12:00',10,0,2,0,10);
+INSERT INTO `diaagendamento` 
+VALUES 
+(1,'2022-10-24 00:00:00','Segunda','08:00','12:00',10,8,2,0,1),
+(2,'2022-10-24 00:00:00','Segunda','13:00','17:00',10,2,2,0,1),
+(3,'2022-10-25 00:00:00','Terça','08:00','12:00',8,0,2,0,1),
+(4,'2022-10-25 00:00:00','Terça','13:00','17:00',10,0,2,0,1),
+(5,'2022-10-26 00:00:00','Quarta','08:00','12:00',10,0,2,0,1),
+(6,'2022-10-26 00:00:00','Quarta','13:00','17:00',10,0,2,0,1),
+(7,'2022-10-27 00:00:00','Quinta','08:00','12:00',10,0,2,0,1),
+(8,'2022-10-27 00:00:00','Quinta','13:00','17:00',10,0,2,0,1),
+(9,'2022-10-28 00:00:00','Sexta','08:00','12:00',10,0,2,0,1),
+(10,'2022-10-28 00:00:00','Sexta','13:00','17:00',10,0,2,0,1),
+(11,'2022-10-24 00:00:00','Segunda','08:00','12:00',10,0,2,0,2),
+(12,'2022-10-24 00:00:00','Segunda','13:00','17:00',10,0,2,0,3),
+(13,'2022-10-25 00:00:00','Terça','08:00','12:00',10,0,2,0,2),
+(14,'2022-10-25 00:00:00','Terça','13:00','17:00',10,0,2,0,3),
+(15,'2022-10-26 00:00:00','Quarta','08:00','12:00',10,0,2,0,2),
+(16,'2022-10-26 00:00:00','Quarta','13:00','17:00',10,0,2,0,3),
+(17,'2022-10-27 00:00:00','Quinta','08:00','12:00',10,0,2,0,2),
+(18,'2022-10-27 00:00:00','Quinta','13:00','17:00',10,0,2,0,3),
+(19,'2022-10-28 00:00:00','Sexta','08:00','12:00',10,0,2,0,2),
+(20,'2022-10-28 00:00:00','Sexta','13:00','17:00',10,0,2,0,3),
+(21,'2022-10-28 00:00:00','Sexta','07:00','09:00',10,0,2,0,12),
+(22,'2022-10-28 00:00:00','Sexta','15:00','17:00',10,0,2,0,12),
+(23,'2022-10-24 00:00:00','Sexta','08:00','12:00',10,0,2,0,9),
+(24,'2022-10-28 00:00:00','Sexta','08:00','12:00',10,0,2,0,9),
+(25,'2022-10-25 00:00:00','Sexta','08:00','12:00',10,0,2,0,10),
+(26,'2022-10-27 00:00:00','Sexta','08:00','12:00',10,0,2,0,10);
 /*!40000 ALTER TABLE `diaagendamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -538,7 +569,11 @@ CREATE TABLE `orgaopublico` (
 
 LOCK TABLES `orgaopublico` WRITE;
 /*!40000 ALTER TABLE `orgaopublico` DISABLE KEYS */;
-INSERT INTO `orgaopublico` VALUES (1,'Clínica Dona Mininha','Centro','Rua da Clínica Dona Mininha','244','Próximo ao Simas Turbo','49530-000','08:00','18:00',1),(2,'Clínica Lá Lá','Centro','Rua da Clínica Lá Lá','36','Próximo ao México Lindo','49530-000','07:00','12:00',1),(3,'Clínica Dona Mininho','Centro','Rua da Clínica Dona Mininho','24','Próximo ao Seu Cuca é Eu?','49530-000','08:00','13:00',1),(4,'Academia de Saúde','Centro','Rua da Academia','24','Próximo ao bar do Jadeu','49530-000','08:00','13:00',1),(5,'Secretaria de Agricultura','Centro','Rua da Academia','24','Próximo ao Tilambucano','49530-000','08:00','13:00',1),(6,'Secretaria de Transporte','Centro','Rua da Academia','24','Próximo ao Arizona','49530-000','08:00','13:00',1);
+INSERT INTO `orgaopublico` 
+VALUES 
+(1,'Clínica de Saúde da Família Vereador Vivaldo Meneses','Serrano','Rua Josué Passos','700',null,'49530-000','08:00','18:00',1),
+(2,'Centro de Saúde Da Família Manoel Pereira de Andrade','Sítio Porto','Rua Principal','S/N',null,'49530-000','07:00','12:00',1),
+(3,'Clinica De Fisioterapia Municipal De Itabaiana "Geraldo Teles"','Centro','Rua Clemente Alcídes Cavalcante','476',null,'49530-000','08:00','13:00',1);
 /*!40000 ALTER TABLE `orgaopublico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -573,7 +608,8 @@ CREATE TABLE `prefeitura` (
 
 LOCK TABLES `prefeitura` WRITE;
 /*!40000 ALTER TABLE `prefeitura` DISABLE KEYS */;
-INSERT INTO `prefeitura` VALUES (1,'Prefeitura de Ribeirópolis','897892344','SE','Ribeirópolis','Centro','2344444','Rua Teste','122','Qualquercoisaaqui');
+INSERT INTO `prefeitura` 
+VALUES (1,'Prefeitura de Itabaiana','897892344','SE','Itabaiana','Centro','2344444','Praça Fausto Cardoso','12','fas fa-university');
 /*!40000 ALTER TABLE `prefeitura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -605,7 +641,19 @@ CREATE TABLE `servicopublico` (
 
 LOCK TABLES `servicopublico` WRITE;
 /*!40000 ALTER TABLE `servicopublico` DISABLE KEYS */;
-INSERT INTO `servicopublico` VALUES (1,'Clínico Geral',1,1,'fas fa-user-md'),(2,'Clínico Geral',1,2,'fas fa-user-md'),(3,'Clínico Geral',1,3,'fas fa-user-md'),(4,'Psicólogo',1,3,'fas fa-brain'),(5,'Psicólogo',1,1,'fas fa-brain'),(6,'Cardiologista',1,2,'fas fa-heartbeat'),(7,'Cardiologista',1,1,'fas fa-heartbeat'),(8,'Nutricionista',1,1,'fas fa-apple-alt'),(9,'Odontologista',1,1,'fas fa-tooth'),(10,'Odontologista',1,2,'fas fa-tooth'),(11,'Odontologista',1,3,'fas fa-tooth'),(12,'Treino Terceira Idade',7,4,'fas fa-blind');
+INSERT INTO `servicopublico` 
+VALUES 
+(1,'Clínico Geral',1,1,'fas fa-user-md'),
+(2,'Clínico Geral',1,2,'fas fa-user-md'),
+(3,'Fisioterapia Geral',1,3,'fas fa-bone'),
+(4,'Acupuntura',1,3,'fab fa-pagelines'),
+(5,'Psicólogo',1,1,'fas fa-brain'),
+(6,'Cardiologista',1,2,'fas fa-heartbeat'),
+(7,'Cardiologista',1,1,'fas fa-heartbeat'),
+(8,'Nutricionista',1,1,'fas fa-apple-alt'),
+(9,'Odontologista',1,1,'fas fa-tooth'),
+(10,'Odontologista',1,2,'fas fa-tooth'),
+(11,'Pilates',1,3,'fas fa-hands');
 /*!40000 ALTER TABLE `servicopublico` ENABLE KEYS */;
 UNLOCK TABLES;
 

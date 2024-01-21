@@ -6,3 +6,12 @@
     display: flex;
     justify-content: space-between;
 }
+
+
+.list-agendeme {
+
+}
+
+.list-agendeme th {
+    background-color: white;
+}
