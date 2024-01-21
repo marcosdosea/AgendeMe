@@ -24,8 +24,8 @@ namespace AgendeMeWeb.Helpers
         protected override async Task<ClaimsIdentity> GenerateClaimsAsync(UsuarioIdentity user)
         {
             var identity = await base.GenerateClaimsAsync(user);
-            //var pessoa = _cidadaoService.GetByCPF(identity.Name);
-            var pessoa = _cidadaoService.GetByEmail(identity.Name);
+            var pessoa = _cidadaoService.GetByCPF(identity.Name);
+            //var pessoa = _cidadaoService.GetByEmail(identity.Name);
             if (pessoa != null)
             {
                 identity.AddClaim(new Claim("Id", pessoa.Id.ToString()));
