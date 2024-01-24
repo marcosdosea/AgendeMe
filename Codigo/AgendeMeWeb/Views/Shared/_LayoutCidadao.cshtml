@@ -115,34 +115,35 @@
                     <div>
                         <div class="header-sign-in">
                             @* <partial name="_LoginPartial" /> *@
-                            <div class="dropdown">
-                                <a href="#" class="text-primary text-bold dropdown-toggle fs-6" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Olá, Cidadão
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li>
-                                        <a class="dropdown-item text-primary text-bold" href="#">
-                                            <span><i class="fas fa-user"></i> Meus Dados</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item text-primary text-bold" href="#">
-                                        <span><i class="fas fa-cog"></i> Configurações</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <hr/>
-                                    </li>
-                                    <li>
-                                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                                            <a role="button" type="submit" class="dropdown-item text-primary text-bold" type="button" aria-label="Ícone ilustrativo" title="Sair">
-                                                <span><i class="fas fa-sign-out-alt"></i> Sair</span>
+                            <partial name="_UserMenu" />
+                                @* <div class="dropdown">
+                                    <a href="#" class="text-primary text-bold dropdown-toggle fs-6" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Olá, Cidadão
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li>
+                                            <a class="dropdown-item text-primary text-bold" href="#">
+                                                <span><i class="fas fa-user"></i> Meus Dados</span>
                                             </a>
-                                        </form>
-                                    </li>
-                                </ul>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item text-primary text-bold" href="#">
+                                            <span><i class="fas fa-cog"></i> Configurações</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr/>
+                                        </li>
+                                        <li>
+                                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                                                <a role="button" type="submit" class="dropdown-item text-primary text-bold" type="button" aria-label="Ícone ilustrativo" title="Sair">
+                                                    <span><i class="fas fa-sign-out-alt"></i> Sair</span>
+                                                </a>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div> *@
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>

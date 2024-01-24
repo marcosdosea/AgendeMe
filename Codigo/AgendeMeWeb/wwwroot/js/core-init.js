@@ -7647,6 +7647,9 @@ class BRHeader {
     this.menuTrigger = this.component.querySelector(
       '[data-target="#main-navigation"]'
     )
+    this.menu2Trigger = this.component.querySelector(
+      '[data-target="#main-navigation2"]'
+    )
     this._setBehavior()
   }
 
@@ -7808,6 +7811,10 @@ class BRHeader {
       }
       if (this.menuTrigger != null)
         this.menuTrigger.addEventListener('focus', (event) => {
+          this._cleanDropDownHeader()
+        })
+        if (this.menuTrigger2 != null)
+        this.menuTrigger2.addEventListener('focus', (event) => {
           this._cleanDropDownHeader()
         })
   }
