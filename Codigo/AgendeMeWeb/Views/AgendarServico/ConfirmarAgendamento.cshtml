@@ -1,79 +1,142 @@
 ﻿@model Core.DTO.ConfirmarAgendamentoDTO
 
-<div class="mb-4 pb-4">
-    <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto fas fa-building text-center"></i>
-    <h2 class="text-center fw-bold azul-text">@Model.OrgaoPublico</h2>
-</div>
+@{
+    ViewData["Title"] = "Confirmar Agendamento";
+}
 
-<h1 class="mt-5 fw-bold fs-2">Confira o seu agendamento</h1>
-<h4 class="mb-5 fw-light fs-4">
-    Seu agendamento já está quase realizado
-</h4>
+<div id="ajaxBox">
+    <div class="mb-4 pb-4">
+        <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto fas fa-building text-center"></i>
+        <h2 class="text-center fw-bold azul-text">@Model.NomeOrgao</h2>
+    </div>
 
-<div class="card-content">
-    <div class="d-flex flex-column align-items-center">
-        <div class="border border-2 p-3">
-            <p class="text-break text-wrap user-select-none fs-5">
-                <span class="fw-bold">@Html.DisplayNameFor(model => model.NomeServico):</span> @Html.DisplayFor(model => model.NomeServico)
-            </p>
-            <p class="text-break text-wrap user-select-none fs-5 mt-2">
-                <span class="fw-bold">@Html.DisplayNameFor(model => model.OrgaoPublico):</span>
-                @Html.DisplayFor(model => model.OrgaoPublico)
-            </p>
-            <p class="text-break text-wrap user-select-none fs-5 mt-2">
-                <span class="fw-bold">@Html.DisplayNameFor(model => model.Bairro):</span> @Model.Bairro
-            </p>
-            <p class="text-break text-wrap user-select-none fs-5 mt-2">
-                <span class="fw-bold">@Html.DisplayNameFor(model => model.Rua):</span> @Model.Rua
-            </p>
-            <p class="text-break text-wrap user-select-none fs-5 mt-2">
-                <span class="fw-bold">@Html.DisplayNameFor(model => model.Numero):</span> @Model.Numero
-            </p>
-            <p class="text-break text-wrap user-select-none fs-5 mt-2">
-                <span class="fw-bold">@Html.DisplayNameFor(model => model.Complemento):</span> @Model.Complemento
-            </p>
-            <p class="text-break text-wrap user-select-none fs-5 mt-2">
-                <span class="fw-bold">@Html.DisplayNameFor(model => model.Data):</span> @Model.Data.ToString("dd/MM/yyyy")
-            </p>
-            <p class="text-break text-wrap user-select-none fs-5 mt-2">
-                <span class="fw-bold">@Html.DisplayNameFor(model => model.Horario):</span> @Model.Horario
-            </p>
-            <div class="d-flex flex-column align-items-center mt-2">
-                <p class="text-break text-wrap user-select-none fs-5 m-0">
-                    @Html.DisplayNameFor(model => model.DataCadastro)
-                </p>
-                <p class="text-break text-wrap user-select-none fs-5 m-0">
-                   @Model.DataCadastro.ToString("dd/MM/yyyy")
-                </p>
+    <h1 class="mt-5 fw-bold fs-2">Confira o seu agendamento</h1>
+    <h4 class="mb-5 fw-light fs-4">
+        Seu agendamento já está quase realizado
+    </h4>
+
+    @{
+        if (ViewBag.logado != null && !ViewBag.logado) {
+            <div class="br-message warning p-4" role="alert">
+                <div class="content container p-0">
+                    <div class="justify-content-center row col-12">
+                        <i class="fas fa-exclamation-triangle fa-lg fs-1 mb-3" aria-hidden="true"></i>
+                    </div>
+                    <div class="mb-3 fs-4 row text-center">
+                        <span class="message-title">Atenção</span>
+                        <span class="message-body">
+                            Para confirmar o agendamento é necessário ter um acesso!
+                        </span>
+                    </div>
+                    <div class="row justify-content-center">
+                    <a asp-area="Identity" asp-page="/Account/Register" class="br-button block secondary mb-3 small col-12 col-lg-3" role="button" target="_blank">
+                        Criar Conta
+                    </a>
+                    </div>
+                    <div class="row text-center mb-3 ">
+                        <div>
+                            <a asp-area="Identity" asp-page="/Account/Login" target="_blank">
+                                Entrar
+                            </a>
+                        </div>
+                    </div>
+                    <div class="fs-6 row text-center">
+                        <span class="message-title">Após entrar ou criar uma conta, confirme o agendamento.</span>
+                    </div>
+                </div>
+                <div class="close">
+                    <button class="br-button circle small" type="button" aria-label="Fechar"><i class="fas fa-times" aria-hidden="true"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-        <div class="d-flex flex-column align-items-center mt-2" id="cpfBox">
-            <div class="form-group">
-                <label for="CPF" class="control-label">Digite o seu CPF</label>
-                <input onfocus="cpfMask(this)" name="CPF" class="form-control" value="" id="CPF" maxlength="14"/>
-            </div>
-        @if (@ViewBag.erro != null)
-        {
-            <div class="mb-3">
-                <span class="feedback danger" role="alert"><i class="fas fa-times-circle" aria-hidden="true"></i>@ViewBag.erro</span>
-            </div> 
         }
-            <button class="br-button primary mr-3 mt-2" type="button" onclick="getCidadao('@Url.Action("GetCidadao")',this)">
-                Verificar CPF
-            </button>
-        </div>
-        <div class="br-magic-button large mt-4">
-            <form asp-action="ConfirmarAgendamento">
-                <input type="hidden" name="id" value="" />
-                <input type="hidden" name="idCidadao" value="" id="idCidadaoForm"/>
-                <input type="hidden" name="idDiaAgendamento" value="@Model.Id" />
-                <input type="hidden" name="dataCadastro" value="@Model.DataCadastro" />
-                <input type="hidden" name="idRetorno" value="" />
-                <input type="hidden" name="idAtendente" value="" />
-                <button class="br-button" type="submit" onmouseover="verificaCidadao()">
-                    Confirmar Agendamento
+    }
+
+    <div class="card-content">
+        <div class="d-flex flex-column align-items-center">
+            <div class="border border-2 p-3">
+                <p class="text-break text-wrap user-select-none fs-5">
+                    <span class="fw-bold">@Html.DisplayNameFor(model => model.NomeServico):</span> @Html.DisplayFor(model => model.NomeServico)
+                </p>
+                <p class="text-break text-wrap user-select-none fs-5 mt-2">
+                    <span class="fw-bold">@Html.DisplayNameFor(model => model.NomeOrgao):</span>
+                    @Html.DisplayFor(model => model.NomeOrgao)
+                </p>
+                <p class="text-break text-wrap user-select-none fs-5 mt-2">
+                    <span class="fw-bold">@Html.DisplayNameFor(model => model.Bairro):</span> @Model.Bairro
+                </p>
+                <p class="text-break text-wrap user-select-none fs-5 mt-2">
+                    <span class="fw-bold">@Html.DisplayNameFor(model => model.Rua):</span> @Model.Rua
+                </p>
+                <p class="text-break text-wrap user-select-none fs-5 mt-2">
+                    <span class="fw-bold">@Html.DisplayNameFor(model => model.Numero):</span> @Model.Numero
+                </p>
+                <p class="text-break text-wrap user-select-none fs-5 mt-2">
+                    <span class="fw-bold">@Html.DisplayNameFor(model => model.Complemento):</span> @Model.Complemento
+                </p>
+                <p class="text-break text-wrap user-select-none fs-5 mt-2">
+                    <span class="fw-bold">@Html.DisplayNameFor(model => model.Data):</span> @Model.Data.ToString("dd/MM/yyyy")
+                </p>
+                <p class="text-break text-wrap user-select-none fs-5 mt-2">
+                    <span class="fw-bold">@Html.DisplayNameFor(model => model.Horario):</span> @Model.Horario
+                </p>
+                <div class="d-flex flex-column align-items-center mt-2">
+                    <p class="text-break text-wrap user-select-none fs-5 m-0">
+                        @Html.DisplayNameFor(model => model.DataCadastro)
+                    </p>
+                    <p class="text-break text-wrap user-select-none fs-5 m-0">
+                    @Model.DataCadastro.ToString("dd/MM/yyyy")
+                    </p>
+                </div>
+            </div>
+            <div class="d-flex flex-column align-items-center mt-2" id="cpfBox">
+            @if (ViewBag.erro != null)
+            {
+                <div class="mb-3">
+                    <span class="feedback danger" role="alert"><i class="fas fa-times-circle" aria-hidden="true"></i>@ViewBag.erro</span>
+                </div> 
+            }
+            </div>
+            <div class="d-flex justify-content-center col-12">
+                <div class="br-magic-button large mt-4 col-lg-3 col-md-4 col-8">
+                    <form class="flex-fill" asp-controller="AgendarServico" asp-action="ConfirmarAgendamento">
+                        <input type="hidden" name="idDiaAgendamento" value="@Model.Id" />
+                        <input type="hidden" name="dataCadastro" value="@Model.DataCadastro" />
+                        @{ 
+                            if (ViewBag.logado != null && !ViewBag.logado) 
+                            {
+                            <button class="br-button fs-6 fs-sm-5 col-lg-12 col-sm-12 text-wrap text-sm-nowrap w-100" type="button" onclick="submitForm(this)">
+                                Confirmar Agendamento
+                            </button>
+                            }
+                            else
+                            {
+                            <button class="br-button fs-6 fs-sm-5 col-lg-12 col-sm-12 text-wrap text-sm-nowrap w-100" type="submit" onmouseover="verificaCidadao()">
+                                Confirmar Agendamento
+                            </button>
+                            }
+                        }
+                    </form>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center col-12">
+                <button class="br-button primary large fs-sm-5 m-5 col-lg-3 col-md-4 col-8" type="button" onclick="getHoras('@Url.Action("AgendarServicoHoras")','@ViewBag.idServico','@ViewBag.data','@ViewBag.nomeDia', '@ViewBag.nomeOrgao' ,'@ViewBag.nomeServico', '@ViewBag.idOrgao', '@ViewBag.iconeServico', @ViewBag.idArea)">
+                    Voltar
                 </button>
-            </form>
+            </div>
         </div>
     </div>
 </div>
+@if (ViewBag.logado != null && !ViewBag.logado) 
+{ 
+    @section Scripts {
+        <script src="~/js/agendar-servico.js"></script>
+        <script src="~/js/cookie.js"></script>
+    }
+}else 
+{
+    @section Scripts {
+        <script src="~/js/agendar-servico.js"></script>
+    }
+}
+

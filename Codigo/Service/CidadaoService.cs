@@ -188,11 +188,28 @@ namespace Service
             return null;
         }
 
-        public Cidadao? GetByEmail(string email)
+        public CidadaoDTO? GetByEmail(string email)
         {
             var query = from cidadao in _context.Cidadaos
-                        where cidadao.Email.Equals(email)
-                        select cidadao;
+                        where cidadao.Email == email
+                        select new CidadaoDTO
+                        {
+                            Id = cidadao.Id,
+                            Nome = cidadao.Nome,
+                            Cpf = cidadao.Cpf,
+                            DataNascimento = cidadao.DataNascimento,
+                            Sexo = cidadao.Sexo,
+                            Sus = cidadao.Sus,
+                            Telefone = cidadao.Telefone,
+                            Email = cidadao.Email,
+                            Cep = cidadao.Cep,
+                            Estado = cidadao.Estado,
+                            Cidade = cidadao.Cidade,
+                            Bairro = cidadao.Bairro,
+                            Rua = cidadao.Rua,
+                            NumeroCasa = cidadao.NumeroCasa,
+                            Complemento = cidadao.Complemento,
+                        };
             if (query.Any())
                 return query.AsNoTracking().First();
             return null;

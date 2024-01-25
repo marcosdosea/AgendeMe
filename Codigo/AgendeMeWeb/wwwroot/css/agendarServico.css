@@ -1,0 +1,9 @@
+.agendamento-card:hover {
+    background-color: rgb(220, 220, 220);
+}
+
+@media (min-width: 768px) {
+    .fs-sm-5 {
+        font-size: 1.25rem!important;
+    }
+}
