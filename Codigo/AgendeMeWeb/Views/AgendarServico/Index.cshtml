@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AgendeMeWeb.Models.PrefeituraViewModel>
+﻿@model IEnumerable<Core.DTO.PrefeituraCidadeDTO>
 
 @{
     ViewData["Title"] = "Agendar Serviço";
@@ -19,9 +19,54 @@
 </div>
 
 <div id="ajaxBox">
-    <h1 class="mt-5 pt-5 text-center fw-bold fs-2">Prefeituras Disponíveis</h1>
+    <div class="mb-4 pb-4">
+        <i class="fas fa-calendar azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto text-center" aria-hidden="true"></i>
+        <h2 class="text-center fw-bold azul-text">Agendar Serviço</h2>
+    </div>
+
+    <h1 class="mt-5 text-center fw-bold fs-2">Prefeituras Disponíveis</h1>
     <h4 class="mb-5 text-center fw-light fs-4">Escolha o seu município</h4>
-    <div class="mx-auto pb-5">
+
+    <div class="d-flex flex-wrap mb-5 pb-5 d-flex-dinamic align-items-stretch flex-c-gap flex-r-gap">
+    @if (Model.Any())
+    {
+        @foreach (var item in Model)
+        {
+            <div class="br-card hover box w-250">
+                <a class="br-card hover mb-0 back-none" onclick="getAreas('@Url.Action("AreasDeServico")', @item.Id)">
+                <div class="card-content">
+                    <span class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto text-center text-bold">@Html.DisplayFor(modelItem => item.Icone)</span>
+                    <p class="text-break text-wrap azul-text user-select-none fs-4 mt-4 mb-4 fw-bold text-center text-uppercase">@Html.DisplayFor(modelItem => item.Cidade)</p>
+                </div>
+
+            </a>
+            </div>
+        }
+
+    }
+    else
+    {
+        <div class="br-message warning" role="alert">
+            <div class="icon">
+                <i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
+            </div>
+            <div class="content">
+                <span class="message-title">Atenção.</span><span class="message-body">
+                    Não há serviços públicos disponíveis para essa área. <br />
+                    Por favor entre em contato com o gestor da prefeitura para mais informações.
+                </span>
+            </div>
+            <div class="close">
+                <button class="br-button circle small" type="button" aria-label="Fechar">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    }
+    </div>
+
+
+    @* <div class="mx-auto pb-5">
         <select name="prefeitura" id="prefeitura" class="form-select" aria-label="Escolha prefeitura" onclick="removeErro(this)">
             <option value="" disabled selected>Selecione um município</option>
             @foreach (var item in Model)
@@ -38,7 +83,7 @@
         <button class="br-button primary mx-auto d-block mt-5 mb-5" type="button" onclick="getAreas('@Url.Action("AreasDeServico")',this)">
             Pesquisar Serviços
         </button>
-    </div>
+    </div> *@
 </div>
 
 @section Scripts {

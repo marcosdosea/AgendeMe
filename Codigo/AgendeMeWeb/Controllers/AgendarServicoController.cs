@@ -40,9 +40,10 @@ namespace AgendeMeWeb.Controllers
         // GET: AgendarServicoController
         public ActionResult Index()
         {
-            var listaPrefeitura = _prefeituraService.GetAll();
-            var listaPrefeituraModel = _mapper.Map<List<PrefeituraViewModel>>(listaPrefeitura);
-            return View(listaPrefeituraModel);
+            return View(_prefeituraService.GetAllCidade());
+            // var listaPrefeitura = _prefeituraService.GetAll();
+            // var listaPrefeituraModel = _mapper.Map<List<PrefeituraViewModel>>(listaPrefeitura);
+            // return View(listaPrefeituraModel);
         }
 
         public ActionResult List()
