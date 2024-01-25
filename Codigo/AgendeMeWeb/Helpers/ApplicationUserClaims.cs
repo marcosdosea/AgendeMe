@@ -21,17 +21,20 @@ namespace AgendeMeWeb.Helpers
             _cidadaoService = cidadaoService;
         }
 
-        protected override async Task<ClaimsIdentity> GenerateClaimsAsync(UsuarioIdentity user)
+        protected override async Task<ClaimsIdentity?> GenerateClaimsAsync(UsuarioIdentity user)
         {
             var identity = await base.GenerateClaimsAsync(user);
-            var pessoa = _cidadaoService.GetByCPF(identity.Name) ?? _cidadaoService.GetByEmail(identity.Name);
-            //var pessoa = _cidadaoService.GetByEmail(identity.Name);
-            if (pessoa != null)
-            {
-                identity.AddClaim(new Claim("Id", pessoa.Id.ToString()));
-            }
+            if (identity != null && identity.Name != null) {
+                var pessoa = _cidadaoService.GetByCPF(identity.Name) ?? _cidadaoService.GetByEmail(identity.Name);
 
-            return identity;
+                if (pessoa != null)
+                {
+                identity.AddClaim(new Claim("Id", pessoa.Id.ToString()));
+                }
+
+                return identity;
+            }
+            return null;
         }
     }
 }
