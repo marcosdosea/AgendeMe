@@ -25,10 +25,6 @@ namespace AgendeMeWeb.Helpers
         {
             var identity = await base.GenerateClaimsAsync(user);
             var pessoa = _cidadaoService.GetByCPF(identity.Name) ?? _cidadaoService.GetByEmail(identity.Name);
-            if (pessoa == null) 
-            {
-
-            }
             //var pessoa = _cidadaoService.GetByEmail(identity.Name);
             if (pessoa != null)
             {
