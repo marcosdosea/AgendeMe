@@ -8,6 +8,6 @@
         Prefeitura Get(int idPrefeitura);
         IEnumerable<Prefeitura> GetAll();
         IEnumerable<Prefeitura> GetByProfissional(int idCidadao);
-        IEnumerable<PrefeituraEstadoDTO> GetAllEstados();
+        IEnumerable<PrefeituraCidadeDTO> GetAllCidade();
     }
 }

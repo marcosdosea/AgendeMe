@@ -77,18 +77,14 @@ namespace Service
             return null;
         }
 
-        public IEnumerable<PrefeituraEstadoDTO> GetAllEstados()
+        public IEnumerable<PrefeituraCidadeDTO> GetAllCidade()
         {
             var query = from prefeitura in _context.Prefeituras
-                        group prefeitura by new
+                        select new PrefeituraCidadeDTO
                         {
-                            prefeitura.Estado
-                        } into prefeituraGroup
-                        orderby prefeituraGroup.Key.Estado
-                        select new PrefeituraEstadoDTO
-                        {
-                            Estado = prefeituraGroup.Key.Estado,
-                            Icone = prefeituraGroup.Key.Estado.Substring(0, 2).ToUpper()
+                            Id = prefeitura.Id,
+                            Cidade = prefeitura.Cidade,
+                            Icone = prefeitura.Cidade.Substring(0, 2).ToUpper()
                         };
 
             return query;
