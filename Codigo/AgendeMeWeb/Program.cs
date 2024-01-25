@@ -1,6 +1,8 @@
 using AgendeMeWeb.Areas.Identity.Data;
 using Core;
 using Core.Service;
+using Email;
+using Email.Interface;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Service;
@@ -68,6 +70,7 @@ namespace AgendeMeWeb
             builder.Services.AddTransient<IPrefeituraService, PrefeituraService>();
             builder.Services.AddTransient<IServicoPublicoService, ServicoPublicoService>();
             builder.Services.AddTransient<IDiaAgendamentoService, DiaAgendamentoService>();
+            builder.Services.AddTransient<IEmailService, EmailService>();
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

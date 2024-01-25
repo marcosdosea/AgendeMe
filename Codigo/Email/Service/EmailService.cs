@@ -1,12 +1,13 @@
 ﻿using System.Net.Mail;
 using System.Net;
 using Email.Models;
+using Email.Interface;
 
 namespace Email
 {
-    public class EmailService
+    public class EmailService : IEmailService
     {
-        public static async Task<bool> Enviar(EmailModel mailModel)
+        public async Task<bool> Enviar(EmailModel mailModel)
         {
             SMTPModel smtpEmail = SMTPModel.Instance;
 
