@@ -152,47 +152,60 @@ namespace AgendeMeWeb.Controllers
         {
             var listaAreasDeServico = _areaDeServicoService.GetAllByIdPrefeitura(id);
             var listaAreasDeServicoModel = _mapper.Map<List<AreaDeServicoViewModel>>(listaAreasDeServico);
+
             return PartialView(listaAreasDeServicoModel);
         }
 
         [HttpGet]
-        public ActionResult ServicosPublicos(int id, string nomeArea, string iconeArea)
+        public ActionResult ServicosPublicos(int idArea)
         {
-            ViewBag.nomeAreaDeServico = nomeArea;
-            ViewBag.iconeAreaDeServico = iconeArea;
-            var listaServicoPublico = _servicoPublicoService.GetAllByIdArea(id);
+            var area = _areaDeServicoService.Get(idArea);
+            ViewBag.nomeAreaDeServico = area.Nome;
+            ViewBag.iconeAreaDeServico = area.Icone;
+            ViewBag.idPrefeitura = area.IdPrefeitura;
+            ViewBag.idArea = area.Id;
+            var listaServicoPublico = _servicoPublicoService.GetAllByIdArea(idArea);
             return PartialView(listaServicoPublico);
         }
 
         [HttpGet]
-        public ActionResult OrgaosPublicos(string nomeServico, string iconeServico)
+        public ActionResult OrgaosPublicos(int idArea, string nomeServico, string iconeServico)
         {
             ViewBag.iconeServicoPublico = iconeServico;
             ViewBag.nomeServicoPublico = nomeServico;
+            ViewBag.idArea = idArea;
             var listaOrgaosPublicoDTO = _orgaoPublicoService.GetAllByNomeServicoPublico(nomeServico);
             return PartialView(listaOrgaosPublicoDTO);
         }
 
         [HttpGet]
-        public ActionResult AgendarServicoDias(int idServico, string nomeOrgao, string nomeServico, int idOrgao)
+        public ActionResult AgendarServicoDias(int idServico, string nomeOrgao, 
+                                               string nomeServico, int idOrgao, 
+                                               int idArea, string iconeServico)
         {
             ViewBag.nomeOrgaoPublico = nomeOrgao;
             ViewBag.nomeServicoPublico = nomeServico;
+            ViewBag.iconeServico = iconeServico;
             ViewBag.idOrgao = idOrgao;
+            ViewBag.idArea = idArea;
             var listaDias = _diaAgendamentoService.GetAllDiasByIdServico(idServico);
             return PartialView(listaDias);
         }
 
         [HttpGet]
-        public ActionResult AgendarServicoHoras(int idServico, DateTime dia,
+        public ActionResult AgendarServicoHoras(int idServico, DateTime data,
                                                 string nomeDia, string nomeOrgao,
-                                                string nomeServico, int idOrgao)
+                                                string nomeServico, int idOrgao,
+                                                string iconeServico, int idArea)
         {
             ViewBag.nomeOrgaoPublico = nomeOrgao;
             ViewBag.nomeServicoPublico = nomeServico;
             ViewBag.nomeDia = nomeDia;
             ViewBag.idOrgao = idOrgao;
-            var listaHoras = _diaAgendamentoService.GetAllHorasByIdServicoAndDia(idServico, dia);
+            ViewBag.iconeServico = iconeServico;
+            ViewBag.idServico = idServico;
+            ViewBag.idArea = idArea;
+            var listaHoras = _diaAgendamentoService.GetAllHorasByIdServicoAndDia(idServico, data);
             return PartialView(listaHoras);
         }
 
@@ -200,7 +213,25 @@ namespace AgendeMeWeb.Controllers
         public ActionResult ConfirmarAgendamento(int idDiaAgendamento)
         {
             var dadosAgendamento = _diaAgendamentoService.GetDadosAgendamento(idDiaAgendamento);
-            return PartialView(dadosAgendamento);
+            ViewBag.idServico = dadosAgendamento.IdServico;
+            ViewBag.data = dadosAgendamento.Data;
+            ViewBag.nomeDia = dadosAgendamento.NomeDia;
+            ViewBag.nomeServico = dadosAgendamento.NomeServico;
+            ViewBag.iconeServico = dadosAgendamento.IconeServico;
+            ViewBag.idOrgao = dadosAgendamento.IdOrgao;
+            ViewBag.nomeOrgao = dadosAgendamento.NomeOrgao;
+            ViewBag.idArea = dadosAgendamento.IdArea;
+
+            var cookie = Request.Cookies.FirstOrDefault(c => c.Key == "AgendeMeSession");
+            if (cookie.Value == null) 
+            {
+                ViewBag.logado = false;
+            }else 
+            {
+                ViewBag.logado = true;
+            }
+
+            return View(dadosAgendamento);
         }
 
         [HttpPost]
@@ -209,7 +240,14 @@ namespace AgendeMeWeb.Controllers
         {
             try
             {
+                var cookie = Request.Cookies.FirstOrDefault(c => c.Key == "AgendeMeSession");
+                if (cookie.Value == null) 
+                {
+                    return RedirectToAction(nameof(ConfirmarAgendamento), new { idDiaAgendamento = agendamentoModel.IdDiaAgendamento });
+                }
+
                 var agendamento = _mapper.Map<Agendamento>(agendamentoModel);
+                agendamento.IdCidadao = Convert.ToInt32(User.FindFirst("Id")?.Value);
                 var id = _agendamentoService.Create(agendamento);
 
                 if (id.Result == -1)
@@ -234,10 +272,14 @@ namespace AgendeMeWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetCidadao(string CPF)
+        public ActionResult GetSession(string CPF)
         {
-            CidadaoDTO cidadaoDTO = _cidadaoService.GetByCPF(CPF);
-            return PartialView(cidadaoDTO);
+            var cookie = Request.Cookies.FirstOrDefault(c => c.Key == "AgendeMeSession");
+            if (cookie.Value == null) 
+            {
+                return NotFound();
+            }
+            return Ok();
         }
 
         [HttpGet]

@@ -29,13 +29,13 @@ function removeErro(select) {
     }
 }
 
-function getServicos(url, id, nomeArea, iconeArea) { 
+function getServicos(url, idArea) { 
     $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
         $.ajax({
             type: "GET",
             url: url,
             dataType: "HTML",
-            data: { id: id, nomeArea: nomeArea, iconeArea: iconeArea },
+            data: { idArea: idArea },
 
             success: function (result) {
                 $("#ajaxBox").html(result);
@@ -46,13 +46,13 @@ function getServicos(url, id, nomeArea, iconeArea) {
         });
 }
 
-function getOrgaos(url, nomeServico, iconeServico) {
+function getOrgaos(idArea, url, nomeServico, iconeServico) {
     $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
     $.ajax({
         type: "GET",
         url: url,
         dataType: "HTML",
-        data: { nomeServico: nomeServico, iconeServico: iconeServico },
+        data: { idArea: idArea, nomeServico: nomeServico, iconeServico: iconeServico },
 
         success: function (result) {
             $("#ajaxBox").html(result);
@@ -63,13 +63,13 @@ function getOrgaos(url, nomeServico, iconeServico) {
     });
 }
 
-function getDias(url, idServico, nomeOrgao, nomeServico, idOrgao) {
+function getDias(url, idServico, nomeOrgao, nomeServico, idOrgao, idArea, iconeServico) {
     $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
     $.ajax({
         type: "GET",
         url: url,
         dataType: "HTML",
-        data: { idServico: idServico, nomeOrgao: nomeOrgao, nomeServico: nomeServico, idOrgao: idOrgao },
+        data: { idServico: idServico, nomeOrgao: nomeOrgao, nomeServico: nomeServico, idOrgao: idOrgao, idArea: idArea, iconeServico: iconeServico },
 
         success: function (result) {
             $("#ajaxBox").html(result);
@@ -80,13 +80,14 @@ function getDias(url, idServico, nomeOrgao, nomeServico, idOrgao) {
     });
 }
 
-function getHoras(url, idServico, data, diaSemana, nomeOrgao, nomeServico, idOrgao) {
+function getHoras(url, idServico, data, nomeDia, nomeOrgao, nomeServico, idOrgao, iconeServico, idArea) {
     $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
     $.ajax({
         type: "GET",
         url: url,
         dataType: "HTML",
-        data: { idServico: idServico, dia: data, nomeDia: diaSemana, nomeOrgao: nomeOrgao, nomeServico: nomeServico, idOrgao: idOrgao },
+        data: { idServico: idServico, data: data, nomeDia: nomeDia, nomeOrgao: nomeOrgao, 
+                nomeServico: nomeServico, idOrgao: idOrgao, iconeServico: iconeServico, idArea: idArea },
 
         success: function (result) {
             $("#ajaxBox").html(result);
@@ -97,47 +98,64 @@ function getHoras(url, idServico, data, diaSemana, nomeOrgao, nomeServico, idOrg
     });
 }
 
-function getDadosAgendamento(url, id) {
-    $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
-    $.ajax({
-        type: "GET",
-        url: url,
-        dataType: "HTML",
-        data: { idDiaAgendamento: id },
+// function getDadosAgendamento(url, id) {
+//     $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
+//     $.ajax({
+//         type: "GET",
+//         url: url,
+//         dataType: "HTML",
+//         data: { idDiaAgendamento: id },
 
-        success: function (result) {
-            $("#ajaxBox").html(result);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            //TODO::
-        },
-    });
-}
+//         success: function (result) {
+//             $("#ajaxBox").html(result);
+//         },
+//         error: function (jqXHR, textStatus, errorThrown) {
+//             //TODO::
+//         },
+//     });
+// }
 
 /* temporario */
-function getCidadao(url, button) {
-    button.className = "br-button primary loading mr-3 mt-2";
-    var cpf = document.getElementById("CPF").value;
+// function getCidadao(url, button) {
+//     button.className = "br-button primary loading mr-3 mt-2";
+//     var cpf = document.getElementById("CPF").value;
+//     $.ajax({
+//         type: "GET",
+//         url: url,
+//         dataType: "HTML",
+//         data: { CPF: cpf },
+
+//         success: function (result) {
+//             $("#cpfBox").html(result);
+//         },
+//         error: function (jqXHR, textStatus, errorThrown) {
+//             //TODO::
+//             button.className = "br-button primary mr-3 mt-2";
+//         },
+//     });
+// }
+
+// /* temporario */
+// function verificaCidadao() {
+//     var cidadaoId = document.getElementById("idCidadao");
+//     if (cidadaoId != null) {
+//         document.getElementById("idCidadaoForm").value = cidadaoId.value;
+//     }
+// }
+
+/* Voltar */
+function voltarArea(url, idPrefeitura) {
     $.ajax({
         type: "GET",
         url: url,
         dataType: "HTML",
-        data: { CPF: cpf },
+        data: { id: idPrefeitura },
 
         success: function (result) {
-            $("#cpfBox").html(result);
+            $("#ajaxBox").html(result);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //TODO::
-            button.className = "br-button primary mr-3 mt-2";
         },
     });
-}
-
-/* temporario */
-function verificaCidadao() {
-    var cidadaoId = document.getElementById("idCidadao");
-    if (cidadaoId != null) {
-        document.getElementById("idCidadaoForm").value = cidadaoId.value;
-    }
 }

@@ -64,13 +64,18 @@ namespace Service
                         select new ConfirmarAgendamentoDTO
                         {
                             Id = diaAgendamento.Id,
+                            IdServico = diaAgendamento.IdServicoPublico,
+                            IconeServico = diaAgendamento.IdServicoPublicoNavigation.Icone,
                             NomeServico = diaAgendamento.IdServicoPublicoNavigation.Nome,
-                            OrgaoPublico = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Nome,
+                            IdOrgao = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Id,
+                            NomeOrgao = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Nome,
                             Bairro = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Bairro,
                             Rua = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Rua,
                             Numero = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Numero,
                             Complemento = diaAgendamento.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Complemento,
+                            NomeDia = diaAgendamento.DiaSemana,
                             Data = diaAgendamento.Data,
+                            IdArea = diaAgendamento.IdServicoPublicoNavigation.IdArea,
                             Horario = string.Join(" às ", diaAgendamento.HorarioInicio, diaAgendamento.HorarioFim),
                             DataCadastro = DateTime.Now
                         };
@@ -104,7 +109,7 @@ namespace Service
                             DiaSemana = diaGroup.Key.DiaSemana,
                             Data = diaGroup.Key.Data,
                             IdServico = diaGroup.Key.IdServicoPublico,
-                            Vagas = diaGroup.Sum(p => p.VagasAtendimento)
+                            Vagas = diaGroup.Sum(p => p.VagasAtendimento) - diaGroup.Sum(p => p.VagasAgendadas)
                         };
             return query.AsNoTracking();
         }

@@ -26,7 +26,6 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
         private readonly IUserStore<UsuarioIdentity> _userStore;
         private readonly IUserEmailStore<UsuarioIdentity> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
         private readonly IMapper _mapper;
         private readonly ICidadaoService _cidadaoService;
 
@@ -35,7 +34,6 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
             IUserStore<UsuarioIdentity> userStore,
             SignInManager<UsuarioIdentity> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender,
             IMapper mapper,
             ICidadaoService cidadaoService)
         {
@@ -44,7 +42,6 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
             _mapper = mapper;
             _cidadaoService = cidadaoService;
         }
@@ -120,7 +117,7 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.Cidadao.Cpf, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
@@ -140,9 +137,6 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
                         pageHandler: null,
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
-
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

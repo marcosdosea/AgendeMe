@@ -5,12 +5,15 @@ namespace Core.DTO
     public class ConfirmarAgendamentoDTO
     {
         public int Id { get; set; }
+        public int IdServico { get; set; }
+        public int IdArea { get; set; }
 
         [Display(Name = "Serviço")]
         public string? NomeServico { get; set; }
-
+        public string? IconeServico { get; set; }
+        public int IdOrgao { get; set; }
         [Display(Name = "Local")]
-        public string? OrgaoPublico { get; set; }
+        public string? NomeOrgao { get; set; }
 
         public string? Bairro { get; set; }
 
@@ -22,6 +25,7 @@ namespace Core.DTO
         public string? Complemento { get; set; }
 
         public DateTime Data { get; set; }
+        public string? NomeDia { get; set; }
 
         [Display(Name = "Horário")]
         public string? Horario { get; set; }

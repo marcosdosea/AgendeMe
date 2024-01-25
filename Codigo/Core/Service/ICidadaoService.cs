@@ -16,6 +16,6 @@ namespace Core.Service
         IEnumerable<ProfissionalDTO> GetAllProfissional();
         IEnumerable<CidadaoDTO> GetById(int idCidadao);
         CidadaoDTO? GetByCPF(string CPF);
-        Cidadao? GetByEmail(string email);
+        CidadaoDTO? GetByEmail(string email);
     }
 }
