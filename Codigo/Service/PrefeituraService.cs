@@ -76,5 +76,22 @@ namespace Service
             */
             return null;
         }
+
+        public IEnumerable<PrefeituraEstadoDTO> GetAllEstados()
+        {
+            var query = from prefeitura in _context.Prefeituras
+                        group prefeitura by new
+                        {
+                            prefeitura.Estado
+                        } into prefeituraGroup
+                        orderby prefeituraGroup.Key.Estado
+                        select new PrefeituraEstadoDTO
+                        {
+                            Estado = prefeituraGroup.Key.Estado,
+                            Icone = prefeituraGroup.Key.Estado.Substring(0, 2).ToUpper()
+                        };
+
+            return query;
+        }
     }
 }
