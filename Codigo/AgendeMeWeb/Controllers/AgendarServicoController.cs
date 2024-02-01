@@ -153,7 +153,9 @@ namespace AgendeMeWeb.Controllers
         {
             var listaAreasDeServico = _areaDeServicoService.GetAllByIdPrefeitura(id);
             var listaAreasDeServicoModel = _mapper.Map<List<AreaDeServicoViewModel>>(listaAreasDeServico);
-
+            var pref = _prefeituraService.Get(id);
+            ViewBag.IconeCidade = pref.Cidade.Substring(0, 2).ToUpper();
+            ViewBag.Cidade = $"{pref.Cidade}-{pref.Estado}";
             return PartialView(listaAreasDeServicoModel);
         }
 
