@@ -33,5 +33,6 @@ namespace Core.DTO
         public string? NumeroCasa { get; set; }
         public string? Sexo { get; set; }
         public string? Complemento { get; set; }
+        public int? IdPrefeitura { get; set; }
     }
 }

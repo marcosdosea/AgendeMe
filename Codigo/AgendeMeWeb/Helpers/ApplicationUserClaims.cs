@@ -29,7 +29,8 @@ namespace AgendeMeWeb.Helpers
 
                 if (pessoa != null)
                 {
-                identity.AddClaim(new Claim("Id", pessoa.Id.ToString()));
+                    identity.AddClaim(new Claim("Id", pessoa.Id.ToString()));
+                    identity.AddClaim(new Claim("IdPrefeitura", pessoa.IdPrefeitura.ToString() ?? ""));
                 }
 
                 return identity;

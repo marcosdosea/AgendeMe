@@ -182,6 +182,7 @@ namespace Service
                             Rua = cidadao.Rua,
                             NumeroCasa = cidadao.NumeroCasa,
                             Complemento = cidadao.Complemento,
+                            IdPrefeitura = cidadao.IdPrefeitura
                         };
             if (query.Any())
                 return query.AsNoTracking().First();
@@ -209,6 +210,7 @@ namespace Service
                             Rua = cidadao.Rua,
                             NumeroCasa = cidadao.NumeroCasa,
                             Complemento = cidadao.Complemento,
+                            IdPrefeitura = cidadao.IdPrefeitura
                         };
             if (query.Any())
                 return query.AsNoTracking().First();

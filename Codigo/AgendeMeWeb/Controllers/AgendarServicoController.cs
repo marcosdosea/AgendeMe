@@ -40,10 +40,14 @@ namespace AgendeMeWeb.Controllers
         // GET: AgendarServicoController
         public ActionResult Index()
         {
-            return View(_prefeituraService.GetAllCidade());
-            // var listaPrefeitura = _prefeituraService.GetAll();
-            // var listaPrefeituraModel = _mapper.Map<List<PrefeituraViewModel>>(listaPrefeitura);
-            // return View(listaPrefeituraModel);
+            var idPrefeitura = User.FindFirst("IdPrefeitura")?.Value;
+            if (string.IsNullOrEmpty(idPrefeitura))
+            {
+                return View(_prefeituraService.GetAllCidade());
+            }
+        
+            var id = Convert.ToInt32(idPrefeitura);
+            return RedirectToAction(nameof(AreasDeServico), new { id });
         }
 
         public ActionResult List()
