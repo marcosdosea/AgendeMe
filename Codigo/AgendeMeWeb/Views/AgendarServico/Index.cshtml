@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Agendar Serviço";
-    Layout = "_LayoutCidadao";
+    Layout =  ViewBag.Layout;
 }
 
 <div class="br-breadcrumb">
@@ -27,9 +27,9 @@
     <h1 class="mt-5 text-center fw-bold fs-2">Prefeituras Disponíveis</h1>
     <h4 class="mb-5 text-center fw-light fs-4">Escolha o seu município</h4>
 
-    <div class="d-flex flex-wrap mb-5 pb-5 d-flex-dinamic align-items-stretch flex-c-gap flex-r-gap">
-    @if (Model.Any())
+    @if (Model != null)
     {
+        <div class="d-flex flex-wrap mb-5 pb-5 d-flex-dinamic align-items-stretch flex-c-gap flex-r-gap">
         @foreach (var item in Model)
         {
             <div class="br-card hover box w-250">
@@ -42,28 +42,32 @@
             </a>
             </div>
         }
+        </div>
 
+        @section Css {
+            <link rel="stylesheet" href="~/css/agendarServico.css" />
+        }
     }
     else
     {
-        <div class="br-message warning" role="alert">
-            <div class="icon">
-                <i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
-            </div>
-            <div class="content">
-                <span class="message-title">Atenção.</span><span class="message-body">
-                    Não há serviços públicos disponíveis para essa área. <br />
-                    Por favor entre em contato com o gestor da prefeitura para mais informações.
-                </span>
-            </div>
-            <div class="close">
-                <button class="br-button circle small" type="button" aria-label="Fechar">
-                    <i class="fas fa-times" aria-hidden="true"></i>
-                </button>
+        <div class="d-flex justify-content-center">
+            <div class="br-message warning" role="alert">
+                <div class="icon">
+                    <i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
+                </div>
+                <div class="content">
+                    <span class="message-title">Atenção.</span><span class="message-body">
+                        Não há prefeituras disponíveis para seu cadastro. <br />
+                        Por favor entre em contato com a sua prefeitura.
+                    </span>
+                </div>
             </div>
         </div>
+
+        @section Css {
+            <link rel="stylesheet" href="~/css/footer.css" />
+        }
     }
-    </div>
     <div class="mb-5 d-flex"></div>
 
 
@@ -90,8 +94,4 @@
 @section Scripts {
     <script src="~/js/agendar-servico.js"></script>
     <script src="~/js/mascaras.js"></script>
-}
-
-@section Css {
-    <link rel="stylesheet" href="~/css/agendarServico.css" />
 }

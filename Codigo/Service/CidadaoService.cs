@@ -182,7 +182,8 @@ namespace Service
                             Rua = cidadao.Rua,
                             NumeroCasa = cidadao.NumeroCasa,
                             Complemento = cidadao.Complemento,
-                            IdPrefeitura = cidadao.IdPrefeitura
+                            IdPrefeitura = cidadao.IdPrefeitura,
+                            Prefeitura = _context.Prefeituras.FirstOrDefault(p => p.Cidade.Equals(cidadao.Cidade))
                         };
             if (query.Any())
                 return query.AsNoTracking().First();
@@ -210,7 +211,8 @@ namespace Service
                             Rua = cidadao.Rua,
                             NumeroCasa = cidadao.NumeroCasa,
                             Complemento = cidadao.Complemento,
-                            IdPrefeitura = cidadao.IdPrefeitura
+                            IdPrefeitura = cidadao.IdPrefeitura,
+                            Prefeitura = _context.Prefeituras.FirstOrDefault(p => p.Cidade.Equals(cidadao.Cidade))
                         };
             if (query.Any())
                 return query.AsNoTracking().First();

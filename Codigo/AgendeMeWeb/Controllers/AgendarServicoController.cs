@@ -40,12 +40,19 @@ namespace AgendeMeWeb.Controllers
         // GET: AgendarServicoController
         public ActionResult Index()
         {
-            var idPrefeitura = User.FindFirst("IdPrefeitura")?.Value;
+            var idPrefeitura = User.FindFirst("Prefeitura")?.Value;
             if (string.IsNullOrEmpty(idPrefeitura))
             {
-                return View(_prefeituraService.GetAllCidade());
+                var cookie = Request.Cookies.FirstOrDefault(c => c.Key == "AgendeMeSession");
+                if (cookie.Value == null) 
+                {
+                    ViewBag.Layout = "_Layout";
+                    return View(_prefeituraService.GetAllCidade());
+                }
+                ViewBag.Layout = "_LayoutCidadao";
+                return View();
             }
-        
+            ViewBag.Layout = "_LayoutCidadao";
             var id = Convert.ToInt32(idPrefeitura);
             return RedirectToAction(nameof(AreasDeServico), new { id });
         }
