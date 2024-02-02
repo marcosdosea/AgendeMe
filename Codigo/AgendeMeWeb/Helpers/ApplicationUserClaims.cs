@@ -1,4 +1,3 @@
-
 using System.Security.Claims;
 using AgendeMeWeb.Areas.Identity.Data;
 using Core.Service;
@@ -32,7 +31,7 @@ namespace AgendeMeWeb.Helpers
                     identity.AddClaim(new Claim("Id", pessoa.Id.ToString()));
                     identity.AddClaim(new Claim("Prefeitura", pessoa.Prefeitura != null ? pessoa.Prefeitura.Id.ToString() : ""));
                     identity.AddClaim(new Claim("NomeCompleto", pessoa.Nome ?? ""));
-                    identity.AddClaim(new Claim("Nome", pessoa.Nome.Split("")[0] ?? ""));
+                    identity.AddClaim(new Claim("Nome", pessoa.Nome?.Split(" ")[0] ?? ""));
                 }
 
                 return identity;
