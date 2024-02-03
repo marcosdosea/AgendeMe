@@ -3,6 +3,7 @@ using AutoMapper;
 using Core;
 using Core.DTO;
 using Core.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgendeMeWeb.Controllers
@@ -38,6 +39,7 @@ namespace AgendeMeWeb.Controllers
         }
 
         // GET: AgendarServicoController
+        [Authorize(Roles = "CIDADAO")]
         public ActionResult Index()
         {
             var idPrefeitura = User.FindFirst("Prefeitura")?.Value;

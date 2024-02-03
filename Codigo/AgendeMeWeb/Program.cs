@@ -47,7 +47,7 @@ namespace AgendeMeWeb
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
-            }).AddEntityFrameworkStores<IdentityContext>();
+            }).AddEntityFrameworkStores<IdentityContext>().AddRoles<IdentityRole>();
 
             builder.Services.ConfigureApplicationCookie(options =>
             {
