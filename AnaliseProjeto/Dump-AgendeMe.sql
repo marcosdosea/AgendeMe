@@ -195,18 +195,18 @@ LOCK TABLES `AspNetRoles` WRITE;
 /*!40000 ALTER TABLE `AspNetRoles` DISABLE KEYS */;
 INSERT INTO AspNetRoles VALUES (
 '4e41763d-d54c-472a-ab46-dadabb2d8859',
-'Cidadão',
 'CIDADAO',
+'Cidadão',
 'fac5a197-97f3-47e9-b29e-479fa1e5ac80'),
 (
 '45e6f3fe-ec74-43c0-bacc-cda3e63c84a9',
-'Atendente',
 'ATENDENTE',
+'Atendente',
 'fac5a197-97f3-47e9-b29e-479fa1e5ac80'),
 (
 'c4fce0cf-b10b-42e4-b69d-5f6a14fbe98a',
-'Gestor do Orgão',
 'GESTOR DO ORGAO',
+'Gestor do Orgão',
 'fac5a197-97f3-47e9-b29e-479fa1e5ac80'),
 (
 '88203b13-8185-4a5b-aaca-07284fd0bc8c',
