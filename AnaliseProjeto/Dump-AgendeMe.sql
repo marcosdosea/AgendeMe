@@ -193,6 +193,36 @@ CREATE TABLE `AspNetRoles` (
 
 LOCK TABLES `AspNetRoles` WRITE;
 /*!40000 ALTER TABLE `AspNetRoles` DISABLE KEYS */;
+INSERT INTO AspNetRoles VALUES (
+'4e41763d-d54c-472a-ab46-dadabb2d8859',
+'Cidadão',
+'CIDADAO',
+'fac5a197-97f3-47e9-b29e-479fa1e5ac80'),
+(
+'45e6f3fe-ec74-43c0-bacc-cda3e63c84a9',
+'Atendente',
+'ATENDENTE',
+'fac5a197-97f3-47e9-b29e-479fa1e5ac80'),
+(
+'c4fce0cf-b10b-42e4-b69d-5f6a14fbe98a',
+'Gestor do Orgão',
+'GESTOR DO ORGAO',
+'fac5a197-97f3-47e9-b29e-479fa1e5ac80'),
+(
+'88203b13-8185-4a5b-aaca-07284fd0bc8c',
+'Gestor da Prefeitura',
+'GESTOR DA PREFEITURA',
+'fac5a197-97f3-47e9-b29e-479fa1e5ac80'),
+(
+'a7bbfaac-ccdb-4637-83c1-f85d760080a8',
+'Profissional',
+'PROFISSIONAL',
+'fac5a197-97f3-47e9-b29e-479fa1e5ac80'),
+(
+'46077122-95af-4063-8570-ce2d09b7f3c0',
+'Administrador do Sistema',
+'ADMINISTRADOR DO SISTEMA',
+'fac5a197-97f3-47e9-b29e-479fa1e5ac80');
 /*!40000 ALTER TABLE `AspNetRoles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,6 +303,13 @@ CREATE TABLE `AspNetUserRoles` (
 
 LOCK TABLES `AspNetUserRoles` WRITE;
 /*!40000 ALTER TABLE `AspNetUserRoles` DISABLE KEYS */;
+INSERT INTO AspNetUserRoles VALUES 
+('f5094213-c8ef-403b-a106-7dc5c85a4c45','4e41763d-d54c-472a-ab46-dadabb2d8859'), -- Cidadao
+('0f900e08-881c-41e0-8387-b2f8ea9c7eba','45e6f3fe-ec74-43c0-bacc-cda3e63c84a9'), -- Atendente
+('a775fc74-4e48-47b9-9ede-340d112d3ccd','a7bbfaac-ccdb-4637-83c1-f85d760080a8'), -- Profissional
+('06b90778-f588-495e-af5b-5c9477d7b0f2','c4fce0cf-b10b-42e4-b69d-5f6a14fbe98a'), -- Orgao
+('45eec0fe-dd6b-448f-a8c2-ba84defaa58d','88203b13-8185-4a5b-aaca-07284fd0bc8c'), -- Prefeitura
+('8e9457c5-9283-46f5-af38-298056b9f84b','46077122-95af-4063-8570-ce2d09b7f3c0'); -- Sistema
 /*!40000 ALTER TABLE `AspNetUserRoles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -313,7 +350,92 @@ LOCK TABLES `AspNetUsers` WRITE;
 /*!40000 ALTER TABLE `AspNetUsers` DISABLE KEYS */;
 INSERT INTO `AspNetUsers` 
 VALUES 
-('f5094213-c8ef-403b-a106-7dc5c85a4c45','devlauross2@gmail.com','DEVLAUROSS2@GMAIL.COM','devlauross2@gmail.com','DEVLAUROSS2@GMAIL.COM',_binary '\0','AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==','IKMCPEUEGO3DFPNZ3GTZ3DVREZEMHR2I','c2ebb266-388f-469f-afac-e0ee0a6a3b9c',NULL,_binary '\0',_binary '\0',NULL,_binary '',0);
+('f5094213-c8ef-403b-a106-7dc5c85a4c45','devlauross2@gmail.com','DEVLAUROSS2@GMAIL.COM','devlauross2@gmail.com','DEVLAUROSS2@GMAIL.COM',_binary '\0','AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==','IKMCPEUEGO3DFPNZ3GTZ3DVREZEMHR2I','c2ebb266-388f-469f-afac-e0ee0a6a3b9c',NULL,_binary '\0',_binary '\0',NULL,_binary '',0),
+(
+  '0f900e08-881c-41e0-8387-b2f8ea9c7eba',
+  '222222222222222',
+  '222222222222222',
+  'admsistema@email.com',
+  'admsistema@email.com',
+  0,
+  'AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==',
+  'U3ODHHNJ3VZU45UGMWA2AEOTBKWHODV3',
+  'b3896af2-a235-48ad-b81e-4feed9c28f65',
+  NULL,
+  0,
+  0,
+  NULL,
+  1,
+  0
+),
+(
+  'a775fc74-4e48-47b9-9ede-340d112d3ccd',
+  '333333333333333',
+  '333333333333333',
+  'admsistema@email.com',
+  'admsistema@email.com',
+  0,
+  'AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==',
+  'U3ODHHNJ3VZU45UGMWA2AEOTBKWHODV3',
+  'b3896af2-a235-48ad-b81e-4feed9c28f65',
+  NULL,
+  0,
+  0,
+  NULL,
+  1,
+  0
+),
+(
+  '06b90778-f588-495e-af5b-5c9477d7b0f2',
+  '444444444444444',
+  '444444444444444',
+  'admsistema@email.com',
+  'admsistema@email.com',
+  0,
+  'AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==',
+  'U3ODHHNJ3VZU45UGMWA2AEOTBKWHODV3',
+  'b3896af2-a235-48ad-b81e-4feed9c28f65',
+  NULL,
+  0,
+  0,
+  NULL,
+  1,
+  0
+),
+(
+  '45eec0fe-dd6b-448f-a8c2-ba84defaa58d',
+  '555555555555555',
+  '555555555555555',
+  'admsistema@email.com',
+  'admsistema@email.com',
+  0,
+  'AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==',
+  'U3ODHHNJ3VZU45UGMWA2AEOTBKWHODV3',
+  'b3896af2-a235-48ad-b81e-4feed9c28f65',
+  NULL,
+  0,
+  0,
+  NULL,
+  1,
+  0
+),
+(
+  '8e9457c5-9283-46f5-af38-298056b9f84b',
+  '666666666666666',
+  '666666666666666',
+  'admsistema@email.com',
+  'admsistema@email.com',
+  0,
+  'AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==',
+  'U3ODHHNJ3VZU45UGMWA2AEOTBKWHODV3',
+  'b3896af2-a235-48ad-b81e-4feed9c28f65',
+  NULL,
+  0,
+  0,
+  NULL,
+  1,
+  0
+);
 /*!40000 ALTER TABLE `AspNetUsers` ENABLE KEYS */;
 UNLOCK TABLES;
 
