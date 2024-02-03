@@ -210,18 +210,18 @@ INSERT INTO AspNetRoles VALUES (
 'fac5a197-97f3-47e9-b29e-479fa1e5ac80'),
 (
 '88203b13-8185-4a5b-aaca-07284fd0bc8c',
-'Gestor da Prefeitura',
 'GESTOR DA PREFEITURA',
+'Gestor da Prefeitura',
 'fac5a197-97f3-47e9-b29e-479fa1e5ac80'),
 (
 'a7bbfaac-ccdb-4637-83c1-f85d760080a8',
-'Profissional',
 'PROFISSIONAL',
+'Profissional',
 'fac5a197-97f3-47e9-b29e-479fa1e5ac80'),
 (
 '46077122-95af-4063-8570-ce2d09b7f3c0',
-'Administrador do Sistema',
 'ADMINISTRADOR DO SISTEMA',
+'Administrador do Sistema',
 'fac5a197-97f3-47e9-b29e-479fa1e5ac80');
 /*!40000 ALTER TABLE `AspNetRoles` ENABLE KEYS */;
 UNLOCK TABLES;
