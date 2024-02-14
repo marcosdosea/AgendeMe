@@ -37,20 +37,24 @@
                     </li>
                 </ul>
             </div> *@
-            <a class="menu-item divider" href="javascript: void(0)">
+            <a class="menu-item divider" role="button">
                 <span class="icon"><i class="fas fa-user" aria-hidden="true"></i></span>
                 <span class="content">Meus Dados</span>
             </a>
-            <a class="menu-item divider" href="javascript: void(0)">
+            <a class="menu-item divider" role="button">
                 <span class="icon"><i class="fas fa-cog" aria-hidden="true"></i></span>
                 <span class="content">Configurações</span>
             </a>
-            <a class="menu-item divider" href="javascript: void(0)">
-                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">                  
-                    <span class="icon">
+            <a class="menu-item divider" role="button" onclick="Sair()">
+                @* <span class="icon">
                         <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
                     </span>
-                    <button class="content text-primary border-0 bg-transparent" type="submit">Sair</button>
+                    <button class="content text-primary border-0 bg-transparent" type="submit">Sair</button> *@
+                <span class="icon">
+                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                </span>
+                <span class="content">Sair</span>
+                <form id="sairForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">                  
                 </form>
             </a>
         </nav>
