@@ -1,4 +1,5 @@
-﻿using AgendeMeWeb.Models;
+﻿using System.Security.Claims;
+using AgendeMeWeb.Models;
 using AutoMapper;
 using Core;
 using Core.DTO;
@@ -39,22 +40,19 @@ namespace AgendeMeWeb.Controllers
         }
 
         // GET: AgendarServicoController
-        [Authorize(Roles = "CIDADAO")]
         public ActionResult Index()
         {
-            var idPrefeitura = User.FindFirst("Prefeitura")?.Value;
-            if (string.IsNullOrEmpty(idPrefeitura))
+            var cookie = Request.Cookies.FirstOrDefault(c => c.Key == "AgendeMeSession");
+            if (cookie.Value == null) 
             {
-                var cookie = Request.Cookies.FirstOrDefault(c => c.Key == "AgendeMeSession");
-                if (cookie.Value == null) 
-                {
-                    ViewBag.Layout = "_Layout";
-                    return View(_prefeituraService.GetAllCidade());
-                }
-                ViewBag.Layout = "_LayoutCidadao";
+                ViewBag.Layout = "_Layout";
+                return View(_prefeituraService.GetAllCidade());
+            }
+            var idPrefeitura = User.FindFirst("Prefeitura")?.Value;
+            ViewBag.Layout = "_LayoutCidadao";
+            if (string.IsNullOrEmpty(idPrefeitura)) {
                 return View();
             }
-            ViewBag.Layout = "_LayoutCidadao";
             var id = Convert.ToInt32(idPrefeitura);
             return RedirectToAction(nameof(AreasDeServico), new { id });
         }
