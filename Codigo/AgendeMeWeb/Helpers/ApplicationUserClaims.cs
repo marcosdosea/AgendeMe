@@ -1,5 +1,5 @@
 using System.Security.Claims;
-using AgendeMeWeb.Areas.Identity.Data;
+using Core;
 using Core.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;

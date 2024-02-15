@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using AgendeMeWeb.Areas.Identity.Data;
+using Core;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 

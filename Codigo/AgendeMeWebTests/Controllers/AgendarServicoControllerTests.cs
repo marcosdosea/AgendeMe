@@ -275,7 +275,7 @@ namespace AgendeMeWeb.Controllers.Tests
         public void ServicosPublicosTest()
         {
             // Act
-            var result = controller.ServicosPublicos(1, "Saúde", "Icone");
+            var result = controller.ServicosPublicos(1);
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(PartialViewResult));
@@ -290,7 +290,7 @@ namespace AgendeMeWeb.Controllers.Tests
         public void OrgaosPublicosTest()
         {
             // Act
-            var result = controller.OrgaosPublicos("Clínico Geral", "Icone");
+            var result = controller.OrgaosPublicos(1,"Clínico Geral", "Icone");
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(PartialViewResult));
@@ -307,7 +307,7 @@ namespace AgendeMeWeb.Controllers.Tests
             // Act
             var result = controller.AgendarServicoDias(1,
                 "Hospital Regional de Itabaiana",
-                "Clínico Geral", 1);
+                "Clínico Geral", 1, 1, "Servico");
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(PartialViewResult));
@@ -327,7 +327,7 @@ namespace AgendeMeWeb.Controllers.Tests
                 "Segunda",
                 "Hospital Regional de Itabaiana",
                 "Clínico Geral",
-                1);
+                1, "", 1);
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(PartialViewResult));
@@ -376,18 +376,6 @@ namespace AgendeMeWeb.Controllers.Tests
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
             RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
             Assert.IsNull(redirectToActionResult.ControllerName);
-        }
-
-        [TestMethod()]
-        public void GetCidadaoTest()
-        {
-            // Act
-            var result = controller.GetCidadao("000.000.000-00");
-
-            // Assert
-            Assert.IsInstanceOfType(result, typeof(PartialViewResult));
-            PartialViewResult viewResult = (PartialViewResult)result;
-            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(CidadaoDTO));
         }
 
         [TestMethod()]
@@ -694,7 +682,7 @@ namespace AgendeMeWeb.Controllers.Tests
             {
                 Id = 1,
                 NomeServico = "Clínico Geral",
-                OrgaoPublico = "Clínica Dono Mininão",
+                NomeOrgao = "Clínica Dono Mininão",
                 Bairro = "Centro",
                 Rua = "Rua da Clínica Dono Mininão",
                 Numero = "111",

@@ -2,6 +2,7 @@
 using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Service
 {
@@ -218,5 +219,9 @@ namespace Service
                 return query.AsNoTracking().First();
             return null;
         }
+
+        // public bool AddCidadao(UsuarioIdentity user, IUserStore) {
+        //     return true;
+        // }
     }
 }

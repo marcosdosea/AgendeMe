@@ -1,4 +1,3 @@
-using AgendeMeWeb.Areas.Identity.Data;
 using AgendeMeWeb.Helpers;
 using Core;
 using Core.Service;
