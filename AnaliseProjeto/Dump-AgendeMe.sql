@@ -350,11 +350,11 @@ LOCK TABLES `AspNetUsers` WRITE;
 /*!40000 ALTER TABLE `AspNetUsers` DISABLE KEYS */;
 INSERT INTO `AspNetUsers` 
 VALUES 
-('f5094213-c8ef-403b-a106-7dc5c85a4c45','devlauross2@gmail.com','DEVLAUROSS2@GMAIL.COM','devlauross2@gmail.com','DEVLAUROSS2@GMAIL.COM',_binary '\0','AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==','IKMCPEUEGO3DFPNZ3GTZ3DVREZEMHR2I','c2ebb266-388f-469f-afac-e0ee0a6a3b9c',NULL,_binary '\0',_binary '\0',NULL,_binary '',0),
+('f5094213-c8ef-403b-a106-7dc5c85a4c45','111.111.111-11','111.111.111-11','devlauross2@gmail.com','DEVLAUROSS2@GMAIL.COM',_binary '\0','AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==','IKMCPEUEGO3DFPNZ3GTZ3DVREZEMHR2I','c2ebb266-388f-469f-afac-e0ee0a6a3b9c',NULL,_binary '\0',_binary '\0',NULL,_binary '',0),
 (
   '0f900e08-881c-41e0-8387-b2f8ea9c7eba',
-  '222222222222222',
-  '222222222222222',
+  '222.222.222-22',
+  '222.222.222-22',
   'admsistema@email.com',
   'admsistema@email.com',
   0,
@@ -370,8 +370,8 @@ VALUES
 ),
 (
   'a775fc74-4e48-47b9-9ede-340d112d3ccd',
-  '333333333333333',
-  '333333333333333',
+  '333.333.333-33',
+  '333.333.333-33',
   'admsistema@email.com',
   'admsistema@email.com',
   0,
@@ -387,8 +387,8 @@ VALUES
 ),
 (
   '06b90778-f588-495e-af5b-5c9477d7b0f2',
-  '444444444444444',
-  '444444444444444',
+  '444.444.444-44',
+  '444.444.444-44',
   'admsistema@email.com',
   'admsistema@email.com',
   0,
@@ -404,8 +404,8 @@ VALUES
 ),
 (
   '45eec0fe-dd6b-448f-a8c2-ba84defaa58d',
-  '555555555555555',
-  '555555555555555',
+  '555.555.555-55',
+  '555.555.555-55',
   'admsistema@email.com',
   'admsistema@email.com',
   0,
@@ -421,8 +421,8 @@ VALUES
 ),
 (
   '8e9457c5-9283-46f5-af38-298056b9f84b',
-  '666666666666666',
-  '666666666666666',
+  '666.666.666-66',
+  '666.666.666-66',
   'admsistema@email.com',
   'admsistema@email.com',
   0,
@@ -594,7 +594,7 @@ LOCK TABLES `cidadao` WRITE;
 /*!40000 ALTER TABLE `cidadao` DISABLE KEYS */;
 INSERT INTO `cidadao` 
 VALUES 
-(1,'Lauro Santana','111111111111111','1998-09-10','11111111111111111111','11111111111111111111','devlauross2@gmail.com','1111111111','SE','Ribeirópolis','Centro','Rua José Romualdo de Menezes','103','M','Cidadao',NULL,NULL,NULL);
+(1,'Lauro Santana','111.111.111-11','1998-09-10','11111111111111111111','11111111111111111111','devlauross2@gmail.com','1111111111','SE','Ribeirópolis','Centro','Rua José Romualdo de Menezes','103','M','Cidadao',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `cidadao` ENABLE KEYS */;
 UNLOCK TABLES;
 
