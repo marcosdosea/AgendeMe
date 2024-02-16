@@ -1,49 +1,106 @@
 ﻿@model IEnumerable<AgendeMeWeb.Models.AreaDeServicoViewModel>
 
+@{
+    if (ViewData["View"] != null) {
+        ViewData["Title"] = "Agendar Serviço";
+        Layout =  ViewBag.Layout;
+        @section Scripts {
+            <script src="~/js/agendar-servico.js"></script>
+            <script src="~/js/mascaras.js"></script>
+        }
+    }
+}
+@if (ViewData["View"] != null) {
+    <div id="ajaxBox">
+        <div class="mb-4 pb-4">
+            <span class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto text-center text-bold">@ViewBag.IconeCidade</span>
+            <h2 class="text-center fw-bold azul-text">@ViewBag.Cidade</h2>
+        </div>
 
-<div class="mb-4 pb-4">
-    <span class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto text-center text-bold">@ViewBag.IconeCidade</span>
-    <h2 class="text-center fw-bold azul-text">@ViewBag.Cidade</h2>
-</div>
-
-<h1 class="mt-5 text-center fw-bold fs-2">Áreas Disponíveis</h1>
-<h4 class="mb-5 text-center fw-light fs-4">Encontre o serviço desejado através das áreas</h4>
+        <h1 class="mt-5 text-center fw-bold fs-2">Áreas Disponíveis</h1>
+        <h4 class="mb-5 text-center fw-light fs-4">Encontre o serviço desejado através das áreas</h4>
 
 
-    @if (Model.Any())
-    {
-        <div class="d-flex flex-wrap mb-5 pb-5 d-flex-dinamic align-items-stretch flex-c-gap flex-r-gap" id="buttonBoxs">
-            @foreach (var item in Model)
+            @if (Model.Any())
             {
-                <div class="br-card box w-250 agendamento-card">
-                    <a class="br-card mb-0 back-none" onclick="getServicos('@Url.Action("ServicosPublicos")', @item.Id)">
-                        <div class="card-content">
-                            <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto @Html.DisplayFor(modelItem => item.Icone) text-center"></i>
-                            <p class="text-break text-wrap azul-text user-select-none fs-4 mt-4 mb-4 fw-bold text-center text-uppercase">@Html.DisplayFor(modelItem => item.Nome)</p>
+                <div class="d-flex flex-wrap mb-5 pb-5 d-flex-dinamic align-items-stretch flex-c-gap flex-r-gap" id="buttonBoxs">
+                    @foreach (var item in Model)
+                    {
+                        <div class="br-card box w-250 agendamento-card">
+                            <a class="br-card mb-0 back-none" onclick="getServicos('@Url.Action("ServicosPublicos")', @item.Id)">
+                                <div class="card-content">
+                                    <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto @Html.DisplayFor(modelItem => item.Icone) text-center"></i>
+                                    <p class="text-break text-wrap azul-text user-select-none fs-4 mt-4 mb-4 fw-bold text-center text-uppercase">@Html.DisplayFor(modelItem => item.Nome)</p>
+                                </div>
+                            </a>
                         </div>
-                    </a>
+                    }
                 </div>
             }
-        </div>
-    }
-    else
-    {   
-        <div class="d-flex justify-content-center">
-            <div class="br-message warning" role="alert">
-                <div class="icon">
-                    <i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
+            else
+            {   
+                <div class="d-flex justify-content-center">
+                    <div class="br-message warning" role="alert">
+                        <div class="icon">
+                            <i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
+                        </div>
+                        <div class="content">
+                            <span class="message-title">Atenção.</span><span class="message-body">
+                                Não há áreas de serviço disponíveis para essa prefeitura. <br />
+                                Por favor entre em contato com o gestor da prefeitura para mais informações.
+                            </span>
+                        </div>
+                    </div>
                 </div>
-                <div class="content">
-                    <span class="message-title">Atenção.</span><span class="message-body">
-                        Não há áreas de serviço disponíveis para essa prefeitura. <br />
-                        Por favor entre em contato com o gestor da prefeitura para mais informações.
-                    </span>
+            }
+    </div>
+} else {
+    <div class="mb-4 pb-4">
+        <span class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto text-center text-bold">@ViewBag.IconeCidade</span>
+        <h2 class="text-center fw-bold azul-text">@ViewBag.Cidade</h2>
+    </div>
+
+    <h1 class="mt-5 text-center fw-bold fs-2">Áreas Disponíveis</h1>
+    <h4 class="mb-5 text-center fw-light fs-4">Encontre o serviço desejado através das áreas</h4>
+
+
+        @if (Model.Any())
+        {
+            <div class="d-flex flex-wrap mb-5 pb-5 d-flex-dinamic align-items-stretch flex-c-gap flex-r-gap" id="buttonBoxs">
+                @foreach (var item in Model)
+                {
+                    <div class="br-card box w-250 agendamento-card">
+                        <a class="br-card mb-0 back-none" onclick="getServicos('@Url.Action("ServicosPublicos")', @item.Id)">
+                            <div class="card-content">
+                                <i class="azul-agende-me icone-botao-box mt-4 w-100 d-block mx-auto @Html.DisplayFor(modelItem => item.Icone) text-center"></i>
+                                <p class="text-break text-wrap azul-text user-select-none fs-4 mt-4 mb-4 fw-bold text-center text-uppercase">@Html.DisplayFor(modelItem => item.Nome)</p>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {   
+            <div class="d-flex justify-content-center">
+                <div class="br-message warning" role="alert">
+                    <div class="icon">
+                        <i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
+                    </div>
+                    <div class="content">
+                        <span class="message-title">Atenção.</span><span class="message-body">
+                            Não há áreas de serviço disponíveis para essa prefeitura. <br />
+                            Por favor entre em contato com o gestor da prefeitura para mais informações.
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-<div class="d-flex justify-content-center">
-    <a class="br-button primary large fs-sm-5 m-5 col-lg-3 col-md-4 col-8" role="button" asp-controller="AgendarServico" asp-action="Index">
-        Voltar
-    </a>
-</div>
+        }
+}
+@if (ViewData["View"] == null) {
+    <div class="d-flex justify-content-center">
+        <a class="br-button primary large fs-sm-5 m-5 col-lg-3 col-md-4 col-8" role="button" asp-controller="AgendarServico" asp-action="Index">
+            Voltar
+        </a>
+    </div>
+}

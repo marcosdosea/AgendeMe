@@ -167,7 +167,14 @@ namespace AgendeMeWeb.Controllers
             var pref = _prefeituraService.Get(id);
             ViewBag.IconeCidade = pref.Cidade.Substring(0, 2).ToUpper();
             ViewBag.Cidade = $"{pref.Cidade}-{pref.Estado}";
-            return PartialView(listaAreasDeServicoModel);
+            
+            if (string.IsNullOrEmpty(User.FindFirst("Prefeitura")?.Value)) 
+            {
+                return PartialView(listaAreasDeServicoModel);
+            }
+            ViewData["View"] = true;
+            ViewBag.Layout = "_LayoutCidadao";
+            return View(listaAreasDeServicoModel);
         }
 
         [HttpGet]
@@ -179,6 +186,10 @@ namespace AgendeMeWeb.Controllers
             ViewBag.idPrefeitura = area.IdPrefeitura;
             ViewBag.idArea = area.Id;
             var listaServicoPublico = _servicoPublicoService.GetAllByIdArea(idArea);
+            if (!string.IsNullOrEmpty(User.FindFirst("Prefeitura")?.Value)) 
+            {
+                ViewData["View"] = true;
+            }
             return PartialView(listaServicoPublico);
         }
 
