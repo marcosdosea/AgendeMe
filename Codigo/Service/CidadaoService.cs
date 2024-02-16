@@ -220,8 +220,32 @@ namespace Service
             return null;
         }
 
-        // public bool AddCidadao(UsuarioIdentity user, IUserStore) {
-        //     return true;
-        // }
+        public async Task<bool> AddCidadaoAsync(UsuarioIdentity user, 
+            IUserStore<UsuarioIdentity> userStore, 
+            UserManager<UsuarioIdentity> userManager, 
+            IUserEmailStore<UsuarioIdentity> emailStore,
+            Cidadao cidadao, 
+            string senha) 
+        {
+            try 
+            {
+                await userStore.SetUserNameAsync(user, cidadao.Cpf, CancellationToken.None);
+                await emailStore.SetEmailAsync(user, cidadao.Email, CancellationToken.None);
+                var result = await userManager.CreateAsync(user, senha);
+
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, "CIDADAO");
+                    Create(cidadao);
+                    return true;
+                } 
+                return false;
+            } 
+            catch 
+            {
+                await userManager.DeleteAsync(user);
+                return false;
+            }
+        }
     }
 }
