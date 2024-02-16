@@ -17,12 +17,14 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
         private readonly SignInManager<UsuarioIdentity> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly ICidadaoService _cidadaoService;
+        private readonly UserManager<UsuarioIdentity> _userManager;
 
-        public LoginModel(SignInManager<UsuarioIdentity> signInManager, ILogger<LoginModel> logger, ICidadaoService cidadaoService)
+        public LoginModel(SignInManager<UsuarioIdentity> signInManager, ILogger<LoginModel> logger, ICidadaoService cidadaoService, UserManager<UsuarioIdentity> userManager)
         {
             _signInManager = signInManager;
             _logger = logger;
             _cidadaoService = cidadaoService;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -116,12 +118,12 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
                 if (Input.CPFOrEmail.Contains('@'))
                 {
                     var cidadaoLoginEmail = _cidadaoService.GetByEmail(Input.CPFOrEmail);
-                    Input.Email = cidadaoLoginEmail?.Email;
+                    Input.Email = cidadaoLoginEmail?.Cpf;
                 }
                 else
                 {
                     var cidadaoLoginCPF = _cidadaoService.GetByCPF(Input.CPFOrEmail);
-                    Input.Email = cidadaoLoginCPF?.Email;
+                    Input.Email = cidadaoLoginCPF?.Cpf;
                 }
 
                 if (Input.Email is not null)
