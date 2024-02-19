@@ -12,49 +12,19 @@
         </div>
         </div>
         <nav class="menu-body">
-            @* <div class="menu-folder">
-                <a class="menu-item" href="javascript: void(0)">
-                    <span class="icon">
-                        <i class="fas fa-calendar" aria-hidden="true"></i>
-                    </span>
-                    <span class="content">Teste</span>
-                </a>
-                <ul>
-                    <li>
-                        <a class="menu-item" asp-controller="AgendarServico" asp-action="Index">
-                            <span class="icon">
-                                <i class="fas fa-calendar-day" aria-hidden="true"></i>
-                            </span>
-                            <span class="content">Agendar Serviço</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="menu-item" href="javascript: void(0)">
-                            <span class="icon">
-                                <i class="fas fa-calendar-check" aria-hidden="true"></i>
-                            </span>
-                            <span class="content">Consultar Agendamentos</span>
-                        </a>
-                    </li>
-                </ul>
-            </div> *@
             <a class="menu-item divider" role="button">
                 <span class="icon"><i class="fas fa-user" aria-hidden="true"></i></span>
-                <span class="content">Meus Dados</span>
+                <span class="content text-bold">Meus Dados</span>
             </a>
             <a class="menu-item divider" role="button">
                 <span class="icon"><i class="fas fa-cog" aria-hidden="true"></i></span>
-                <span class="content">Configurações</span>
+                <span class="content text-bold">Configurações</span>
             </a>
             <a class="menu-item divider" role="button" onclick="Sair()">
-                @* <span class="icon">
-                        <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
-                    </span>
-                    <button class="content text-primary border-0 bg-transparent" type="submit">Sair</button> *@
                 <span class="icon">
                     <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
                 </span>
-                <span class="content">Sair</span>
+                <span class="content text-bold">Sair</span>
                 <form id="sairForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">                  
                 </form>
             </a>
