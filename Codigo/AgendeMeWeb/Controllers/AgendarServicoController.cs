@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using AgendeMeWeb.Helpers;
 using AgendeMeWeb.Models;
 using AutoMapper;
 using Core;
@@ -9,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgendeMeWeb.Controllers
 {
-    public class AgendarServicoController : Controller
+    public class AgendarServicoController : BaseController
     {
         private readonly IAgendamentoService _agendamentoService;
         private readonly IPrefeituraService _prefeituraService;
@@ -45,12 +46,13 @@ namespace AgendeMeWeb.Controllers
             var cookie = Request.Cookies.FirstOrDefault(c => c.Key == "AgendeMeSession");
             if (cookie.Value == null) 
             {
-                ViewBag.Layout = "_Layout";
+                ViewData["Layout"] = "_Layout";
                 return View(_prefeituraService.GetAllCidade());
             }
             var idPrefeitura = User.FindFirst("Prefeitura")?.Value;
-            ViewBag.Layout = "_LayoutCidadao";
-            if (string.IsNullOrEmpty(idPrefeitura)) {
+            SetLayout();
+            if (string.IsNullOrEmpty(idPrefeitura)) 
+            {
                 return View();
             }
             var id = Convert.ToInt32(idPrefeitura);
@@ -173,7 +175,8 @@ namespace AgendeMeWeb.Controllers
                 return PartialView(listaAreasDeServicoModel);
             }
             ViewData["View"] = true;
-            ViewBag.Layout = "_LayoutCidadao";
+
+            SetLayout();
             return View(listaAreasDeServicoModel);
         }
 

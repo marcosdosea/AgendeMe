@@ -2,8 +2,9 @@
     <div class="menu-container">
     <div class="menu-panel position-absolute end-0">
         <div class="menu-header">
-        <div class="menu-title">
+        <div class="menu-title d-flex flex-column align-items-start">
             <span class="text-bold fs-6">@User.FindFirst("NomeCompleto")?.Value</span>
+            <span class="text-bold fs-6">@User.FindFirst("Papel")?.Value</span> 
         </div>
         <div class="menu-close">
             <button class="br-button circle" type="button" aria-label="Fechar o menu" data-dismiss="menu"><i class="fas fa-times" aria-hidden="true"></i>
@@ -65,7 +66,7 @@
 <div class="col">
     <div class="d-flex align-items-center">
         <div>
-            <a class="text-primary fs-6 text-bold" role="button" aria-label="Menu Usuário" data-toggle="menu" data-target="#main-navigation2">
+            <a class="br-button block fs-5 text-bold" role="button" aria-label="Menu Usuário" data-toggle="menu" data-target="#main-navigation2">
                 Olá, @User.FindFirst("Nome")?.Value
             </a>
         </div>

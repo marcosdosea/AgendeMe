@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Agendar Serviço";
-    Layout =  ViewBag.Layout;
+    Layout =  ViewData["Layout"]?.ToString();
 }
 
 <div class="br-breadcrumb">

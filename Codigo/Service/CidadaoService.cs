@@ -184,8 +184,10 @@ namespace Service
                             NumeroCasa = cidadao.NumeroCasa,
                             Complemento = cidadao.Complemento,
                             IdPrefeitura = cidadao.IdPrefeitura,
-                            Prefeitura = _context.Prefeituras.FirstOrDefault(p => p.Cidade.Equals(cidadao.Cidade))
+                            Prefeitura = _context.Prefeituras.FirstOrDefault(p => p.Cidade.Equals(cidadao.Cidade)),
+                            Papel = cidadao.TipoCidadao
                         };
+            
             if (query.Any())
                 return query.AsNoTracking().First();
             return null;
@@ -213,7 +215,8 @@ namespace Service
                             NumeroCasa = cidadao.NumeroCasa,
                             Complemento = cidadao.Complemento,
                             IdPrefeitura = cidadao.IdPrefeitura,
-                            Prefeitura = _context.Prefeituras.FirstOrDefault(p => p.Cidade.Equals(cidadao.Cidade))
+                            Prefeitura = _context.Prefeituras.FirstOrDefault(p => p.Cidade.Equals(cidadao.Cidade)),
+                            Papel = cidadao.TipoCidadao
                         };
             if (query.Any())
                 return query.AsNoTracking().First();
@@ -247,5 +250,6 @@ namespace Service
                 return false;
             }
         }
+        
     }
 }

@@ -35,5 +35,6 @@ namespace Core.DTO
         public string? Complemento { get; set; }
         public int? IdPrefeitura { get; set; }
         public Prefeitura? Prefeitura { get; set; }
+        public string Papel { get; set; } = string.Empty;
     }
 }

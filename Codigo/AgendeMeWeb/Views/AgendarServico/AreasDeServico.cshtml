@@ -3,7 +3,7 @@
 @{
     if (ViewData["View"] != null) {
         ViewData["Title"] = "Agendar Serviço";
-        Layout =  ViewBag.Layout;
+        Layout =  ViewData["Layout"]?.ToString();
         @section Scripts {
             <script src="~/js/agendar-servico.js"></script>
             <script src="~/js/mascaras.js"></script>

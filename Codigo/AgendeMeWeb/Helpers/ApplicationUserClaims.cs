@@ -24,7 +24,7 @@ namespace AgendeMeWeb.Helpers
         {
             var identity = await base.GenerateClaimsAsync(user);
             if (identity != null && identity.Name != null) {
-                var pessoa = _cidadaoService.GetByCPF(identity.Name) ?? _cidadaoService.GetByEmail(identity.Name);
+                var pessoa = _cidadaoService.GetByCPF(identity.Name);
 
                 if (pessoa != null)
                 {
@@ -32,11 +32,32 @@ namespace AgendeMeWeb.Helpers
                     identity.AddClaim(new Claim("Prefeitura", pessoa.Prefeitura != null ? pessoa.Prefeitura.Id.ToString() : ""));
                     identity.AddClaim(new Claim("NomeCompleto", pessoa.Nome ?? ""));
                     identity.AddClaim(new Claim("Nome", pessoa.Nome?.Split(" ")[0] ?? ""));
+                    identity.AddClaim(new Claim("Papel", Papeis[pessoa.Papel]));
                 }
 
                 return identity;
             }
             return null;
         }
+
+        static readonly Dictionary<string, string> Papeis = new()
+        { 
+            {"Administrador","Administrador"},
+            {"Atendente","Atendente"},
+            {"gestorOrgao","Gestor do Orgão"},
+            {"gestorPrefeitura","Gestor da Prefeitura"},
+            {"Profissional","Profissional"},
+            {"Cidadao","Cidadão"},
+        };
+    }
+
+    public struct Papeis 
+    {
+        public const string Administrador = "ADMINISTRADOR DO SISTEMA";
+        public const string Atendente = "ATENDENTE";
+        public const string GestorOrgao = "GESTOR DO ORGAO";
+        public const string GestorPrefeitura = "GESTOR DA PREFEITURA";
+        public const string Profissional = "PROFISSIONAL";
+        public const string Cidadao = "CIDADAO";
     }
 }
