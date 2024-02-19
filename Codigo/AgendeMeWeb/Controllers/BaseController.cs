@@ -19,10 +19,6 @@ public class BaseController : Controller
         {
             ViewData["Layout"] = "_LayoutGestorOrgao";
         }
-        else if (User.IsInRole(Papeis.GestorOrgao)) 
-        {
-            ViewData["Layout"] = "_LayoutGestorOrgao";
-        }
         else if (User.IsInRole(Papeis.GestorPrefeitura)) 
         {
             ViewData["Layout"] = "_LayoutGestorPrefeitura";
