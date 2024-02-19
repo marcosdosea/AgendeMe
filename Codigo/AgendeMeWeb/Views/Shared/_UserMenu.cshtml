@@ -3,8 +3,8 @@
     <div class="menu-panel position-absolute end-0">
         <div class="menu-header">
         <div class="menu-title d-flex flex-column align-items-start">
-            <span class="text-bold fs-6">@User.FindFirst("NomeCompleto")?.Value</span>
-            <span class="text-bold fs-6">@User.FindFirst("Papel")?.Value</span> 
+            <span class="text-bold fs-5">@User.FindFirst("NomeCompleto")?.Value</span>
+            <span class="text-bold fs-6 text-secondary">@User.FindFirst("Papel")?.Value</span> 
         </div>
         <div class="menu-close">
             <button class="br-button circle" type="button" aria-label="Fechar o menu" data-dismiss="menu"><i class="fas fa-times" aria-hidden="true"></i>
