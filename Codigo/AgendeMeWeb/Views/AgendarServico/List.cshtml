@@ -2,78 +2,94 @@
 
 @{
     ViewData["Title"] = "Agendamentos";
+    Layout = ViewData["Layout"]?.ToString();
 }
 
 <h1>Confira seus agendamentos</h1>
 
-<p>
-    <a asp-action="Create">Novo agendamento</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tipo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Situacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataCadastro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdCidadao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdAtendente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdRetorno)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            if (Model != null)
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tipo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Situacao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataCadastro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdCidadao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdAtendente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdRetorno)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
             {
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Id)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Tipo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Situacao)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DataCadastro)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdCidadao)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdAtendente)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdRetorno)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Editar", "Edit", new {  id=item.Id  }) |
-                            @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
-                            @Html.ActionLink("Remover", "Delete", new { id=item.Id }) |
-                            @Html.ActionLink("Atender Cidadão", "AtenderCidadao", new { id=item.Id }) |
-                            @Html.ActionLink("Agendar Retorno", "AgendarRetorno", new { id=item.Id })
-                        </td>
-                    </tr>
-                }
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tipo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Situacao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataCadastro)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCidadao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdAtendente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdRetorno)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new {  id=item.Id  }) |
+                        @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
+                        @Html.ActionLink("Remover", "Delete", new { id=item.Id }) |
+                        @Html.ActionLink("Atender Cidadão", "AtenderCidadao", new { id=item.Id }) |
+                        @Html.ActionLink("Agendar Retorno", "AgendarRetorno", new { id=item.Id })
+                    </td>
+                </tr>
             }
+        </tbody>
+    </table>
+}
+else {
+    <div class="d-flex justify-content-center">
+            <div class="br-message info" role="alert">
+                <div class="icon">
+                    <i class="fas fa-info-circle fa-lg" aria-hidden="true"></i>
+                </div>
+                <div class="content">
+                    <span class="message-title">Informativo.</span>
+                    <span class="message-body me-3">
+                        Não há <span class="text-bold">agendamentos</span> cadastrados.
+                        Para realizar um agendamento <a asp-controller="AgendarServico" asp-action="Index">clique aqui</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    @section Css {
+        <link rel="stylesheet" href="~/css/footer.css" />
     }
-    </tbody>
-</table>
+}

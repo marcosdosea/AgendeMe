@@ -59,9 +59,13 @@ namespace AgendeMeWeb.Controllers
             return RedirectToAction(nameof(AreasDeServico), new { id });
         }
 
+        [HttpGet]
+        [Authorize]
         public ActionResult List()
         {
-            var listaAgendamentos = _agendamentoService.GetAll();
+            int id = Convert.ToInt32(User.FindFirstValue("Id"));
+            var listaAgendamentos = _agendamentoService.GetAllByUser(id);
+            SetLayout();
             var listaAgendamentosModel = _mapper.Map<List<AgendarServicoViewModel>>(listaAgendamentos);
             return View(listaAgendamentosModel);
         }

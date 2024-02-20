@@ -86,9 +86,9 @@ namespace Service
         /// Consulta todos os agendamentos no banco de dados
         /// </summary>
         /// <returns>Dados de todos os agendamentos</returns>
-        public IEnumerable<Agendamento> GetAll()
+        public IEnumerable<Agendamento> GetAllByUser(int id)
         {
-            return _context.Agendamentos.AsNoTracking();
+            return _context.Agendamentos.Where(a => a.IdCidadao == id).AsNoTracking();
         }
 
         public AgendamentoDTO GetDados(int id)
