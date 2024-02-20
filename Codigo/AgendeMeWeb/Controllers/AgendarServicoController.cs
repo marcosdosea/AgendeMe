@@ -66,8 +66,7 @@ namespace AgendeMeWeb.Controllers
             int id = Convert.ToInt32(User.FindFirstValue("Id"));
             var listaAgendamentos = _agendamentoService.GetAllByUser(id);
             SetLayout();
-            var listaAgendamentosModel = _mapper.Map<List<AgendarServicoViewModel>>(listaAgendamentos);
-            return View(listaAgendamentosModel);
+            return View(listaAgendamentos);
         }
 
         // GET: AgendarServicoController/Details/5

@@ -1,16 +1,16 @@
-﻿@model IEnumerable<AgendeMeWeb.Models.AgendarServicoViewModel>
+﻿@model IEnumerable<Core.DTO.AgendamentoDTO>
 
 @{
     ViewData["Title"] = "Agendamentos";
     Layout = ViewData["Layout"]?.ToString();
 }
 
-<h1>Confira seus agendamentos</h1>
 
+<h1>Confira seus agendamentos</h1>
 
 @if (Model.Any())
 {
-    <table class="table">
+    @* <table class="table">
         <thead>
             <tr>
                 <th>
@@ -37,42 +37,67 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Tipo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Situacao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DataCadastro)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IdCidadao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IdAtendente)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IdRetorno)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Editar", "Edit", new {  id=item.Id  }) |
-                        @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
-                        @Html.ActionLink("Remover", "Delete", new { id=item.Id }) |
-                        @Html.ActionLink("Atender Cidadão", "AtenderCidadao", new { id=item.Id }) |
-                        @Html.ActionLink("Agendar Retorno", "AgendarRetorno", new { id=item.Id })
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        <tbody> *@
+            <div class="d-flex flex-wrap justify-content-lg-between justify-content-center gap-5">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-5 col-12">
+                        <div class="br-card border-start rounded-start border-primary border-5">
+                            <div class="card-header">
+                                <div class="d-flex flex-column mb-2 gap-1">
+                                    <div class="text-bold text-up-02">@item.NomeServico<span class="text-secondary ms-2">#@item.Id</span></div>
+                                    <span class="fs-5 text-weight-semi-bold">@item.Situacao</span>
+                                    <span class="fs-5">@item.Data.ToString("dd/MM/yyyy") de @item.Horario</span>
+                                    <span class="fs-5"></span>
+                                </div>
+                            </div>
+                            <div class="card-content fs-5">
+                                <div>
+                                    @item.OrgaoPublico
+                                </div>
+                                <div>
+                                    @item.Rua, @item.Numero - @item.Bairro
+                                </div>
+                            </div>
+                            <div class="card-footer pb-1">
+                                <div class="my-1">Cadastro em - @item.DataCadastro.ToString("dd/MM/yyyy HH:MM")</div>
+                            </div>
+                        </div>
+                    </div>
+                    @* <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tipo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Situacao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DataCadastro)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdCidadao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdAtendente)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdRetorno)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new {  id=item.Id  }) |
+                            @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
+                            @Html.ActionLink("Remover", "Delete", new { id=item.Id }) |
+                            @Html.ActionLink("Atender Cidadão", "AtenderCidadao", new { id=item.Id }) |
+                            @Html.ActionLink("Agendar Retorno", "AgendarRetorno", new { id=item.Id })
+                        </td>
+                    </tr> *@
+                }
+            </div>
+        @* </tbody>
+    </table> *@
 }
 else {
     <div class="d-flex justify-content-center">

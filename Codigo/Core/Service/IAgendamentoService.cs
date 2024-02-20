@@ -9,7 +9,7 @@ namespace Core.Service
         void Edit(Agendamento agendamento);
         void Delete(int idAgendamento);
         Agendamento Get(int idAgendamento);
-        IEnumerable<Agendamento> GetAllByUser(int id);
+        IEnumerable<AgendamentoDTO> GetAllByUser(int id);
         AgendamentoDTO GetDados(int idAgendamento);
 
     }
