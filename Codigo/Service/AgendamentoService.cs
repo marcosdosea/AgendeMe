@@ -107,7 +107,7 @@ namespace Service
                     Cidade = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.IdPrefeituraNavigation.Cidade,
                  }
                  ).OrderByDescending(a => a.Id).Skip(4 * (page - 1)).Take(4);
-            return new AgendamentoPage {Agendamentos = query, PageSize = _context.Agendamentos.Where(a => a.IdCidadao == id).Count() % 4};
+            return new AgendamentoPage {Agendamentos = query, PageSize = (4 % _context.Agendamentos.Where(a => a.IdCidadao == id).Count()) - 1};
         }
 
         public AgendamentoDTO GetDados(int id)
