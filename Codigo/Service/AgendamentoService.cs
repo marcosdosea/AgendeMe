@@ -86,9 +86,9 @@ namespace Service
         /// Consulta todos os agendamentos no banco de dados
         /// </summary>
         /// <returns>Dados de todos os agendamentos</returns>
-        public IEnumerable<AgendamentoDTO> GetAllByUser(int id)
+        public AgendamentoPage GetAllByUser(int id, int page)
         {
-            return _context.Agendamentos.Where(a => a.IdCidadao == id).Select(
+            var query =_context.Agendamentos.Where(a => a.IdCidadao == id).Select(
                  a => new AgendamentoDTO 
                  {
                     Id = a.Id,
@@ -102,9 +102,12 @@ namespace Service
                     Complemento = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Complemento,
                     Data = a.IdDiaAgendamentoNavigation.Data,
                     Horario = string.Join(" às ", a.IdDiaAgendamentoNavigation.HorarioInicio, a.IdDiaAgendamentoNavigation.HorarioFim),
-                    DataCadastro = a.DataCadastro
+                    DataCadastro = a.DataCadastro,
+                    Cep = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Cep,
+                    Cidade = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.IdPrefeituraNavigation.Cidade,
                  }
-                 );
+                 ).OrderByDescending(a => a.Id).Skip(4 * (page - 1)).Take(4);
+            return new AgendamentoPage {Agendamentos = query, PageSize = _context.Agendamentos.Where(a => a.IdCidadao == id).Count() % 4};
         }
 
         public AgendamentoDTO GetDados(int id)

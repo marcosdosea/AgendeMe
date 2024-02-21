@@ -25,6 +25,10 @@ namespace Core.DTO
 
         public string? Complemento { get; set; }
 
+        public string Cidade { get; set; } = string.Empty;
+
+        public string Cep { get; set; } = string.Empty;
+
         public DateTime Data { get; set; }
 
         [Display(Name = "Horário")]
@@ -32,5 +36,11 @@ namespace Core.DTO
 
         [Display(Name = "Data de Cadastro")]
         public DateTime DataCadastro { get; set; }
+    }
+
+    public class AgendamentoPage
+    {
+        public IEnumerable<AgendamentoDTO>? Agendamentos {get; set;}
+        public int PageSize {get; set;}
     }
 }

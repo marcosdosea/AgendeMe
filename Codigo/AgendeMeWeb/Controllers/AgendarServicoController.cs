@@ -61,11 +61,15 @@ namespace AgendeMeWeb.Controllers
 
         [HttpGet]
         [Authorize]
-        public ActionResult List()
+        public ActionResult List(int id)
         {
-            int id = Convert.ToInt32(User.FindFirstValue("Id"));
-            var listaAgendamentos = _agendamentoService.GetAllByUser(id);
+            if (id == 0) {
+                return RedirectToAction(nameof(Index));
+            }
+            int idUser = Convert.ToInt32(User.FindFirstValue("Id"));
+            var listaAgendamentos = _agendamentoService.GetAllByUser(idUser, id);
             SetLayout();
+            ViewBag.Page = id;
             return View(listaAgendamentos);
         }
 
