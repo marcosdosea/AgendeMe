@@ -185,7 +185,8 @@ namespace Service
                             Complemento = cidadao.Complemento,
                             IdPrefeitura = cidadao.IdPrefeitura,
                             Prefeitura = _context.Prefeituras.FirstOrDefault(p => p.Cidade.Equals(cidadao.Cidade)),
-                            Papel = cidadao.TipoCidadao
+                            Papel = cidadao.TipoCidadao,
+                            IdOrgao = cidadao.IdOrgaoPublicoNavigation.Id
                         };
             
             if (query.Any())

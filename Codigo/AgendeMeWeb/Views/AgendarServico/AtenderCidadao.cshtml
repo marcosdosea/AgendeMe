@@ -1,63 +1,90 @@
-﻿@model AgendeMeWeb.Models.AgendarServicoViewModel
+﻿@model Core.DTO.AgendamentoPage
 
 @{
     ViewData["Title"] = "Atender Cidadão";
+    Layout = ViewData["Layout"]?.ToString();
 }
 
-<h1>Atender cidadão</h1>
+<h1 class="fs-2 my-4">Atender cidadão</h1>
 
-<h4>AgendarServicoViewModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
+@if (Model.Agendamentos != null)
+{
+    <div class="d-flex justify-content-center">
+        <div class="br-message info col-12" role="alert">
+            <div class="icon">
+                <i class="fas fa-info-circle fa-lg" aria-hidden="true"></i>
             </div>
-
-            <div class="form-group">
-                <label asp-for="Situacao" class="control-label"></label>
-                <input asp-for="Situacao" class="form-control" />
-                <span asp-validation-for="Situacao" class="text-danger"></span>
+            <div class="content">
+                <span class="message-title">Informativo:</span>
+                <span class="message-body me-3">
+                    Agendamentos listados
+                    referentes a @ViewData["orgao"]
+                </span>
             </div>
-
-            <div class="form-group">
-                <input type="hidden" asp-for="Tipo" class="form-control" />
-                <span asp-validation-for="Tipo" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-lg-between justify-content-center gap-5">
+        @foreach (var item in Model.Agendamentos)
+        {
+            <div class="col-lg-5 col-12">
+                <div class="br-card border-start rounded-start border-primary border-5">
+                    <div class="card-header bg-white">
+                        <div class="d-flex flex-column mb-2 gap-1">
+                            <div class="text-bold text-up-02">@item.NomeServico<span class="text-secondary ms-2">#@item.Id</span></div>
+                            <span class="fs-5 text-weight-semi-bold">@item.Situacao</span>
+                            <span class="fs-5">@item.Data.ToString("dd/MM/yyyy") de @item.Horario</span>
+                            <span class="fs-5"></span>
+                        </div>
+                    </div>
+                    <div class="card-content fs-5">
+                        <div>
+                            @item.OrgaoPublico
+                        </div>
+                        <div>
+                            @item.Rua, @item.Numero - @item.Bairro, @item.Cep, @item.Cidade
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white pb-1">
+                        <div class="my-1">Cadastro em - @item.DataCadastro.ToString("dd/MM/yyyy HH:MM")</div>
+                    </div>
+                </div>
             </div>
-
-            <div class="form-group">
-                <input type="hidden" asp-for="DataCadastro" class="form-control" />
-                <span asp-validation-for="DataCadastro" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="hidden" asp-for="IdCidadao" class="form-control" />
-                <span asp-validation-for="IdCidadao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="hidden" asp-for="IdAtendente" class="form-control" />
-                <span asp-validation-for="IdAtendente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="hidden" asp-for="IdRetorno" class="form-control" />
-                <span asp-validation-for="IdRetorno" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Atender" class="btn btn-primary" />
+        }
+    </div>
+    <nav class="br-pagination large my-6 py-1" aria-label="Paginação de resultados" data-total="5" data-current="1">
+        <ul>
+            <li>
+                <a class="br-button circle" asp-controller="AgendarServico" asp-action="AtenderCidadao" asp-route-cpf="@ViewData["cpf"]" asp-route-id="@(Convert.ToInt32(ViewData["page"]) == 1 ? 1 : ViewBag.Page - 1)" role="button" data-previous-page="data-previous-page" aria-label="Página anterior">
+                    <i class="fas fa-angle-left" aria-hidden="true"></i>
+                </a>
+            </li>
+                @for (int i = 1; i <= Model.PageSize; i++) 
+                {
+                    <li>
+                        <a class="page @(i == Convert.ToInt32(ViewData["page"]) ? "active" : "")" asp-controller="AgendarServico" asp-action="AtenderCidadao" asp-route-cpf="@ViewData["cpf"]" asp-route-id="@i">@i</a>
+                    </li>
+                }
+            <li>
+                <a class="br-button circle" asp-controller="AgendarServico" asp-action="AtenderCidadao" asp-route-cpf="@ViewData["cpf"]" asp-route-id="@(Convert.ToInt32(ViewData["page"]) == Model.PageSize ? Model.PageSize : ViewBag.Page + 1)" role="button" data-next-page="data-next-page" aria-label="Página seguinte">
+                    <i class="fas fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+}
+else {
+    <div class="d-flex justify-content-center">
+        <form class="col-lg-4 col-md-5 col-sm-8 col-10" asp-controller="AgendarServico" asp-action="AtenderCidadao" method="get">
+            <div class="br-input large input-button">
+                <label for="cpf">CPF</label>
+                <input name="cpf" id="cpf" type="search" placeholder="Digite o CPF" class="">
+                <button class="br-button" type="button" aria-label="Buscar">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </button>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="List">Voltar para lista</a>
-</div>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    @section Css {
+        <link rel="stylesheet" href="~/css/footer.css" />
     }
-    }
+}

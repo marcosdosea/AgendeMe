@@ -7,6 +7,7 @@ using Core.DTO;
 using Core.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Service;
 
 namespace AgendeMeWeb.Controllers
 {
@@ -112,11 +113,19 @@ namespace AgendeMeWeb.Controllers
             return View(agendamentoModel);
         }
 
-        public ActionResult AtenderCidadao(int id)
+        public ActionResult AtenderCidadao(int? id, string? cpf)
         {
-            Agendamento agendamento = _agendamentoService.Get(id);
-            AgendarServicoViewModel agendamentoModel = _mapper.Map<AgendarServicoViewModel>(agendamento);
-            return View(agendamentoModel);
+            SetLayout();
+            if (cpf != null) 
+            {
+                ViewData["cpf"] = cpf;
+                ViewData["page"] = id ?? 1;
+                
+                var agendamentos = _agendamentoService.GetAllByCpf(cpf, id ?? 1, Convert.ToInt32(User.FindFirstValue("IdOrgao")));
+                ViewData["orgao"] = agendamentos.Agendamentos?.Select(a => a.OrgaoPublico).FirstOrDefault();
+                return View(agendamentos);
+            }
+            return View(new AgendamentoPage(){});
         }
 
         // POST: AgendarServicoController/Edit/5

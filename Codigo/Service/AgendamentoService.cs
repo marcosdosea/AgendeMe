@@ -110,6 +110,36 @@ namespace Service
             return new AgendamentoPage {Agendamentos = query, PageSize = (4 % _context.Agendamentos.Where(a => a.IdCidadao == id).Count()) - 1};
         }
 
+        public AgendamentoPage GetAllByCpf(string cpf, int page, int idOrgao)
+        {
+            var query =_context.Agendamentos.Where(a => a.IdCidadaoNavigation.Cpf == cpf 
+                                                   && a.IdDiaAgendamentoNavigation.
+                                                   IdServicoPublicoNavigation.
+                                                   IdOrgaoPublicoNavigation.Id == idOrgao).Select(
+                 a => new AgendamentoDTO 
+                 {
+                    Id = a.Id,
+                    Tipo = a.Tipo,
+                    Situacao = a.Situacao,
+                    NomeServico = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.Nome,
+                    OrgaoPublico = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Nome,
+                    Bairro = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Bairro,
+                    Rua = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Rua,
+                    Numero = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Numero,
+                    Complemento = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Complemento,
+                    Data = a.IdDiaAgendamentoNavigation.Data,
+                    Horario = string.Join(" às ", a.IdDiaAgendamentoNavigation.HorarioInicio, a.IdDiaAgendamentoNavigation.HorarioFim),
+                    DataCadastro = a.DataCadastro,
+                    Cep = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Cep,
+                    Cidade = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.IdPrefeituraNavigation.Cidade,
+                 }
+                 ).OrderByDescending(a => a.Id).Skip(4 * (page - 1)).Take(4);
+            return new AgendamentoPage {Agendamentos = query, PageSize = (4 % _context.Agendamentos.Where(a => a.IdCidadaoNavigation.Cpf == cpf 
+                                                                                                        && a.IdDiaAgendamentoNavigation.
+                                                                                                        IdServicoPublicoNavigation.
+                                                                                                        IdOrgaoPublicoNavigation.Id == idOrgao).Count()) - 1};
+        }
+
         public AgendamentoDTO GetDados(int id)
         {
             var query = from agendamento in _context.Agendamentos

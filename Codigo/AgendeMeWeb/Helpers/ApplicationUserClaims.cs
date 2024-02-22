@@ -33,6 +33,7 @@ namespace AgendeMeWeb.Helpers
                     identity.AddClaim(new Claim("NomeCompleto", pessoa.Nome ?? ""));
                     identity.AddClaim(new Claim("Nome", pessoa.Nome?.Split(" ")[0] ?? ""));
                     identity.AddClaim(new Claim("Papel", Papeis[pessoa.Papel]));
+                    identity.AddClaim(new Claim("IdOrgao", pessoa.IdOrgao.ToString()));
                 }
 
                 return identity;

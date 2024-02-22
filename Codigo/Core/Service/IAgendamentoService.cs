@@ -11,6 +11,6 @@ namespace Core.Service
         Agendamento Get(int idAgendamento);
         AgendamentoPage GetAllByUser(int id, int page);
         AgendamentoDTO GetDados(int idAgendamento);
-
+        AgendamentoPage GetAllByCpf(string cpf, int page, int idOrgao);
     }
 }
