@@ -81,6 +81,10 @@ body {
     width: 250px !important;
 }
 
+.icon-center {
+    font-size: 200px;
+}
+
 @media only screen and (max-width: 1000px) {
     .dinamic-margin{
         width: 100%;
@@ -89,5 +93,8 @@ body {
     .d-flex-dinamic {
         justify-content: center !important;
         column-gap: 55px;
+    }
+    .icon-center {
+        font-size: 100px;
     }
 }

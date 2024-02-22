@@ -7,7 +7,18 @@
 
 <h1 class="fs-2 my-4">Atender cidadão</h1>
 
-@if (Model.Agendamentos != null)
+<div class="d-flex justify-content-center mb-4">
+    <form class="col-lg-4 col-md-5 col-sm-8 col-10" asp-controller="AgendarServico" asp-action="AtenderCidadao" method="get">
+        <div class="br-input large input-button">
+            <label for="cpf">CPF</label>
+            <input name="cpf" id="cpf" type="search" placeholder="Digite o CPF" value="@ViewData["cpf"]" class="">
+            <button class="br-button" type="button" aria-label="Buscar">
+                <i class="fas fa-search" aria-hidden="true"></i>
+            </button>
+        </div>
+    </form>
+</div>
+@if (Model.Agendamentos != null && Model.Agendamentos.Any())
 {
     <div class="d-flex justify-content-center">
         <div class="br-message info col-12" role="alert">
@@ -17,8 +28,7 @@
             <div class="content">
                 <span class="message-title">Informativo:</span>
                 <span class="message-body me-3">
-                    Agendamentos listados
-                    referentes a @ViewData["orgao"]
+                    Agendamentos referentes a @ViewData["orgao"]
                 </span>
             </div>
         </div>
@@ -72,18 +82,28 @@
         </ul>
     </nav>
 }
-else {
-    <div class="d-flex justify-content-center">
-        <form class="col-lg-4 col-md-5 col-sm-8 col-10" asp-controller="AgendarServico" asp-action="AtenderCidadao" method="get">
-            <div class="br-input large input-button">
-                <label for="cpf">CPF</label>
-                <input name="cpf" id="cpf" type="search" placeholder="Digite o CPF" class="">
-                <button class="br-button" type="button" aria-label="Buscar">
-                    <i class="fas fa-search" aria-hidden="true"></i>
-                </button>
+else 
+{
+    <div class="d-flex justify-content-center mb-5">
+        <div class="br-message warning col-12" role="alert">
+            <div class="icon">
+                <i class="fas fa-info-circle fa-lg" aria-hidden="true"></i>
             </div>
-        </form>
+            <div class="content">
+                <span class="message-title">Atenção:</span>
+                <span class="message-body me-3">
+                    Nenhum agendamento em <span class="message-title">@ViewData["orgao"]</span> referente ao CPF <span class="message-title">@ViewData["cpf"]</span>
+                </span>
+            </div>
+        </div>
     </div>
+    if (ViewData["cpf"] != null)
+    {
+        <div class="d-flex align-items-center flex-column mt-5 pt-5">
+            <i class="fas fa-frown icon-center w-100 mt-4 text-primary"></i>
+            <span class="fs-5 mt-2 fw-bold">Nenhum Agendamento Encontrando</span>
+        </div>
+    }
     @section Css {
         <link rel="stylesheet" href="~/css/footer.css" />
     }

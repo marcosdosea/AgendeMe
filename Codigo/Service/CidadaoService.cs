@@ -186,7 +186,7 @@ namespace Service
                             IdPrefeitura = cidadao.IdPrefeitura,
                             Prefeitura = _context.Prefeituras.FirstOrDefault(p => p.Cidade.Equals(cidadao.Cidade)),
                             Papel = cidadao.TipoCidadao,
-                            IdOrgao = cidadao.IdOrgaoPublicoNavigation.Id
+                            IdOrgao = cidadao.IdOrgaoPublico
                         };
             
             if (query.Any())

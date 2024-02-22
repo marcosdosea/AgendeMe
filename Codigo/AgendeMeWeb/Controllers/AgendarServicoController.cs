@@ -122,7 +122,8 @@ namespace AgendeMeWeb.Controllers
                 ViewData["page"] = id ?? 1;
                 
                 var agendamentos = _agendamentoService.GetAllByCpf(cpf, id ?? 1, Convert.ToInt32(User.FindFirstValue("IdOrgao")));
-                ViewData["orgao"] = agendamentos.Agendamentos?.Select(a => a.OrgaoPublico).FirstOrDefault();
+                ViewData["orgao"] = agendamentos.Agendamentos?.Select(a => a.OrgaoPublico).FirstOrDefault() 
+                ?? _orgaoPublicoService.Get(Convert.ToInt32(User.FindFirstValue("IdOrgao"))).Nome;
                 return View(agendamentos);
             }
             return View(new AgendamentoPage(){});
