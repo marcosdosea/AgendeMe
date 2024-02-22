@@ -3,6 +3,14 @@
 @{
     ViewData["Title"] = "Atender Cidadão";
     Layout = ViewData["Layout"]?.ToString();
+
+    var CorStatus = new Dictionary<string, string> 
+    {
+        {"Agendado","primary"}, 
+        {"Atendido","success"},
+        {"Aguardando Atendimento","warning"},
+        {"Cancelado", "danger"}
+    };
 }
 
 <h1 class="fs-2 my-4">Atender cidadão</h1>
@@ -37,7 +45,7 @@
         @foreach (var item in Model.Agendamentos)
         {
             <div class="col-lg-5 col-12">
-                <div class="br-card border-start rounded-start border-primary border-5">
+                <div class="br-card border-start rounded-start border-@CorStatus[item.Situacao ?? ""] border-5">
                     <div class="card-header bg-white">
                         <div class="d-flex flex-column mb-2 gap-1">
                             <div class="text-bold text-up-02">@item.NomeServico<span class="text-secondary ms-2">#@item.Id</span></div>
@@ -56,6 +64,14 @@
                     </div>
                     <div class="card-footer bg-white pb-1">
                         <div class="my-1">Cadastro em - @item.DataCadastro.ToString("dd/MM/yyyy HH:MM")</div>
+                        @if(item.Situacao == "Agendado")
+                        {
+                            <div class="d-flex justify-content-center">
+                                <button class="br-button primary my-2" type="button">
+                                    Confirmar Presença
+                                </button>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

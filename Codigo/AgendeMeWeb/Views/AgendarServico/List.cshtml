@@ -22,7 +22,7 @@
         @foreach (var item in Model.Agendamentos)
         {
             <div class="col-lg-5 col-12">
-                <div class="br-card border-start rounded-start border-primary border-5">
+                <div class="br-card border-start rounded-start border-@CorStatus[item.Situacao ?? ""] border-5">
                     <div class="card-header bg-white">
                         <div class="d-flex flex-column mb-2 gap-1">
                             <div class="text-bold text-up-02">@item.NomeServico<span class="text-secondary ms-2">#@item.Id</span></div>
