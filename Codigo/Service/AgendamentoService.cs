@@ -162,5 +162,27 @@ namespace Service
                         };
             return query.AsNoTracking().First();
         }
+
+        public bool AtualizarStatus(int id, string cpf, string status)
+        {
+            var agendamento = _context.Agendamentos.Select(a => a)
+                              .Where(a => a.Id == id && a.IdCidadaoNavigation.Cpf == cpf)
+                              .FirstOrDefault();
+            if (agendamento == null) 
+            {
+                return false;
+            }
+            agendamento.Situacao = status;
+            
+            try 
+            {
+                Edit(agendamento);
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
+        }
     }
 }

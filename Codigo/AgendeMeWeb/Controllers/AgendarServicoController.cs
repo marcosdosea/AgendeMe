@@ -113,6 +113,8 @@ namespace AgendeMeWeb.Controllers
             return View(agendamentoModel);
         }
 
+        [HttpGet]
+        [Authorize(Roles = $"{Papeis.Atendente}, {Papeis.GestorOrgao}, {Papeis.GestorPrefeitura}")]
         public ActionResult AtenderCidadao(int? id, string? cpf)
         {
             SetLayout();
@@ -127,6 +129,24 @@ namespace AgendeMeWeb.Controllers
                 return View(agendamentos);
             }
             return View(new AgendamentoPage(){});
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Papeis.Atendente}, {Papeis.GestorOrgao}, {Papeis.GestorPrefeitura}")]
+        public ActionResult ConfirmarPresenca(int id, string cpf)
+        {
+            _agendamentoService.AtualizarStatus(id, cpf, "Aguardando Atendimento");
+            return RedirectToAction(nameof(AtenderCidadao), new {cpf = cpf});
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Papeis.Atendente}, {Papeis.GestorOrgao}, {Papeis.GestorPrefeitura}")]
+        public ActionResult ConfirmarAtendimento(int id, string cpf)
+        {
+            _agendamentoService.AtualizarStatus(id, cpf, "Atendido");
+            return RedirectToAction(nameof(AtenderCidadao), new {cpf = cpf});
         }
 
         // POST: AgendarServicoController/Edit/5
