@@ -1,12 +1,15 @@
-﻿using AgendeMeWeb.Models;
+﻿using AgendeMeWeb.Helpers;
+using AgendeMeWeb.Models;
 using AutoMapper;
 using Core;
 using Core.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgendeMeWeb.Controllers
 {
-    public class DiaAgendamentoController : Controller
+    [Authorize(Roles = Papeis.GestorOrgao)]
+    public class DiaAgendamentoController : BaseController
     {
         private readonly IDiaAgendamentoService _diaAgendamentoService;
         private readonly IMapper _mapper;
@@ -20,6 +23,7 @@ namespace AgendeMeWeb.Controllers
         // GET: DiaAgendamentoController
         public ActionResult Index()
         {
+            SetLayout();
             var listaDiaAgendamento = _diaAgendamentoService.GetAll();
             var listaDiaAgendamentoModel = _mapper.Map<List<DiaAgendamentoViewModel>>(listaDiaAgendamento);
             return View(listaDiaAgendamentoModel);
@@ -28,6 +32,7 @@ namespace AgendeMeWeb.Controllers
         // GET: DiaAgendamentoController/Details/5
         public ActionResult Details(int id)
         {
+            SetLayout();
             Diaagendamento diaAgendamento = _diaAgendamentoService.Get(id);
             DiaAgendamentoViewModel diaAgendamentoModel = _mapper.Map<DiaAgendamentoViewModel>(diaAgendamento);
             return View(diaAgendamentoModel);
@@ -36,6 +41,7 @@ namespace AgendeMeWeb.Controllers
         // GET: DiaAgendamentoController/Create
         public ActionResult Create()
         {
+            SetLayout();
             return View();
         }
 
@@ -59,6 +65,7 @@ namespace AgendeMeWeb.Controllers
         // GET: DiaAgendamentoController/Edit/5
         public ActionResult Edit(int id)
         {
+            SetLayout();
             Diaagendamento diaAgendamento = _diaAgendamentoService.Get(id);
             DiaAgendamentoViewModel diaAgendamentoModel = _mapper.Map<DiaAgendamentoViewModel>(diaAgendamento);
             return View(diaAgendamentoModel);
@@ -84,6 +91,7 @@ namespace AgendeMeWeb.Controllers
         // GET: DiaAgendamentoController/Delete/5
         public ActionResult Delete(int id)
         {
+            SetLayout();
             Diaagendamento diaAgendamento = _diaAgendamentoService.Get(id);
             DiaAgendamentoViewModel diaAgendamentoModel = _mapper.Map<DiaAgendamentoViewModel>(diaAgendamento);
             return View(diaAgendamentoModel);

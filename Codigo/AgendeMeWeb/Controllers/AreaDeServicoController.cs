@@ -1,12 +1,15 @@
-﻿using AgendeMeWeb.Models;
+﻿using AgendeMeWeb.Helpers;
+using AgendeMeWeb.Models;
 using AutoMapper;
 using Core;
 using Core.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgendeMeWeb.Controllers
 {
-    public class AreaDeServicoController : Controller
+    [Authorize(Roles = Papeis.GestorPrefeitura)]
+    public class AreaDeServicoController : BaseController
     {
         private readonly IAreaDeServicoService _areaDeServicoService;
         private readonly IMapper _mapper;
@@ -20,6 +23,7 @@ namespace AgendeMeWeb.Controllers
         // GET: AreaDeServicoController
         public ActionResult Index()
         {
+            SetLayout();
             var listaAreasDeServico = _areaDeServicoService.GetAll();
             var listaAreasDeServicoModel = _mapper.Map<List<AreaDeServicoViewModel>>(listaAreasDeServico);
             return View(listaAreasDeServicoModel);
@@ -28,6 +32,7 @@ namespace AgendeMeWeb.Controllers
         // GET: AreaDeServicoController/Details/5
         public ActionResult Details(int id)
         {
+            SetLayout();
             Areadeservico areaDeServico = _areaDeServicoService.Get(id);
             AreaDeServicoViewModel areaDeServicoModel = _mapper.Map<AreaDeServicoViewModel>(areaDeServico);
             return View(areaDeServicoModel);
@@ -36,6 +41,7 @@ namespace AgendeMeWeb.Controllers
         // GET: AreaDeServicoController/Create
         public ActionResult Create()
         {
+            SetLayout();
             return View();
         }
 
@@ -59,6 +65,7 @@ namespace AgendeMeWeb.Controllers
         // GET: AreaDeServicoController/Edit/5
         public ActionResult Edit(int id)
         {
+            SetLayout();
             Areadeservico areaDeServico = _areaDeServicoService.Get(id);
             AreaDeServicoViewModel areaDeServicoModel = _mapper.Map<AreaDeServicoViewModel>(areaDeServico);
             return View(areaDeServicoModel);
@@ -84,6 +91,7 @@ namespace AgendeMeWeb.Controllers
         // GET: AreaDeServicoController/Delete/5
         public ActionResult Delete(int id)
         {
+            SetLayout();
             Areadeservico areaDeServico = _areaDeServicoService.Get(id);
             AreaDeServicoViewModel areaDeServicoModel = _mapper.Map<AreaDeServicoViewModel>(areaDeServico);
             return View(areaDeServicoModel);

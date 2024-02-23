@@ -1,12 +1,15 @@
-﻿using AgendeMeWeb.Models;
+﻿using AgendeMeWeb.Helpers;
+using AgendeMeWeb.Models;
 using AutoMapper;
 using Core;
 using Core.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgendeMeWeb.Controllers
 {
-    public class ServicoPublicoController : Controller
+    [Authorize(Roles = Papeis.GestorPrefeitura)]
+    public class ServicoPublicoController : BaseController
     {
         private readonly IServicoPublicoService _servicoPublicoService;
         private readonly IMapper _mapper;
@@ -20,6 +23,7 @@ namespace AgendeMeWeb.Controllers
         // GET: ServicoPublicoController
         public ActionResult Index()
         {
+            SetLayout();
             var listaServicoPublico = _servicoPublicoService.GetAll();
             var listaServicoPublicoModel = _mapper.Map<List<ServicoPublicoViewModel>>(listaServicoPublico);
             return View(listaServicoPublicoModel);
@@ -28,6 +32,7 @@ namespace AgendeMeWeb.Controllers
         // GET: ServicoPublicoController/Details/5
         public ActionResult Details(int id)
         {
+            SetLayout();
             Servicopublico servicoPublico = _servicoPublicoService.Get(id);
             ServicoPublicoViewModel listaServicoPublicoModel = _mapper.Map<ServicoPublicoViewModel>(servicoPublico);
             return View(listaServicoPublicoModel);
@@ -36,6 +41,7 @@ namespace AgendeMeWeb.Controllers
         // GET: ServicoPublicoController/Create
         public ActionResult Create()
         {
+            SetLayout();
             return View();
         }
 
@@ -59,6 +65,7 @@ namespace AgendeMeWeb.Controllers
         // GET: ServicoPublicoController/Edit/5
         public ActionResult Edit(int id)
         {
+            SetLayout();
             Servicopublico servicoPublico = _servicoPublicoService.Get(id);
             ServicoPublicoViewModel listaServicoPublicoModel = _mapper.Map<ServicoPublicoViewModel>(servicoPublico);
             return View(listaServicoPublicoModel);
@@ -84,6 +91,7 @@ namespace AgendeMeWeb.Controllers
         // GET: ServicoPublicoController/Delete/5
         public ActionResult Delete(int id)
         {
+            SetLayout();
             Servicopublico servicoPublico = _servicoPublicoService.Get(id);
             ServicoPublicoViewModel listaServicoPublicoModel = _mapper.Map<ServicoPublicoViewModel>(servicoPublico);
             return View(listaServicoPublicoModel);
