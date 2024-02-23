@@ -88,6 +88,8 @@ namespace Service
         /// <returns>Dados de todos os agendamentos</returns>
         public AgendamentoPage GetAllByUser(int id, int page)
         {
+            var count = _context.Agendamentos.Where(a => a.IdCidadao == id).Count();
+
             var query =_context.Agendamentos.Where(a => a.IdCidadao == id).Select(
                  a => new AgendamentoDTO 
                  {
@@ -107,7 +109,7 @@ namespace Service
                     Cidade = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.IdPrefeituraNavigation.Cidade,
                  }
                  ).OrderByDescending(a => a.Id).Skip(4 * (page - 1)).Take(4);
-            return new AgendamentoPage {Agendamentos = query, PageSize = (4 % _context.Agendamentos.Where(a => a.IdCidadao == id).Count()) - 1};
+            return new AgendamentoPage {Agendamentos = query, PageSize = (4 % (count == 0 ? 1 : count)) - 1};
         }
 
         public AgendamentoPage GetAllByCpf(string cpf, int page, int idOrgao)

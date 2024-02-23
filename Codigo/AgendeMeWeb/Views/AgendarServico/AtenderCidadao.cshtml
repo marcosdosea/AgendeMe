@@ -153,19 +153,6 @@
 }
 else 
 {
-    <div class="d-flex justify-content-center mb-5">
-        <div class="br-message warning col-12" role="alert">
-            <div class="icon">
-                <i class="fas fa-info-circle fa-lg" aria-hidden="true"></i>
-            </div>
-            <div class="content">
-                <span class="message-title">Atenção:</span>
-                <span class="message-body me-3">
-                    Nenhum agendamento em <span class="message-title">@ViewData["orgao"]</span> referente ao CPF <span class="message-title">@ViewData["cpf"]</span>
-                </span>
-            </div>
-        </div>
-    </div>
     if (ViewData["cpf"] != null)
     {
         <div class="d-flex align-items-center flex-column mt-5 pt-5">

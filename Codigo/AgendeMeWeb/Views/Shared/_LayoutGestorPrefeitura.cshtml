@@ -65,119 +65,31 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="menu-folder">
-                                        <a class="menu-item" href="javascript: void(0)">
-                                            <span class="icon">
-                                                <i class="fas fa-th-large" aria-hidden="true"></i>
-                                            </span>
-                                            <span class="content text-bold">Áreas de Serviço</span>
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <a class="menu-item" href="javascript: void(0)">
-                                                    <span class="icon">
-                                                        <i class="fas fa-plus-square" aria-hidden="true"></i>
-                                                    </span>
-                                                    <span class="content">Cadastrar Áreas</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="menu-item" href="javascript: void(0)">
-                                                    <span class="icon">
-                                                        <i class="fas fa-th-list" aria-hidden="true"></i>
-                                                    </span>
-                                                    <span class="content">Consultar Áreas</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="menu-folder">
-                                        <a class="menu-item" href="javascript: void(0)">
-                                            <span class="icon">
+                                    <a class="menu-item divider" asp-controller="AreaDeServico" asp-action="Index">
+                                        <span class="icon">
+                                            <i class="fas fa-th-large" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="content text-bold">Áreas de Serviço</span>
+                                    </a>
+                                    <a class="menu-item divider" asp-controller="ServicoPublico" asp-action="Index">
+                                        <span class="icon">
                                                 <i class="fas fa-sticky-note" aria-hidden="true"></i>
-                                            </span>
-                                            <span class="content text-bold">Serviços</span>
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <a class="menu-item" href="javascript: void(0)">
-                                                    <span class="icon">
-                                                        <i class="fas fa-plus-square" aria-hidden="true"></i>
-                                                    </span>
-                                                    <span class="content">Cadastrar Serviço</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="menu-item" href="javascript: void(0)">
-                                                    <span class="icon">
-                                                        <i class="fas fa-th-list" aria-hidden="true"></i>
-                                                    </span>
-                                                    <span class="content">Consultar Serviços</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="menu-folder">
-                                        <a class="menu-item" href="javascript: void(0)">
-                                            <span class="icon">
-                                                <i class="fas fa-building" aria-hidden="true"></i>
-                                            </span>
-                                            <span class="content text-bold">Órgãos Públicos</span>
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <a class="menu-item" href="javascript: void(0)">
-                                                    <span class="icon">
-                                                        <i class="fas fa-plus-square" aria-hidden="true"></i>
-                                                    </span>
-                                                    <span class="content">Cadastrar Órgão</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="menu-item" href="javascript: void(0)">
-                                                    <span class="icon">
-                                                        <i class="fas fa-th-list" aria-hidden="true"></i>
-                                                    </span>
-                                                    <span class="content">Consultar Órgãos</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="menu-item" href="javascript: void(0)">
-                                                    <span class="icon">
-                                                        <i class="fas fa-user" aria-hidden="true"></i>
-                                                    </span>
-                                                    <span class="content">Gestores</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="menu-folder">
-                                        <a class="menu-item" href="javascript: void(0)">
-                                            <span class="icon">
-                                                <i class="fas fa-book-open" aria-hidden="true"></i>
-                                            </span>
-                                            <span class="content text-bold">Agendas</span>
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <a class="menu-item" href="javascript: void(0)">
-                                                    <span class="icon">
-                                                        <i class="fas fa-tag" aria-hidden="true"></i>
-                                                    </span>
-                                                    <span class="content">Cadastrar Agenda</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="menu-item" href="javascript: void(0)">
-                                                    <span class="icon">
-                                                        <i class="fas fa-tags" aria-hidden="true"></i>
-                                                    </span>
-                                                    <span class="content">Consultar Agenda</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <a class="menu-item divider" href="javascript: void(0)">
+                                        </span>
+                                        <span class="content text-bold">Serviços</span>
+                                    </a>
+                                    <a class="menu-item divider" asp-controller="OrgaoPublico" asp-action="Index">
+                                        <span class="icon">
+                                            <i class="fas fa-building" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="content text-bold">Órgãos Públicos</span>
+                                    </a>
+                                    <a class="menu-item divider" asp-controller="DiaAgendamento" asp-action="Index">
+                                        <span class="icon">
+                                            <i class="fas fa-book-open" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="content text-bold">Agendas</span>
+                                    </a>
+                                    <a class="menu-item divider" asp-controller="AgendarServico" asp-action="AtenderCidadao">
                                         <span class="icon">
                                             <i class="fas fa-clipboard-check" aria-hidden="true"></i>
                                         </span>

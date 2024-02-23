@@ -16,7 +16,7 @@
 
 <h1 class="fs-2 my-4">Confira seus agendamentos</h1>
 
-@if (Model.Agendamentos != null)
+@if (Model.Agendamentos != null && Model.Agendamentos.Any())
 {
     <div class="d-flex flex-wrap justify-content-lg-between justify-content-center gap-5">
         @foreach (var item in Model.Agendamentos)
@@ -76,7 +76,7 @@ else {
                 <div class="content">
                     <span class="message-title">Informativo.</span>
                     <span class="message-body me-3">
-                        Não há <span class="text-bold">agendamentos</span> cadastrados.
+                        Não há <span class="message-title">agendamentos</span> cadastrados.
                         Para realizar um agendamento <a asp-controller="AgendarServico" asp-action="Index">clique aqui</a>
                     </span>
                 </div>
