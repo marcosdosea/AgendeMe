@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgendeMeWeb.Controllers
 {
-    [Authorize(Roles = Papeis.GestorOrgao)]
+    [Authorize(Roles = $"{Papeis.GestorOrgao}, {Papeis.GestorPrefeitura}")]
     public class DiaAgendamentoController : BaseController
     {
         private readonly IDiaAgendamentoService _diaAgendamentoService;
