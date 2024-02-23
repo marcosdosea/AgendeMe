@@ -353,5 +353,11 @@ namespace AgendeMeWeb.Controllers
             AgendamentoDTO agendamento = _agendamentoService.GetDados(id);
             return View(agendamento);
         }
+
+        public ActionResult Atendimento(int? idServico, int idOrgao)
+        {
+            SetLayout();
+            return View();
+        }
     }
 }
