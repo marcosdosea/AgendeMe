@@ -277,6 +277,7 @@ namespace AgendeMeWeb.Controllers
         [HttpGet]
         public ActionResult ConfirmarAgendamento(int idDiaAgendamento)
         {
+            SetLayout();
             var dadosAgendamento = _diaAgendamentoService.GetDadosAgendamento(idDiaAgendamento);
             ViewBag.idServico = dadosAgendamento.IdServico;
             ViewBag.data = dadosAgendamento.Data;
@@ -350,6 +351,7 @@ namespace AgendeMeWeb.Controllers
         [HttpGet]
         public ActionResult AgendamentoConfirmado(int id)
         {
+            SetLayout();
             AgendamentoDTO agendamento = _agendamentoService.GetDados(id);
             return View(agendamento);
         }
