@@ -1,4 +1,22 @@
+@model AgendeMeWeb.Models.Atendimento
+
 @{
     ViewData["Title"] = "Painel de Atendimento";
     Layout = ViewData["Layout"]?.ToString();
+}
+<form asp-controller="AgendarServico" asp-action="Atendimento" method="get">
+  <select name="idOrgao" asp-items="@Model.ListaOrgaos" class="form-select"></select>
+  <select name="idServico" asp-items="@Model.ListaServicos" class="form-select"></select>
+  <button>Pesquisar</button>
+</form>
+
+@if (ViewData["idServico"] != null)
+{
+  <a asp-controller="AgendarServico" asp-action="PainelAtendimento">
+    Painel de Atendimento
+  </a>
+}
+
+@section Css {
+  <link rel="stylesheet" href="~/css/footer.css" />
 }

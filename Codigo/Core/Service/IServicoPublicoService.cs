@@ -10,5 +10,6 @@ namespace Core.Service
         Servicopublico Get(int id);
         IEnumerable<Servicopublico> GetAll();
         IEnumerable<ServicoPublicoDTO> GetAllByIdArea(int idArea);
+        IEnumerable<Servicopublico> GetAllByIdOrgao(int idOrgao);
     }
 }

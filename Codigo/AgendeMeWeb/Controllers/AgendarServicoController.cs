@@ -7,6 +7,7 @@ using Core.DTO;
 using Core.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Service;
 
 namespace AgendeMeWeb.Controllers
@@ -356,9 +357,51 @@ namespace AgendeMeWeb.Controllers
             return View(agendamento);
         }
 
-        public ActionResult Atendimento(int? idServico, int idOrgao)
+        public ActionResult Atendimento(int? idServico, int? idOrgao)
         {
+            IEnumerable<Orgaopublico> orgaos;
+            List<Servicopublico> servicos = new ();
+            if (User.IsInRole(Papeis.Atendente)) 
+            {
+                idOrgao = Convert.ToInt32(User.FindFirst("IdOrgao")?.Value);
+                var orgao = _orgaoPublicoService.Get((int)idOrgao);
+                orgaos = new [] { orgao };
+                servicos = _servicoPublicoService.GetAllByIdOrgao((int)idOrgao).ToList();
+
+                if (idOrgao != null && idServico != null) 
+                {
+                    if (_diaAgendamentoService.GetAllHorasByIdServicoAndDia((int)idServico, new DateTime(2024, 02, 26)).Any()) 
+                    {
+                        ViewData["idServico"] = idServico;
+                    }
+                }
+
+            }
+            else
+            {
+                orgaos = _orgaoPublicoService.GetAll();
+                if (idOrgao != null) 
+                {
+                    servicos = _servicoPublicoService.GetAllByIdOrgao((int)idOrgao).ToList();
+                    if (idServico != null) 
+                    {
+                        if (_diaAgendamentoService.GetAllHorasByIdServicoAndDia((int)idServico, new DateTime(2024, 02, 26)).Any()) 
+                        {
+                            ViewData["idServico"] = idServico;
+                        }
+                    }
+                }
+            }
+            
             SetLayout();
+            return View(new Atendimento {
+                ListaOrgaos = new SelectList(orgaos,"Id", "Nome", null),
+                ListaServicos = new SelectList(servicos,"Id", "Nome", null)
+                });
+        }
+
+        public ActionResult PainelAtendimento(int? idServico, int? idOrgao) 
+        {
             return View();
         }
     }
