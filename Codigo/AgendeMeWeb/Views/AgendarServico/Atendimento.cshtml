@@ -12,7 +12,7 @@
 
 @if (ViewData["idServico"] != null)
 {
-  <a asp-controller="AgendarServico" asp-action="PainelAtendimento">
+  <a asp-controller="AgendarServico" asp-action="PainelAtendimento" asp-route-id="@ViewData["idServico"]">
     Painel de Atendimento
   </a>
 }

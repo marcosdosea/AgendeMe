@@ -400,7 +400,7 @@ namespace AgendeMeWeb.Controllers
                 });
         }
 
-        public ActionResult PainelAtendimento(int? idServico, int? idOrgao) 
+        public ActionResult PainelAtendimento(int id) 
         {
             return View();
         }

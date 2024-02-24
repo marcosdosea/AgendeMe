@@ -2,3 +2,22 @@
     ViewData["Title"] = "Painel de Atendimento";
     Layout = "_LayoutAtendimento";
 }
+<div class="position-absolute" style="bottom: 20px; right: 20px;">
+    <button id="btFullScreen" class="br-button" type="button" aria-label="Ícone tela cheia" style="width: 100px;
+    height: 100px;">
+        <i id="btFullScreenIcon" class="fas fa-expand fs-1 flex-fill"></i>
+    </button>
+</div>
+<script>
+    document.querySelector("#btFullScreen").addEventListener("click", (e, a) => {
+        if (document.fullscreen) {
+            document.querySelector("#btFullScreenIcon").classList.add("fa-expand")
+            document.querySelector("#btFullScreenIcon").classList.remove("fa-compress")
+            document.exitFullscreen();
+        } else {
+            document.querySelector("#btFullScreenIcon").classList.remove("fa-expand")
+            document.querySelector("#btFullScreenIcon").classList.add("fa-compress")
+            document.querySelector("body").requestFullscreen();
+        }
+    })
+</script>

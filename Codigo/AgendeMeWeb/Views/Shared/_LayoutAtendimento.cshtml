@@ -19,103 +19,12 @@
     @await RenderSectionAsync("Css", required: false)
 </head>
 <body>
-    <header class="br-header mb-2">
-        <div class="container-fluid">
-            <div class="header-top">
-                <div class="header-logo">
-                    <div class="row">
-                        <div class="br-menu" id="main-navigation">
-                            <div class="menu-container">
-                            <div class="menu-panel">
-                                <div class="menu-header">
-                                <div class="menu-title">
-                                    <a class="back-none" asp-controller="AgendarServico" asp-action="Index">
-                                        <img class="col-10 m-0 px-0" src="~/assets/logo.svg" alt="logoAgendeMe" aria-hidden="true"/>
-                                    </a>
-                                </div>
-                                <div class="menu-close">
-                                    <button class="br-button circle" type="button" aria-label="Fechar o menu" data-dismiss="menu"><i class="fas fa-times" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                                </div>
-                                <nav class="menu-body">
-                                    <div class="menu-folder">
-                                        <a class="menu-item" href="javascript: void(0)">
-                                            <span class="icon">
-                                                <i class="fas fa-calendar" aria-hidden="true"></i>
-                                            </span>
-                                            <span class="content text-bold">Agendamento</span>
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <a class="menu-item" asp-controller="AgendarServico" asp-action="Index">
-                                                    <span class="icon">
-                                                        <i class="fas fa-calendar-day" aria-hidden="true"></i>
-                                                    </span>
-                                                    <span class="content">Agendar Serviço</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="menu-item" asp-controller="AgendarServico" asp-action="List" asp-route-id="1">
-                                                    <span class="icon">
-                                                        <i class="fas fa-calendar-check" aria-hidden="true"></i>
-                                                    </span>
-                                                    <span class="content">Consultar Agendamentos</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </nav>
-                            </div>
-                            <div class="menu-scrim" data-dismiss="menu" tabindex="0"></div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="d-flex align-items-center">
-                                <div>
-                                    <button class="br-button circle" type="button" aria-label="Menu" data-toggle="menu" data-target="#main-navigation">
-                                        <i class="fas fa-bars fs-5" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="header-actions">
-                    @* <div class="header-links dropdown">
-                        <button class="br-button circle small" type="button" data-toggle="dropdown" aria-label="Abrir Acesso Rápido">
-                            <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
-                        </button>
-                        <div class="br-list">
-                            <div class="header">
-                                <div class="title">Acesso Rápido</div>
-                            </div>
-                                <a class="br-item" href="javascript:void(0)">Prefeituras</a>
-                                <a class="br-item" href="javascript:void(0)">Ajuda</a>
-                                <a class="br-item" href="javascript:void(0)">Acessibilidade</a>
-                                <a class="br-item" id="register" asp-area="Identity" asp-page="/Account/Register">Cadastre-se</a>
-                        </div>
-                    </div><span class="br-divider vertical mx-half mx-sm-1"></span>
-                    <div class="header-functions dropdown">
-                        <button class="br-button circle small" type="button" data-toggle="dropdown" aria-label="Abrir Funcionalidades do Sistema">
-                            <i class="fas fa-th" aria-hidden="true"></i>
-                        </button>
-                        <div class="br-list">
-                            <div class="header">
-                                <div class="title">Funcionalidades do Sistema</div>
-                            </div>
-                            <div class="align-items-center br-item">
-                                <button class="br-button circle small" type="button" aria-label="Contraste">
-                                    <i class="fas fa-adjust" aria-hidden="true"></i><span class="text">Contraste</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div> *@
-                    <div>
-                        <div class="header-sign-in">
-                        </div>
-                    </div>
-                </div>
+    <header class="br-header mb-2 bg-primary text-light">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <span class="m-0 fs-2 fw-bold">Painel de Atendimento</span>
+            <div class="d-flex flex-column align-items-end fs-4">
+                <span class="fw-bold">09:10</span>
+                <span class="fw-bold">14/09/2023</span>
             </div>
         </div>
     </header>
@@ -124,22 +33,12 @@
             @RenderBody()
         </main>
     </div>
-    <footer class="br-footer p-2 fix-footer">
-        <div class="container">
-            <div class="info text-center">
-            <div class="text-down-01 text-medium">
-                &copy; @DateTime.Now.Year - v1.0
-            </div>
-            </div>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/vanilla-masker.min.js"></script>
     <!-- Scripts de componentes GOV.BR -->
     <script src="~/js/core-init.js"></script>
     <script src="~/js/user.js"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
