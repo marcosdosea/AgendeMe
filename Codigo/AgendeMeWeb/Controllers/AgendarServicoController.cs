@@ -402,7 +402,7 @@ namespace AgendeMeWeb.Controllers
 
         public ActionResult PainelAtendimento(int id) 
         {
-            return View();
+            return View(new PainelAtendimento{});
         }
     }
 }
