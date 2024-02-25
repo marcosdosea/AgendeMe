@@ -9,13 +9,17 @@ loadTime()
 setInterval(loadTime, 1000);
 
 function getAtendimentos() {
-    console.log(window.location.search)
+    let id = window.location.pathname.charAt(window.location.pathname.length - 1)
+    
+    if (!Number(id)) {
+        return
+    }
     const url = "/AgendarServico/GetAtendimentos";
     $.ajax({
         type: "GET",
         url: url,
         dataType: "HTML",
-        data: { id: 1 },
+        data: { id: id },
 
         success: function (result) {
             $("#painelAtendimento").html(result);
