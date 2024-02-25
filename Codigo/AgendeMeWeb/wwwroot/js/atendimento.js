@@ -1,8 +1,11 @@
 function loadTime() {
     date = new Date()
-    document.querySelector("#time").textContent = `${date.getHours()}:${date.getMinutes()}`
+    hour = date.getHours()
+    minutes = date.getMinutes()
+    document.querySelector("#time").textContent = `${hour < 10 ? `0${hour}` : hour}:${minutes < 10 ? `0${minutes}` : minutes}`
     month = date.getMonth() + 1
-    document.querySelector("#date").textContent  = `${date.getDate()}/${month < 10 ? `0${month}` : month}/${date.getFullYear()}`
+    day = date.getDate()
+    document.querySelector("#date").textContent  = `${day < 10 ? `0${day}` : day}/${month < 10 ? `0${month}` : month}/${date.getFullYear()}`
 }
 loadTime()
 

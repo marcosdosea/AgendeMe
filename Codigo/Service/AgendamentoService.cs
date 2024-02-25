@@ -204,7 +204,9 @@ namespace Service
             if (!agendamentos.Any()) {
                 return painel;
             }
-      
+
+            painel.Horarios = agendamentos.Select( a => a.BlocoHorario).Distinct();
+
             painel.Atendendo = new [] { agendamentos.First() };
             painel.Proximos = agendamentos.Skip(1).Take(2); 
             painel.Aguardando = agendamentos.Skip(3).Take(4);
