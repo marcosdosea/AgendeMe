@@ -187,12 +187,12 @@ namespace Service
             }
         }
 
-        public PainelAtendimentoDTO GetAtendimentos(int idDia)
+        public PainelAtendimentoDTO GetAtendimentos(int idServico)
         {
             PainelAtendimentoDTO painel = new();
 
             var agendamentos = _context.Agendamentos
-            .Where(a => a.IdDiaAgendamento == idDia && a.Situacao == "Aguardando Atendimento")
+            .Where(a => a.IdDiaAgendamentoNavigation.IdServicoPublico == idServico && a.Situacao == "Aguardando Atendimento")
             .OrderByDescending(a => a.DataCadastro)
             .Select(a => new AgendamentosCard {
                 Id = a.Id,
