@@ -175,7 +175,7 @@ namespace Service
                 return false;
             }
             agendamento.Situacao = status;
-            
+            agendamento.DataCadastro = DateTime.Now;
             try 
             {
                 Edit(agendamento);
@@ -193,7 +193,7 @@ namespace Service
 
             var agendamentos = _context.Agendamentos
             .Where(a => a.IdDiaAgendamentoNavigation.IdServicoPublico == idServico && a.Situacao == "Aguardando Atendimento")
-            .OrderByDescending(a => a.DataCadastro)
+            .OrderBy(a => a.DataCadastro)
             .Select(a => new AgendamentosCard {
                 Id = a.Id,
                 NomeCidadao = a.IdCidadaoNavigation.Nome,

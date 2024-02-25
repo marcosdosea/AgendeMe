@@ -67,12 +67,12 @@
                         @if(item.Situacao == "Agendado")
                         {
                             <div class="d-flex justify-content-center">
-                                <button type="button" class="br-button primary my-2" data-bs-toggle="modal" data-bs-target="#confirmarPresenca">
+                                <button type="button" class="br-button primary my-2" data-bs-toggle="modal" data-bs-target="#confirmarPresenca_@item.Id">
                                     Confirmar Presença
                                 </button>
                             </div>
 
-                            <div class="modal fade" id="confirmarPresenca" tabindex="-1" aria-labelledby="confirmarPresencaLabel" aria-hidden="true">
+                            <div class="modal fade" id="confirmarPresenca_@item.Id" tabindex="-1" aria-labelledby="confirmarPresencaLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                     <div class="modal-header">
@@ -97,13 +97,13 @@
                         else if(item.Situacao == "Aguardando Atendimento") 
                         {
                             <div class="d-flex justify-content-center">
-                                <button class="br-button success my-2" type="button" data-bs-toggle="modal" data-bs-target="#confirmarAtendimento">
+                                <button class="br-button success my-2" type="button" data-bs-toggle="modal" data-bs-target="#confirmarAtendimento_@item.Id">
                                     Confirmar Atendimento
                                 </button>
                             </div>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="confirmarAtendimento" tabindex="-1" aria-labelledby="confirmarAtendimentoLabel" aria-hidden="true">
+                            <div class="modal fade" id="confirmarAtendimento_@item.Id" tabindex="-1" aria-labelledby="confirmarAtendimentoLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
