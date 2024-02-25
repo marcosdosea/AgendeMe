@@ -186,5 +186,30 @@ namespace Service
                 return false;
             }
         }
+
+        public PainelAtendimentoDTO GetAtendimentos(int idDia)
+        {
+            PainelAtendimentoDTO painel = new();
+
+            var agendamentos = _context.Agendamentos
+            .Where(a => a.IdDiaAgendamento == idDia && a.Situacao == "Aguardando Atendimento")
+            .OrderByDescending(a => a.DataCadastro)
+            .Select(a => new AgendamentosCard {
+                Id = a.Id,
+                NomeCidadao = a.IdCidadaoNavigation.Nome,
+                NomeServico = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.Nome,
+                BlocoHorario = string.Join(" às ", a.IdDiaAgendamentoNavigation.HorarioInicio, a.IdDiaAgendamentoNavigation.HorarioFim),
+            });
+
+            if (!agendamentos.Any()) {
+                return painel;
+            }
+      
+            painel.Atendendo = new [] { agendamentos.First() };
+            painel.Proximos = agendamentos.Skip(1).Take(2); 
+            painel.Aguardando = agendamentos.Skip(3).Take(4);
+
+            return painel;
+        }
     }
 }
