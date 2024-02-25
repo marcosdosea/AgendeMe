@@ -1,3 +1,13 @@
+function loadTime() {
+    date = new Date()
+    document.querySelector("#time").textContent = `${date.getHours()}:${date.getMinutes()}`
+    month = date.getMonth() + 1
+    document.querySelector("#date").textContent  = `${date.getDate()}/${month < 10 ? `0${month}` : month}/${date.getFullYear()}`
+}
+loadTime()
+
+setInterval(loadTime, 1000);
+
 document.querySelector("#btnFullScreen").addEventListener("click", (e, a) => {
     if (document.fullscreenElement) {
         document.querySelector("#btnFullScreenIcon").classList.add("fa-expand")
