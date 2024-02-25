@@ -8,6 +8,25 @@ loadTime()
 
 setInterval(loadTime, 1000);
 
+function getAtendimentos() {
+    console.log(window.location.search)
+    const url = "/AgendarServico/GetAtendimentos";
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "HTML",
+        data: { id: 1 },
+
+        success: function (result) {
+            $("#painelAtendimento").html(result);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //TODO::
+        },
+    });
+}
+getAtendimentos()
+
 document.querySelector("#btnFullScreen").addEventListener("click", (e, a) => {
     if (document.fullscreenElement) {
         document.querySelector("#btnFullScreenIcon").classList.add("fa-expand")

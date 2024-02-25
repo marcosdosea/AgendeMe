@@ -1,0 +1,106 @@
+@model Core.DTO.PainelAtendimentoDTO
+
+<div class="py-xl-3 py-2 @Model.Background"></div>
+<div class="@Model.Background">
+    <div class="text-light d-flex justify-content-evenly flex-wrap gap-3">
+        @if(Model.Horarios != null && Model.Horarios.Any()) 
+        {
+            foreach(var item in Model.Horarios) 
+            {
+                <div class="bg-primary text-center rounded-pill col-md-3 col-10 px-4 py-1">
+                    <span class="fs-4 user-select-none fw-bold">@item</span>
+                </div>
+            }
+        }
+    </div>
+</div>
+<div class="py-xl-3 py-2 @Model.Background"></div>
+<div class="d-flex justify-content-around align-items-center flex-column flex-md-row @Model.Background">
+    <div class="d-grid gap-4 gap-lg-3 gap-xl-4 col-10 col-md-5">
+        <div class="text-center">
+            <span class="fs-2 fw-bold">Em Atendimento</span>
+        </div>
+        @if(Model.Atendendo != null && Model.Atendendo.Any()) 
+        {
+            foreach(var item in Model.Atendendo) 
+            {
+                <div class="ag-atendimento border-start rounded border-success border-5 fs-4 bg-white shadow-sm">
+                    <div class="mx-3 my-1">
+                        <span class="fw-bold">#@item.Id</span>
+                        <span class="float-end text-success">
+                            <i class="fas fa-user-clock fs-1 me-4 mt-3"></i>
+                        </span>
+                    </div>
+                    <div class="ms-3 my-1">
+                        <span class="fw-bold">@item.NomeCidadao</span>
+                    </div>
+                    <div class="ms-3 my-1">
+                        <span class="fw-bold">@item.NomeServico</span>
+                    </div>
+                    <div class="ms-3 my-1">
+                        <span class="fw-bold">@item.BlocoHorario</span>
+                    </div>
+                </div>
+            }
+        }
+        <div class="text-center">
+            <span class="fs-2 fw-bold">Próximos</span>
+        </div>
+        @if(Model.Proximos != null && Model.Proximos.Any()) 
+        {
+            foreach(var item in Model.Proximos)
+            {
+                <div class="ag-atendimento border-start rounded border-warning border-5 fs-4 bg-white shadow-sm">
+                    <div class="mx-3 my-1">
+                        <span class="fw-bold">#@item.Id</span>
+                        <span class="float-end text-warning">
+                            <i class="fas fa-user-clock fs-1 me-4 mt-3"></i>
+                        </span>
+                    </div>
+                    <div class="ms-3 my-1">
+                        <span class="fw-bold">@item.NomeCidadao</span>
+                    </div>
+                    <div class="ms-3 my-1">
+                        <span class="fw-bold">@item.NomeServico</span>
+                    </div>
+                    <div class="ms-3 my-1">
+                        <span class="fw-bold">@item.BlocoHorario</span>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="py-xl-3 py-md-2 py-2 @Model.Background"></div>
+    <div class="d-grid gap-4 gap-xl-3 gap-lg-1 col-10 col-md-5">
+        <div class="text-center d-lg-none">
+            <span class="fs-2 fw-bold">Aguardando</span>
+        </div>
+        @if(Model.Aguardando != null && Model.Aguardando.Any()) 
+        {
+            foreach(var item in Model.Aguardando) 
+            {
+                <div class="ag-atendimento border-start rounded border-primary border-5 fs-4 bg-light shadow-sm">
+                    <div class="mx-3 my-1">
+                        <span class="fw-bold">#@item.Id</span>
+                        <span class="float-end text-warning">
+                            <i class="fas fa-user-clock fs-1 me-4 mt-3"></i>
+                        </span>
+                    </div>
+                    <div class="ms-3 my-1">
+                        <span class="fw-bold">@item.NomeCidadao</span>
+                    </div>
+                    <div class="ms-3 my-1">
+                        <span class="fw-bold">@item.NomeServico</span>
+                    </div>
+                    <div class="ms-3 my-1">
+                        <span class="fw-bold">@item.BlocoHorario</span>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+<div class="py-lg-5 @Model.Background"></div>
+<div class="py-lg-5 @Model.Background"></div>
+<div class="py-lg-5 @Model.Background"></div>
+<div class="py-3 @Model.Background"></div>

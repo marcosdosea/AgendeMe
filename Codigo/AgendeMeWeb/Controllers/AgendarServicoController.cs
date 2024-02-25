@@ -402,7 +402,13 @@ namespace AgendeMeWeb.Controllers
 
         public ActionResult PainelAtendimento(int id) 
         {
-            return View(new PainelAtendimento{});
+            return View();
+        }
+
+        public ActionResult GetAtendimentos(int id) 
+        {
+            PainelAtendimentoDTO p = new();
+            return PartialView("~/Views/AgendarServico/_PainelAtendimento.cshtml", p);
         }
     }
 }
