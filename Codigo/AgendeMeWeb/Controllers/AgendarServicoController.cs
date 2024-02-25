@@ -135,19 +135,19 @@ namespace AgendeMeWeb.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = $"{Papeis.Atendente}, {Papeis.GestorOrgao}, {Papeis.GestorPrefeitura}")]
-        public ActionResult ConfirmarPresenca(int id, string cpf)
+        public ActionResult ConfirmarPresenca(int id, string cpf, string page)
         {
             _agendamentoService.AtualizarStatus(id, cpf, "Aguardando Atendimento");
-            return RedirectToAction(nameof(AtenderCidadao), new {cpf = cpf});
+            return RedirectToAction(nameof(AtenderCidadao), new {id = page, cpf = cpf});
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = $"{Papeis.Atendente}, {Papeis.GestorOrgao}, {Papeis.GestorPrefeitura}")]
-        public ActionResult ConfirmarAtendimento(int id, string cpf)
+        public ActionResult ConfirmarAtendimento(int id, string cpf, string page)
         {
             _agendamentoService.AtualizarStatus(id, cpf, "Atendido");
-            return RedirectToAction(nameof(AtenderCidadao), new {cpf = cpf});
+            return RedirectToAction(nameof(AtenderCidadao), new {id = page, cpf = cpf});
         }
 
         // POST: AgendarServicoController/Edit/5

@@ -87,6 +87,7 @@
                                         <form asp-controller="AgendarServico" asp-action="ConfirmarPresenca">
                                             <input name="id" value="@item.Id" type="hidden"/>
                                             <input name="cpf" value="@ViewData["cpf"]" type="hidden"/>
+                                            <input name="page" value="@ViewData["page"]" type="hidden"/>
                                             <button class="br-button primary">Sim</button>
                                         </form>
                                     </div>
@@ -118,6 +119,7 @@
                                         <form asp-controller="AgendarServico" asp-action="ConfirmarAtendimento">
                                             <input name="id" value="@item.Id" type="hidden"/>
                                             <input name="cpf" value="@ViewData["cpf"]" type="hidden"/>
+                                            <input name="page" value="@ViewData["page"]" type="hidden"/>
                                             <button class="br-button primary">Sim</button>
                                         </form>
                                     </div>
