@@ -23,16 +23,42 @@ function getAtendimentos() {
         url: url,
         dataType: "HTML",
         data: { id: id },
-
         success: function (result) {
-            $("#painelAtendimento").html(result);
+            first = document.querySelector("#first");
+            if (first) {
+                firstResult = document.querySelector("#first");
+                if (first.dataset.value != firstResult.dataset.value) {
+                    addBlink()
+                    setTimeout(removeBlink, 3000)
+                } 
+                // else {
+                //     /* Apenas para testes */
+                //     addBlink()
+                //     setTimeout(removeBlink, 3000)
+                // }
+            } else {
+                $("#painelAtendimento").html(result);
+            }
+            
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //TODO::
         },
     });
 }
+
+function addBlink() { 
+    document.querySelectorAll(".ag-atendimento").forEach(c => c.classList.add("blink"))
+}
+
+function removeBlink() {
+    document.querySelectorAll(".ag-atendimento").forEach(c => c.classList.remove("blink"))
+}
+
+
 getAtendimentos()
+
+setInterval(getAtendimentos, 5000);
 
 document.querySelector("#btnFullScreen").addEventListener("click", (e, a) => {
     if (document.fullscreenElement) {

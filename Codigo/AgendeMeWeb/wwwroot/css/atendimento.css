@@ -6,3 +6,13 @@
 .bg-at {
     background-color: rgb(230, 230, 230);
 }
+
+.blink {
+    animation: blinker 2s linear;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
