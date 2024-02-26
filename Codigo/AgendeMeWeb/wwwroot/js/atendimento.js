@@ -27,6 +27,7 @@ function getAtendimentos() {
             first = document.querySelector("#first");
             if (first) {
                 $("#painelAtendimento").html(result);
+                fullScreenEventKey()
                 firstResult = document.querySelector("#first");
                 if (first.dataset.value != firstResult.dataset.value) {
                     addBlink()
@@ -39,6 +40,7 @@ function getAtendimentos() {
                 // }
             } else {
                 $("#painelAtendimento").html(result);
+                fullScreenEventKey()
             }
             
         },
