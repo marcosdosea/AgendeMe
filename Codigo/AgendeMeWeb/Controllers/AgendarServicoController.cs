@@ -276,6 +276,7 @@ namespace AgendeMeWeb.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{Papeis.Atendente}, {Papeis.GestorOrgao}, {Papeis.GestorPrefeitura}")]
         public ActionResult ConfirmarAgendamento(int idDiaAgendamento)
         {
             SetLayout();
@@ -303,6 +304,7 @@ namespace AgendeMeWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Papeis.Atendente}, {Papeis.GestorOrgao}, {Papeis.GestorPrefeitura}")]
         public ActionResult ConfirmarAgendamento(AgendarServicoViewModel agendamentoModel)
         {
             try
@@ -357,11 +359,12 @@ namespace AgendeMeWeb.Controllers
             return View(agendamento);
         }
 
+        [Authorize(Roles = $"{Papeis.Atendente}, {Papeis.GestorOrgao}, {Papeis.GestorPrefeitura}")]
         public ActionResult Atendimento(int? idServico, int? idOrgao)
         {
             IEnumerable<Orgaopublico> orgaos;
             List<Servicopublico> servicos = new ();
-            if (User.IsInRole(Papeis.Atendente)) 
+            if (User.IsInRole(Papeis.Atendente) || User.IsInRole(Papeis.GestorOrgao)) 
             {
                 idOrgao = Convert.ToInt32(User.FindFirst("IdOrgao")?.Value);
                 var orgao = _orgaoPublicoService.Get((int)idOrgao);
