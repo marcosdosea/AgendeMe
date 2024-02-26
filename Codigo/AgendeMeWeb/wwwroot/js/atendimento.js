@@ -26,6 +26,7 @@ function getAtendimentos() {
         success: function (result) {
             first = document.querySelector("#first");
             if (first) {
+                $("#painelAtendimento").html(result);
                 firstResult = document.querySelector("#first");
                 if (first.dataset.value != firstResult.dataset.value) {
                     addBlink()
@@ -47,12 +48,14 @@ function getAtendimentos() {
     });
 }
 
-function addBlink() { 
-    document.querySelectorAll(".ag-atendimento").forEach(c => c.classList.add("blink"))
+function addBlink() {
+    document.querySelectorAll(".ag-atendimento")[0].classList.add("blink")
+    //document.querySelectorAll(".ag-atendimento").forEach(c => c.classList.add("blink"))
 }
 
 function removeBlink() {
-    document.querySelectorAll(".ag-atendimento").forEach(c => c.classList.remove("blink"))
+    document.querySelectorAll(".ag-atendimento")[0].classList.remove("blink")
+    //document.querySelectorAll(".ag-atendimento").forEach(c => c.classList.remove("blink"))
 }
 
 

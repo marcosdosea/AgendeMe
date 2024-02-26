@@ -370,7 +370,7 @@ namespace AgendeMeWeb.Controllers
 
                 if (idOrgao != null && idServico != null) 
                 {
-                    if (_diaAgendamentoService.GetAllHorasByIdServicoAndDia((int)idServico, new DateTime(2024, 02, 26)).Any()) 
+                    if (_diaAgendamentoService.GetAllHorasByIdServicoAndDia((int)idServico, DateTime.Now).Any()) 
                     {
                         ViewData["idServico"] = idServico;
                     }
@@ -385,7 +385,7 @@ namespace AgendeMeWeb.Controllers
                     servicos = _servicoPublicoService.GetAllByIdOrgao((int)idOrgao).ToList();
                     if (idServico != null) 
                     {
-                        if (_diaAgendamentoService.GetAllHorasByIdServicoAndDia((int)idServico, new DateTime(2024, 02, 26)).Any()) 
+                        if (_diaAgendamentoService.GetAllHorasByIdServicoAndDia((int)idServico, DateTime.Now).Any()) 
                         {
                             ViewData["idServico"] = idServico;
                         }

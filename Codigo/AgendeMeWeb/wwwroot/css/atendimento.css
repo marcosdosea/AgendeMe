@@ -8,7 +8,7 @@
 }
 
 .blink {
-    animation: blinker 2s linear;
+    animation: blinker 500ms linear;
   }
   
   @keyframes blinker {
