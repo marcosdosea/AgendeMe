@@ -60,7 +60,25 @@ getAtendimentos()
 
 setInterval(getAtendimentos, 5000);
 
-document.querySelector("#btnFullScreen").addEventListener("click", (e, a) => {
+document.addEventListener('fullscreenchange', fullScreenEventKey);
+
+document.querySelector("#btnFullScreen").addEventListener("click", fullScreenEventButton)
+
+function fullScreenEventKey() {
+    if (!document.fullscreenElement) {
+        document.querySelector("#btnFullScreenIcon").classList.add("fa-expand")
+        document.querySelector("#btnFullScreenIcon").classList.remove("fa-compress")
+
+        autoSize(false);
+    } else {
+        document.querySelector("#btnFullScreenIcon").classList.remove("fa-expand")
+        document.querySelector("#btnFullScreenIcon").classList.add("fa-compress")
+
+        autoSize(true);
+    }
+}
+
+function fullScreenEventButton() {
     if (document.fullscreenElement) {
         document.querySelector("#btnFullScreenIcon").classList.add("fa-expand")
         document.querySelector("#btnFullScreenIcon").classList.remove("fa-compress")
@@ -76,7 +94,7 @@ document.querySelector("#btnFullScreen").addEventListener("click", (e, a) => {
 
         document.querySelector("body").requestFullscreen();
     }
-})
+}
 
 function autoSize(expand) {
     const paddingClass = "py-2"; 
