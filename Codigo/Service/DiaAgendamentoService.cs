@@ -155,5 +155,39 @@ namespace Service
                         };
             return query.AsNoTracking();
         }
+
+        public IEnumerable<AgendaDTO> GetAllByOrgao(int idOrgao)
+        {
+            return _context.Diaagendamentos
+            .Where(d => d.IdServicoPublicoNavigation.IdOrgaoPublico == idOrgao)
+            .Select(d => new AgendaDTO 
+            {
+                Id = d.Id,
+                Dia = d.DiaSemana,
+                Inicio = d.HorarioInicio,
+                Termino = d.HorarioFim,
+                Servico = d.IdServicoPublicoNavigation.Nome,
+                NumVagas = d.VagasAtendimento,
+                NumAgendado = d.VagasAgendadas,
+                NumDis = d.VagasAtendimento - d.VagasAgendadas
+            });
+        }
+
+        public AgendaDTO? GetByOrgao(int idOrgao, int idDia)
+        {
+            return _context.Diaagendamentos
+            .Where(d => d.IdServicoPublicoNavigation.IdOrgaoPublico == idOrgao && d.Id == idDia)
+            .Select(d => new AgendaDTO 
+            {
+                Id = d.Id,
+                Dia = d.DiaSemana,
+                Inicio = d.HorarioInicio,
+                Termino = d.HorarioFim,
+                Servico = d.IdServicoPublicoNavigation.Nome,
+                NumVagas = d.VagasAtendimento,
+                NumAgendado = d.VagasAgendadas,
+                NumDis = d.VagasAtendimento - d.VagasAgendadas
+            }).FirstOrDefault();
+        }
     }
 }

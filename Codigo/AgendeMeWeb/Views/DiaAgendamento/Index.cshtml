@@ -1,45 +1,37 @@
-﻿@model IEnumerable<AgendeMeWeb.Models.DiaAgendamentoViewModel>
+﻿@model IEnumerable<Core.DTO.AgendaDTO>
 
 @{
     ViewData["Title"] = "Agendas";
     Layout = ViewData["Layout"]?.ToString();
 }
 
+<h2>Agendas</h2>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="br-link" asp-action="Create">Cadastrar Agenda</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.Dia)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Data)
+                @Html.DisplayNameFor(model => model.Inicio)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DiaSemana)
+                @Html.DisplayNameFor(model => model.Termino)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HorarioInicio)
+                @Html.DisplayNameFor(model => model.Servico)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HorarioFim)
+                @Html.DisplayNameFor(model => model.NumVagas)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VagasAtendimento)
+                @Html.DisplayNameFor(model => model.NumAgendado)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VagasAgendadas)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VagasRetorno)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VagasAgendadasRetorno)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdServicoPublico)
+                @Html.DisplayNameFor(model => model.NumDis)
             </th>
             <th></th>
         </tr>
@@ -48,39 +40,29 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => item.Dia)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Data)
+                @Html.DisplayFor(modelItem => item.Inicio)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DiaSemana)
+                @Html.DisplayFor(modelItem => item.Termino)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HorarioInicio)
+                @Html.DisplayFor(modelItem => item.Servico)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HorarioFim)
+                @Html.DisplayFor(modelItem => item.NumVagas)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VagasAtendimento)
+                @Html.DisplayFor(modelItem => item.NumAgendado)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VagasAgendadas)
+                @Html.DisplayFor(modelItem => item.NumDis)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VagasRetorno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VagasAgendadasRetorno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdServicoPublico)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                @Html.ActionLink("Alterar", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Remover", "Delete", new { id=item.Id })
             </td>
         </tr>
 }

@@ -27,9 +27,8 @@ namespace AgendeMeWeb.Controllers
         public ActionResult Index()
         {
             SetLayout();
-            var listaDiaAgendamento = _diaAgendamentoService.GetAll();
-            var listaDiaAgendamentoModel = _mapper.Map<List<DiaAgendamentoViewModel>>(listaDiaAgendamento);
-            return View(listaDiaAgendamentoModel);
+            var listaDiaAgendamento = _diaAgendamentoService.GetAllByOrgao(Convert.ToInt32(User.FindFirst("IdOrgao")?.Value));
+            return View(listaDiaAgendamento);
         }
 
         // GET: DiaAgendamentoController/Details/5
@@ -106,9 +105,8 @@ namespace AgendeMeWeb.Controllers
         public ActionResult Delete(int id)
         {
             SetLayout();
-            Diaagendamento diaAgendamento = _diaAgendamentoService.Get(id);
-            DiaAgendamentoViewModel diaAgendamentoModel = _mapper.Map<DiaAgendamentoViewModel>(diaAgendamento);
-            return View(diaAgendamentoModel);
+            var agenda = _diaAgendamentoService.GetByOrgao(Convert.ToInt32(User.FindFirst("IdOrgao")?.Value),id);
+            return View(agenda);
         }
 
         // POST: DiaAgendamentoController/Delete/5

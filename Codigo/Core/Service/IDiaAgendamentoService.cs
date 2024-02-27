@@ -12,5 +12,7 @@ namespace Core.Service
         IEnumerable<Diaagendamento> GetAll();
         IEnumerable<AgendamentoDiasDTO> GetAllDiasByIdServico(int idServico);
         IEnumerable<AgendamentoHorasDTO> GetAllHorasByIdServicoAndDia(int idServico, DateTime dia);
+        IEnumerable<AgendaDTO> GetAllByOrgao(int idOrgao);
+        AgendaDTO? GetByOrgao(int idOrgao, int idDia);
     }
 }
