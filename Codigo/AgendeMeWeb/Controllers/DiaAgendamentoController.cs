@@ -5,6 +5,7 @@ using Core;
 using Core.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AgendeMeWeb.Controllers
 {
@@ -12,12 +13,14 @@ namespace AgendeMeWeb.Controllers
     public class DiaAgendamentoController : BaseController
     {
         private readonly IDiaAgendamentoService _diaAgendamentoService;
+        private readonly IServicoPublicoService _servico;
         private readonly IMapper _mapper;
 
-        public DiaAgendamentoController(IDiaAgendamentoService diaAgendamentoService, IMapper mapper)
+        public DiaAgendamentoController(IDiaAgendamentoService diaAgendamentoService, IServicoPublicoService servico, IMapper mapper)
         {
             _diaAgendamentoService = diaAgendamentoService;
             _mapper = mapper;
+            _servico = servico;
         }
 
         // GET: DiaAgendamentoController
@@ -41,8 +44,11 @@ namespace AgendeMeWeb.Controllers
         // GET: DiaAgendamentoController/Create
         public ActionResult Create()
         {
+            DiaAgendamentoViewModel agenda = new();
+            var servicos = _servico.GetAllByIdOrgao(Convert.ToInt32(User.FindFirst("IdOrgao")?.Value));
+            agenda.ListaServicos = new SelectList(servicos, "Id", "Nome", null);
             SetLayout();
-            return View();
+            return View(agenda);
         }
 
         // POST: DiaAgendamentoController/Create
@@ -58,7 +64,10 @@ namespace AgendeMeWeb.Controllers
             }
             catch
             {
-                return View();
+                var servicos = _servico.GetAllByIdOrgao(Convert.ToInt32(User.FindFirst("IdOrgao")?.Value));
+                diaAgendamentoModel.ListaServicos = new SelectList(servicos, "Id", "Nome", null);
+                SetLayout();
+                return View(diaAgendamentoModel);
             }
         }
 

@@ -20,6 +20,16 @@ namespace Service
         /// <returns></returns>
         public int Create(Diaagendamento diaAgendamento)
         {
+            Dictionary<string,string> dias = new () 
+            {
+                {"Monday","Segunda"},
+                {"Tuesday","Terça"},
+                {"Wednesday","Quarta"},
+                {"Thursday","Quinta"},
+                {"Friday","Sexta"}
+            };
+            diaAgendamento.DiaSemana = dias[diaAgendamento.Data.DayOfWeek.ToString()];
+            
             _context.Add(diaAgendamento);
             _context.SaveChanges();
             return diaAgendamento.Id;

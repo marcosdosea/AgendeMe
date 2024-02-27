@@ -5,27 +5,27 @@
     Layout = ViewData["Layout"]?.ToString();
 }
 
-<h4>DiaAgendamentoViewModel</h4>
+<h4>Cadastrar Agenda</h4>
+@{
+    for(int i = 0; i < 5; i++) {
+        <p>@DateTime.Now.AddDays(i).DayOfWeek</p>
+    }
+}
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Data" class="control-label"></label>
                 <input asp-for="Data" class="form-control" />
                 <span asp-validation-for="Data" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="DiaSemana" class="control-label"></label>
                 <input asp-for="DiaSemana" class="form-control" />
                 <span asp-validation-for="DiaSemana" class="text-danger"></span>
-            </div>
+            </div> *@
             <div class="form-group">
                 <label asp-for="HorarioInicio" class="control-label"></label>
                 <input asp-for="HorarioInicio" class="form-control" />
@@ -41,7 +41,7 @@
                 <input asp-for="VagasAtendimento" class="form-control" />
                 <span asp-validation-for="VagasAtendimento" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="VagasAgendadas" class="control-label"></label>
                 <input asp-for="VagasAgendadas" class="form-control" />
                 <span asp-validation-for="VagasAgendadas" class="text-danger"></span>
@@ -55,11 +55,10 @@
                 <label asp-for="VagasAgendadasRetorno" class="control-label"></label>
                 <input asp-for="VagasAgendadasRetorno" class="form-control" />
                 <span asp-validation-for="VagasAgendadasRetorno" class="text-danger"></span>
-            </div>
+            </div> *@
             <div class="form-group">
-                <label asp-for="IdServicoPublico" class="control-label"></label>
-                <input asp-for="IdServicoPublico" class="form-control" />
-                <span asp-validation-for="IdServicoPublico" class="text-danger"></span>
+                <label asp-for="ListaServicos" class="control-label"></label>
+                <select asp-for="IdServicoPublico" asp-items="@Model.ListaServicos" class="form-select"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

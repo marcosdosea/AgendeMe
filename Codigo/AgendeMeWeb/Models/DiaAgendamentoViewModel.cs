@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AgendeMeWeb.Models
 {
@@ -6,8 +7,7 @@ namespace AgendeMeWeb.Models
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "A data é obrigatoria")]
-        public DateTime Data { get; set; }
-        [Required(ErrorMessage = "O dia é obrigatorio")]
+        public DateTime? Data { get; set; }
         public string? DiaSemana { get; set; }
         [Required(ErrorMessage = "O horário é obrigatorio")]
         public string? HorarioInicio { get; set; }
@@ -21,5 +21,7 @@ namespace AgendeMeWeb.Models
         public int VagasAgendadasRetorno { get; set; }
         [Required(ErrorMessage = "O serviço é obrigatório")]
         public int IdServicoPublico { get; set; }
+        [Display(Name = "Serviço")]
+        public SelectList? ListaServicos{ get; set; }
     }
 }
