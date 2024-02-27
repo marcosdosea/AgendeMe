@@ -17,5 +17,7 @@ namespace Core.Service
         IEnumerable<CidadaoDTO> GetById(int idCidadao);
         CidadaoDTO? GetByCPF(string CPF);
         CidadaoDTO? GetByEmail(string email);
+
+        int PreCreate(Cidadao cidadao);
     }
 }

@@ -214,5 +214,16 @@ namespace Service
                 return query.AsNoTracking().First();
             return null;
         }
+
+        public int PreCreate(Cidadao cidadao)
+        {
+            if (cidadao.TipoCidadao == null)
+                cidadao.TipoCidadao = "Cidadao";
+
+            _context.Add(cidadao);
+            _context.SaveChanges();
+
+            return cidadao.Id;
+        }
     }
 }
