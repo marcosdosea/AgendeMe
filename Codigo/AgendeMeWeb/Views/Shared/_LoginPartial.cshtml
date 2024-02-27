@@ -1,33 +1,7 @@
-@using Microsoft.AspNetCore.Identity
-@using AgendeMeWeb.Areas.Identity.Data
-@using Core.Service
-
-@inject SignInManager<UsuarioIdentity> SignInManager
-@inject UserManager<UsuarioIdentity> UserManager
-@inject ICidadaoService _cidadao
-
 <div class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <div class="d-flex align-items-center">
-        <div class="nav-item">
-                <a id="manage" class="nav-link text-dark mr-2" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Olá, @_cidadao.GetByEmail(UserManager.GetUserName(User)).Nome</a>
-        </div>
-        <div class="nav-item">
-                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                    <button type="submit" class="br-button circle small" type="button" aria-label="Ícone ilustrativo" title="Sair">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </button>
-                </form>
-        </div>
-    </div>
-}
-else
-{
     <div class="nav-item">
         <a class="br-sign-in small" id="login" asp-area="Identity" asp-page="/Account/Login"> 
             <i class="fas fa-user" aria-hidden="true"></i> Entrar
         </a>
     </div>
-}
 </div>

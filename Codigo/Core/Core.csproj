@@ -17,6 +17,7 @@
     </PackageReference>
     <PackageReference Include="MySql.Data" Version="8.0.28" />
     <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.16" />
   </ItemGroup>
 
 </Project>

@@ -1,14 +1,17 @@
-﻿using AgendeMeWeb.Models;
+﻿using AgendeMeWeb.Helpers;
+using AgendeMeWeb.Models;
 using AutoMapper;
 using Core;
 using Core.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service;
 
 namespace AgendeMeWeb.Controllers
 {
-    public class OrgaoPublicoController : Controller
+    [Authorize(Roles = Papeis.GestorPrefeitura)]
+    public class OrgaoPublicoController : BaseController
     {
 
         private readonly IOrgaoPublicoService _orgaoPublicoService;
@@ -23,6 +26,7 @@ namespace AgendeMeWeb.Controllers
         // GET: OrgaoPublicoController
         public ActionResult Index()
         {
+            SetLayout();
             var listaOrgaosPublicos = _orgaoPublicoService.GetAll();
             var listaOrgaosPublicosModel = _mapper.Map<List<OrgaoPublicoViewModel>>(listaOrgaosPublicos);
             return View(listaOrgaosPublicosModel);
@@ -31,6 +35,7 @@ namespace AgendeMeWeb.Controllers
         // GET: OrgaoPublicoController/Details/5
         public ActionResult Details(int id)
         {
+            SetLayout();
             Orgaopublico orgaoPublico = _orgaoPublicoService.Get(id);
             OrgaoPublicoViewModel orgaoPublicoViewModel = _mapper.Map<OrgaoPublicoViewModel>(orgaoPublico);
             return View(orgaoPublicoViewModel);
@@ -39,6 +44,7 @@ namespace AgendeMeWeb.Controllers
         // GET: OrgaoPublicoController/Create
         public ActionResult Create()
         {
+            SetLayout();
             return View();
         }
 
@@ -58,6 +64,7 @@ namespace AgendeMeWeb.Controllers
         // GET: OrgaoPublicoController/Edit/5
         public ActionResult Edit(int id)
         {
+            SetLayout();
             Orgaopublico orgaoPublico = _orgaoPublicoService.Get(id);
             OrgaoPublicoViewModel orgaoPublicoViewModel = _mapper.Map<OrgaoPublicoViewModel>(orgaoPublico);
             return View(orgaoPublicoViewModel);
@@ -79,6 +86,7 @@ namespace AgendeMeWeb.Controllers
         // GET: OrgaoPublicoController/Delete/5
         public ActionResult Delete(int id)
         {
+            SetLayout();
             Orgaopublico orgaoPublico = _orgaoPublicoService.Get(id);
             OrgaoPublicoViewModel orgaoPublicoViewModel = _mapper.Map<OrgaoPublicoViewModel>(orgaoPublico);
             return View(orgaoPublicoViewModel);

@@ -83,5 +83,11 @@ namespace Service
 
             return query.AsNoTracking();
         }
+
+        public IEnumerable<Servicopublico> GetAllByIdOrgao(int idOrgao)
+        {
+            var query = _context.Servicopublicos.Where(s => s.IdOrgaoPublico == idOrgao);
+            return query.AsNoTracking();
+        }
     }
 }

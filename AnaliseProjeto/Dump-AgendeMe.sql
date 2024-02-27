@@ -101,7 +101,7 @@ CREATE TABLE `agendamento` (
   CONSTRAINT `fk_Agendamento_AgendamentoDia1` FOREIGN KEY (`idDiaAgendamento`) REFERENCES `diaagendamento` (`id`),
   CONSTRAINT `fk_Agendamento_Cidadao1` FOREIGN KEY (`idCidadao`) REFERENCES `cidadao` (`id`),
   CONSTRAINT `fk_Agendamento_Cidadao2` FOREIGN KEY (`idAtendente`) REFERENCES `cidadao` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,7 +110,30 @@ CREATE TABLE `agendamento` (
 
 LOCK TABLES `agendamento` WRITE;
 /*!40000 ALTER TABLE `agendamento` DISABLE KEYS */;
-INSERT INTO `agendamento` VALUES (9,'Agendamento','Agendado','2022-10-28 15:55:53',1,1,NULL,NULL),(12,'Agendamento','Agendado','2022-10-28 15:57:08',1,1,NULL,NULL),(14,'Agendamento','Agendado','2022-10-28 15:57:32',1,1,NULL,NULL),(16,'Agendamento','Agendado','2022-10-28 15:58:11',1,1,NULL,NULL),(17,'Agendamento','Agendado','2022-10-28 16:00:40',1,1,NULL,NULL),(23,'Agendamento','Agendado','2022-10-28 16:02:04',1,1,NULL,NULL),(24,'Agendamento','Agendado','2022-10-28 16:03:57',1,1,NULL,NULL),(25,'Agendamento','Agendado','2022-10-28 16:05:30',1,1,NULL,NULL),(27,'Agendamento','Agendado','2022-10-28 16:10:11',1,1,NULL,NULL),(30,'Agendamento','Agendado','2022-10-28 16:17:43',1,1,NULL,NULL),(31,'Agendamento','Agendado','2022-10-28 16:20:52',1,1,NULL,NULL),(32,'Agendamento','Agendado','2022-11-20 07:00:55',2,1,NULL,NULL),(36,'Agendamento','Agendado','2022-11-20 16:16:12',2,1,NULL,NULL),(43,'Agendamento','Agendado','2022-11-20 16:30:48',2,1,NULL,NULL),(44,'Agendamento','Agendado','2022-11-20 16:42:53',2,1,NULL,NULL),(45,'Agendamento','Agendado','2022-11-20 17:46:29',2,1,NULL,NULL),(46,'Agendamento','Agendado','2022-11-20 17:49:08',2,1,NULL,NULL),(47,'Agendamento','Agendado','2022-11-20 17:50:41',2,1,NULL,NULL),(48,'Agendamento','Agendado','2022-11-20 17:54:54',2,1,NULL,NULL),(49,'Agendamento','Agendado','2022-11-20 17:58:32',2,1,NULL,NULL),(50,'Agendamento','Agendado','2022-11-20 17:59:38',2,1,NULL,NULL),(51,'Agendamento','Agendado','2022-11-20 18:02:17',2,2,NULL,NULL),(52,'Agendamento','Agendado','2022-11-20 18:03:32',2,2,NULL,NULL);
+INSERT INTO `agendamento` VALUES 
+(1,'Agendamento','Aguardando Atendimento',NOW(),1,1,NULL,NULL),
+(2,'Agendamento','Aguardando Atendimento',NOW(),2,1,NULL,NULL),
+(3,'Agendamento','Aguardando Atendimento',NOW(),3,1,NULL,NULL),
+(4,'Agendamento','Aguardando Atendimento',NOW(),4,1,NULL,NULL),
+(5,'Agendamento','Aguardando Atendimento',NOW(),5,1,NULL,NULL),
+(6,'Agendamento','Aguardando Atendimento',NOW(),6,1,NULL,NULL);
+-- (7,'Agendamento','Agendado',NOW(),1,1,NULL,NULL),
+-- (8,'Agendamento','Agendado',NOW(),1,1,NULL,NULL),
+-- (9,'Agendamento','Agendado',NOW(),1,1,NULL,NULL),
+-- (10,'Agendamento','Agendado',NOW(),1,1,NULL,NULL),
+-- (11,'Agendamento','Agendado',NOW(),1,2,NULL,NULL),
+-- (12,'Agendamento','Agendado',NOW(),2,2,NULL,NULL),
+-- (13,'Agendamento','Agendado',NOW(),2,2,NULL,NULL),
+-- (14,'Agendamento','Agendado',NOW(),2,2,NULL,NULL),
+-- (15,'Agendamento','Agendado',NOW(),2,2,NULL,NULL),
+-- (16,'Agendamento','Agendado',NOW(),2,2,NULL,NULL),
+-- (17,'Agendamento','Agendado',NOW(),2,3,NULL,NULL),
+-- (18,'Agendamento','Agendado',NOW(),2,3,NULL,NULL),
+-- (19,'Agendamento','Agendado',NOW(),2,3,NULL,NULL),
+-- (20,'Agendamento','Agendado',NOW(),2,3,NULL,NULL),
+-- (21,'Agendamento','Agendado',NOW(),2,3,NULL,NULL),
+-- (22,'Agendamento','Agendado',NOW(),2,3,NULL,NULL),
+-- (23,'Agendamento','Agendado',NOW(),2,3,NULL,NULL);
 /*!40000 ALTER TABLE `agendamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,6 +216,36 @@ CREATE TABLE `AspNetRoles` (
 
 LOCK TABLES `AspNetRoles` WRITE;
 /*!40000 ALTER TABLE `AspNetRoles` DISABLE KEYS */;
+INSERT INTO AspNetRoles VALUES (
+'4e41763d-d54c-472a-ab46-dadabb2d8859',
+'CIDADAO',
+'Cidadão',
+'fac5a197-97f3-47e9-b29e-479fa1e5ac80'),
+(
+'45e6f3fe-ec74-43c0-bacc-cda3e63c84a9',
+'ATENDENTE',
+'Atendente',
+'fac5a197-97f3-47e9-b29e-479fa1e5ac80'),
+(
+'c4fce0cf-b10b-42e4-b69d-5f6a14fbe98a',
+'GESTOR DO ORGAO',
+'Gestor do Orgão',
+'fac5a197-97f3-47e9-b29e-479fa1e5ac80'),
+(
+'88203b13-8185-4a5b-aaca-07284fd0bc8c',
+'GESTOR DA PREFEITURA',
+'Gestor da Prefeitura',
+'fac5a197-97f3-47e9-b29e-479fa1e5ac80'),
+(
+'a7bbfaac-ccdb-4637-83c1-f85d760080a8',
+'PROFISSIONAL',
+'Profissional',
+'fac5a197-97f3-47e9-b29e-479fa1e5ac80'),
+(
+'46077122-95af-4063-8570-ce2d09b7f3c0',
+'ADMINISTRADOR DO SISTEMA',
+'Administrador do Sistema',
+'fac5a197-97f3-47e9-b29e-479fa1e5ac80');
 /*!40000 ALTER TABLE `AspNetRoles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,6 +326,13 @@ CREATE TABLE `AspNetUserRoles` (
 
 LOCK TABLES `AspNetUserRoles` WRITE;
 /*!40000 ALTER TABLE `AspNetUserRoles` DISABLE KEYS */;
+INSERT INTO AspNetUserRoles VALUES 
+('f5094213-c8ef-403b-a106-7dc5c85a4c45','4e41763d-d54c-472a-ab46-dadabb2d8859'), -- Cidadao
+('0f900e08-881c-41e0-8387-b2f8ea9c7eba','45e6f3fe-ec74-43c0-bacc-cda3e63c84a9'), -- Atendente
+('a775fc74-4e48-47b9-9ede-340d112d3ccd','a7bbfaac-ccdb-4637-83c1-f85d760080a8'), -- Profissional
+('06b90778-f588-495e-af5b-5c9477d7b0f2','c4fce0cf-b10b-42e4-b69d-5f6a14fbe98a'), -- Orgao
+('45eec0fe-dd6b-448f-a8c2-ba84defaa58d','88203b13-8185-4a5b-aaca-07284fd0bc8c'), -- Prefeitura
+('8e9457c5-9283-46f5-af38-298056b9f84b','46077122-95af-4063-8570-ce2d09b7f3c0'); -- Sistema
 /*!40000 ALTER TABLE `AspNetUserRoles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -313,7 +373,92 @@ LOCK TABLES `AspNetUsers` WRITE;
 /*!40000 ALTER TABLE `AspNetUsers` DISABLE KEYS */;
 INSERT INTO `AspNetUsers` 
 VALUES 
-('f5094213-c8ef-403b-a106-7dc5c85a4c45','devlauross2@gmail.com','DEVLAUROSS2@GMAIL.COM','devlauross2@gmail.com','DEVLAUROSS2@GMAIL.COM',_binary '\0','AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==','IKMCPEUEGO3DFPNZ3GTZ3DVREZEMHR2I','c2ebb266-388f-469f-afac-e0ee0a6a3b9c',NULL,_binary '\0',_binary '\0',NULL,_binary '',0);
+('f5094213-c8ef-403b-a106-7dc5c85a4c45','274.804.030-97','274.804.030-97','devlauross2@gmail.com','DEVLAUROSS2@GMAIL.COM',_binary '\0','AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==','IKMCPEUEGO3DFPNZ3GTZ3DVREZEMHR2I','c2ebb266-388f-469f-afac-e0ee0a6a3b9c',NULL,_binary '\0',_binary '\0',NULL,_binary '',0),
+(
+  '0f900e08-881c-41e0-8387-b2f8ea9c7eba',
+  '262.605.160-88',
+  '262.605.160-88',
+  'atendente@gmail.com',
+  'atendente@gmail.com',
+  0,
+  'AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==',
+  'U3ODHHNJ3VZU45UGMWA2AEOTBKWHODV3',
+  'b3896af2-a235-48ad-b81e-4feed9c28f65',
+  NULL,
+  0,
+  0,
+  NULL,
+  1,
+  0
+),
+(
+  'a775fc74-4e48-47b9-9ede-340d112d3ccd',
+  '942.383.700-07',
+  '942.383.700-07',
+  'profissional@gmail.com',
+  'profissional@gmail.com',
+  0,
+  'AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==',
+  'U3ODHHNJ3VZU45UGMWA2AEOTBKWHODV3',
+  'b3896af2-a235-48ad-b81e-4feed9c28f65',
+  NULL,
+  0,
+  0,
+  NULL,
+  1,
+  0
+),
+(
+  '06b90778-f588-495e-af5b-5c9477d7b0f2',
+  '972.408.080-33',
+  '972.408.080-33',
+  'gestororgao@gmail.com',
+  'gestororgao@gmail.com',
+  0,
+  'AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==',
+  'U3ODHHNJ3VZU45UGMWA2AEOTBKWHODV3',
+  'b3896af2-a235-48ad-b81e-4feed9c28f65',
+  NULL,
+  0,
+  0,
+  NULL,
+  1,
+  0
+),
+(
+  '45eec0fe-dd6b-448f-a8c2-ba84defaa58d',
+  '171.458.460-71',
+  '171.458.460-71',
+  'gestorprefeitura@gmail.com',
+  'gestorprefeitura@gmail.com',
+  0,
+  'AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==',
+  'U3ODHHNJ3VZU45UGMWA2AEOTBKWHODV3',
+  'b3896af2-a235-48ad-b81e-4feed9c28f65',
+  NULL,
+  0,
+  0,
+  NULL,
+  1,
+  0
+),
+(
+  '8e9457c5-9283-46f5-af38-298056b9f84b',
+  '477.986.140-36',
+  '477.986.140-36',
+  'admsistema@email.com',
+  'admsistema@email.com',
+  0,
+  'AQAAAAEAACcQAAAAEJCMEenkLDRCqgJrHFJz3cTgXPhmIfihlxHdfvzeLYS6A/czCt+UmYurKhHhAV6/YA==',
+  'U3ODHHNJ3VZU45UGMWA2AEOTBKWHODV3',
+  'b3896af2-a235-48ad-b81e-4feed9c28f65',
+  NULL,
+  0,
+  0,
+  NULL,
+  1,
+  0
+);
 /*!40000 ALTER TABLE `AspNetUsers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -472,7 +617,43 @@ LOCK TABLES `cidadao` WRITE;
 /*!40000 ALTER TABLE `cidadao` DISABLE KEYS */;
 INSERT INTO `cidadao` 
 VALUES 
-(1,'Lauro Santana','111111111111111','1998-09-10','11111111111111111111','11111111111111111111','devlauross2@gmail.com','1111111111','SE','Ribeirópolis','Centro','Rua José Romualdo de Menezes','103','M','Cidadao',NULL,NULL,NULL);
+(1,'Lauro Santana',
+'274.804.030-97','1998-09-10',
+'11111111111111111111','11111111111111111111',
+'cidadao@gmail.com','1111111111',
+'SE','Itabaiana','Centro',
+'Rua José Romualdo de Menezes','103','M','Cidadao',NULL,NULL,NULL),
+(2,'Maria Braga da Mota',
+'262.605.160-88','1998-09-10',
+'2222222222222222','222222222222222',
+'atendente@gmail.com','1111111111',
+'SE','Itabaiana','Centro',
+'Rua José Romualdo de Menezes','103','M','Atendente',NULL,1,NULL),
+(3,'Carlos Daniel',
+'942.383.700-07','1998-09-10',
+'333333333333','33333333333333',
+'profissional@gmail.com','1111111111',
+'SE','Itabaiana','Centro',
+'Rua José Romualdo de Menezes','103','M','Profissional',NULL,NULL,NULL),
+(4,'Pedro de Augusta',
+'972.408.080-33','1998-09-10',
+'444444444444','444444444444',
+'gestororgao@gmail.com','1111111111',
+'SE','Itabaiana','Centro',
+'Rua José Romualdo de Menezes','103','M','gestorOrgao',NULL,1,NULL),
+(5,'Sérgio de Paula',
+'171.458.460-71','1998-09-10',
+'555555555555','55555555555',
+'gestorprefeitura@gmail.com','1111111111',
+'SE','Itabaiana','Centro',
+'Rua José Romualdo de Menezes','103','M','gestorPrefeitura',NULL,NULL,1),
+(6,'Dalos Crariel',
+'477.986.140-36','1998-09-10',
+'666666666666','6666666666666',
+'administrador@gmail.com','1111111111',
+'SE','Itabaiana','Centro',
+'Rua José Romualdo de Menezes','103','M','Administrador',NULL,NULL,NULL);
+
 /*!40000 ALTER TABLE `cidadao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -508,32 +689,32 @@ LOCK TABLES `diaagendamento` WRITE;
 /*!40000 ALTER TABLE `diaagendamento` DISABLE KEYS */;
 INSERT INTO `diaagendamento` 
 VALUES 
-(1,'2022-10-24 00:00:00','Segunda','08:00','12:00',10,8,2,0,1),
-(2,'2022-10-24 00:00:00','Segunda','13:00','17:00',10,2,2,0,1),
-(3,'2022-10-25 00:00:00','Terça','08:00','12:00',8,0,2,0,1),
-(4,'2022-10-25 00:00:00','Terça','13:00','17:00',10,0,2,0,1),
-(5,'2022-10-26 00:00:00','Quarta','08:00','12:00',10,0,2,0,1),
-(6,'2022-10-26 00:00:00','Quarta','13:00','17:00',10,0,2,0,1),
-(7,'2022-10-27 00:00:00','Quinta','08:00','12:00',10,0,2,0,1),
-(8,'2022-10-27 00:00:00','Quinta','13:00','17:00',10,0,2,0,1),
-(9,'2022-10-28 00:00:00','Sexta','08:00','12:00',10,0,2,0,1),
-(10,'2022-10-28 00:00:00','Sexta','13:00','17:00',10,0,2,0,1),
-(11,'2022-10-24 00:00:00','Segunda','08:00','12:00',10,0,2,0,2),
-(12,'2022-10-24 00:00:00','Segunda','13:00','17:00',10,0,2,0,3),
-(13,'2022-10-25 00:00:00','Terça','08:00','12:00',10,0,2,0,2),
-(14,'2022-10-25 00:00:00','Terça','13:00','17:00',10,0,2,0,3),
-(15,'2022-10-26 00:00:00','Quarta','08:00','12:00',10,0,2,0,2),
-(16,'2022-10-26 00:00:00','Quarta','13:00','17:00',10,0,2,0,3),
-(17,'2022-10-27 00:00:00','Quinta','08:00','12:00',10,0,2,0,2),
-(18,'2022-10-27 00:00:00','Quinta','13:00','17:00',10,0,2,0,3),
-(19,'2022-10-28 00:00:00','Sexta','08:00','12:00',10,0,2,0,2),
-(20,'2022-10-28 00:00:00','Sexta','13:00','17:00',10,0,2,0,3),
-(21,'2022-10-28 00:00:00','Sexta','07:00','09:00',10,0,2,0,12),
-(22,'2022-10-28 00:00:00','Sexta','15:00','17:00',10,0,2,0,12),
-(23,'2022-10-24 00:00:00','Sexta','08:00','12:00',10,0,2,0,9),
-(24,'2022-10-28 00:00:00','Sexta','08:00','12:00',10,0,2,0,9),
-(25,'2022-10-25 00:00:00','Sexta','08:00','12:00',10,0,2,0,10),
-(26,'2022-10-27 00:00:00','Sexta','08:00','12:00',10,0,2,0,10);
+(1,DATE_ADD('2024-02-26 00:00:00', INTERVAL 0 DAY),'Segunda','08:00','12:00',10,6,2,0,1), -- Clínico Geral Orgao 1
+(2,DATE_ADD('2024-02-26 00:00:00', INTERVAL 0 DAY),'Segunda','13:00','17:00',10,0,2,0,1), -- Clínico Geral Orgao 1
+(3,DATE_ADD('2024-02-27 00:00:00', INTERVAL 0 DAY),'Terça','08:00','12:00',8,0,2,0,1), -- Clínico Geral Orgao 1
+(4,DATE_ADD('2024-02-27 00:00:00', INTERVAL 0 DAY),'Terça','13:00','17:00',10,0,2,0,1), -- Clínico Geral Orgao 1
+(5,DATE_ADD('2024-02-28 00:00:00', INTERVAL 0 DAY),'Quarta','08:00','12:00',10,0,2,0,1), -- Clínico Geral Orgao 1
+(6,DATE_ADD('2024-02-28 00:00:00', INTERVAL 0 DAY),'Quarta','13:00','17:00',10,0,2,0,1), -- Clínico Geral Orgao 1
+(7,DATE_ADD('2024-02-29 00:00:00', INTERVAL 0 DAY),'Quinta','08:00','12:00',10,0,2,0,1), -- Clínico Geral Orgao 1
+(8,DATE_ADD('2024-02-29 00:00:00', INTERVAL 0 DAY),'Quinta','13:00','17:00',10,0,2,0,1), -- Clínico Geral Orgao 1
+(9,DATE_ADD('2024-03-01 00:00:00', INTERVAL 0 DAY),'Sexta','08:00','12:00',10,0,2,0,1), -- Clínico Geral Orgao 1
+(10,DATE_ADD('2024-03-01 00:00:00', INTERVAL 0 DAY),'Sexta','13:00','17:00',10,0,2,0,1), -- Clínico Geral Orgao 1
+(11,DATE_ADD('2024-02-26 00:00:00', INTERVAL 0 DAY),'Segunda','08:00','12:00',10,0,2,0,2), -- Clínico Geral Orgao 2
+(12,DATE_ADD('2024-02-26 00:00:00', INTERVAL 0 DAY),'Segunda','13:00','17:00',10,0,2,0,3), -- Fisioterapia Orgao 3
+(13,DATE_ADD('2024-02-27 00:00:00', INTERVAL 0 DAY),'Terça','08:00','12:00',10,0,2,0,2), -- Clínico Geral Orgao 2
+(14,DATE_ADD('2024-02-27 00:00:00', INTERVAL 0 DAY),'Terça','13:00','17:00',10,0,2,0,3), -- Fisioterapia Orgao 3
+(15,DATE_ADD('2024-02-28 00:00:00', INTERVAL 0 DAY),'Quarta','08:00','12:00',10,0,2,0,2), -- Clínico Geral Orgao 2
+(16,DATE_ADD('2024-02-28 00:00:00', INTERVAL 0 DAY),'Quarta','13:00','17:00',10,0,2,0,3), -- Fisioterapia Orgao 3
+(17,DATE_ADD('2024-02-29 00:00:00', INTERVAL 0 DAY),'Quinta','08:00','12:00',10,0,2,0,2), -- Clínico Geral Orgao 2
+(18,DATE_ADD('2024-02-29 00:00:00', INTERVAL 0 DAY),'Quinta','13:00','17:00',10,0,2,0,3), -- Fisioterapia Orgao 3
+(19,DATE_ADD('2024-03-01 00:00:00', INTERVAL 0 DAY),'Sexta','08:00','12:00',10,0,2,0,2), -- Clínico Geral Orgao 2
+(20,DATE_ADD('2024-03-01 00:00:00', INTERVAL 0 DAY),'Sexta','13:00','17:00',10,0,2,0,3), -- Fisioterapia Orgao 3
+(21,DATE_ADD('2024-03-01 00:00:00', INTERVAL 0 DAY),'Sexta','07:00','09:00',10,0,2,0,7), -- Cardiologista Orgao 1
+(22,DATE_ADD('2024-03-01 00:00:00', INTERVAL 0 DAY),'Sexta','15:00','17:00',10,0,2,0,7), -- Cardiologista Orgao 1
+(23,DATE_ADD('2024-03-01 00:00:00', INTERVAL 0 DAY),'Sexta','08:00','12:00',10,0,2,0,9), -- Odontologista Orgao 1
+(24,DATE_ADD('2024-03-01 00:00:00', INTERVAL 0 DAY),'Sexta','13:00','17:00',10,0,2,0,9), -- Odontologista Orgao 1
+(25,DATE_ADD('2024-03-01 00:00:00', INTERVAL 0 DAY),'Sexta','08:00','12:00',10,0,2,0,10), -- Odontologista Orgao 2
+(26,DATE_ADD('2024-03-01 00:00:00', INTERVAL 0 DAY),'Sexta','13:00','17:00',10,0,2,0,10); -- Odontologista Orgao 2
 /*!40000 ALTER TABLE `diaagendamento` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -86,9 +86,61 @@ namespace Service
         /// Consulta todos os agendamentos no banco de dados
         /// </summary>
         /// <returns>Dados de todos os agendamentos</returns>
-        public IEnumerable<Agendamento> GetAll()
+        public AgendamentoPage GetAllByUser(int id, int page)
         {
-            return _context.Agendamentos.AsNoTracking();
+            var count = _context.Agendamentos.Where(a => a.IdCidadao == id).Count();
+
+            var query =_context.Agendamentos.Where(a => a.IdCidadao == id).Select(
+                 a => new AgendamentoDTO 
+                 {
+                    Id = a.Id,
+                    Tipo = a.Tipo,
+                    Situacao = a.Situacao,
+                    NomeServico = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.Nome,
+                    OrgaoPublico = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Nome,
+                    Bairro = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Bairro,
+                    Rua = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Rua,
+                    Numero = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Numero,
+                    Complemento = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Complemento,
+                    Data = a.IdDiaAgendamentoNavigation.Data,
+                    Horario = string.Join(" às ", a.IdDiaAgendamentoNavigation.HorarioInicio, a.IdDiaAgendamentoNavigation.HorarioFim),
+                    DataCadastro = a.DataCadastro,
+                    Cep = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Cep,
+                    Cidade = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.IdPrefeituraNavigation.Cidade,
+                 }
+                 ).OrderByDescending(a => a.Id).Skip(4 * (page - 1)).Take(4);
+            return new AgendamentoPage {Agendamentos = query, PageSize = (4 % (count == 0 ? 1 : count)) - 1};
+        }
+
+        public AgendamentoPage GetAllByCpf(string cpf, int page, int idOrgao)
+        {
+            var count = _context.Agendamentos.Where(a => a.IdCidadaoNavigation.Cpf == cpf 
+                                                    && a.IdDiaAgendamentoNavigation.
+                                                    IdServicoPublicoNavigation.
+                                                    IdOrgaoPublicoNavigation.Id == idOrgao).Count();
+            var query =_context.Agendamentos.Where(a => a.IdCidadaoNavigation.Cpf == cpf 
+                                                   && a.IdDiaAgendamentoNavigation.
+                                                   IdServicoPublicoNavigation.
+                                                   IdOrgaoPublicoNavigation.Id == idOrgao).Select(
+                 a => new AgendamentoDTO 
+                 {
+                    Id = a.Id,
+                    Tipo = a.Tipo,
+                    Situacao = a.Situacao,
+                    NomeServico = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.Nome,
+                    OrgaoPublico = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Nome,
+                    Bairro = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Bairro,
+                    Rua = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Rua,
+                    Numero = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Numero,
+                    Complemento = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Complemento,
+                    Data = a.IdDiaAgendamentoNavigation.Data,
+                    Horario = string.Join(" às ", a.IdDiaAgendamentoNavigation.HorarioInicio, a.IdDiaAgendamentoNavigation.HorarioFim),
+                    DataCadastro = a.DataCadastro,
+                    Cep = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.Cep,
+                    Cidade = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.IdOrgaoPublicoNavigation.IdPrefeituraNavigation.Cidade,
+                 }
+                 ).OrderByDescending(a => a.Id).Skip(4 * (page - 1)).Take(4);
+            return new AgendamentoPage {Agendamentos = query, PageSize = (4 % (count == 0 ? 1 : count)) - 1};
         }
 
         public AgendamentoDTO GetDados(int id)
@@ -111,6 +163,55 @@ namespace Service
                             DataCadastro = agendamento.DataCadastro
                         };
             return query.AsNoTracking().First();
+        }
+
+        public bool AtualizarStatus(int id, string cpf, string status)
+        {
+            var agendamento = _context.Agendamentos.Select(a => a)
+                              .Where(a => a.Id == id && a.IdCidadaoNavigation.Cpf == cpf)
+                              .FirstOrDefault();
+            if (agendamento == null) 
+            {
+                return false;
+            }
+            agendamento.Situacao = status;
+            agendamento.DataCadastro = DateTime.Now;
+            try 
+            {
+                Edit(agendamento);
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
+        }
+
+        public PainelAtendimentoDTO GetAtendimentos(int idServico)
+        {
+            PainelAtendimentoDTO painel = new();
+
+            var agendamentos = _context.Agendamentos
+            .Where(a => a.IdDiaAgendamentoNavigation.IdServicoPublico == idServico && a.Situacao == "Aguardando Atendimento")
+            .OrderBy(a => a.DataCadastro)
+            .Select(a => new AgendamentosCard {
+                Id = a.Id,
+                NomeCidadao = a.IdCidadaoNavigation.Nome,
+                NomeServico = a.IdDiaAgendamentoNavigation.IdServicoPublicoNavigation.Nome,
+                BlocoHorario = string.Join(" às ", a.IdDiaAgendamentoNavigation.HorarioInicio, a.IdDiaAgendamentoNavigation.HorarioFim),
+            });
+
+            if (!agendamentos.Any()) {
+                return painel;
+            }
+
+            painel.Horarios = agendamentos.Select( a => a.BlocoHorario).Distinct();
+
+            painel.Atendendo = new [] { agendamentos.First() };
+            painel.Proximos = agendamentos.Skip(1).Take(2); 
+            painel.Aguardando = agendamentos.Skip(3).Take(4);
+
+            return painel;
         }
     }
 }

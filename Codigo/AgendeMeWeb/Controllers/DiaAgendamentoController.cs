@@ -1,33 +1,40 @@
-﻿using AgendeMeWeb.Models;
+﻿using AgendeMeWeb.Helpers;
+using AgendeMeWeb.Models;
 using AutoMapper;
 using Core;
 using Core.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AgendeMeWeb.Controllers
 {
-    public class DiaAgendamentoController : Controller
+    [Authorize(Roles = $"{Papeis.GestorOrgao}, {Papeis.GestorPrefeitura}")]
+    public class DiaAgendamentoController : BaseController
     {
         private readonly IDiaAgendamentoService _diaAgendamentoService;
+        private readonly IServicoPublicoService _servico;
         private readonly IMapper _mapper;
 
-        public DiaAgendamentoController(IDiaAgendamentoService diaAgendamentoService, IMapper mapper)
+        public DiaAgendamentoController(IDiaAgendamentoService diaAgendamentoService, IServicoPublicoService servico, IMapper mapper)
         {
             _diaAgendamentoService = diaAgendamentoService;
             _mapper = mapper;
+            _servico = servico;
         }
 
         // GET: DiaAgendamentoController
         public ActionResult Index()
         {
-            var listaDiaAgendamento = _diaAgendamentoService.GetAll();
-            var listaDiaAgendamentoModel = _mapper.Map<List<DiaAgendamentoViewModel>>(listaDiaAgendamento);
-            return View(listaDiaAgendamentoModel);
+            SetLayout();
+            var listaDiaAgendamento = _diaAgendamentoService.GetAllByOrgao(Convert.ToInt32(User.FindFirst("IdOrgao")?.Value));
+            return View(listaDiaAgendamento);
         }
 
         // GET: DiaAgendamentoController/Details/5
         public ActionResult Details(int id)
         {
+            SetLayout();
             Diaagendamento diaAgendamento = _diaAgendamentoService.Get(id);
             DiaAgendamentoViewModel diaAgendamentoModel = _mapper.Map<DiaAgendamentoViewModel>(diaAgendamento);
             return View(diaAgendamentoModel);
@@ -36,7 +43,11 @@ namespace AgendeMeWeb.Controllers
         // GET: DiaAgendamentoController/Create
         public ActionResult Create()
         {
-            return View();
+            DiaAgendamentoViewModel agenda = new();
+            var servicos = _servico.GetAllByIdOrgao(Convert.ToInt32(User.FindFirst("IdOrgao")?.Value));
+            agenda.ListaServicos = new SelectList(servicos, "Id", "Nome", null);
+            SetLayout();
+            return View(agenda);
         }
 
         // POST: DiaAgendamentoController/Create
@@ -52,15 +63,21 @@ namespace AgendeMeWeb.Controllers
             }
             catch
             {
-                return View();
+                var servicos = _servico.GetAllByIdOrgao(Convert.ToInt32(User.FindFirst("IdOrgao")?.Value));
+                diaAgendamentoModel.ListaServicos = new SelectList(servicos, "Id", "Nome", null);
+                SetLayout();
+                return View(diaAgendamentoModel);
             }
         }
 
         // GET: DiaAgendamentoController/Edit/5
         public ActionResult Edit(int id)
         {
+            SetLayout();
             Diaagendamento diaAgendamento = _diaAgendamentoService.Get(id);
             DiaAgendamentoViewModel diaAgendamentoModel = _mapper.Map<DiaAgendamentoViewModel>(diaAgendamento);
+            var servicos = _servico.GetAllByIdOrgao(Convert.ToInt32(User.FindFirst("IdOrgao")?.Value));
+            diaAgendamentoModel.ListaServicos = new SelectList(servicos, "Id", "Nome", diaAgendamentoModel.IdServicoPublico);
             return View(diaAgendamentoModel);
         }
 
@@ -77,16 +94,19 @@ namespace AgendeMeWeb.Controllers
             }
             catch
             {
-                return View();
+                //var servicos = _servico.GetAllByIdOrgao(Convert.ToInt32(User.FindFirst("IdOrgao")?.Value));
+                //diaAgendamentoViewModel.ListaServicos = new SelectList(servicos, "Id", "Nome", null);
+                SetLayout();
+                return View(diaAgendamentoViewModel);
             }
         }
 
         // GET: DiaAgendamentoController/Delete/5
         public ActionResult Delete(int id)
         {
-            Diaagendamento diaAgendamento = _diaAgendamentoService.Get(id);
-            DiaAgendamentoViewModel diaAgendamentoModel = _mapper.Map<DiaAgendamentoViewModel>(diaAgendamento);
-            return View(diaAgendamentoModel);
+            SetLayout();
+            var agenda = _diaAgendamentoService.GetByOrgao(Convert.ToInt32(User.FindFirst("IdOrgao")?.Value),id);
+            return View(agenda);
         }
 
         // POST: DiaAgendamentoController/Delete/5

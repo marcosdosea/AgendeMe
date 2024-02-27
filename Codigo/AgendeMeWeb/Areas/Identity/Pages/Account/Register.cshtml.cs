@@ -2,7 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using AgendeMeWeb.Areas.Identity.Data;
 using AgendeMeWeb.Models;
 using AutoMapper;
 using Core;
@@ -13,6 +12,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using MySqlX.XDevAPI.Common;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -116,42 +116,47 @@ namespace AgendeMeWeb.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-
-                await _userStore.SetUserNameAsync(user, Input.Cidadao.Cpf, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, Input.Password);
-
-                if (result.Succeeded)
-                {
-                    var cidadaoModel = Input.Cidadao;
-                    var cidadao = _mapper.Map<Cidadao>(cidadaoModel);
-                    cidadao.Email = Input.Email;
-                    _cidadaoService.Create(cidadao);
-                    _logger.LogInformation("User created a new account with password.");
-
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
-
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                    }
-                    else
-                    {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
-                    }
+                var cidadaoModel = Input.Cidadao;
+                var cidadao = _mapper.Map<Cidadao>(cidadaoModel);
+                cidadao.Email = Input.Email;
+                var result = await _cidadaoService.AddCidadaoAsync(user, _userStore, _userManager, _emailStore, cidadao, Input.Password);
+                if (result) {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return LocalRedirect(returnUrl);
                 }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                
+                // await _userStore.SetUserNameAsync(user, Input.Cidadao.Cpf, CancellationToken.None);
+                // await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                // var result = await _userManager.CreateAsync(user, Input.Password);
+
+                // if (result.Succeeded)
+                // {
+                //     _cidadaoService.Create(cidadao);
+                //     _logger.LogInformation("User created a new account with password.");
+
+                //     var userId = await _userManager.GetUserIdAsync(user);
+                //     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                //     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                //     var callbackUrl = Url.Page(
+                //         "/Account/ConfirmEmail",
+                //         pageHandler: null,
+                //         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                //         protocol: Request.Scheme);
+
+                //     if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                //     {
+                //         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                //     }
+                //     else
+                //     {
+                //         await _signInManager.SignInAsync(user, isPersistent: false);
+                //         return LocalRedirect(returnUrl);
+                //     }
+                // }
+                // foreach (var error in result.Errors)
+                // {
+                //     ModelState.AddModelError(string.Empty, error.Description);
+                // }
             }
 
             // If we got this far, something failed, redisplay form

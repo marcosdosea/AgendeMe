@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 
@@ -75,6 +76,19 @@ namespace Service
             return query;
             */
             return null;
+        }
+
+        public IEnumerable<PrefeituraCidadeDTO> GetAllCidade()
+        {
+            var query = from prefeitura in _context.Prefeituras
+                        select new PrefeituraCidadeDTO
+                        {
+                            Id = prefeitura.Id,
+                            Cidade = prefeitura.Cidade,
+                            Icone = prefeitura.Cidade.Substring(0, 2).ToUpper()
+                        };
+
+            return query;
         }
     }
 }

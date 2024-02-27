@@ -1,25 +1,18 @@
-﻿function getAreas(url, button) {
-    var idPrefeitura = document.getElementById("prefeitura");
-    if (idPrefeitura.value) {
-        button.className = "br-button primary loading mx-auto d-block mt-5 mb-5";
-        $.ajax({
-            type: "GET",
-            url: url,
-            dataType: "HTML",
-            data: { id: idPrefeitura.value },
+﻿function getAreas(url, idPrefeitura) {
+    $("#buttonBoxs").html('<div class="loading medium loading-areas"></div>');
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "HTML",
+        data: { id: idPrefeitura },
 
-            success: function (result) {
-                $("#ajaxBox").html(result);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                //TODO::
-            },
-        });
-    }
-    else {
-        var mensagemErro = document.getElementById("erroSelectPrefeitura");
-        mensagemErro.className = "";
-    }
+        success: function (result) {
+            $("#ajaxBox").html(result);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //TODO::
+        },
+    });
 }
 
 function removeErro(select) {

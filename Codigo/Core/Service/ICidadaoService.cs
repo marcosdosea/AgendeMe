@@ -1,4 +1,5 @@
 ﻿using Core.DTO;
+using Microsoft.AspNetCore.Identity;
 
 namespace Core.Service
 {
@@ -17,5 +18,6 @@ namespace Core.Service
         IEnumerable<CidadaoDTO> GetById(int idCidadao);
         CidadaoDTO? GetByCPF(string CPF);
         CidadaoDTO? GetByEmail(string email);
+        Task<bool> AddCidadaoAsync(UsuarioIdentity user, IUserStore<UsuarioIdentity> userStore, UserManager<UsuarioIdentity> userManager, IUserEmailStore<UsuarioIdentity> emailStore, Cidadao cidadao, string senha);
     }
 }
