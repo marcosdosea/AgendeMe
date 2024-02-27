@@ -4,17 +4,31 @@
     ViewData["Title"] = "Painel de Atendimento";
     Layout = ViewData["Layout"]?.ToString();
 }
-<form asp-controller="AgendarServico" asp-action="Atendimento" method="get">
-  <select name="idOrgao" asp-items="@Model.ListaOrgaos" class="form-select"></select>
-  <select name="idServico" asp-items="@Model.ListaServicos" class="form-select"></select>
-  <button>Pesquisar</button>
+<p class="fs-2">Consultar Painel de Atendimento</p>
+<form class="d-grid gap-4" asp-controller="AgendarServico" asp-action="Atendimento" method="get">
+  <div class="form-group">
+    <label asp-for="ListaOrgaos" class="control-label"></label>
+    <select name="idOrgao" asp-items="@Model.ListaOrgaos" class="form-select"></select>
+  </div>
+  <div class="form-group">
+    <label asp-for="ListaServicos" class="control-label"></label>
+    <select name="idServico" asp-items="@Model.ListaServicos" class="form-select"></select>
+  </div>
+  <div class="d-block m-auto">
+    <button class="br-button primary">Pesquisar</button>
+  </div>
 </form>
 
 @if (ViewData["idServico"] != null)
 {
-  <a asp-controller="AgendarServico" asp-action="PainelAtendimento" asp-route-id="@ViewData["idServico"]">
-    Painel de Atendimento
-  </a>
+  <div class="col-md-4 col-10 m-auto p-4">
+    <a class="br-button br-button d-flex justify-content-center flex-column mt-5 py-5" asp-controller="AgendarServico" asp-action="PainelAtendimento" asp-route-id="@ViewData["idServico"]" target="_blank">
+      <div>
+        <i class="fas fa-desktop"></i>
+      </div>
+      Ir para Painel de Atendimento
+    </a>
+  </div>
 }
 
 @section Css {
