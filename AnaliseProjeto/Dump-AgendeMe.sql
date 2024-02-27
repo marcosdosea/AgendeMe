@@ -620,7 +620,7 @@ VALUES
 (1,'Lauro Santana',
 '274.804.030-97','1998-09-10',
 '11111111111111111111','11111111111111111111',
-'devlauross2@gmail.com','1111111111',
+'cidadao@gmail.com','1111111111',
 'SE','Itabaiana','Centro',
 'Rua José Romualdo de Menezes','103','M','Cidadao',NULL,NULL,NULL),
 (2,'Maria Braga da Mota',
@@ -689,8 +689,8 @@ LOCK TABLES `diaagendamento` WRITE;
 /*!40000 ALTER TABLE `diaagendamento` DISABLE KEYS */;
 INSERT INTO `diaagendamento` 
 VALUES 
-(1,DATE_ADD('2024-02-26 00:00:00', INTERVAL 0 DAY),'Segunda','08:00','12:00',10,8,2,0,1), -- Clínico Geral Orgao 1
-(2,DATE_ADD('2024-02-26 00:00:00', INTERVAL 0 DAY),'Segunda','13:00','17:00',10,2,2,0,1), -- Clínico Geral Orgao 1
+(1,DATE_ADD('2024-02-26 00:00:00', INTERVAL 0 DAY),'Segunda','08:00','12:00',10,6,2,0,1), -- Clínico Geral Orgao 1
+(2,DATE_ADD('2024-02-26 00:00:00', INTERVAL 0 DAY),'Segunda','13:00','17:00',10,0,2,0,1), -- Clínico Geral Orgao 1
 (3,DATE_ADD('2024-02-27 00:00:00', INTERVAL 0 DAY),'Terça','08:00','12:00',8,0,2,0,1), -- Clínico Geral Orgao 1
 (4,DATE_ADD('2024-02-27 00:00:00', INTERVAL 0 DAY),'Terça','13:00','17:00',10,0,2,0,1), -- Clínico Geral Orgao 1
 (5,DATE_ADD('2024-02-28 00:00:00', INTERVAL 0 DAY),'Quarta','08:00','12:00',10,0,2,0,1), -- Clínico Geral Orgao 1
