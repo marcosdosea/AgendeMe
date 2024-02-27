@@ -50,6 +50,16 @@ namespace Service
         /// <param name="diaAgendamento"></param>
         public void Edit(Diaagendamento diaAgendamento)
         {
+            Dictionary<string,string> dias = new () 
+            {
+                {"Monday","Segunda"},
+                {"Tuesday","Terça"},
+                {"Wednesday","Quarta"},
+                {"Thursday","Quinta"},
+                {"Friday","Sexta"}
+            };
+            diaAgendamento.DiaSemana = dias[diaAgendamento.Data.DayOfWeek.ToString()];
+
             _context.Update(diaAgendamento);
             _context.SaveChanges();
         }

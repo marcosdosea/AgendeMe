@@ -77,6 +77,8 @@ namespace AgendeMeWeb.Controllers
             SetLayout();
             Diaagendamento diaAgendamento = _diaAgendamentoService.Get(id);
             DiaAgendamentoViewModel diaAgendamentoModel = _mapper.Map<DiaAgendamentoViewModel>(diaAgendamento);
+            var servicos = _servico.GetAllByIdOrgao(Convert.ToInt32(User.FindFirst("IdOrgao")?.Value));
+            diaAgendamentoModel.ListaServicos = new SelectList(servicos, "Id", "Nome", diaAgendamentoModel.IdServicoPublico);
             return View(diaAgendamentoModel);
         }
 
@@ -93,7 +95,10 @@ namespace AgendeMeWeb.Controllers
             }
             catch
             {
-                return View();
+                //var servicos = _servico.GetAllByIdOrgao(Convert.ToInt32(User.FindFirst("IdOrgao")?.Value));
+                //diaAgendamentoViewModel.ListaServicos = new SelectList(servicos, "Id", "Nome", null);
+                SetLayout();
+                return View(diaAgendamentoViewModel);
             }
         }
 

@@ -7,12 +7,16 @@ namespace AgendeMeWeb.Models
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "A data é obrigatoria")]
+        [Display(Name = "Dia")]
         public DateTime? Data { get; set; }
         public string? DiaSemana { get; set; }
+        [Display(Name = "Horário de Início")]
         [Required(ErrorMessage = "O horário é obrigatorio")]
         public string? HorarioInicio { get; set; }
+        [Display(Name = "Horário de Termíno")]
         [Required(ErrorMessage = "O horário é obrigatorio")]
         public string? HorarioFim { get; set; }
+        [Display(Name = "Número de Vagas")]
         [Required(ErrorMessage = "Vaga é obrigatorio")]
         public int VagasAtendimento { get; set; }
         public int VagasAgendadas { get; set; }
