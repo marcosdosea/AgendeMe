@@ -23,6 +23,10 @@ public class BaseController : Controller
         {
             ViewData["Layout"] = "_LayoutGestorPrefeitura";
         }
+        else if (User.IsInRole(Papeis.Profissional))
+        {
+            ViewData["Layout"] = "_LayoutProfissional";
+        }
         else if (User.IsInRole(Papeis.Administrador))
         {
             ViewData["Layout"] = "_LayoutAdministrador";
