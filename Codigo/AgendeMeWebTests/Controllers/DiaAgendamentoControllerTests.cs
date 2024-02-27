@@ -17,19 +17,19 @@ namespace AgendeMeWeb.Controllers.Tests
         [TestInitialize]
         public void Initialize()
         {
-            // Arrange
-            var mockService = new Mock<IDiaAgendamentoService>();
+            // // Arrange
+            // var mockService = new Mock<IDiaAgendamentoService>();
 
-            IMapper mapper = new MapperConfiguration(cfg => cfg.AddProfile(new DiaAgendamentoProfile())).CreateMapper();
+            // IMapper mapper = new MapperConfiguration(cfg => cfg.AddProfile(new DiaAgendamentoProfile())).CreateMapper();
 
-            mockService.Setup(service => service.GetAll()).Returns(GetTestDiaAgendamentos);
-            mockService.Setup(service => service.Get(1))
-                .Returns(GetTargetDiaAgendamento());
-            mockService.Setup(service => service.Edit(It.IsAny<Diaagendamento>()))
-                .Verifiable();
-            mockService.Setup(service => service.Create(It.IsAny<Diaagendamento>()))
-                .Verifiable();
-            controller = new DiaAgendamentoController(mockService.Object, mapper);
+            // mockService.Setup(service => service.GetAll()).Returns(GetTestDiaAgendamentos);
+            // mockService.Setup(service => service.Get(1))
+            //     .Returns(GetTargetDiaAgendamento());
+            // mockService.Setup(service => service.Edit(It.IsAny<Diaagendamento>()))
+            //     .Verifiable();
+            // mockService.Setup(service => service.Create(It.IsAny<Diaagendamento>()))
+            //     .Verifiable();
+            // controller = new DiaAgendamentoController(mockService.Object, mapper);
         }
 
         [TestMethod()]
