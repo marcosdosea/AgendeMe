@@ -251,6 +251,20 @@ namespace Service
                 return false;
             }
         }
-        
+
+        public IEnumerable<CidadaoListDTO> GetList()
+        {
+            var query = from cidadao in _context.Cidadaos
+                    select new CidadaoListDTO
+                    {
+                        Id = cidadao.Id,
+                        Nome = cidadao.Nome,
+                        TipoCidadao = cidadao.TipoCidadao
+                    };
+            if (query.Any())
+                return query.AsNoTracking().ToList();
+
+            return null;
+        }
     }
 }

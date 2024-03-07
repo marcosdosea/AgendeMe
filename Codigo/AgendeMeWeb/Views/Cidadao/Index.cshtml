@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AgendeMeWeb.Models.CidadaoViewModel>
+﻿@model IEnumerable<Core.DTO.CidadaoListDTO>
 
 @{
     ViewData["Title"] = "Cidadãos";
@@ -19,54 +19,14 @@
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cpf)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataNascimento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cep)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cidade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Bairro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rua)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumeroCasa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sexo)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.TipoCidadao)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Complemento)
+                Editar
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdOrgaoPublico)
+                Remover
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdPrefeitura)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -79,56 +39,12 @@
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cpf)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataNascimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cep)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cidade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Bairro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rua)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumeroCasa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sexo)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.TipoCidadao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Complemento)
+                @Html.ActionLink("Editar", "Edit", new { id=item.Id})
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdOrgaoPublico)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdPrefeitura)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id=item.Id}) |
-                @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
                 @Html.ActionLink("Remover", "Delete", new { id=item.Id })
             </td>
         </tr>
