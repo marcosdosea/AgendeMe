@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Core.DTO.CidadaoListDTO>
 
 @{
-    ViewData["Title"] = "Cidadãos";
+    ViewData["Title"] = "Cidadãos Cadastrados";
 }
 
 <h1>Cidadãos</h1>
@@ -12,19 +12,16 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.TipoCidadao)
             </th>
-            <th>
+            <th class="text-center">
                 Editar
             </th>
-            <th>
+            <th class="text-center">
                 Remover
             </th>
         </tr>
@@ -32,20 +29,21 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
+            <td class="text-center">
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
-            <td>
+            <td class="text-center">
                 @Html.DisplayFor(modelItem => item.TipoCidadao)
             </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id=item.Id})
+            <td class="text-center">
+                <a asp-controller="Cidadao" asp-action="Edit" asp-route-id="@item.Id">
+                    <i class="far fa-edit"></i>
+                </a>
             </td>
-            <td>
-                @Html.ActionLink("Remover", "Delete", new { id=item.Id })
+            <td class="text-center">
+                <a asp-controller="Cidadao" asp-action="Delete" asp-route-id="@item.Id">
+                    <i class="far fa-times-circle"></i>
+                </a>
             </td>
         </tr>
 }
