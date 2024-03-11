@@ -9,19 +9,34 @@
 <p>
     <a asp-action="Create">Cadastrar novo cidadão</a>
 </p>
-<table class="table">
+
+<div class="col-sm-5 col-lg-5 col-xl-4 mb-4">
+    <div class="br-input input-button">
+        <label for="input-icon">
+            <span class="text-up-01">Pesquisar</span>
+        </label>
+
+        <input id="input-icon" type="text"/>
+
+        <button class="br-button" type="button" aria-label="Botão de ação">
+            <i class="fas fa-search fa-flip-horizontal" aria-hidden="true"></i>
+    </div>
+</div>
+
+
+<table class="mb-5">
     <thead>
         <tr>
-            <th class="text-center">
+            <th class="border-solid-sm text-center text-up-01 col-5">
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
-            <th class="text-center">
+            <th class="border-solid-sm text-center text-up-01 col-5">
                 @Html.DisplayNameFor(model => model.TipoCidadao)
             </th>
-            <th class="text-center">
+            <th class="border-solid-sm text-center text-up-01 col-5">
                 Editar
             </th>
-            <th class="text-center">
+            <th class="border-solid-sm text-center text-up-01 col-5">
                 Remover
             </th>
         </tr>
@@ -29,20 +44,20 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td class="text-center">
+            <td class="text-center border">
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
-            <td class="text-center">
+                <td class="text-center border">
                 @Html.DisplayFor(modelItem => item.TipoCidadao)
             </td>
-            <td class="text-center">
+            <td class="text-center border">
                 <a asp-controller="Cidadao" asp-action="Edit" asp-route-id="@item.Id">
                     <i class="far fa-edit"></i>
                 </a>
             </td>
-            <td class="text-center">
+            <td class="text-center border">
                 <a asp-controller="Cidadao" asp-action="Delete" asp-route-id="@item.Id">
-                    <i class="far fa-times-circle"></i>
+                    <i class="far fa-times-circle" style="color: #e70d0d;"></i>
                 </a>
             </td>
         </tr>
