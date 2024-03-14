@@ -2,6 +2,7 @@
 using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Service
 {
@@ -182,7 +183,12 @@ namespace Service
                             Rua = cidadao.Rua,
                             NumeroCasa = cidadao.NumeroCasa,
                             Complemento = cidadao.Complemento,
+                            IdPrefeitura = cidadao.IdPrefeitura,
+                            Prefeitura = _context.Prefeituras.FirstOrDefault(p => p.Cidade.Equals(cidadao.Cidade)),
+                            Papel = cidadao.TipoCidadao,
+                            IdOrgao = cidadao.IdOrgaoPublico
                         };
+            
             if (query.Any())
                 return query.AsNoTracking().First();
             return null;
@@ -209,11 +215,43 @@ namespace Service
                             Rua = cidadao.Rua,
                             NumeroCasa = cidadao.NumeroCasa,
                             Complemento = cidadao.Complemento,
+                            IdPrefeitura = cidadao.IdPrefeitura,
+                            Prefeitura = _context.Prefeituras.FirstOrDefault(p => p.Cidade.Equals(cidadao.Cidade)),
+                            Papel = cidadao.TipoCidadao
                         };
             if (query.Any())
                 return query.AsNoTracking().First();
             return null;
         }
+
+        public async Task<bool> AddCidadaoAsync(UsuarioIdentity user, 
+            IUserStore<UsuarioIdentity> userStore, 
+            UserManager<UsuarioIdentity> userManager, 
+            IUserEmailStore<UsuarioIdentity> emailStore,
+            Cidadao cidadao, 
+            string senha) 
+        {
+            try 
+            {
+                await userStore.SetUserNameAsync(user, cidadao.Cpf, CancellationToken.None);
+                await emailStore.SetEmailAsync(user, cidadao.Email, CancellationToken.None);
+                var result = await userManager.CreateAsync(user, senha);
+
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, "CIDADAO");
+                    Create(cidadao);
+                    return true;
+                } 
+                return false;
+            } 
+            catch 
+            {
+                await userManager.DeleteAsync(user);
+                return false;
+            }
+        }
+        
 
         public int PreCreate(Cidadao cidadao)
         {

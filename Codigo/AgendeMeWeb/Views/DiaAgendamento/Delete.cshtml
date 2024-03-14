@@ -1,74 +1,63 @@
-﻿@model AgendeMeWeb.Models.DiaAgendamentoViewModel
+﻿@model Core.DTO.AgendaDTO
 
-<h3>Are you sure you want to delete this?</h3>
+@{
+    ViewData["Title"] = "Remover Agenda";
+    Layout = ViewData["Layout"]?.ToString();
+}
+
+<h3>Tem certeza que deseja remover?</h3>
 <div>
-    <h4>DiaAgendamentoViewModel</h4>
-    <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayNameFor(model => model.Dia)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
+            @Html.DisplayFor(model => model.Dia)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Data)
+            @Html.DisplayNameFor(model => model.Inicio)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Data)
+            @Html.DisplayFor(model => model.Inicio)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DiaSemana)
+            @Html.DisplayNameFor(model => model.Termino)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DiaSemana)
+            @Html.DisplayFor(model => model.Termino)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HorarioInicio)
+            @Html.DisplayNameFor(model => model.Servico)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HorarioInicio)
+            @Html.DisplayFor(model => model.Servico)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HorarioFim)
+            @Html.DisplayNameFor(model => model.NumVagas)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HorarioFim)
+            @Html.DisplayFor(model => model.NumVagas)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VagasAtendimento)
+            @Html.DisplayNameFor(model => model.NumAgendado)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VagasAtendimento)
+            @Html.DisplayFor(model => model.NumAgendado)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VagasAgendadas)
+            @Html.DisplayNameFor(model => model.NumDis)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VagasAgendadas)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VagasRetorno)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VagasRetorno)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VagasAgendadasRetorno)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VagasAgendadasRetorno)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdServicoPublico)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdServicoPublico)
+            @Html.DisplayFor(model => model.NumDis)
         </dd>
     </dl>
     
     <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Remover" class="br-button danger" /> |
+        <a class="br-button" asp-action="Index">Voltar</a>
     </form>
 </div>
+
+@section Css {
+        <link rel="stylesheet" href="~/css/footer.css" />
+    }

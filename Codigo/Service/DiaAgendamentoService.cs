@@ -20,6 +20,16 @@ namespace Service
         /// <returns></returns>
         public int Create(Diaagendamento diaAgendamento)
         {
+            Dictionary<string,string> dias = new () 
+            {
+                {"Monday","Segunda"},
+                {"Tuesday","Terça"},
+                {"Wednesday","Quarta"},
+                {"Thursday","Quinta"},
+                {"Friday","Sexta"}
+            };
+            diaAgendamento.DiaSemana = dias[diaAgendamento.Data.DayOfWeek.ToString()];
+            
             _context.Add(diaAgendamento);
             _context.SaveChanges();
             return diaAgendamento.Id;
@@ -40,6 +50,16 @@ namespace Service
         /// <param name="diaAgendamento"></param>
         public void Edit(Diaagendamento diaAgendamento)
         {
+            Dictionary<string,string> dias = new () 
+            {
+                {"Monday","Segunda"},
+                {"Tuesday","Terça"},
+                {"Wednesday","Quarta"},
+                {"Thursday","Quinta"},
+                {"Friday","Sexta"}
+            };
+            diaAgendamento.DiaSemana = dias[diaAgendamento.Data.DayOfWeek.ToString()];
+
             _context.Update(diaAgendamento);
             _context.SaveChanges();
         }
@@ -134,6 +154,40 @@ namespace Service
                             Vagas = (diaAgendamento.VagasAtendimento - diaAgendamento.VagasAgendadas)
                         };
             return query.AsNoTracking();
+        }
+
+        public IEnumerable<AgendaDTO> GetAllByOrgao(int idOrgao)
+        {
+            return _context.Diaagendamentos
+            .Where(d => d.IdServicoPublicoNavigation.IdOrgaoPublico == idOrgao)
+            .Select(d => new AgendaDTO 
+            {
+                Id = d.Id,
+                Dia = d.DiaSemana,
+                Inicio = d.HorarioInicio,
+                Termino = d.HorarioFim,
+                Servico = d.IdServicoPublicoNavigation.Nome,
+                NumVagas = d.VagasAtendimento,
+                NumAgendado = d.VagasAgendadas,
+                NumDis = d.VagasAtendimento - d.VagasAgendadas
+            });
+        }
+
+        public AgendaDTO? GetByOrgao(int idOrgao, int idDia)
+        {
+            return _context.Diaagendamentos
+            .Where(d => d.IdServicoPublicoNavigation.IdOrgaoPublico == idOrgao && d.Id == idDia)
+            .Select(d => new AgendaDTO 
+            {
+                Id = d.Id,
+                Dia = d.DiaSemana,
+                Inicio = d.HorarioInicio,
+                Termino = d.HorarioFim,
+                Servico = d.IdServicoPublicoNavigation.Nome,
+                NumVagas = d.VagasAtendimento,
+                NumAgendado = d.VagasAgendadas,
+                NumDis = d.VagasAtendimento - d.VagasAgendadas
+            }).FirstOrDefault();
         }
     }
 }

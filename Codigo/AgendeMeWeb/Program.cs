@@ -1,4 +1,3 @@
-using AgendeMeWeb.Areas.Identity.Data;
 using AgendeMeWeb.Helpers;
 using Core;
 using Core.Service;
@@ -49,11 +48,11 @@ namespace AgendeMeWeb
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
-            }).AddEntityFrameworkStores<IdentityContext>();
+            }).AddEntityFrameworkStores<IdentityContext>().AddRoles<IdentityRole>();
 
             builder.Services.ConfigureApplicationCookie(options =>
             {
-                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.AccessDeniedPath = "/AgendarServico";
                 options.Cookie.Name = "AgendeMeSession";
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60);

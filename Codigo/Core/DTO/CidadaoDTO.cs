@@ -5,7 +5,7 @@ namespace Core.DTO
     public class CidadaoDTO
     {
         public int Id { get; set; }
-        public string? Nome { get; set; }
+        public string Nome { get; set; } = string.Empty;
 
         [Display(Name = "CPF")]
         public string? Cpf { get; set; }
@@ -33,5 +33,9 @@ namespace Core.DTO
         public string? NumeroCasa { get; set; }
         public string? Sexo { get; set; }
         public string? Complemento { get; set; }
+        public int? IdPrefeitura { get; set; }
+        public Prefeitura? Prefeitura { get; set; }
+        public string Papel { get; set; } = string.Empty;
+        public int? IdOrgao { get; set; }
     }
 }

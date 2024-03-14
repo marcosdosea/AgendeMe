@@ -1,9 +1,7 @@
-using AgendeMeWeb.Areas.Identity.Data;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace AgendeMeWeb.Areas.Identity.Data;
+namespace Core;
 
 public class IdentityContext : IdentityDbContext<UsuarioIdentity>
 {

@@ -1,5 +1,10 @@
 ﻿@model Core.DTO.AgendamentoDTO
 
+@{
+    ViewData["Title"] = "Agendamento Confirmado";
+    Layout = ViewData["Layout"]?.ToString();
+}
+
 <div class="mb-4 pb-4 text-center">
     <i class="verde-agende-me icone-botao-box mt-4 w-100 d-block mx-auto fas fa-check-circle text-center"></i>
     <h2 class="text-center fw-bold azul-text">Agendado com sucesso</h2>
@@ -50,8 +55,8 @@
                 </p>
             </div>
         </div>
-        <button class="br-button secondary mr-3 mt-3" type="button" onclick="@("window.location.href='" + @Url.Action("List", "AgendarServico") + "'")">
+        <a class="br-button secondary mr-3 mt-3" asp-controller="AgendarServico" asp-action="List" asp-route-id="1">
                 Consulta Agendamentos
-        </button>
+        </a>
     </div>
 </div>

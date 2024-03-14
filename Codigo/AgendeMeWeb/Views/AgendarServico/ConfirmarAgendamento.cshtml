@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Confirmar Agendamento";
+    Layout = ViewData["Layout"]?.ToString();
 }
 
 <div id="ajaxBox">
@@ -135,6 +136,9 @@
     }
 }else 
 {
+    @section Css {
+        <link rel="stylesheet" href="~/css/agendarServico.css" />
+    }
     @section Scripts {
         <script src="~/js/agendar-servico.js"></script>
     }

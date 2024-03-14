@@ -1,13 +1,18 @@
-﻿using AgendeMeWeb.Models;
+﻿using System.Security.Claims;
+using AgendeMeWeb.Helpers;
+using AgendeMeWeb.Models;
 using AutoMapper;
 using Core;
 using Core.DTO;
 using Core.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Service;
 
 namespace AgendeMeWeb.Controllers
 {
-    public class AgendarServicoController : Controller
+    public class AgendarServicoController : BaseController
     {
         private readonly IAgendamentoService _agendamentoService;
         private readonly IPrefeituraService _prefeituraService;
@@ -40,16 +45,34 @@ namespace AgendeMeWeb.Controllers
         // GET: AgendarServicoController
         public ActionResult Index()
         {
-            var listaPrefeitura = _prefeituraService.GetAll();
-            var listaPrefeituraModel = _mapper.Map<List<PrefeituraViewModel>>(listaPrefeitura);
-            return View(listaPrefeituraModel);
+            var cookie = Request.Cookies.FirstOrDefault(c => c.Key == "AgendeMeSession");
+            if (cookie.Value == null) 
+            {
+                ViewData["Layout"] = "_Layout";
+                return View(_prefeituraService.GetAllCidade());
+            }
+            var idPrefeitura = User.FindFirst("Prefeitura")?.Value;
+            SetLayout();
+            if (string.IsNullOrEmpty(idPrefeitura)) 
+            {
+                return View();
+            }
+            var id = Convert.ToInt32(idPrefeitura);
+            return RedirectToAction(nameof(AreasDeServico), new { id });
         }
 
-        public ActionResult List()
+        [HttpGet]
+        [Authorize]
+        public ActionResult List(int id)
         {
-            var listaAgendamentos = _agendamentoService.GetAll();
-            var listaAgendamentosModel = _mapper.Map<List<AgendarServicoViewModel>>(listaAgendamentos);
-            return View(listaAgendamentosModel);
+            if (id == 0) {
+                return RedirectToAction(nameof(Index));
+            }
+            int idUser = Convert.ToInt32(User.FindFirstValue("Id"));
+            var listaAgendamentos = _agendamentoService.GetAllByUser(idUser, id);
+            SetLayout();
+            ViewBag.Page = id;
+            return View(listaAgendamentos);
         }
 
         // GET: AgendarServicoController/Details/5
@@ -91,11 +114,40 @@ namespace AgendeMeWeb.Controllers
             return View(agendamentoModel);
         }
 
-        public ActionResult AtenderCidadao(int id)
+        [HttpGet]
+        [Authorize(Roles = $"{Papeis.Atendente}, {Papeis.GestorOrgao}, {Papeis.GestorPrefeitura}")]
+        public ActionResult AtenderCidadao(int? id, string? cpf)
         {
-            Agendamento agendamento = _agendamentoService.Get(id);
-            AgendarServicoViewModel agendamentoModel = _mapper.Map<AgendarServicoViewModel>(agendamento);
-            return View(agendamentoModel);
+            SetLayout();
+            if (cpf != null) 
+            {
+                ViewData["cpf"] = cpf;
+                ViewData["page"] = id ?? 1;
+                
+                var agendamentos = _agendamentoService.GetAllByCpf(cpf, id ?? 1, Convert.ToInt32(User.FindFirstValue("IdOrgao")));
+                ViewData["orgao"] = agendamentos.Agendamentos?.Select(a => a.OrgaoPublico).FirstOrDefault() 
+                ?? _orgaoPublicoService.Get(Convert.ToInt32(User.FindFirstValue("IdOrgao"))).Nome;
+                return View(agendamentos);
+            }
+            return View(new AgendamentoPage(){});
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Papeis.Atendente}, {Papeis.GestorOrgao}, {Papeis.GestorPrefeitura}")]
+        public ActionResult ConfirmarPresenca(int id, string cpf, string page)
+        {
+            _agendamentoService.AtualizarStatus(id, cpf, "Aguardando Atendimento");
+            return RedirectToAction(nameof(AtenderCidadao), new {id = page, cpf = cpf});
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Papeis.Atendente}, {Papeis.GestorOrgao}, {Papeis.GestorPrefeitura}")]
+        public ActionResult ConfirmarAtendimento(int id, string cpf, string page)
+        {
+            _agendamentoService.AtualizarStatus(id, cpf, "Atendido");
+            return RedirectToAction(nameof(AtenderCidadao), new {id = page, cpf = cpf});
         }
 
         // POST: AgendarServicoController/Edit/5
@@ -152,8 +204,18 @@ namespace AgendeMeWeb.Controllers
         {
             var listaAreasDeServico = _areaDeServicoService.GetAllByIdPrefeitura(id);
             var listaAreasDeServicoModel = _mapper.Map<List<AreaDeServicoViewModel>>(listaAreasDeServico);
+            var pref = _prefeituraService.Get(id);
+            ViewBag.IconeCidade = pref.Cidade.Substring(0, 2).ToUpper();
+            ViewBag.Cidade = $"{pref.Cidade}-{pref.Estado}";
+            
+            if (string.IsNullOrEmpty(User.FindFirst("Prefeitura")?.Value)) 
+            {
+                return PartialView(listaAreasDeServicoModel);
+            }
+            ViewData["View"] = true;
 
-            return PartialView(listaAreasDeServicoModel);
+            SetLayout();
+            return View(listaAreasDeServicoModel);
         }
 
         [HttpGet]
@@ -165,6 +227,10 @@ namespace AgendeMeWeb.Controllers
             ViewBag.idPrefeitura = area.IdPrefeitura;
             ViewBag.idArea = area.Id;
             var listaServicoPublico = _servicoPublicoService.GetAllByIdArea(idArea);
+            if (!string.IsNullOrEmpty(User.FindFirst("Prefeitura")?.Value)) 
+            {
+                ViewData["View"] = true;
+            }
             return PartialView(listaServicoPublico);
         }
 
@@ -210,8 +276,10 @@ namespace AgendeMeWeb.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{Papeis.Atendente}, {Papeis.GestorOrgao}, {Papeis.GestorPrefeitura}")]
         public ActionResult ConfirmarAgendamento(int idDiaAgendamento)
         {
+            SetLayout();
             var dadosAgendamento = _diaAgendamentoService.GetDadosAgendamento(idDiaAgendamento);
             ViewBag.idServico = dadosAgendamento.IdServico;
             ViewBag.data = dadosAgendamento.Data;
@@ -236,6 +304,7 @@ namespace AgendeMeWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Papeis.Atendente}, {Papeis.GestorOrgao}, {Papeis.GestorPrefeitura}")]
         public ActionResult ConfirmarAgendamento(AgendarServicoViewModel agendamentoModel)
         {
             try
@@ -285,8 +354,63 @@ namespace AgendeMeWeb.Controllers
         [HttpGet]
         public ActionResult AgendamentoConfirmado(int id)
         {
+            SetLayout();
             AgendamentoDTO agendamento = _agendamentoService.GetDados(id);
             return View(agendamento);
+        }
+
+        [Authorize(Roles = $"{Papeis.Atendente}, {Papeis.GestorOrgao}, {Papeis.GestorPrefeitura}")]
+        public ActionResult Atendimento(int? idServico, int? idOrgao)
+        {
+            IEnumerable<Orgaopublico> orgaos;
+            List<Servicopublico> servicos = new ();
+            if (User.IsInRole(Papeis.Atendente) || User.IsInRole(Papeis.GestorOrgao)) 
+            {
+                idOrgao = Convert.ToInt32(User.FindFirst("IdOrgao")?.Value);
+                var orgao = _orgaoPublicoService.Get((int)idOrgao);
+                orgaos = new [] { orgao };
+                servicos = _servicoPublicoService.GetAllByIdOrgao((int)idOrgao).ToList();
+
+                if (idOrgao != null && idServico != null) 
+                {
+                    if (_diaAgendamentoService.GetAllHorasByIdServicoAndDia((int)idServico, DateTime.Now).Any()) 
+                    {
+                        ViewData["idServico"] = idServico;
+                    }
+                }
+
+            }
+            else
+            {
+                orgaos = _orgaoPublicoService.GetAll();
+                if (idOrgao != null) 
+                {
+                    servicos = _servicoPublicoService.GetAllByIdOrgao((int)idOrgao).ToList();
+                    if (idServico != null) 
+                    {
+                        if (_diaAgendamentoService.GetAllHorasByIdServicoAndDia((int)idServico, DateTime.Now).Any()) 
+                        {
+                            ViewData["idServico"] = idServico;
+                        }
+                    }
+                }
+            }
+            
+            SetLayout();
+            return View(new Atendimento {
+                ListaOrgaos = new SelectList(orgaos,"Id", "Nome", null),
+                ListaServicos = new SelectList(servicos,"Id", "Nome", null)
+                });
+        }
+
+        public ActionResult PainelAtendimento(int id) 
+        {
+            return View();
+        }
+
+        public ActionResult GetAtendimentos(int id) 
+        {
+            return PartialView("~/Views/AgendarServico/_PainelAtendimento.cshtml", _agendamentoService.GetAtendimentos(id));
         }
     }
 }
