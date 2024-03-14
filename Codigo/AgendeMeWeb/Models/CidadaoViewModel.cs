@@ -34,6 +34,7 @@ namespace AgendeMeWeb.Models
         [StringLength(10)]
         public string? Cep { get; set; }
 
+        [Display(Name = "UF")]
         [Required(ErrorMessage = "O estado é um campo obrigatório.")]
         [StringLength(2)]
         public string? Estado { get; set; }
