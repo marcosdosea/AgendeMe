@@ -1,0 +1,93 @@
+﻿@model AgendeMeWeb.Models.CidadaoViewModel
+
+@{
+    ViewData["Title"] = "Pré Cadastro - Cidadão";
+}
+<div class="row container col-md-8 col-lg-6 my-6">
+    <h1 class="mb-0">Cadastro de Cidadão</h1>
+    <h4 class="mt-2 mb-6">Sessão para cadastro de cidadãos</h4>
+
+    <form asp-action="PreCreate">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group col-sm-4 col-lg-12 mb-3 px-0">
+            <label asp-for="Nome" class="control-label"></label>
+            <input asp-for="Nome" class="form-control" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+        <div class="form-group col-sm-4 col-lg-8 mb-3 px-0">
+            <label asp-for="Cpf" class="control-label"></label>
+            <input asp-for="Cpf" class="form-control" />
+            <span asp-validation-for="Cpf" class="text-danger"></span>
+        </div>
+        <div class="form-group br-datetimepicker col-sm-4 col-lg-8 mb-3 px-0" data-mode="single" data-type="text">
+            <div class="br-input has-icon">
+                <label asp-for="DataNascimento" class="control-label" for="simples-input"></label>
+                <input asp-for="DataNascimento" class="form-control" id="simples-input" type="text" placeholder="dd/mm/aaaa" data-input="data-input" />
+                <button class="br-button circle small" type="button" aria-label="Abrir Timepicker" data-toggle="data-toggle" id="simples-input-btn">
+                    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-4 col-lg-3 mb-3 px-0">
+            <label asp-for="Sexo" class="control-label"></label>
+            <input asp-for="Sexo" class="form-control" />
+            <span asp-validation-for="Sexo" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-sm-4 col-lg-8 mb-3 px-0">
+            <label asp-for="Sus" class="control-label"></label>
+            <input asp-for="Sus" class="form-control" />
+            <span asp-validation-for="Sus" class="text-danger"></span>
+        </div>
+        <div class="form-group col-sm-4 col-lg-6 mb-3 px-0">
+            <label asp-for="Telefone" class="control-label"></label>
+            <input asp-for="Telefone" class="form-control" />
+            <span asp-validation-for="Telefone" class="text-danger"></span>
+        </div>
+        <div class="form-group col-sm-4 col-lg-12 mb-3 px-0">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group col-sm-4 col-lg-8 mb-3 px-0">
+            <label asp-for="Cep" class="control-label"></label>
+            <input asp-for="Cep" class="form-control" />
+            <span asp-validation-for="Cep" class="text-danger"></span>
+        </div>
+        <div class="form-group col-sm-4 col-lg-3 mb-3 px-0">
+            <label asp-for="Estado" class="control-label"></label>
+            <input asp-for="Estado" class="form-control" />
+            <span asp-validation-for="Estado" class="text-danger"></span>
+        </div>
+        <div class="form-group col-sm-4 col-lg-10 mb-3 px-0">
+            <label asp-for="Cidade" class="control-label"></label>
+            <input asp-for="Cidade" class="form-control" />
+            <span asp-validation-for="Cidade" class="text-danger"></span>
+        </div>
+            
+        <div class="form-group">
+            <input asp-for="TipoCidadao" type="hidden" class="form-control" />
+            <span asp-validation-for="TipoCidadao" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <div class="br-magic-button medium">
+                <button class="br-button" type="submit">
+                    Cadastrar
+                </button>
+            </div>
+            <button class="br-button" type="button">
+                <a class="back-none" asp-action="Index">Voltar para lista</a>
+            </button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

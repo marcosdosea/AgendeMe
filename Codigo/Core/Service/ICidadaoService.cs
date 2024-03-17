@@ -19,5 +19,7 @@ namespace Core.Service
         CidadaoDTO? GetByCPF(string CPF);
         CidadaoDTO? GetByEmail(string email);
         Task<bool> AddCidadaoAsync(UsuarioIdentity user, IUserStore<UsuarioIdentity> userStore, UserManager<UsuarioIdentity> userManager, IUserEmailStore<UsuarioIdentity> emailStore, Cidadao cidadao, string senha);
+
+        int PreCreate(Cidadao cidadao);
     }
 }
