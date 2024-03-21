@@ -38,4 +38,15 @@ namespace Core.DTO
         public string Papel { get; set; } = string.Empty;
         public int? IdOrgao { get; set; }
     }
+
+    public class CidadaoListDTO
+    {
+        public int Id { get; set; }
+
+        [Display(Name = "Nome")]
+        public string? Nome { get; set; }
+
+        [Display(Name = "Tipo do Acesso")]
+        public string? TipoCidadao { get; set; }
+    }
 }

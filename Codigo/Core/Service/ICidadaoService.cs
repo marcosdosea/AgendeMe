@@ -21,5 +21,8 @@ namespace Core.Service
         Task<bool> AddCidadaoAsync(UsuarioIdentity user, IUserStore<UsuarioIdentity> userStore, UserManager<UsuarioIdentity> userManager, IUserEmailStore<UsuarioIdentity> emailStore, Cidadao cidadao, string senha);
 
         int PreCreate(Cidadao cidadao);
+        IEnumerable<CidadaoListDTO> GetList();
+    }
+}
     }
 }

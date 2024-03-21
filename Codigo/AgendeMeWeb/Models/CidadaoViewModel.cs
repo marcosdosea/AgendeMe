@@ -34,6 +34,7 @@ namespace AgendeMeWeb.Models
         [StringLength(10)]
         public string? Cep { get; set; }
 
+        [Display(Name = "UF")]
         [Required(ErrorMessage = "O estado é um campo obrigatório.")]
         [StringLength(2)]
         public string? Estado { get; set; }
@@ -50,7 +51,7 @@ namespace AgendeMeWeb.Models
         [StringLength(70)]
         public string? Rua { get; set; }
 
-        [Display(Name = "Número da casa")]
+        [Display(Name = "Nº")]
         [Required(ErrorMessage = "O campo Número da casa é obrigatório. Caso não possua número informe: SN")]
         [StringLength(7)]
         public string? NumeroCasa { get; set; }
@@ -64,5 +65,11 @@ namespace AgendeMeWeb.Models
         public string? Complemento { get; set; }
         public int? IdOrgaoPublico { get; set; }
         public int? IdPrefeitura { get; set; }
+
+        public Dictionary<string, string> SexoOptions { get; set; } = new()
+        {
+            { "Masculino", "M" },
+            { "Feminino", "F" }
+        };
     }
 }
