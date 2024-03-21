@@ -89,5 +89,27 @@ namespace AgendeMeWeb.Controllers
             _cidadaoService.Delete(id);
             return RedirectToAction(nameof(Index));
         }
+
+        public ActionResult PreCreate()
+        {
+            return View();
+        }
+
+        // POST: CidadaoController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PreCreate(CidadaoViewModel cidadaoViewModel)
+        {
+
+            cidadaoViewModel.Bairro = "";
+            cidadaoViewModel.Rua = "";
+            cidadaoViewModel.NumeroCasa = "";
+
+            var cidadao = _mapper.Map<Cidadao>(cidadaoViewModel);
+            _cidadaoService.Create(cidadao);
+            
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
